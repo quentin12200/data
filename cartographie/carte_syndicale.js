@@ -49,6 +49,20 @@ function loadNationalStats() {
                         </div>
                     </div>
                 </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="stat-card">
+                            <div class="stat-value">8 849 298</div>
+                            <div class="stat-label">Inscrits</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="stat-card">
+                            <div class="stat-value">${total_sve.toLocaleString('fr-FR', {maximumFractionDigits: 2})}</div>
+                            <div class="stat-label">SVE</div>
+                        </div>
+                    </div>
+                </div>
             `;
         }
 
@@ -67,161 +81,91 @@ function loadNationalStats() {
 
 // Initialiser la carte
 function initMap(geoData) {
-    const mapContainer = document.getElementById('map-container');
-    if (!mapContainer) return;
-
-    // Dimensions de la carte
-    const width = mapContainer.clientWidth;
-    const height = 500;
-    const margin = { top: 10, right: 10, bottom: 10, left: 10 };
-
-    // Créer l'élément SVG
+    const width = document.getElementById('map-container').clientWidth;
+    const height = 600;
+    
+    // Créer le SVG
     const svg = d3.select('#map-container')
         .append('svg')
         .attr('width', width)
-        .attr('height', height)
-        .attr('viewBox', [0, 0, width, height])
-        .attr('style', 'max-width: 100%; height: auto;');
-
-    // Créer une projection géographique
+        .attr('height', height);
+    
+    // Créer la projection et le path
     const projection = d3.geoMercator()
-        .center([2.5, 46.8]) // Centre de la France
-        .scale(width * 3.5)
+        .center([2.5, 46.5])
+        .scale(width * 3)
         .translate([width / 2, height / 2]);
-
-    // Créer un générateur de chemin
-    const path = d3.geoPath()
-        .projection(projection);
-
-    // Dessiner les départements
-    const departments = svg.append('g')
-        .selectAll('path')
+    
+    const path = d3.geoPath().projection(projection);
+    
+    // Ajouter les départements
+    svg.selectAll('.departement')
         .data(geoData.features)
-        .join('path')
+        .enter()
+        .append('path')
+        .attr('class', 'departement')
         .attr('d', path)
-        .attr('fill', d => getDepartmentColor(d.properties.code))
-        .attr('stroke', '#FFF')
-        .attr('stroke-width', 0.5)
-        .attr('class', 'department')
-        .attr('data-code', d => d.properties.code)
+        .attr('id', d => `dept-${d.properties.code}`)
         .on('click', function(event, d) {
             showDepartmentDetails(d.properties.code);
         })
         .on('mouseover', function(event, d) {
-            d3.select(this)
-                .attr('stroke-width', 1.5);
-            
-            // Afficher une infobulle
             const dept = window.departementData[d.properties.code];
-            if (dept) {
-                const tooltip = d3.select('#tooltip');
-                tooltip.style('display', 'block')
-                    .style('left', (event.pageX + 10) + 'px')
-                    .style('top', (event.pageY + 10) + 'px')
-                    .html(`
-                        <strong>${d.properties.code} - ${d.properties.nom}</strong><br>
-                        ${dept.syndicat_dominant || 'Non défini'}
-                    `);
-            }
+            if (!dept) return;
+
+            const tooltip = d3.select('#tooltip');
+            tooltip.style('display', 'block')
+                .style('left', (event.pageX + 10) + 'px')
+                .style('top', (event.pageY + 10) + 'px')
+                .html(`
+                    <strong>${dept.nom || 'Département'} (${d.properties.code})</strong><br>
+                    Inscrits: ${Math.round(dept.total_inscrits || 0).toLocaleString()}<br>
+                    SVE: ${Math.round(dept.total_sve || 0).toLocaleString()}
+                `);
         })
         .on('mouseout', function() {
-            d3.select(this)
-                .attr('stroke-width', 0.5);
-            
             d3.select('#tooltip').style('display', 'none');
         });
 
-    // Légende
-    const legendData = [
-        { color: '#e41a1c', label: 'CGT' },
-        { color: '#377eb8', label: 'CFDT' },
-        { color: '#ff7f00', label: 'CGT-FO' },
-        { color: '#984ea3', label: 'CFTC' },
-        { color: '#4daf4a', label: 'CFE-CGC' },
-        { color: '#ffff33', label: 'SOLIDAIRES' },
-        { color: '#a65628', label: 'UNSA' },
-        { color: '#999999', label: 'AUTRES' },
-        { color: '#e0e0e0', label: 'Non défini' }
-    ];
-
-    const legend = svg.append('g')
-        .attr('class', 'legend')
-        .attr('transform', `translate(20, ${height - 20 - legendData.length * 20})`);
-
-    legend.selectAll('rect')
-        .data(legendData)
-        .join('rect')
-        .attr('x', 0)
-        .attr('y', (d, i) => i * 20)
-        .attr('width', 15)
-        .attr('height', 15)
-        .attr('fill', d => d.color);
-
-    legend.selectAll('text')
-        .data(legendData)
-        .join('text')
-        .attr('x', 20)
-        .attr('y', (d, i) => i * 20 + 12)
-        .text(d => d.label)
-        .attr('font-size', '12px')
-        .attr('fill', '#333');
-
-    // Zoom interactif
-    const zoom = d3.zoom()
-        .scaleExtent([1, 8])
-        .on('zoom', (event) => {
-            svg.selectAll('g').attr('transform', event.transform);
-        });
-
-    svg.call(zoom);
-
-    // Mettre à jour la coloration
+    // Colorer les départements
     updateMapColoring();
-}
-
-// Obtenir la couleur en fonction du syndicat dominant
-function getDepartmentColor(code) {
-    const deptData = window.departementData?.[code];
-    if (!deptData || !deptData.syndicat_dominant) return '#e0e0e0';
-    
-    const colorMap = {
-        'CGT': '#e41a1c',
-        'CFDT': '#377eb8',
-        'CGT-FO': '#ff7f00',
-        'CFTC': '#984ea3',
-        'CFE-CGC': '#4daf4a',
-        'SOLIDAIRES': '#ffff33',
-        'UNSA': '#a65628',
-        'AUTRES': '#999999'
-    };
-    
-    return colorMap[deptData.syndicat_dominant] || '#e0e0e0';
 }
 
 // Mettre à jour la coloration de la carte
 function updateMapColoring() {
-    d3.selectAll('.department')
-        .attr('fill', function() {
-            const code = d3.select(this).attr('data-code');
-            return getDepartmentColor(code);
+    d3.selectAll('.departement')
+        .style('fill', function(d) {
+            const dept = window.departementData[d.properties.code];
+            if (!dept || !dept.syndicat_dominant) return '#f5f5f5';
+            
+            const colorMap = {
+                'CGT': '#e41a1c',
+                'CFDT': '#377eb8',
+                'CGT-FO': '#ff7f00',
+                'CFTC': '#984ea3',
+                'CFE-CGC': '#4daf4a',
+                'SOLIDAIRES': '#ffff33',
+                'UNSA': '#a65628',
+                'AUTRES': '#999999'
+            };
+            
+            return colorMap[dept.syndicat_dominant] || '#f5f5f5';
         });
 }
 
 // Afficher les détails d'un département
 function showDepartmentDetails(code) {
-    const deptData = window.departementData?.[code];
+    const deptData = window.departementData[code];
     if (!deptData) {
         console.error('Données non disponibles pour le département', code);
         return;
     }
     
-    // Récupérer les éléments pour afficher les détails
-    const deptName = d3.select('#dept-name');
-    const deptStats = d3.select('#dept-stats');
-    const deptPV = d3.select('#dept-pv');
-    
-    // Mettre à jour le nom du département
-    deptName.html(`${code} - ${deptData.nom || 'Département'}`);
+    // Afficher les détails du département
+    const deptDetails = document.getElementById('departement-details');
+    if (!deptDetails) return;
+
+    deptDetails.classList.remove('d-none');
     
     // Calculer les voix totales pour chaque syndicat
     const syndicats = ['CGT', 'CFDT', 'CGT-FO', 'CFTC', 'CFE-CGC', 'SOLIDAIRES', 'UNSA', 'AUTRES'];
@@ -241,44 +185,44 @@ function showDepartmentDetails(code) {
                     (deptData.voix.TPE.total || 0) + 
                     (deptData.voix.AGRI.total || 0);
     
-    // Mettre à jour les statistiques du département
-    deptStats.html(`
-        <div class="card mb-3">
+    deptDetails.innerHTML = `
+        <div class="card">
             <div class="card-header bg-primary text-white">
-                <h5 class="mb-0">Statistiques du département</h5>
+                <h5 class="mb-0">Département ${code} - ${deptData.nom || 'Département'}</h5>
             </div>
-            <div class="card-body p-3">
-                <div class="row">
-                    <div class="col-md-4 mb-2">
-                        <div class="border rounded p-2">
-                            <div class="small text-muted">Inscrits</div>
-                            <div class="h5 mb-0">${Math.round(deptData.total_inscrits || 0).toLocaleString()}</div>
-                        </div>
+            <div class="card-body">
+                <div class="row text-center mb-4">
+                    <div class="col-md-3">
+                        <div class="h4 mb-0">${Math.round((deptData.voix.CSE.total || 0)).toLocaleString()}</div>
+                        <div class="small text-muted">voix CSE</div>
                     </div>
-                    <div class="col-md-4 mb-2">
-                        <div class="border rounded p-2">
-                            <div class="small text-muted">Votants</div>
-                            <div class="h5 mb-0">${Math.round(deptData.total_votants || 0).toLocaleString()}</div>
-                        </div>
+                    <div class="col-md-3">
+                        <div class="h4 mb-0">${Math.round((deptData.voix.TPE.total || 0)).toLocaleString()}</div>
+                        <div class="small text-muted">voix TPE</div>
                     </div>
-                    <div class="col-md-4 mb-2">
-                        <div class="border rounded p-2">
-                            <div class="small text-muted">SVE</div>
-                            <div class="h5 mb-0">${Math.round(totalSVE).toLocaleString()}</div>
-                        </div>
+                    <div class="col-md-3">
+                        <div class="h4 mb-0">${Math.round((deptData.voix.AGRI.total || 0)).toLocaleString()}</div>
+                        <div class="small text-muted">voix AGRI</div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="h4 mb-0">${Math.round(totalSVE).toLocaleString()}</div>
+                        <div class="small text-muted">Total voix</div>
                     </div>
                 </div>
-                
-                <div class="table-responsive mt-3">
+
+                <div class="table-responsive">
                     <table class="table table-sm table-striped">
                         <thead>
                             <tr>
                                 <th>Organisation</th>
-                                <th class="text-end">CSE</th>
-                                <th class="text-end">TPE</th>
-                                <th class="text-end">AGRI</th>
-                                <th class="text-end">Total</th>
+                                <th class="text-end">Voix CSE</th>
                                 <th class="text-end">%</th>
+                                <th class="text-end">Voix TPE</th>
+                                <th class="text-end">%</th>
+                                <th class="text-end">Voix AGRI</th>
+                                <th class="text-end">%</th>
+                                <th class="text-end">Total</th>
+                                <th class="text-end">% Total</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -287,24 +231,34 @@ function showDepartmentDetails(code) {
                                 const voixTPE = deptData.voix.TPE[syndicat] || 0;
                                 const voixAGRI = deptData.voix.AGRI[syndicat] || 0;
                                 const totalVoix = voixTotales[syndicat];
-                                const pourcentage = totalSVE > 0 ? (totalVoix / totalSVE * 100) : 0;
                                 
+                                const pctCSE = deptData.voix.CSE.total > 0 ? (voixCSE / deptData.voix.CSE.total * 100) : 0;
+                                const pctTPE = deptData.voix.TPE.total > 0 ? (voixTPE / deptData.voix.TPE.total * 100) : 0;
+                                const pctAGRI = deptData.voix.AGRI.total > 0 ? (voixAGRI / deptData.voix.AGRI.total * 100) : 0;
+                                const pctTotal = totalSVE > 0 ? (totalVoix / totalSVE * 100) : 0;
+
                                 return `
                                     <tr>
                                         <td>${syndicat}</td>
                                         <td class="text-end">${Math.round(voixCSE).toLocaleString()}</td>
+                                        <td class="text-end">${pctCSE.toFixed(2)}%</td>
                                         <td class="text-end">${Math.round(voixTPE).toLocaleString()}</td>
+                                        <td class="text-end">${pctTPE.toFixed(2)}%</td>
                                         <td class="text-end">${Math.round(voixAGRI).toLocaleString()}</td>
+                                        <td class="text-end">${pctAGRI.toFixed(2)}%</td>
                                         <td class="text-end">${Math.round(totalVoix).toLocaleString()}</td>
-                                        <td class="text-end">${pourcentage.toFixed(2)}%</td>
+                                        <td class="text-end">${pctTotal.toFixed(2)}%</td>
                                     </tr>
                                 `;
                             }).join('')}
                             <tr class="table-info fw-bold">
                                 <td>Total</td>
                                 <td class="text-end">${Math.round(deptData.voix.CSE.total || 0).toLocaleString()}</td>
+                                <td class="text-end">100%</td>
                                 <td class="text-end">${Math.round(deptData.voix.TPE.total || 0).toLocaleString()}</td>
+                                <td class="text-end">100%</td>
                                 <td class="text-end">${Math.round(deptData.voix.AGRI.total || 0).toLocaleString()}</td>
+                                <td class="text-end">100%</td>
                                 <td class="text-end">${Math.round(totalSVE).toLocaleString()}</td>
                                 <td class="text-end">100%</td>
                             </tr>
@@ -313,14 +267,7 @@ function showDepartmentDetails(code) {
                 </div>
             </div>
         </div>
-    `);
-    
-    // Afficher les détails et scrollez vers eux
-    document.getElementById('department-details').style.display = 'block';
-    document.getElementById('department-details').scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-    });
+    `;
 }
 
 // Charger les statistiques au chargement de la page

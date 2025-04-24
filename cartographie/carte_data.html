@@ -440,7 +440,13 @@
 
             deptsAfficher.forEach(([code, dept]) => {
                 const card = document.createElement('div');
-                card.className = 'col-md-12 mb-4';
+                card.className = 'col-md-6 mb-4';
+                
+                // Calculer les totaux
+                const totalCSE = dept.voix.CSE.total || 0;
+                const totalTPE = dept.voix.TPE.total || 0;
+                const totalAGRI = dept.voix.AGRI.total || 0;
+                const totalSVE = dept.total_sve || totalCSE + totalTPE + totalAGRI;
                 
                 // Calculer les voix totales pour chaque syndicat
                 const syndicats = ['CGT', 'CFDT', 'CGT-FO', 'CFTC', 'CFE-CGC', 'SOLIDAIRES', 'UNSA', 'AUTRES'];
@@ -454,79 +460,49 @@
                     );
                 });
                 
-                // Préparer les données pour l'affichage
-                const totalSVE = dept.total_sve || 
-                                (dept.voix.CSE.total || 0) + 
-                                (dept.voix.TPE.total || 0) + 
-                                (dept.voix.AGRI.total || 0);
+                // Trouver le syndicat dominant pour une couleur de fond
+                const syndicatClass = dept.syndicat_dominant?.toLowerCase() || '';
                 
                 card.innerHTML = `
-                    <div class="dept-card ${dept.syndicat_dominant?.toLowerCase()}-dominant">
+                    <div class="card h-100 ${syndicatClass}-dominant">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h5 class="mb-0">${code} - ${dept.nom || 'Département'}</h5>
                             <span class="badge bg-light text-dark">${dept.syndicat_dominant || 'Non défini'}</span>
                         </div>
                         <div class="card-body">
                             <div class="row mb-3">
-                                <div class="col-md-4">
-                                    <div class="border rounded p-2">
-                                        <div class="small text-muted">Inscrits</div>
-                                        <div class="h5 mb-0">${Math.round(dept.total_inscrits || 0).toLocaleString()}</div>
-                                    </div>
+                                <div class="col-6">
+                                    <div class="small text-muted">Inscrits</div>
+                                    <div class="h6">${Math.round(dept.total_inscrits || 0).toLocaleString()}</div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="border rounded p-2">
-                                        <div class="small text-muted">Votants</div>
-                                        <div class="h5 mb-0">${Math.round(dept.total_votants || 0).toLocaleString()}</div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="border rounded p-2">
-                                        <div class="small text-muted">SVE</div>
-                                        <div class="h5 mb-0">${Math.round(totalSVE).toLocaleString()}</div>
-                                    </div>
+                                <div class="col-6">
+                                    <div class="small text-muted">SVE</div>
+                                    <div class="h6">${Math.round(totalSVE).toLocaleString()}</div>
                                 </div>
                             </div>
                             
                             <div class="table-responsive">
-                                <table class="table table-sm table-striped">
+                                <table class="table table-sm">
                                     <thead>
                                         <tr>
                                             <th>Organisation</th>
-                                            <th class="text-end">CSE</th>
-                                            <th class="text-end">TPE</th>
-                                            <th class="text-end">AGRI</th>
-                                            <th class="text-end">Total</th>
+                                            <th class="text-end">Voix</th>
                                             <th class="text-end">%</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         ${syndicats.map(syndicat => {
-                                            const voixCSE = dept.voix.CSE[syndicat] || 0;
-                                            const voixTPE = dept.voix.TPE[syndicat] || 0;
-                                            const voixAGRI = dept.voix.AGRI[syndicat] || 0;
                                             const totalVoix = voixTotales[syndicat];
                                             const pourcentage = totalSVE > 0 ? (totalVoix / totalSVE * 100) : 0;
                                             
                                             return `
                                                 <tr>
                                                     <td>${syndicat}</td>
-                                                    <td class="text-end">${Math.round(voixCSE).toLocaleString()}</td>
-                                                    <td class="text-end">${Math.round(voixTPE).toLocaleString()}</td>
-                                                    <td class="text-end">${Math.round(voixAGRI).toLocaleString()}</td>
                                                     <td class="text-end">${Math.round(totalVoix).toLocaleString()}</td>
                                                     <td class="text-end">${pourcentage.toFixed(2)}%</td>
                                                 </tr>
                                             `;
                                         }).join('')}
-                                        <tr class="table-info fw-bold">
-                                            <td>Total</td>
-                                            <td class="text-end">${Math.round(dept.voix.CSE.total || 0).toLocaleString()}</td>
-                                            <td class="text-end">${Math.round(dept.voix.TPE.total || 0).toLocaleString()}</td>
-                                            <td class="text-end">${Math.round(dept.voix.AGRI.total || 0).toLocaleString()}</td>
-                                            <td class="text-end">${Math.round(totalSVE).toLocaleString()}</td>
-                                            <td class="text-end">100%</td>
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
