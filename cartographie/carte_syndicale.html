@@ -157,7 +157,7 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col-12 text-center">
-                        <a href="carte_simplifiee.html" class="btn btn-success">Voir la carte simplifiée</a>
+                        <a href="carte_data.html" class="btn btn-success">Voir la carte simplifiée</a>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -658,7 +658,7 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
                         <div class="col-6">
                             <div class="card bg-light">
                                 <div class="card-body text-center p-2">
-                                    <div class="stats-value display-6">${statsNationales.total_scrutins.toLocaleString()}</div>
+                                    <div class="stats-value display-6">${statsNationales.total_scrutins ? statsNationales.total_scrutins.toLocaleString() : '0'}</div>
                                     <div class="stats-label">Scrutins</div>
                                 </div>
                             </div>
@@ -666,7 +666,7 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
                         <div class="col-6">
                             <div class="card bg-light">
                                 <div class="card-body text-center p-2">
-                                    <div class="stats-value display-6">${statsNationales.total_inscrits.toLocaleString()}</div>
+                                    <div class="stats-value display-6">${statsNationales.total_inscrits ? statsNationales.total_inscrits.toLocaleString() : '0'}</div>
                                     <div class="stats-label">Inscrits</div>
                                 </div>
                             </div>
@@ -676,7 +676,7 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
                         <div class="col-6">
                             <div class="card bg-light">
                                 <div class="card-body text-center p-2">
-                                    <div class="stats-value display-6">${statsNationales.total_votants.toLocaleString()}</div>
+                                    <div class="stats-value display-6">${statsNationales.total_votants ? statsNationales.total_votants.toLocaleString() : '0'}</div>
                                     <div class="stats-label">Votants</div>
                                 </div>
                             </div>
@@ -684,7 +684,7 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
                         <div class="col-6">
                             <div class="card bg-light">
                                 <div class="card-body text-center p-2">
-                                    <div class="stats-value display-6">${statsNationales.total_sve.toLocaleString()}</div>
+                                    <div class="stats-value display-6">${statsNationales.total_sve ? statsNationales.total_sve.toLocaleString() : '0'}</div>
                                     <div class="stats-label">SVE</div>
                                 </div>
                             </div>
@@ -724,7 +724,7 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
                         <div class="col-6">
                             <div class="card bg-light">
                                 <div class="card-body text-center p-2">
-                                    <div class="stats-value display-6">${voix.toLocaleString()}</div>
+                                    <div class="stats-value display-6">${voix ? voix.toLocaleString() : '0'}</div>
                                     <div class="stats-label">Voix totales</div>
                                 </div>
                             </div>
@@ -742,7 +742,7 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
                         <div class="col-6">
                             <div class="card bg-light">
                                 <div class="card-body text-center p-2">
-                                    <div class="stats-value display-6">${scrutinsPresents.toLocaleString()}</div>
+                                    <div class="stats-value display-6">${scrutinsPresents ? scrutinsPresents.toLocaleString() : '0'}</div>
                                     <div class="stats-label">Scrutins présents</div>
                                 </div>
                             </div>
