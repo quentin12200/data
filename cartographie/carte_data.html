@@ -310,8 +310,25 @@
             
             // Fonction pour remplir le menu déroulant des départements
             function remplirMenuDepartements(depts) {
+                // Convertir l'objet en tableau pour pouvoir le trier
+                let deptsArray = [];
+                
+                // Vérifier si depts est un objet ou un tableau
+                if (!Array.isArray(depts)) {
+                    // Si c'est un objet, convertir en tableau
+                    for (const code in depts) {
+                        deptsArray.push({
+                            code: code,
+                            nom: depts[code].nom || getDepartementName(code)
+                        });
+                    }
+                } else {
+                    // Si c'est déjà un tableau, l'utiliser directement
+                    deptsArray = depts;
+                }
+                
                 // Trier les départements par code
-                depts.sort((a, b) => {
+                deptsArray.sort((a, b) => {
                     // Gérer les cas spéciaux comme 2A, 2B, etc.
                     const codeA = a.code;
                     const codeB = b.code;
@@ -321,18 +338,29 @@
                         return parseInt(codeA) - parseInt(codeB);
                     }
                     
-                    // Sinon, comparer comme des chaînes
+                    // Sinon, comparer comme des chaînes de caractères
                     return codeA.localeCompare(codeB);
+                });
+                
+                // Ajouter les départements au menu déroulant
+                const deptSelect = document.getElementById('select-departement');
+                deptSelect.innerHTML = '<option value="tous">Tous les départements</option>';
+                
+                deptsArray.forEach(dept => {
+                    const option = document.createElement('option');
+                    option.value = dept.code;
+                    option.textContent = `${dept.code} - ${dept.nom}`;
+                    deptSelect.appendChild(option);
                 });
                 
                 // Séparer les départements métropolitains et DOM-TOM
                 const metroOptions = [];
                 const domTomOptions = [];
                 
-                depts.forEach(dept => {
+                deptsArray.forEach(dept => {
                     const option = document.createElement('option');
                     option.value = dept.code;
-                    option.textContent = `${dept.code} - ${dept.nom !== dept.code ? dept.nom : 'Département ' + dept.code}`;
+                    option.textContent = `${dept.code} - ${dept.nom}`;
                     
                     // Ajouter aux DOM-TOM si le code commence par 97, sinon aux métropolitains
                     if (dept.code.startsWith('97')) {

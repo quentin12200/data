@@ -262,7 +262,7 @@
         function loadData() {
             Promise.all([
                 d3.json('../json_data_ordonnees/resultats_departements_complets.json'),
-                d3.json('france-departements.json')
+                d3.json('assets/france-departements.json')
             ]).then(function(data) {
                 resultatsParDepartement = data[0];
                 const franceData = data[1];
