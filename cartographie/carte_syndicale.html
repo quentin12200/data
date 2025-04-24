@@ -86,22 +86,27 @@
             color: #6c757d;
         }
         .legend {
-            background: white;
+            margin-top: 10px;
             padding: 10px;
+            border: 1px solid #ddd;
             border-radius: 5px;
-            box-shadow: 0 1px 5px rgba(0,0,0,0.1);
-            margin-top: 15px;
+            background-color: #f9f9f9;
+        }
+        .legend-color {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            border: 1px solid #ddd;
         }
         .legend-item {
             display: flex;
             align-items: center;
-            margin-bottom: 5px;
-        }
-        .legend-color {
-            width: 20px;
-            height: 20px;
             margin-right: 10px;
-            border: 1px solid #ddd;
+            font-size: 0.8rem;
+        }
+        #color-legend {
+            padding: 10px;
         }
         #entreprises-container {
             margin-top: 20px;
@@ -652,9 +657,7 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
 
         // Mettre à jour la coloration de la carte
         function updateMapColoring() {
-            // Palette dynamique selon le syndicat
-            colorScale = d3.scaleSequential(colorPalettes[selectedSyndicat] || colorPalettes['all']);
-            // Déterminer les valeurs min et max pour l'échelle de couleurs
+            // Déterminer les valeurs pour l'échelle de couleurs
             let values = [];
             for (const deptCode in resultatsParDepartement) {
                 const dept = resultatsParDepartement[deptCode];
@@ -664,9 +667,32 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
                     values.push(dept.pourcentages[selectedSyndicat]);
                 }
             }
-            const minValue = d3.min(values);
-            const maxValue = d3.max(values);
-            colorScale.domain([minValue, maxValue]);
+            
+            // Créer une échelle de couleurs plus adaptée
+            if (selectedSyndicat === 'all') {
+                // Pour le nombre d'inscrits, utiliser une échelle quantile avec des paliers plus distincts
+                const quantiles = [
+                    0,
+                    1000,
+                    5000,
+                    10000,
+                    20000,
+                    50000,
+                    100000,
+                    d3.max(values)
+                ];
+                
+                colorScale = d3.scaleQuantile()
+                    .domain(values)
+                    .range(d3.quantize(colorPalettes['all'], 7));
+            } else {
+                // Pour les pourcentages, utiliser une échelle quantile avec des paliers plus distincts
+                colorScale = d3.scaleQuantile()
+                    .domain(values)
+                    .range(d3.quantize(colorPalettes[selectedSyndicat], 7));
+            }
+            
+            // Appliquer les couleurs aux départements
             d3.selectAll('.departement')
                 .transition().duration(500)
                 .style('fill', function(d) {
@@ -690,6 +716,72 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
                 } else {
                     mapTitle.innerHTML = `Pourcentage de représentativité ${selectedSyndicat} par département`;
                 }
+            }
+            
+            // Mettre à jour la légende
+            updateLegend();
+        }
+        
+        // Fonction pour mettre à jour la légende
+        function updateLegend() {
+            const legendContainer = document.getElementById('color-legend');
+            legendContainer.innerHTML = '';
+            
+            // Créer la légende en fonction du type de données
+            if (selectedSyndicat === 'all') {
+                // Légende pour le nombre d'inscrits
+                const thresholds = colorScale.quantiles();
+                const formattedThresholds = [0, ...thresholds].map(d => Math.round(d).toLocaleString());
+                
+                const legendHTML = `
+                    <div class="d-flex justify-content-between">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #f5f5f5;"></div>
+                            <span>Pas de données</span>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-2">
+                        <div>Moins d'inscrits</div>
+                        <div class="d-flex">
+                            ${colorScale.range().map((color, i) => {
+                                return `<div class="legend-item">
+                                    <div class="legend-color" style="background-color: ${color};"></div>
+                                    <span>${i < formattedThresholds.length - 1 ? formattedThresholds[i] + ' - ' + formattedThresholds[i+1] : '> ' + formattedThresholds[i]}</span>
+                                </div>`;
+                            }).join('')}
+                        </div>
+                        <div>Plus d'inscrits</div>
+                    </div>
+                `;
+                
+                legendContainer.innerHTML = legendHTML;
+            } else {
+                // Légende pour les pourcentages
+                const thresholds = colorScale.quantiles();
+                const formattedThresholds = [0, ...thresholds].map(d => d.toFixed(1) + '%');
+                
+                const legendHTML = `
+                    <div class="d-flex justify-content-between">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: #f5f5f5;"></div>
+                            <span>Pas de données</span>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-2">
+                        <div>Moins représentatif</div>
+                        <div class="d-flex">
+                            ${colorScale.range().map((color, i) => {
+                                return `<div class="legend-item">
+                                    <div class="legend-color" style="background-color: ${color};"></div>
+                                    <span>${i < formattedThresholds.length - 1 ? formattedThresholds[i] + ' - ' + formattedThresholds[i+1] : '> ' + formattedThresholds[i]}</span>
+                                </div>`;
+                            }).join('')}
+                        </div>
+                        <div>Plus représentatif</div>
+                    </div>
+                `;
+                
+                legendContainer.innerHTML = legendHTML;
             }
         }
 
