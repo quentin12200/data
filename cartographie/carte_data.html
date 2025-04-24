@@ -280,6 +280,32 @@
             let filtreActif = 'tous';
             let departements = [];
             
+            // Fonction pour calculer le total des voix d'un syndicat pour un département (tous types de scrutin confondus)
+            function getTotalVoixSyndicat(dept, syndicat) {
+                let total = 0;
+                for (const type of ['CSE', 'TPE', 'AGRI']) {
+                    if (dept[type] && dept[type].voix && dept[type].voix[syndicat] !== undefined) {
+                        total += dept[type].voix[syndicat];
+                    }
+                }
+                return Math.round(total);
+            }
+            
+            // Fonction pour calculer le pourcentage d'un syndicat pour un département (tous types de scrutin confondus)
+            function getPourcentageSyndicat(dept, syndicat) {
+                let totalVoix = getTotalVoixSyndicat(dept, syndicat);
+                let totalSve = 0;
+                
+                for (const type of ['CSE', 'TPE', 'AGRI']) {
+                    if (dept[type] && dept[type].sve !== undefined) {
+                        totalSve += dept[type].sve;
+                    }
+                }
+                
+                if (totalSve === 0) return 0;
+                return (totalVoix / totalSve) * 100;
+            }
+            
             // Charger les données depuis le fichier JSON ordonné
             fetch('../json_data_ordonnees/resultats_departements_complets.json')
                 .then(response => {
@@ -432,7 +458,7 @@
                                 <div class="card-header">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <span><i class="fas fa-map-marker-alt me-1"></i>${dept.code} - ${dept.nom !== dept.code ? dept.nom : 'Département ' + dept.code}</span>
-                                        <span class="badge bg-secondary"><i class="fas fa-file-alt me-1"></i>${dept.total_scrutins} scrutins</span>
+                                        <span class="badge bg-secondary"><i class="fas fa-file-alt me-1"></i>${dept.total_scrutins || 0} scrutins</span>
                                     </div>
                                 </div>
                                 <div class="card-body">
@@ -471,7 +497,47 @@
                                     </div>
                                     
                                     <div class="mt-3">
-                                        <h6 class="mb-2">Scores par organisation</h6>
+                                        <h6 class="mb-2">Inscrits par type de scrutin</h6>
+                                        <div class="table-responsive">
+                                            <table class="table table-sm table-bordered">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th>Type</th>
+                                                        <th>Inscrits</th>
+                                                        <th>Votants</th>
+                                                        <th>SVE</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><strong>CSE</strong></td>
+                                                        <td>${(dept.CSE?.inscrits || 0).toLocaleString()}</td>
+                                                        <td>${(dept.CSE?.votants || 0).toLocaleString()}</td>
+                                                        <td>${(dept.CSE?.sve || 0).toLocaleString()}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>TPE</strong></td>
+                                                        <td>${(dept.TPE?.inscrits || 0).toLocaleString()}</td>
+                                                        <td>${(dept.TPE?.votants || 0).toLocaleString()}</td>
+                                                        <td>${(dept.TPE?.sve || 0).toLocaleString()}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>AGRI</strong></td>
+                                                        <td>${(dept.AGRI?.inscrits || 0).toLocaleString()}</td>
+                                                        <td>${(dept.AGRI?.votants || 0).toLocaleString()}</td>
+                                                        <td>${(dept.AGRI?.sve || 0).toLocaleString()}</td>
+                                                    </tr>
+                                                    <tr class="table-secondary">
+                                                        <td><strong>TOTAL</strong></td>
+                                                        <td><strong>${((dept.CSE?.inscrits || 0) + (dept.TPE?.inscrits || 0) + (dept.AGRI?.inscrits || 0)).toLocaleString()}</strong></td>
+                                                        <td><strong>${((dept.CSE?.votants || 0) + (dept.TPE?.votants || 0) + (dept.AGRI?.votants || 0)).toLocaleString()}</strong></td>
+                                                        <td><strong>${((dept.CSE?.sve || 0) + (dept.TPE?.sve || 0) + (dept.AGRI?.sve || 0)).toLocaleString()}</strong></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        
+                                        <h6 class="mb-2 mt-3">Scores par organisation</h6>
                                         <div class="table-responsive">
                                             <table class="table table-sm table-bordered">
                                                 <thead class="table-light">
@@ -484,43 +550,43 @@
                                                 <tbody>
                                                     <tr class="table-danger">
                                                         <td>CGT</td>
-                                                        <td>${Math.round(dept.voix.CGT).toLocaleString()}</td>
-                                                        <td>${dept.pourcentages.CGT.toFixed(2)}%</td>
+                                                        <td>${getTotalVoixSyndicat(dept, 'CGT').toLocaleString()}</td>
+                                                        <td>${getPourcentageSyndicat(dept, 'CGT').toFixed(2)}%</td>
                                                     </tr>
                                                     <tr class="table-info">
                                                         <td>CFDT</td>
-                                                        <td>${Math.round(dept.voix.CFDT).toLocaleString()}</td>
-                                                        <td>${dept.pourcentages.CFDT.toFixed(2)}%</td>
+                                                        <td>${getTotalVoixSyndicat(dept, 'CFDT').toLocaleString()}</td>
+                                                        <td>${getPourcentageSyndicat(dept, 'CFDT').toFixed(2)}%</td>
                                                     </tr>
                                                     <tr class="table-warning">
                                                         <td>CGT-FO</td>
-                                                        <td>${Math.round(dept.voix["CGT-FO"]).toLocaleString()}</td>
-                                                        <td>${dept.pourcentages["CGT-FO"].toFixed(2)}%</td>
+                                                        <td>${getTotalVoixSyndicat(dept, 'CGT-FO').toLocaleString()}</td>
+                                                        <td>${getPourcentageSyndicat(dept, 'CGT-FO').toFixed(2)}%</td>
                                                     </tr>
                                                     <tr>
                                                         <td>CFTC</td>
-                                                        <td>${Math.round(dept.voix.CFTC).toLocaleString()}</td>
-                                                        <td>${dept.pourcentages.CFTC.toFixed(2)}%</td>
+                                                        <td>${getTotalVoixSyndicat(dept, 'CFTC').toLocaleString()}</td>
+                                                        <td>${getPourcentageSyndicat(dept, 'CFTC').toFixed(2)}%</td>
                                                     </tr>
                                                     <tr>
                                                         <td>CFE-CGC</td>
-                                                        <td>${Math.round(dept.voix["CFE-CGC"]).toLocaleString()}</td>
-                                                        <td>${dept.pourcentages["CFE-CGC"].toFixed(2)}%</td>
+                                                        <td>${getTotalVoixSyndicat(dept, 'CFE-CGC').toLocaleString()}</td>
+                                                        <td>${getPourcentageSyndicat(dept, 'CFE-CGC').toFixed(2)}%</td>
                                                     </tr>
                                                     <tr>
                                                         <td>SOLIDAIRES</td>
-                                                        <td>${Math.round(dept.voix.SOLIDAIRES).toLocaleString()}</td>
-                                                        <td>${dept.pourcentages.SOLIDAIRES.toFixed(2)}%</td>
+                                                        <td>${getTotalVoixSyndicat(dept, 'SOLIDAIRES').toLocaleString()}</td>
+                                                        <td>${getPourcentageSyndicat(dept, 'SOLIDAIRES').toFixed(2)}%</td>
                                                     </tr>
                                                     <tr>
                                                         <td>UNSA</td>
-                                                        <td>${Math.round(dept.voix.UNSA).toLocaleString()}</td>
-                                                        <td>${dept.pourcentages.UNSA.toFixed(2)}%</td>
+                                                        <td>${getTotalVoixSyndicat(dept, 'UNSA').toLocaleString()}</td>
+                                                        <td>${getPourcentageSyndicat(dept, 'UNSA').toFixed(2)}%</td>
                                                     </tr>
                                                     <tr>
                                                         <td>AUTRES</td>
-                                                        <td>${Math.round(dept.voix.AUTRES).toLocaleString()}</td>
-                                                        <td>${dept.pourcentages.AUTRES.toFixed(2)}%</td>
+                                                        <td>${getTotalVoixSyndicat(dept, 'AUTRES').toLocaleString()}</td>
+                                                        <td>${getPourcentageSyndicat(dept, 'AUTRES').toFixed(2)}%</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
