@@ -10,6 +10,7 @@
     <script src="js/table-filter.js"></script>
     <link rel="stylesheet" href="css/animated-background.css">
     <script src="js/animated-background.js"></script>
+    <script src="carte_syndicale.js"></script>
     <style>
         body {
             padding: 20px;
@@ -127,7 +128,7 @@
     <!-- Les formes seront ajoutées par le script -->
     <div class="container">
         <h1 class="mb-4 text-center">Cartographie des Élections Syndicales</h1>
-        <div class="alert alert-danger">
+        <div class="alert alert-info mb-4">
             <div class="row align-items-center">
                 <div class="col-md-2 text-center">
                     <img src="logo-cgt.png" alt="Logo CGT" style="max-height: 60px;" class="img-fluid">
@@ -140,6 +141,11 @@
             </div>
         </div>
         <h4 id="map-title" class="text-center mb-3">Nombre de scrutins par département</h4>
+
+        <!-- Statistiques nationales -->
+        <div id="stats-nationales" class="mb-4">
+            <!-- Le contenu sera chargé dynamiquement par JavaScript -->
+        </div>
 
         <!-- Sélecteurs -->
         <div class="selector-container card">
