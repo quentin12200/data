@@ -357,33 +357,47 @@
             }
             
             // Fonction pour afficher les départements
-            function afficherDepartements(depts) {
+            function afficherDepartements(data) {
+                // Trier les départements par nombre de scrutins
+                const departements = Object.entries(data)
+                    .map(([code, dept]) => ({
+                        code,
+                        nom: dept.nom,
+                        total_scrutins: dept.total_scrutins || 0,
+                        total_inscrits: dept.total_inscrits || 0,
+                        total_votants: dept.total_votants || 0,
+                        total_sve: dept.total_sve || 0,
+                        voix: dept.voix || {},
+                        voix_tpe: dept.voix_tpe || {}
+                    }))
+                    .sort((a, b) => b.total_scrutins - a.total_scrutins);
+
                 // Filtrer selon le département sélectionné
-                let deptsFiltered = depts;
+                let deptsFiltered = departements;
                 const departementSelectionne = document.getElementById('select-departement').value;
                 
                 if (departementSelectionne !== 'tous') {
-                    deptsFiltered = depts.filter(d => d.code === departementSelectionne);
+                    deptsFiltered = deptsFiltered.filter(d => d.code === departementSelectionne);
                 } else {
                     // Filtres par pourcentage CGT
                     if (filtreActif === 'cgt-sup30') {
-                        deptsFiltered = depts.filter(d => d.pourcentages.CGT > 30);
+                        deptsFiltered = deptsFiltered.filter(d => d.voix.CGT > 30);
                     } else if (filtreActif === 'cgt-sup25') {
-                        deptsFiltered = depts.filter(d => d.pourcentages.CGT > 25);
+                        deptsFiltered = deptsFiltered.filter(d => d.voix.CGT > 25);
                     } else if (filtreActif === 'cgt-sup20') {
-                        deptsFiltered = depts.filter(d => d.pourcentages.CGT > 20);
+                        deptsFiltered = deptsFiltered.filter(d => d.voix.CGT > 20);
                     }
                     // Filtres par syndicat dominant
                     else if (filtreActif === 'cgt-dom') {
-                        deptsFiltered = depts.filter(d => d.syndicat_dominant === 'CGT');
+                        deptsFiltered = deptsFiltered.filter(d => d.syndicat_dominant === 'CGT');
                     } else if (filtreActif === 'cfdt-dom') {
-                        deptsFiltered = depts.filter(d => d.syndicat_dominant === 'CFDT');
+                        deptsFiltered = deptsFiltered.filter(d => d.syndicat_dominant === 'CFDT');
                     } else if (filtreActif === 'cgt-fo-dom') {
-                        deptsFiltered = depts.filter(d => d.syndicat_dominant === 'CGT-FO');
+                        deptsFiltered = deptsFiltered.filter(d => d.syndicat_dominant === 'CGT-FO');
                     } else if (filtreActif === 'cftc-dom') {
-                        deptsFiltered = depts.filter(d => d.syndicat_dominant === 'CFTC');
+                        deptsFiltered = deptsFiltered.filter(d => d.syndicat_dominant === 'CFTC');
                     } else if (filtreActif === 'cfe-cgc-dom') {
-                        deptsFiltered = depts.filter(d => d.syndicat_dominant === 'CFE-CGC');
+                        deptsFiltered = deptsFiltered.filter(d => d.syndicat_dominant === 'CFE-CGC');
                     }
                 }
                 
@@ -420,12 +434,12 @@
                                                 <div class="card-body p-2">
                                                     <div class="d-flex justify-content-between align-items-center">
                                                         <div>
-                                                            <div class="stats-value text-danger">${dept.pourcentages.CGT.toFixed(2)}%</div>
+                                                            <div class="stats-value text-danger">${dept.voix.CGT.toFixed(2)}%</div>
                                                             <div class="stats-label">CGT</div>
                                                         </div>
                                                         <div style="width: 100px;">
                                                             <div class="progress">
-                                                                <div class="progress-bar bg-danger" role="progressbar" style="width: ${Math.min(dept.pourcentages.CGT, 100)}%" aria-valuenow="${dept.pourcentages.CGT}" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                <div class="progress-bar bg-danger" role="progressbar" style="width: ${Math.min(dept.voix.CGT, 100)}%" aria-valuenow="${dept.voix.CGT}" aria-valuemin="0" aria-valuemax="100"></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -464,50 +478,50 @@
                                                     <tr class="table-danger">
                                                         <td>CGT</td>
                                                         <td>${Math.round(dept.voix.CGT).toLocaleString()}</td>
-                                                        <td>${Math.round(dept.voixTPE.CGT).toLocaleString()}</td>
-                                                        <td>${dept.pourcentages.CGT.toFixed(2)}%</td>
+                                                        <td>${Math.round(dept.voix_tpe.CGT).toLocaleString()}</td>
+                                                        <td>${dept.voix.CGT.toFixed(2)}%</td>
                                                     </tr>
                                                     <tr class="table-info">
                                                         <td>CFDT</td>
                                                         <td>${Math.round(dept.voix.CFDT).toLocaleString()}</td>
-                                                        <td>${Math.round(dept.voixTPE.CFDT).toLocaleString()}</td>
-                                                        <td>${dept.pourcentages.CFDT.toFixed(2)}%</td>
+                                                        <td>${Math.round(dept.voix_tpe.CFDT).toLocaleString()}</td>
+                                                        <td>${dept.voix.CFDT.toFixed(2)}%</td>
                                                     </tr>
                                                     <tr class="table-warning">
                                                         <td>CGT-FO</td>
                                                         <td>${Math.round(dept.voix["CGT-FO"]).toLocaleString()}</td>
-                                                        <td>${Math.round(dept.voixTPE["CGT-FO"]).toLocaleString()}</td>
-                                                        <td>${dept.pourcentages["CGT-FO"].toFixed(2)}%</td>
+                                                        <td>${Math.round(dept.voix_tpe["CGT-FO"]).toLocaleString()}</td>
+                                                        <td>${dept.voix["CGT-FO"].toFixed(2)}%</td>
                                                     </tr>
                                                     <tr>
                                                         <td>CFTC</td>
                                                         <td>${Math.round(dept.voix.CFTC).toLocaleString()}</td>
-                                                        <td>${Math.round(dept.voixTPE.CFTC).toLocaleString()}</td>
-                                                        <td>${dept.pourcentages.CFTC.toFixed(2)}%</td>
+                                                        <td>${Math.round(dept.voix_tpe.CFTC).toLocaleString()}</td>
+                                                        <td>${dept.voix.CFTC.toFixed(2)}%</td>
                                                     </tr>
                                                     <tr>
                                                         <td>CFE-CGC</td>
                                                         <td>${Math.round(dept.voix["CFE-CGC"]).toLocaleString()}</td>
-                                                        <td>${Math.round(dept.voixTPE["CFE-CGC"]).toLocaleString()}</td>
-                                                        <td>${dept.pourcentages["CFE-CGC"].toFixed(2)}%</td>
+                                                        <td>${Math.round(dept.voix_tpe["CFE-CGC"]).toLocaleString()}</td>
+                                                        <td>${dept.voix["CFE-CGC"].toFixed(2)}%</td>
                                                     </tr>
                                                     <tr>
                                                         <td>SOLIDAIRES</td>
                                                         <td>${Math.round(dept.voix.SOLIDAIRES).toLocaleString()}</td>
-                                                        <td>${Math.round(dept.voixTPE.SOLIDAIRES).toLocaleString()}</td>
-                                                        <td>${dept.pourcentages.SOLIDAIRES.toFixed(2)}%</td>
+                                                        <td>${Math.round(dept.voix_tpe.SOLIDAIRES).toLocaleString()}</td>
+                                                        <td>${dept.voix.SOLIDAIRES.toFixed(2)}%</td>
                                                     </tr>
                                                     <tr>
                                                         <td>UNSA</td>
                                                         <td>${Math.round(dept.voix.UNSA).toLocaleString()}</td>
-                                                        <td>${Math.round(dept.voixTPE.UNSA).toLocaleString()}</td>
-                                                        <td>${dept.pourcentages.UNSA.toFixed(2)}%</td>
+                                                        <td>${Math.round(dept.voix_tpe.UNSA).toLocaleString()}</td>
+                                                        <td>${dept.voix.UNSA.toFixed(2)}%</td>
                                                     </tr>
                                                     <tr>
                                                         <td>AUTRES</td>
                                                         <td>${Math.round(dept.voix.AUTRES).toLocaleString()}</td>
-                                                        <td>${Math.round(dept.voixTPE.AUTRES).toLocaleString()}</td>
-                                                        <td>${dept.pourcentages.AUTRES.toFixed(2)}%</td>
+                                                        <td>${Math.round(dept.voix_tpe.AUTRES).toLocaleString()}</td>
+                                                        <td>${dept.voix.AUTRES.toFixed(2)}%</td>
                                                     </tr>
                                                 </tbody>
                                             </table>

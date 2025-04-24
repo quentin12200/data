@@ -10,7 +10,6 @@ function loadNationalStats() {
             let totalVoixCGT = 0;
             let totalVoixCFDT = 0;
             let totalVoixFO = 0;
-            let totalVoixTPE = 0;
 
             // Parcourir tous les départements
             Object.values(data).forEach(dept => {
@@ -23,11 +22,6 @@ function loadNationalStats() {
                 totalVoixCGT += dept.voix.CGT || 0;
                 totalVoixCFDT += dept.voix.CFDT || 0;
                 totalVoixFO += dept.voix['CGT-FO'] || 0;
-
-                // On garde juste le compte des voix TPE pour l'affichage
-                if (dept.voix_tpe) {
-                    totalVoixTPE += Object.values(dept.voix_tpe).reduce((a, b) => a + (b || 0), 0);
-                }
             });
 
             // Mettre à jour l'affichage des statistiques nationales
@@ -46,7 +40,6 @@ function loadNationalStats() {
                             <div class="card-body text-center">
                                 <h5>Votants</h5>
                                 <div class="display-6">${totalVotants.toLocaleString()}</div>
-                                <div class="small text-muted">dont TPE: ${totalVoixTPE.toLocaleString()}</div>
                             </div>
                         </div>
                     </div>
@@ -55,7 +48,6 @@ function loadNationalStats() {
                             <div class="card-body text-center">
                                 <h5>SVE</h5>
                                 <div class="display-6">${totalSVE.toLocaleString()}</div>
-                                <div class="small text-muted">dont TPE: ${totalVoixTPE.toLocaleString()}</div>
                             </div>
                         </div>
                     </div>
@@ -74,7 +66,6 @@ function loadNationalStats() {
                             <div class="card-body text-center">
                                 <h5>CGT</h5>
                                 <div class="display-6">${totalVoixCGT.toLocaleString()}</div>
-                                <div class="small text-muted">dont TPE: ${(data[75].voix_tpe?.CGT || 0).toLocaleString()}</div>
                                 <div class="small text-muted">${(totalVoixCGT/totalSVE*100).toFixed(2)}%</div>
                             </div>
                         </div>
@@ -84,7 +75,6 @@ function loadNationalStats() {
                             <div class="card-body text-center">
                                 <h5>CFDT</h5>
                                 <div class="display-6">${totalVoixCFDT.toLocaleString()}</div>
-                                <div class="small text-muted">dont TPE: ${(data[75].voix_tpe?.CFDT || 0).toLocaleString()}</div>
                                 <div class="small text-muted">${(totalVoixCFDT/totalSVE*100).toFixed(2)}%</div>
                             </div>
                         </div>
@@ -94,7 +84,6 @@ function loadNationalStats() {
                             <div class="card-body text-center">
                                 <h5>CGT-FO</h5>
                                 <div class="display-6">${totalVoixFO.toLocaleString()}</div>
-                                <div class="small text-muted">dont TPE: ${(data[75].voix_tpe?.['CGT-FO'] || 0).toLocaleString()}</div>
                                 <div class="small text-muted">${(totalVoixFO/totalSVE*100).toFixed(2)}%</div>
                             </div>
                         </div>
