@@ -307,32 +307,39 @@
             }
             
             // Charger les données depuis le fichier JSON ordonné
-            fetch('../json_data_ordonnees/resultats_departements_complets.json')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Erreur lors du chargement des données');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    departements = data;
-                    
-                    // Remplir le menu déroulant des départements
-                    remplirMenuDepartements(departements);
-                    
-                    // Afficher les départements
-                    afficherDepartements(departements);
-                })
-                .catch(error => {
-                    console.error('Erreur:', error);
-                    deptListContainer.innerHTML = `
-                        <div class="col-12">
-                            <div class="alert alert-danger">
-                                <p class="mb-0">Erreur lors du chargement des données: ${error.message}</p>
-                            </div>
-                        </div>
-                    `;
-                });
+            function loadData() {
+                fetch('../json_data_ordonnees/resultats_departements_complets.json')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Erreur lors du chargement des données');
+                        }
+                        return response.json();
+                    })
+                    .then(jsonData => {
+                        console.log("Données chargées:", jsonData);
+                        data = jsonData;
+                        departements = jsonData;
+                        
+                        // Remplir le menu déroulant des départements
+                        remplirMenuDepartements(departements);
+                        
+                        // Afficher les départements
+                        afficherDepartements(departements);
+                    })
+                    .catch(error => {
+                        console.error('Erreur:', error);
+                        const deptListContainer = document.getElementById('dept-list');
+                        if (deptListContainer) {
+                            deptListContainer.innerHTML = `
+                                <div class="col-12">
+                                    <div class="alert alert-danger">
+                                        <p class="mb-0">Erreur lors du chargement des données: ${error.message}</p>
+                                    </div>
+                                </div>
+                            `;
+                        }
+                    });
+            }
             
             // Fonction pour remplir le menu déroulant des départements
             function remplirMenuDepartements(depts) {
@@ -375,55 +382,70 @@
                     return codeA.localeCompare(codeB);
                 });
                 
-                // Vérifier si l'élément de sélection existe
-                const deptSelect = document.getElementById('dept-select');
-                if (deptSelect) {
-                    deptSelect.innerHTML = '<option value="">Sélectionnez un département</option>';
+                console.log("Départements triés:", deptsArray);
+                
+                // Récupérer le sélecteur de département
+                const select = document.getElementById('select-departement');
+                if (select) {
+                    // Vider le sélecteur sauf l'option 'tous'
+                    while (select.options.length > 1) {
+                        select.remove(1);
+                    }
                     
+                    // Créer les groupes d'options s'ils n'existent pas
+                    let optgroupMetro = select.querySelector('optgroup[label="Départements métropolitains"]');
+                    let optgroupDomTom = select.querySelector('optgroup[label="DOM-TOM"]');
+                    
+                    if (!optgroupMetro) {
+                        optgroupMetro = document.createElement('optgroup');
+                        optgroupMetro.label = 'Départements métropolitains';
+                        select.appendChild(optgroupMetro);
+                    } else {
+                        // Vider le groupe existant
+                        while (optgroupMetro.firstChild) {
+                            optgroupMetro.removeChild(optgroupMetro.firstChild);
+                        }
+                    }
+                    
+                    if (!optgroupDomTom) {
+                        optgroupDomTom = document.createElement('optgroup');
+                        optgroupDomTom.label = 'DOM-TOM';
+                        select.appendChild(optgroupDomTom);
+                    } else {
+                        // Vider le groupe existant
+                        while (optgroupDomTom.firstChild) {
+                            optgroupDomTom.removeChild(optgroupDomTom.firstChild);
+                        }
+                    }
+                    
+                    // Ajouter les options aux groupes correspondants
                     deptsArray.forEach(dept => {
                         const option = document.createElement('option');
                         option.value = dept.code;
-                        option.textContent = `${dept.code} - ${dept.nom}`;
-                        deptSelect.appendChild(option);
+                        option.textContent = `${dept.code} - ${dept.nom || getDepartementName(dept.code)}`;
+                        
+                        // Déterminer si c'est un DOM-TOM ou un département métropolitain
+                        if (dept.code.startsWith('97')) {
+                            optgroupDomTom.appendChild(option);
+                        } else {
+                            optgroupMetro.appendChild(option);
+                        }
                     });
-                }
-                
-                // Nous n'avons pas besoin de cette partie car les éléments n'existent pas dans cette page
-                // Laissons le code en commentaire pour référence future
-                /*
-                // Séparer les départements métropolitains et DOM-TOM
-                const metroOptions = [];
-                const domTomOptions = [];
-                
-                deptsArray.forEach(dept => {
-                    const option = document.createElement('option');
-                    option.value = dept.code;
-                    option.textContent = `${dept.code} - ${dept.nom}`;
                     
-                    // Ajouter aux DOM-TOM si le code commence par 97, sinon aux métropolitains
-                    if (dept.code.startsWith('97')) {
-                        domTomOptions.push(option);
-                    } else {
-                        metroOptions.push(option);
-                    }
-                });
-                
-                // Ajouter les options au menu déroulant
-                const selectDepartement = document.getElementById('select-departement');
-                if (selectDepartement) {
-                    const metroGroup = selectDepartement.querySelector('optgroup[label="Départements métropolitains"]');
-                    const domTomGroup = selectDepartement.querySelector('optgroup[label="DOM-TOM"]');
+                    // Ajouter un événement de changement
+                    select.addEventListener('change', function() {
+                        const deptCode = this.value;
+                        if (deptCode !== 'tous') {
+                            showDepartementDetails(deptCode);
+                            document.getElementById('departement-details').classList.remove('hidden');
+                        } else {
+                            document.getElementById('departement-details').classList.add('hidden');
+                            afficherDepartements(departements);
+                        }
+                    });
                     
-                    if (metroGroup && domTomGroup) {
-                        metroOptions.forEach(option => metroGroup.appendChild(option));
-                        domTomOptions.forEach(option => domTomGroup.appendChild(option));
-                    }
+                    console.log("Sélecteur de département rempli avec", deptsArray.length, "départements");
                 }
-                */
-                
-                // Cette partie est commentée car les éléments n'existent pas
-                // metroOptions.forEach(option => metroGroup.appendChild(option));
-                // domTomOptions.forEach(option => domTomGroup.appendChild(option));
             }
             
             // Fonction pour afficher les départements
@@ -532,7 +554,7 @@
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="stats-item">
-                                                <div class="stats-value">${dept.syndicat_dominant}</div>
+                                                <div class="stats-value">${syndicatDominant}</div>
                                                 <div class="stats-label">Syndicat dominant</div>
                                             </div>
                                         </div>
@@ -661,7 +683,12 @@
             // Fonction pour afficher les détails d'un département
             function showDepartementDetails(dept) {
                 const deptData = data[dept];
-                if (!deptData) return;
+                if (!deptData) {
+                    console.error("Données non trouvées pour le département", dept);
+                    return;
+                }
+                
+                console.log("Détail du département", dept, deptData);
                 
                 // Calculer les totaux pour tous les types d'élections
                 const totalInscrits = (deptData.CSE?.inscrits || 0) + (deptData.TPE?.inscrits || 0) + (deptData.AGRI?.inscrits || 0);
@@ -686,18 +713,20 @@
                     let voixAGRI = 0;
                     
                     // Récupérer les voix par type d'élection
-                    if (deptData.CSE && deptData.CSE.voix) {
-                        voixCSE = deptData.CSE.voix[syndicat] || 0;
+                    if (deptData.CSE && deptData.CSE.voix && deptData.CSE.voix[syndicat] !== undefined) {
+                        voixCSE = deptData.CSE.voix[syndicat];
                         totalVoix += voixCSE;
                     }
-                    if (deptData.TPE && deptData.TPE.voix) {
-                        voixTPE = deptData.TPE.voix[syndicat] || 0;
+                    if (deptData.TPE && deptData.TPE.voix && deptData.TPE.voix[syndicat] !== undefined) {
+                        voixTPE = deptData.TPE.voix[syndicat];
                         totalVoix += voixTPE;
                     }
-                    if (deptData.AGRI && deptData.AGRI.voix) {
-                        voixAGRI = deptData.AGRI.voix[syndicat] || 0;
+                    if (deptData.AGRI && deptData.AGRI.voix && deptData.AGRI.voix[syndicat] !== undefined) {
+                        voixAGRI = deptData.AGRI.voix[syndicat];
                         totalVoix += voixAGRI;
                     }
+                    
+                    console.log(`Département ${dept}, Syndicat ${syndicat}: CSE=${voixCSE}, TPE=${voixTPE}, AGRI=${voixAGRI}, Total=${totalVoix}`);
                     
                     const pourcentage = totalSve > 0 ? (totalVoix / totalSve) * 100 : 0;
                     
