@@ -1,1 +1,63 @@
-/archive_20250424
+# Environnement Python
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Fichiers temporaires
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Dossiers de données non utilisés (garder uniquement json_data_ordonnees)
+/data/json_data/
+/data/json_data_new/
+
+# Fichiers Excel volumineux
+*.xlsx
+*.xls
+*.xlsm
+
+# Dossiers d'archives
+/archive_*/
+/ANNEXES_*/
+
+# Fichiers IDE
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
