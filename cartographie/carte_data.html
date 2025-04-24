@@ -348,7 +348,7 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             // Charger les données
-            fetch('../json_data_ordonnees/carte_data.json')
+            fetch('../json_data_ordonnees/resultats_departements_avec_tpe.json')
             .then(response => response.json())
             .then(data => {
                 departements = data;
@@ -408,7 +408,7 @@
                 if (!dept) return;
                 const option = document.createElement('option');
                 option.value = code;
-                option.textContent = `${code} - ${dept.nom}`;
+                option.textContent = `${code} - ${dept.nom || 'Département'}`;
                 select.appendChild(option);
             });
         }
@@ -422,10 +422,17 @@
             
             // Filtrer les départements selon le critère actif
             let deptsAfficher = Object.entries(departements);
+            
             if (filtreActif === 'cgt-dominant') {
                 deptsAfficher = deptsAfficher.filter(([_, dept]) => dept.syndicat_dominant === 'CGT');
             } else if (filtreActif === 'autres-dominant') {
                 deptsAfficher = deptsAfficher.filter(([_, dept]) => dept.syndicat_dominant !== 'CGT');
+            }
+
+            // Vérifier si nous devons afficher un département spécifique
+            const selectedDept = document.getElementById('select-departement').value;
+            if (selectedDept !== 'tous') {
+                deptsAfficher = deptsAfficher.filter(([code, _]) => code === selectedDept);
             }
 
             // Trier par code de département
@@ -435,48 +442,93 @@
                 const card = document.createElement('div');
                 card.className = 'col-md-12 mb-4';
                 
+                // Calculer les voix totales pour chaque syndicat
+                const syndicats = ['CGT', 'CFDT', 'CGT-FO', 'CFTC', 'CFE-CGC', 'SOLIDAIRES', 'UNSA', 'AUTRES'];
+                const voixTotales = {};
+                
+                syndicats.forEach(syndicat => {
+                    voixTotales[syndicat] = (
+                        (dept.voix.CSE[syndicat] || 0) +
+                        (dept.voix.TPE[syndicat] || 0) +
+                        (dept.voix.AGRI[syndicat] || 0)
+                    );
+                });
+                
+                // Préparer les données pour l'affichage
+                const totalSVE = dept.total_sve || 
+                                (dept.voix.CSE.total || 0) + 
+                                (dept.voix.TPE.total || 0) + 
+                                (dept.voix.AGRI.total || 0);
+                
                 card.innerHTML = `
                     <div class="dept-card ${dept.syndicat_dominant?.toLowerCase()}-dominant">
                         <div class="card-header d-flex justify-content-between align-items-center">
-                            <h5 class="mb-0">${code} - ${dept.nom}</h5>
+                            <h5 class="mb-0">${code} - ${dept.nom || 'Département'}</h5>
                             <span class="badge bg-light text-dark">${dept.syndicat_dominant || 'Non défini'}</span>
                         </div>
                         <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <div class="border rounded p-2">
+                                        <div class="small text-muted">Inscrits</div>
+                                        <div class="h5 mb-0">${Math.round(dept.total_inscrits || 0).toLocaleString()}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="border rounded p-2">
+                                        <div class="small text-muted">Votants</div>
+                                        <div class="h5 mb-0">${Math.round(dept.total_votants || 0).toLocaleString()}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="border rounded p-2">
+                                        <div class="small text-muted">SVE</div>
+                                        <div class="h5 mb-0">${Math.round(totalSVE).toLocaleString()}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <div class="table-responsive">
                                 <table class="table table-sm table-striped">
                                     <thead>
                                         <tr>
                                             <th>Organisation</th>
-                                            <th class="text-end">Voix</th>
+                                            <th class="text-end">CSE</th>
+                                            <th class="text-end">TPE</th>
+                                            <th class="text-end">AGRI</th>
+                                            <th class="text-end">Total</th>
                                             <th class="text-end">%</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        ${['CGT', 'CFDT', 'CGT-FO', 'CFTC', 'CFE-CGC', 'SOLIDAIRES', 'UNSA', 'AUTRES'].map(syndicat => {
-                                            const voix = dept.voix[syndicat] || 0;
-                                            const pourcentage = dept.pourcentages[syndicat] || 0;
-
+                                        ${syndicats.map(syndicat => {
+                                            const voixCSE = dept.voix.CSE[syndicat] || 0;
+                                            const voixTPE = dept.voix.TPE[syndicat] || 0;
+                                            const voixAGRI = dept.voix.AGRI[syndicat] || 0;
+                                            const totalVoix = voixTotales[syndicat];
+                                            const pourcentage = totalSVE > 0 ? (totalVoix / totalSVE * 100) : 0;
+                                            
                                             return `
                                                 <tr>
                                                     <td>${syndicat}</td>
-                                                    <td class="text-end">${Math.round(voix).toLocaleString()}</td>
+                                                    <td class="text-end">${Math.round(voixCSE).toLocaleString()}</td>
+                                                    <td class="text-end">${Math.round(voixTPE).toLocaleString()}</td>
+                                                    <td class="text-end">${Math.round(voixAGRI).toLocaleString()}</td>
+                                                    <td class="text-end">${Math.round(totalVoix).toLocaleString()}</td>
                                                     <td class="text-end">${pourcentage.toFixed(2)}%</td>
                                                 </tr>
                                             `;
                                         }).join('')}
                                         <tr class="table-info fw-bold">
                                             <td>Total</td>
-                                            <td class="text-end">${Math.round(dept.total_sve || 0).toLocaleString()}</td>
+                                            <td class="text-end">${Math.round(dept.voix.CSE.total || 0).toLocaleString()}</td>
+                                            <td class="text-end">${Math.round(dept.voix.TPE.total || 0).toLocaleString()}</td>
+                                            <td class="text-end">${Math.round(dept.voix.AGRI.total || 0).toLocaleString()}</td>
+                                            <td class="text-end">${Math.round(totalSVE).toLocaleString()}</td>
                                             <td class="text-end">100%</td>
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>
-                            <div class="mt-2 text-muted">
-                                <small>
-                                    <i class="fas fa-users me-1"></i>Inscrits: ${Math.round(dept.total_inscrits || 0).toLocaleString()} 
-                                    <i class="fas fa-vote-yea ms-2 me-1"></i>SVE: ${Math.round(dept.total_sve || 0).toLocaleString()}
-                                </small>
                             </div>
                         </div>
                     </div>
