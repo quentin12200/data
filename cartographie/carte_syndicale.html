@@ -402,301 +402,128 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
 
         // Charger les détails d'un département
         function loadDepartementDetails(codeDept) {
-            // Vérifier si les données sont déjà chargées
-            if (detailsDepartements[codeDept]) {
-                generateEntreprises(codeDept);
-                return;
-            }
-            
             // Charger les données du département
-            fetch(`../json_data_ordonnees/resultats_departements_avec_tpe.json`)
+            fetch(`../json_data/departement_${codeDept}.json`)
                 .then(response => response.json())
-                .then(data => {
-                    const deptData = data[codeDept];
-                    if (!deptData) {
-                        console.error(`Pas de données pour le département ${codeDept}`);
-                        return;
-                    }
+                .then(pvList => {
+                    // Charger aussi les données TPE
+                    fetch('../json_data_ordonnees/resultats_departements_avec_tpe.json')
+                        .then(response => response.json())
+                        .then(data => {
+                            const deptData = data[codeDept];
+                            if (!deptData) {
+                                console.error(`Pas de données pour le département ${codeDept}`);
+                                return;
+                            }
 
-                    // Récupérer les voix TPE
-                    const voixTPE = {
-                        'CGT': deptData.voix_tpe ? deptData.voix_tpe['CGT'] || 0 : 0,
-                        'CFDT': deptData.voix_tpe ? deptData.voix_tpe['CFDT'] || 0 : 0,
-                        'CGT-FO': deptData.voix_tpe ? deptData.voix_tpe['CGT-FO'] || 0 : 0,
-                        'CFTC': deptData.voix_tpe ? deptData.voix_tpe['CFTC'] || 0 : 0,
-                        'CFE-CGC': deptData.voix_tpe ? deptData.voix_tpe['CFE-CGC'] || 0 : 0,
-                        'SOLIDAIRES': deptData.voix_tpe ? deptData.voix_tpe['SOLIDAIRES'] || 0 : 0,
-                        'UNSA': deptData.voix_tpe ? deptData.voix_tpe['UNSA'] || 0 : 0,
-                        'AUTRES': deptData.voix_tpe ? (deptData.voix_tpe['CAT'] || 0) + (deptData.voix_tpe['CNT-SO'] || 0) + (deptData.voix_tpe['le_SGJ'] || 0) : 0
-                    };
+                            // Calculer les totaux pour les PV
+                            let totalInscrits = deptData.total_inscrits;
+                            let totalVotants = deptData.total_votants;
+                            let totalSVE = deptData.total_sve;
 
-                    // Calculer les totaux en incluant les voix TPE
-                    const totalVoixTPE = Object.values(voixTPE).reduce((a, b) => a + b, 0);
-                    const totalInscrits = deptData.total_inscrits + totalVoixTPE;
-                    const totalVotants = deptData.total_votants + totalVoixTPE;
-                    const totalSVE = deptData.total_sve + totalVoixTPE;
+                            // Calculer les voix pour chaque syndicat
+                            const totalVoix = {};
+                            const pourcentages = {};
+                            for (const syndicat of Object.keys(deptData.voix)) {
+                                totalVoix[syndicat] = deptData.voix[syndicat] || 0;
+                                pourcentages[syndicat] = totalSVE > 0 ? (totalVoix[syndicat] * 100 / totalSVE) : 0;
+                            }
 
-                    // Calculer les voix totales par syndicat (incluant TPE)
-                    const totalVoix = {};
-                    const pourcentages = {};
-                    for (const syndicat of Object.keys(deptData.voix)) {
-                        totalVoix[syndicat] = (deptData.voix[syndicat] || 0) + (voixTPE[syndicat] || 0);
-                        pourcentages[syndicat] = totalSVE > 0 ? (totalVoix[syndicat] * 100 / totalSVE) : 0;
-                    }
-
-                    // Stocker les données
-                    detailsDepartements[codeDept] = {
-                        totalInscrits,
-                        totalVotants,
-                        totalSVE,
-                        totalVoix,
-                        pourcentages
-                    };
-
-                    // Générer la liste des entreprises
-                    generateEntreprises(codeDept);
-                })
-                .catch(error => {
-                    console.error(`Erreur lors du chargement des données pour le département ${codeDept}:`, error);
-                    document.getElementById('entreprises-container').innerHTML = 
-                        `<div class="alert alert-danger">Erreur lors du chargement des données pour le département ${codeDept}: ${error.message}</div>`;
-                });
-        }
-
-        // Générer la liste des entreprises pour un département
-        function generateEntreprises(codeDept) {
-            const container = document.getElementById('entreprises-container');
-            const deptData = resultatsParDepartement[codeDept];
-            const pvList = detailsDepartements[codeDept];
-            
-            if (!pvList || pvList.length === 0) {
-                container.innerHTML = `<div class="alert alert-warning">Aucun PV trouvé pour le département ${codeDept}</div>`;
-                return;
-            }
-            
-            // Filtrer les PV selon le syndicat et le collège sélectionnés
-            let filteredPvs = pvList;
-            
-            if (selectedSyndicat !== 'all') {
-                filteredPvs = filteredPvs.filter(pv => pv.voix[selectedSyndicat] > 0);
-            }
-            
-            if (selectedCollege !== 'all') {
-                filteredPvs = filteredPvs.filter(pv => pv.college === selectedCollege);
-            }
-            
-            // Trier les PV par raison sociale
-            filteredPvs.sort((a, b) => a.raison_sociale.localeCompare(b.raison_sociale));
-            
-            // Limiter à 100 PV pour des raisons de performance
-            const displayPvs = filteredPvs.slice(0, 100);
-            
-            // Calculs pour le bandeau de synthèse (sur les PV filtrés par collège)
-            // Déterminer les PV à utiliser pour les statistiques
-            const statsFilteredPvs = selectedCollege === 'all' ? pvList : pvList.filter(pv => pv.college === selectedCollege);
-            
-            // Calculer les statistiques sur les PV filtrés par collège
-            const totalInscrits = statsFilteredPvs.reduce((sum, pv) => sum + (pv.inscrits || 0), 0);
-            const totalVotants = statsFilteredPvs.reduce((sum, pv) => sum + (pv.votants || 0), 0);
-            const totalSVE = statsFilteredPvs.reduce((sum, pv) => sum + (pv.sve_total || 0), 0);
-            const syndicats = ["CGT", "CFDT", "CGT-FO", "CFTC", "CFE-CGC", "SOLIDAIRES", "UNSA", "AUTRES"];
-            const totalVoix = {};
-            syndicats.forEach(s => {
-                totalVoix[s] = statsFilteredPvs.reduce((sum, pv) => sum + (pv.voix && pv.voix[s] ? pv.voix[s] : 0), 0);
-            });
-            // Le nombre de PV affichés et la présence CGT sur les PV filtrés
-            const nbPV = filteredPvs.length;
-            const nbCGTPresent = filteredPvs.filter(pv => pv.voix && pv.voix.CGT > 0).length;
-            const nbCGTAbsent = nbPV - nbCGTPresent;
-            
-            // Afficher le filtre de collège actif dans le titre
-            const collegeTitle = selectedCollege === 'all' ? 'Tous les collèges' : selectedCollege;
-
-            // Calculer les pourcentages pour chaque syndicat
-            const pourcentages = {};
-            syndicats.forEach(s => {
-                pourcentages[s] = totalSVE > 0 ? (totalVoix[s] / totalSVE * 100).toFixed(2) : 0;
-            });
-
-            // Générer le HTML avec un affichage amélioré des globaux
-            let html = `
-                <h3 class="mb-4">Département ${codeDept} - ${deptData.nom} - ${selectedSyndicat === 'all' ? 'Tous syndicats' : selectedSyndicat}</h3>
-                <div class="card mb-4 border-${selectedSyndicat === 'CGT' ? 'danger' : selectedSyndicat === 'CFDT' ? 'info' : selectedSyndicat === 'CGT-FO' ? 'warning' : selectedSyndicat === 'SOLIDAIRES' ? 'success' : 'primary'}">
-                    <div class="card-header bg-${selectedSyndicat === 'CGT' ? 'danger' : selectedSyndicat === 'CFDT' ? 'info' : selectedSyndicat === 'CGT-FO' ? 'warning' : selectedSyndicat === 'SOLIDAIRES' ? 'success' : 'primary'} text-white d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">Département ${deptData.code} - ${deptData.nom} - ${selectedSyndicat === 'all' ? 'Tous syndicats' : selectedSyndicat}</h5>
-                        <span class="badge bg-light text-${selectedSyndicat === 'CGT' ? 'danger' : selectedSyndicat === 'CFDT' ? 'info' : selectedSyndicat === 'CGT-FO' ? 'warning' : selectedSyndicat === 'SOLIDAIRES' ? 'success' : 'primary'}">${collegeTitle}</span>
-                    </div>
-                    <div class="card-body">
-                        <div class="row mb-3">
-                            <div class="col-md-4">
-                                <div class="card h-100 bg-light">
-                                    <div class="card-body text-center">
-                                        <h5>Participation</h5>
-                                        <div class="display-6 mb-2">${totalVotants > 0 && totalInscrits > 0 ? (totalVotants/totalInscrits*100).toFixed(2) : 0}%</div>
-                                        <div><b>Inscrits :</b> ${totalInscrits.toLocaleString()}</div>
-                                        <div><b>Votants :</b> ${totalVotants.toLocaleString()}</div>
-                                        <div><b>SVE :</b> ${totalSVE.toLocaleString()}</div>
+                            // Générer le HTML pour les détails du département
+                            document.getElementById('departement-details').innerHTML = `
+                                <div class="card mb-4">
+                                    <div class="card-header">
+                                        <h4 class="mb-0">${deptData.nom} (${codeDept})</h4>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card h-100 bg-light">
-                                    <div class="card-body text-center">
-                                        <h5>Voix TPE</h5>
-                                        <div class="small">
-                                            <div><b>CGT :</b> ${deptData.voix_tpe ? deptData.voix_tpe.CGT || 0 : 0}</div>
-                                            <div><b>CFDT :</b> ${deptData.voix_tpe ? deptData.voix_tpe.CFDT || 0 : 0}</div>
-                                            <div><b>CGT-FO :</b> ${deptData.voix_tpe ? deptData.voix_tpe['CGT-FO'] || 0 : 0}</div>
-                                            <div><b>CFTC :</b> ${deptData.voix_tpe ? deptData.voix_tpe.CFTC || 0 : 0}</div>
-                                            <div><b>CFE-CGC :</b> ${deptData.voix_tpe ? deptData.voix_tpe['CFE-CGC'] || 0 : 0}</div>
-                                            <div><b>SOLIDAIRES :</b> ${deptData.voix_tpe ? deptData.voix_tpe.SOLIDAIRES || 0 : 0}</div>
-                                            <div><b>UNSA :</b> ${deptData.voix_tpe ? deptData.voix_tpe.UNSA || 0 : 0}</div>
+                                    <div class="card-body">
+                                        <div class="row mb-3">
+                                            <div class="col-md-4">
+                                                <div class="card h-100">
+                                                    <div class="card-body text-center">
+                                                        <h5>Participation</h5>
+                                                        <div class="display-6 mb-2">${totalVotants > 0 && totalInscrits > 0 ? (totalVotants/totalInscrits*100).toFixed(2) : 0}%</div>
+                                                        <div><b>Inscrits :</b> ${totalInscrits.toLocaleString()}</div>
+                                                        <div><b>Votants :</b> ${totalVotants.toLocaleString()}</div>
+                                                        <div><b>SVE :</b> ${totalSVE.toLocaleString()}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="card h-100">
+                                                    <div class="card-body text-center">
+                                                        <h5>Voix TPE</h5>
+                                                        <div class="small">
+                                                            <div><b>CGT :</b> ${deptData.voix_tpe ? deptData.voix_tpe.CGT || 0 : 0}</div>
+                                                            <div><b>CFDT :</b> ${deptData.voix_tpe ? deptData.voix_tpe.CFDT || 0 : 0}</div>
+                                                            <div><b>CGT-FO :</b> ${deptData.voix_tpe ? deptData.voix_tpe['CGT-FO'] || 0 : 0}</div>
+                                                            <div><b>CFTC :</b> ${deptData.voix_tpe ? deptData.voix_tpe.CFTC || 0 : 0}</div>
+                                                            <div><b>CFE-CGC :</b> ${deptData.voix_tpe ? deptData.voix_tpe['CFE-CGC'] || 0 : 0}</div>
+                                                            <div><b>SOLIDAIRES :</b> ${deptData.voix_tpe ? deptData.voix_tpe.SOLIDAIRES || 0 : 0}</div>
+                                                            <div><b>UNSA :</b> ${deptData.voix_tpe ? deptData.voix_tpe.UNSA || 0 : 0}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="card h-100">
+                                                    <div class="card-body text-center">
+                                                        <h5>Audience ${selectedSyndicat === 'all' ? 'CGT' : selectedSyndicat}</h5>
+                                                        <div class="display-6 mb-2 text-${selectedSyndicat === 'CGT' ? 'danger' : selectedSyndicat === 'CFDT' ? 'info' : selectedSyndicat === 'CGT-FO' ? 'warning' : selectedSyndicat === 'SOLIDAIRES' ? 'success' : 'primary'}">${pourcentages[selectedSyndicat === 'all' ? 'CGT' : selectedSyndicat].toFixed(2)}%</div>
+                                                        <div><b>Voix totales :</b> ${totalVoix[selectedSyndicat === 'all' ? 'CGT' : selectedSyndicat].toLocaleString()}</div>
+                                                        <div><b>dont TPE :</b> ${deptData.voix_tpe ? deptData.voix_tpe[selectedSyndicat === 'all' ? 'CGT' : selectedSyndicat] || 0 : 0}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Liste des PV -->
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-hover" id="pv-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>SIRET</th>
+                                                        <th>Raison sociale</th>
+                                                        <th>Collège</th>
+                                                        <th>Inscrits</th>
+                                                        <th>Votants</th>
+                                                        <th>SVE</th>
+                                                        <th>CGT</th>
+                                                        <th>CFDT</th>
+                                                        <th>CGT-FO</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    ${pvList.map(pv => `
+                                                        <tr>
+                                                            <td>${pv.siret}</td>
+                                                            <td>${pv.raison_sociale}</td>
+                                                            <td>${pv.college}</td>
+                                                            <td>${pv.inscrits}</td>
+                                                            <td>${pv.votants}</td>
+                                                            <td>${pv.sve}</td>
+                                                            <td>${pv.voix.CGT || 0}</td>
+                                                            <td>${pv.voix.CFDT || 0}</td>
+                                                            <td>${pv.voix['CGT-FO'] || 0}</td>
+                                                        </tr>
+                                                    `).join('')}
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card h-100 bg-light">
-                                    <div class="card-body text-center">
-                                        <h5>Audience ${selectedSyndicat === 'all' ? 'CGT' : selectedSyndicat}</h5>
-                                        <div class="display-6 mb-2 text-${selectedSyndicat === 'CGT' ? 'danger' : selectedSyndicat === 'CFDT' ? 'info' : selectedSyndicat === 'CGT-FO' ? 'warning' : selectedSyndicat === 'SOLIDAIRES' ? 'success' : 'primary'}">${pourcentages[selectedSyndicat === 'all' ? 'CGT' : selectedSyndicat]}%</div>
-                                        <div><b>Voix totales :</b> ${(totalVoix[selectedSyndicat === 'all' ? 'CGT' : selectedSyndicat] + (deptData.voix_tpe ? deptData.voix_tpe[selectedSyndicat === 'all' ? 'CGT' : selectedSyndicat] || 0 : 0)).toLocaleString()}</div>
-                                        <div><b>dont TPE :</b> ${deptData.voix_tpe ? deptData.voix_tpe[selectedSyndicat === 'all' ? 'CGT' : selectedSyndicat] || 0 : 0}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <h5 class="mb-3">Répartition des voix par organisation syndicale</h5>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered">
-                                        <thead class="table-light">
-                                            <tr>
-                                                ${syndicats.map(s => `<th class="text-center">${s}</th>`).join('')}
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                ${syndicats.map(s => `<td class="text-center">${totalVoix[s].toLocaleString()}</td>`).join('')}
-                                            </tr>
-                                            <tr>
-                                                ${syndicats.map(s => `<td class="text-center fw-bold">${pourcentages[s]}%</td>`).join('')}
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card mb-4 border-secondary">
-                    <div class="card-header bg-secondary text-white d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">Liste des PV (${filteredPvs.length} PV trouvés${filteredPvs.length > 100 ? ', 100 premiers affichés' : ''}) - ${collegeTitle}</h5>
-                        <button class="btn btn-light btn-sm" id="btn-export-csv">Exporter CSV</button>
-                    </div>
-                    <div class="card-body">
-                        <div class="row mb-3">
-                            <div class="col-md-4">
-                                <div class="input-group">
-                                    <span class="input-group-text">Rechercher</span>
-                                    <input type="text" class="form-control" id="search-pv" placeholder="Filtrer par mot-clé...">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="input-group">
-                                    <span class="input-group-text">Trier par</span>
-                                    <select class="form-select" id="sort-pv">
-                                        <option value="raison_sociale">Raison sociale</option>
-                                        <option value="ville">Ville</option>
-                                        <option value="date">Date</option>
-                                        <option value="inscrits">Inscrits</option>
-                                        <option value="cgt">Voix CGT</option>
-                                    </select>
-                                    <button class="btn btn-outline-secondary" id="sort-direction">↓</button>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="input-group">
-                                    <span class="input-group-text">Afficher</span>
-                                    <select class="form-select" id="limit-pv">
-                                        <option value="100">100 PV</option>
-                                        <option value="200">200 PV</option>
-                                        <option value="500">500 PV</option>
-                                        <option value="1000">1000 PV</option>
-                                        <option value="0">Tous</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover" id="pv-table">
-                                <thead class="table-dark">
-                                    <tr>
-                                        <th>SIRET</th>
-                                        <th>Raison Sociale</th>
-                                        <th>Ville</th>
-                                        <th>IDCC</th>
-                                        <th>Collège</th>
-                                        <th>Date</th>
-                                        <th>Inscrits</th>
-                                        <th>Votants</th>
-                                        <th>SVE</th>
-                                        <th>CGT</th>
-                                        <th>CFDT</th>
-                                        <th>CGT-FO</th>
-                                        <th>CFTC</th>
-                                        <th>CFE-CGC</th>
-                                        <th>SOLIDAIRES</th>
-                                        <th>UNSA</th>
-                                        <th>AUTRES</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-            `;
-            
-            for (const pv of displayPvs) {
-                // Correction du format de date
-                let formattedDate = pv.date;
-                // Si la date est au format YYYY-MM-DD, la convertir en format français
-                if (pv.date && pv.date.match(/^\d{4}-\d{2}-\d{2}$/)) {
-                    const dateParts = pv.date.split('-');
-                    formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
-                }
-                
-                html += `
-                    <tr>
-                        <td>${pv.siret}</td>
-                        <td>${pv.raison_sociale}</td>
-                        <td>${pv.ville}</td>
-                        <td>${pv.idcc} - ${pv.lib_idcc}</td>
-                        <td><span class="badge bg-secondary college-badge">${pv.college}</span></td>
-                        <td>${formattedDate}</td>
-                        <td>${pv.inscrits}</td>
-                        <td>${pv.votants}</td>
-                        <td>${pv.sve_total}</td>
-                        <td>${pv.voix.CGT}</td>
-                        <td>${pv.voix.CFDT}</td>
-                        <td>${pv.voix["CGT-FO"]}</td>
-                        <td>${pv.voix.CFTC}</td>
-                        <td>${pv.voix["CFE-CGC"]}</td>
-                        <td>${pv.voix.SOLIDAIRES}</td>
-                        <td>${pv.voix.UNSA}</td>
-                        <td>${pv.voix.AUTRES}</td>
-                    </tr>
-                `;
-            }
-            
-            html += `
-                        </tbody>
-                    </table>
-                </div>
-            `;
-            
-            container.innerHTML = html;
-            
-            // Initialiser les filtres et l'export CSV
-            initTableFilters(filteredPvs, codeDept, deptData.nom);
+                            `;
+
+                            // Initialiser le tableau avec DataTables
+                            $('#pv-table').DataTable({
+                                "language": {
+                                    "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/French.json"
+                                }
+                            });
+                        });
+                })
+                .catch(error => {
+                    console.error('Erreur lors du chargement des données:', error);
+                });
         }
 
         // Mettre à jour la coloration de la carte
@@ -844,12 +671,6 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
                 
                 const legendHTML = `
                     <div class="d-flex justify-content-between">
-                        <div class="legend-item">
-                            <div class="legend-color" style="background-color: #f5f5f5;"></div>
-                            <span>Pas de données</span>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-between mt-2">
                         <div>Moins représentatif</div>
                         <div class="d-flex">
                             ${colorScale.range().map((color, i) => {
