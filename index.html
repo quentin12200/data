@@ -7,56 +7,192 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+        
+        :root {
+            --cgt-red: #e63946;
+            --cgt-dark-red: #c1121f;
+            --cgt-light: #f8f9fa;
+            --cgt-accent: #457b9d;
+        }
+        
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: #f8f9fa;
+            font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            overflow-x: hidden;
         }
+        
+        body::before,
+        body::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(230, 57, 70, 0.1) 0%, rgba(230, 57, 70, 0.05) 100%);
+            z-index: -1;
+        }
+        
+        body::before {
+            top: -100px;
+            left: -100px;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        body::after {
+            bottom: -100px;
+            right: -100px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(20px, 20px) rotate(5deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+        
+        .shape {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.7;
+        }
+        
+        .shape-1 {
+            top: 10%;
+            left: 10%;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(230, 57, 70, 0.1);
+            border-radius: 10px;
+            transform: rotate(45deg);
+            animation: float 12s ease-in-out infinite;
+        }
+        
+        .shape-2 {
+            bottom: 10%;
+            right: 10%;
+            width: 70px;
+            height: 70px;
+            background-color: rgba(69, 123, 157, 0.1);
+            border-radius: 50%;
+            animation: float 15s ease-in-out infinite reverse;
+        }
+        
+        .shape-3 {
+            top: 40%;
+            right: 20%;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(230, 57, 70, 0.08);
+            border-radius: 8px;
+            animation: float 20s ease-in-out infinite;
+        }
+        
         .container {
-            max-width: 800px;
+            max-width: 850px;
             padding: 30px;
+            position: relative;
+            z-index: 1;
         }
+        
         .card {
             border: none;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            background: rgba(255, 255, 255, 0.95);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, var(--cgt-red) 0%, var(--cgt-dark-red) 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
             overflow: hidden;
         }
-        .card-header {
-            background-color: #e63946;
-            color: white;
-            padding: 20px;
-            text-align: center;
+        
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+            transform: rotate(30deg);
         }
+        
         .card-body {
-            padding: 30px;
+            padding: 35px;
         }
+        
         .btn-cgt {
-            background-color: #e63946;
+            background: linear-gradient(135deg, var(--cgt-red) 0%, var(--cgt-dark-red) 100%);
             color: white;
             border: none;
-            padding: 12px 20px;
-            margin: 10px 0;
-            border-radius: 5px;
-            font-weight: bold;
+            padding: 14px 24px;
+            margin: 12px 0;
+            border-radius: 8px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
             transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
+        
+        .btn-cgt::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%);
+            transition: all 0.6s;
+            z-index: -1;
+        }
+        
         .btn-cgt:hover {
-            background-color: #c1121f;
+            background: linear-gradient(135deg, var(--cgt-dark-red) 0%, var(--cgt-red) 100%);
             color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(230, 57, 70, 0.4);
         }
+        
+        .btn-cgt:hover::before {
+            left: 100%;
+        }
+        
         .cgt-logo {
-            max-height: 80px;
+            max-height: 90px;
             margin-bottom: 20px;
+            filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
+            transition: transform 0.3s ease;
+        }
+        
+        .cgt-logo:hover {
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
     <div class="container">
         <div class="card">
             <div class="card-header">
