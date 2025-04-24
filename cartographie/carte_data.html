@@ -308,37 +308,64 @@
             
             // Charger les données depuis le fichier JSON ordonné
             function loadData() {
-                fetch('../json_data_ordonnees/resultats_departements_complets.json')
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Erreur lors du chargement des données');
-                        }
-                        return response.json();
-                    })
-                    .then(jsonData => {
-                        console.log("Données chargées:", jsonData);
-                        data = jsonData;
-                        departements = jsonData;
-                        
-                        // Remplir le menu déroulant des départements
-                        remplirMenuDepartements(departements);
-                        
-                        // Afficher les départements
-                        afficherDepartements(departements);
-                    })
-                    .catch(error => {
-                        console.error('Erreur:', error);
-                        const deptListContainer = document.getElementById('dept-list');
-                        if (deptListContainer) {
-                            deptListContainer.innerHTML = `
-                                <div class="col-12">
-                                    <div class="alert alert-danger">
-                                        <p class="mb-0">Erreur lors du chargement des données: ${error.message}</p>
+                // Afficher un message de chargement
+                const deptListContainer = document.getElementById('dept-list');
+                if (deptListContainer) {
+                    deptListContainer.innerHTML = `
+                        <div class="col-12">
+                            <div class="alert alert-info">
+                                <p class="mb-0"><i class="fas fa-spinner fa-spin me-2"></i>Chargement des données en cours...</p>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                // Utiliser une approche alternative avec XMLHttpRequest pour éviter les problèmes de CORS
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', '../json_data_ordonnees/resultats_departements_complets.json', true);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            try {
+                                const jsonData = JSON.parse(xhr.responseText);
+                                console.log("Données chargées avec succès");
+                                data = jsonData;
+                                departements = jsonData;
+                                
+                                // Remplir le menu déroulant des départements
+                                remplirMenuDepartements(departements);
+                                
+                                // Afficher les départements
+                                afficherDepartements(departements);
+                            } catch (e) {
+                                console.error('Erreur de parsing JSON:', e);
+                                if (deptListContainer) {
+                                    deptListContainer.innerHTML = `
+                                        <div class="col-12">
+                                            <div class="alert alert-danger">
+                                                <p class="mb-0">Erreur lors du parsing des données JSON: ${e.message}</p>
+                                                <p>Essayez de recharger la page ou vérifiez le format du fichier JSON.</p>
+                                            </div>
+                                        </div>
+                                    `;
+                                }
+                            }
+                        } else {
+                            console.error('Erreur HTTP:', xhr.status);
+                            if (deptListContainer) {
+                                deptListContainer.innerHTML = `
+                                    <div class="col-12">
+                                        <div class="alert alert-danger">
+                                            <p class="mb-0">Erreur lors du chargement des données (${xhr.status})</p>
+                                            <p>Le fichier JSON n'a pas pu être chargé. Vérifiez qu'il existe bien à l'emplacement: '../json_data_ordonnees/resultats_departements_complets.json'</p>
+                                        </div>
                                     </div>
-                                </div>
-                            `;
+                                `;
+                            }
                         }
-                    });
+                    }
+                };
+                xhr.send();
             }
             
             // Fonction pour remplir le menu déroulant des départements
