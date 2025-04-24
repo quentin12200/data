@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartographie Croisée - Organisations Syndicales et Fédérations</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+        }
+        #map-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .departement {
+            stroke: #FFF;
+            stroke-width: 0.5;
+            transition: fill 0.3s;
+        }
+        .departement:hover {
+            stroke: #000;
+            stroke-width: 1.5;
+        }
+        .selected-dept {
+            stroke: #000;
+            stroke-width: 2;
+        }
+        .tooltip {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            pointer-events: none;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: none;
+        }
+        .selector-container {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .btn-selector {
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        .btn-selector.active {
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.5);
+        }
+        .stats-box {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .stats-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .stats-value {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .stats-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        .legend {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+            margin-top: 15px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+        }
+        .selector-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .btn-cgt {
+            background-color: #E30613;
+            border-color: #E30613;
+            color: white;
+        }
+        .btn-cfdt {
+            background-color: #FF7900;
+            border-color: #FF7900;
+            color: white;
+        }
+        .btn-fo {
+            background-color: #0066CC;
+            border-color: #0066CC;
+            color: white;
+        }
+        .btn-cftc {
+            background-color: #1D71B8;
+            border-color: #1D71B8;
+            color: white;
+        }
+        .btn-cfe-cgc {
+            background-color: #0055A4;
+            border-color: #0055A4;
+            color: white;
+        }
+        .btn-solidaires {
+            background-color: #FF0000;
+            border-color: #FF0000;
+            color: white;
+        }
+        .btn-unsa {
+            background-color: #009FE3;
+            border-color: #009FE3;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4">Cartographie Croisée - Organisations Syndicales et Fédérations Professionnelles</h1>
+        <div class="alert alert-info">
+            <p class="mb-0"><strong>Objectif :</strong> Cette carte permet de visualiser le nombre de voix par organisation syndicale et par fédération professionnelle pour chaque département. Cliquez sur un département pour voir les entreprises concernées.</p>
+        </div>
+        
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="selector-container">
+                    <h5>Organisation syndicale :</h5>
+                    <div class="d-flex flex-wrap">
+                        <button type="button" class="btn btn-cgt btn-selector active" data-syndicat="CGT">CGT</button>
+                        <button type="button" class="btn btn-cfdt btn-selector" data-syndicat="CFDT">CFDT</button>
+                        <button type="button" class="btn btn-fo btn-selector" data-syndicat="CGT-FO">CGT-FO</button>
+                        <button type="button" class="btn btn-cftc btn-selector" data-syndicat="CFTC">CFTC</button>
+                        <button type="button" class="btn btn-cfe-cgc btn-selector" data-syndicat="CFE-CGC">CFE-CGC</button>
+                        <button type="button" class="btn btn-solidaires btn-selector" data-syndicat="SOLIDAIRES">SOLIDAIRES</button>
+                        <button type="button" class="btn btn-unsa btn-selector" data-syndicat="UNSA">UNSA</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="selector-container">
+                    <h5>Fédération professionnelle :</h5>
+                    <div class="selector-grid">
+                        <button type="button" class="btn btn-outline-danger btn-selector active" data-federation="FTM">FTM (Métallurgie)</button>
+                        <button type="button" class="btn btn-outline-danger btn-selector" data-federation="FNIC">FNIC (Chimie)</button>
+                        <button type="button" class="btn btn-outline-danger btn-selector" data-federation="FNSCBA">FNSCBA (Construction)</button>
+                        <button type="button" class="btn btn-outline-danger btn-selector" data-federation="COMMERCE">COMMERCE</button>
+                        <button type="button" class="btn btn-outline-danger btn-selector" data-federation="TRANSPORTS">TRANSPORTS</button>
+                        <button type="button" class="btn btn-outline-danger btn-selector" data-federation="FNAF">FNAF (Agroalimentaire)</button>
+                        <button type="button" class="btn btn-outline-danger btn-selector" data-federation="SANTE">SANTE</button>
+                        <button type="button" class="btn btn-outline-danger btn-selector" data-federation="FNME">FNME (Mines-Énergie)</button>
+                        <button type="button" class="btn btn-outline-danger btn-selector" data-federation="SERVICES PUBLICS">SERVICES PUBLICS</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="stats-box">
+                    <div class="stats-title">Nombre de voix</div>
+                    <div class="stats-value" id="total-voix">-</div>
+                    <div class="stats-label">pour cette combinaison</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stats-box">
+                    <div class="stats-title">Pourcentage</div>
+                    <div class="stats-value" id="pourcentage">-</div>
+                    <div class="stats-label">des suffrages exprimés</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stats-box">
+                    <div class="stats-title">Nombre de scrutins</div>
+                    <div class="stats-value" id="total-scrutins">-</div>
+                    <div class="stats-label">concernés</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-9">
+                <div id="map-container">
+                    <div id="tooltip" class="tooltip"></div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="legend">
+                    <h5>Légende</h5>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #edf8e9;"></div>
+                        <span>0-100 voix</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #bae4b3;"></div>
+                        <span>100-500 voix</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #74c476;"></div>
+                        <span>500-1000 voix</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #31a354;"></div>
+                        <span>1000-2000 voix</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #006d2c;"></div>
+                        <span>2000+ voix</span>
+                    </div>
+                </div>
+                
+                <div class="mt-4">
+                    <h5>Top 5 départements</h5>
+                    <ul class="list-group" id="top-departements">
+                        <li class="list-group-item">Chargement...</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-12">
+                <div id="details-container" class="card">
+                    <div class="card-header">
+                        Détails du département
+                    </div>
+                    <div class="card-body">
+                        <p>Sélectionnez un département sur la carte pour voir les détails.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Variables globales
+        let map;
+        let departements = [];
+        let currentSyndicat = 'CGT';
+        let currentFederation = 'FTM';
+        let couleursSyndicats = {
+            'CGT': '#E30613',
+            'CFDT': '#FF7900',
+            'CGT-FO': '#0066CC',
+            'CFTC': '#1D71B8',
+            'CFE-CGC': '#0055A4',
+            'SOLIDAIRES': '#FF0000',
+            'UNSA': '#009FE3'
+        };
+        
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Créer la carte
+            initMap();
+            
+            // Gestionnaires d'événements pour les boutons de syndicat
+            document.querySelectorAll('[data-syndicat]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Mettre à jour le syndicat actif
+                    document.querySelectorAll('[data-syndicat]').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentSyndicat = this.getAttribute('data-syndicat');
+                    
+                    // Mettre à jour la carte
+                    updateMapColoring();
+                    updateStatistics();
+                    updateTopDepartements();
+                });
+            });
+            
+            // Gestionnaires d'événements pour les boutons de fédération
+            document.querySelectorAll('[data-federation]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Mettre à jour la fédération active
+                    document.querySelectorAll('[data-federation]').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFederation = this.getAttribute('data-federation');
+                    
+                    // Mettre à jour la carte
+                    updateMapColoring();
+                    updateStatistics();
+                    updateTopDepartements();
+                });
+            });
+            
+            // Charger les données des scrutins
+            loadScrutinsData();
+        });
+        
+        // Charger les données des scrutins
+        function loadScrutinsData() {
+            // Charger les données réelles depuis les fichiers JSON générés
+            console.log("Chargement des données des scrutins...");
+            
+            // Définir les confédérations syndicales principales
+            const syndicats = ['CGT', 'CFDT', 'CGT-FO', 'CFTC', 'CFE-CGC', 'SOLIDAIRES', 'UNSA', 'AUTRES'];
+            
+            // Charger les données des départements et les détails des PV
+            Promise.all([
+                fetch('./data/departements.json'),
+                fetch('./data/details_pv.json')
+            ])
+                .then(responses => {
+                    // Vérifier si toutes les réponses sont OK
+                    for (const response of responses) {
+                        if (!response.ok) {
+                            throw new Error(`Erreur HTTP ${response.status} - ${response.statusText}`);
+                        }
+                    }
+                    return Promise.all(responses.map(response => response.json()));
+                })
+                .then(([departementsData, detailsPvData]) => {
+                    // Stocker les détails des PV dans une variable globale
+                    window.detailsPV = detailsPvData;
+                    console.log("Détails des PV chargés:", Object.keys(window.detailsPV).length, "départements");
+                    
+                    // Continuer avec le traitement des données des départements
+                })
+                .then(data => {
+                    // Charger les données des IDCC (qui serviront de "fédérations" pour cette visualisation)
+                    return fetch('./data/idcc.json')
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(`Erreur HTTP ${response.status} - ${response.statusText} lors du chargement de idcc.json`);
+                            }
+                            return response.json();
+                        })
+                        .then(idccData => {
+                            // Convertir les données en tableau
+                            departements = Object.entries(data).map(([code, dept]) => ({
+                                code: code,
+                                departement: dept.nom || `Département ${code}`,
+                                region: dept.region || 'Inconnue',
+                                total_votes: dept.total_votes || 0,
+                                syndicats: {},
+                                federations: {},
+                                croisement: {}
+                            }));
+                            
+                            // Liste des IDCC (qui serviront de "fédérations" pour cette visualisation)
+                            const federations = Object.keys(idccData);
+                            
+                            // Traiter les données pour chaque département
+                            departements.forEach(dept => {
+                                const deptData = data[dept.code];
+                                
+                                // Données pour chaque syndicat (confédération)
+                                syndicats.forEach(syndicat => {
+                                    const voix = deptData.confederations[syndicat] || 0;
+                                    dept.syndicats[syndicat] = {
+                                        voix: voix,
+                                        scrutins: voix > 0 ? Math.ceil(voix / 20) : 0 // Estimation du nombre de scrutins
+                                    };
+                                });
+                                
+                                // Données pour chaque IDCC (fédération)
+                                Object.entries(deptData.idcc || {}).forEach(([idcc, voix]) => {
+                                    dept.federations[idcc] = {
+                                        voix: voix,
+                                        scrutins: voix > 0 ? Math.ceil(voix / 30) : 0 // Estimation du nombre de scrutins
+                                    };
+                                });
+                                
+                                // Données croisées syndicat x fédération (confédération x IDCC)
+                                syndicats.forEach(syndicat => {
+                                    if (!dept.croisement[syndicat]) {
+                                        dept.croisement[syndicat] = {};
+                                    }
+                                    
+                                    // Récupérer les données de croisement pour ce syndicat
+                                    const croisementData = deptData.croisement[syndicat] || {};
+                                    
+                                    // Pour chaque IDCC, récupérer les voix pour ce syndicat
+                                    Object.entries(croisementData).forEach(([idcc, voix]) => {
+                                        dept.croisement[syndicat][idcc] = {
+                                            voix: voix,
+                                            scrutins: voix > 0 ? Math.ceil(voix / 15) : 0 // Estimation du nombre de scrutins
+                                        };
+                                    });
+                                });
+                            });
+                            
+                            console.log("Données des scrutins chargées:", departements);
+                            
+                            // Mettre à jour la carte
+                            updateMapColoring();
+                            updateStatistics();
+                            updateTopDepartements();
+                        });
+                })
+                .catch(error => {
+                    console.error("Erreur lors du chargement des données:", error);
+                    document.getElementById('map-container').innerHTML = `
+                        <div class="alert alert-danger">
+                            Erreur lors du chargement des données: ${error.message}
+                        </div>
+                    `;
+                });
+        }
+        
+        // Initialiser la carte
+        function initMap() {
+            const width = document.getElementById('map-container').clientWidth;
+            const height = 600;
+            
+            // Créer le SVG
+            const svg = d3.select('#map-container')
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height);
+            
+            // Créer le groupe pour la carte
+            const g = svg.append('g');
+            
+            // Projection géographique
+            const projection = d3.geoMercator()
+                .center([2.5, 46.5]) // Centrer sur la France
+                .scale(width * 3)
+                .translate([width / 2, height / 2]);
+            
+            // Générateur de chemin
+            const path = d3.geoPath()
+                .projection(projection);
+            
+            // Tooltip
+            const tooltip = d3.select('#tooltip');
+            
+            // Fonction pour afficher le tooltip
+            function showTooltip(event, d) {
+                const dept = departements.find(dept => dept.code === d.id);
+                if (dept && dept.croisement && dept.croisement[currentSyndicat] && dept.croisement[currentSyndicat][currentFederation]) {
+                    const data = dept.croisement[currentSyndicat][currentFederation];
+                    
+                    tooltip.html(`
+                        <strong>${dept.departement} (${dept.code})</strong><br>
+                        ${currentSyndicat} x ${currentFederation}<br>
+                        Voix: ${data.voix.toLocaleString()}<br>
+                        Scrutins: ${data.scrutins}
+                    `)
+                    .style('left', (event.pageX + 10) + 'px')
+                    .style('top', (event.pageY - 30) + 'px')
+                    .style('display', 'block');
+                }
+            }
+            
+            // Fonction pour cacher le tooltip
+            function hideTooltip() {
+                tooltip.style('display', 'none');
+            }
+            
+            // Fonction pour afficher les détails d'un département
+            function showDepartementDetails(dept) {
+                const detailsContainer = document.getElementById('details-container');
+                
+                // Données croisées pour ce département
+                const croisementData = dept.croisement[currentSyndicat]?.[currentFederation] || { voix: 0, scrutins: 0 };
+                
+                // Générer des entreprises simulées pour cette combinaison
+                const entreprises = generateEntreprises(dept.code, currentSyndicat, currentFederation, croisementData.scrutins);
+                
+                // Créer le contenu HTML
+                let html = `
+                    <div class="card-header">
+                        <h5>${dept.departement} (${dept.code})</h5>
+                        <div class="text-muted">Région: ${dept.region || 'Non spécifiée'}</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Données croisées: ${currentSyndicat} x ${currentFederation}</h6>
+                                <div class="card bg-light mb-3">
+                                    <div class="card-body">
+                                        <p>Nombre de voix: <strong>${croisementData.voix.toLocaleString()}</strong></p>
+                                        <p>Nombre de scrutins: <strong>${croisementData.scrutins}</strong></p>
+                                    </div>
+                                </div>
+                                
+                                <h6>Entreprises concernées (${entreprises.length})</h6>
+                                <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
+                                    <table class="table table-sm table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Entreprise</th>
+                                                <th>Ville</th>
+                                                <th>Voix</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            ${entreprises.map(e => `
+                                                <tr>
+                                                    <td>${e.nom}</td>
+                                                    <td>${e.ville}</td>
+                                                    <td>${e.voix}</td>
+                                                </tr>
+                                            `).join('')}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Autres fédérations pour ${currentSyndicat}</h6>
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Fédération</th>
+                                            <th>Voix</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                `;
+                
+                // Ajouter les lignes pour chaque fédération
+                if (dept.croisement[currentSyndicat]) {
+                    const federationsSorted = Object.entries(dept.croisement[currentSyndicat])
+                        .filter(([fed, _]) => fed !== currentFederation)
+                        .sort((a, b) => b[1].voix - a[1].voix)
+                        .slice(0, 5);
+                    
+                    federationsSorted.forEach(([fed, data]) => {
+                        html += `
+                            <tr>
+                                <td>${fed}</td>
+                                <td>${data.voix.toLocaleString()}</td>
+                            </tr>
+                        `;
+                    });
+                }
+                
+                html += `
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Autres syndicats pour ${currentFederation}</h6>
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Syndicat</th>
+                                            <th>Voix</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                `;
+                
+                // Ajouter les lignes pour chaque syndicat
+                const syndicatsByCroisement = [];
+                
+                for (const [syndicat, federations] of Object.entries(dept.croisement)) {
+                    if (syndicat !== currentSyndicat && federations[currentFederation]) {
+                        syndicatsByCroisement.push({
+                            syndicat: syndicat,
+                            voix: federations[currentFederation].voix
+                        });
+                    }
+                }
+                
+                syndicatsByCroisement
+                    .sort((a, b) => b.voix - a.voix)
+                    .forEach(item => {
+                        html += `
+                            <tr>
+                                <td>${item.syndicat}</td>
+                                <td>${item.voix.toLocaleString()}</td>
+                            </tr>
+                        `;
+                    });
+                
+                html += `
+                                    </tbody>
+                                </table>
+                                
+                                <h6>Statistiques générales</h6>
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <p>Total des votes: <strong>${dept.total_votes.toLocaleString()}</strong></p>
+                                        <p>Voix ${currentSyndicat}: <strong>${dept.syndicats[currentSyndicat]?.voix.toLocaleString() || 0}</strong></p>
+                                        <p>Voix ${currentFederation}: <strong>${dept.federations[currentFederation]?.voix.toLocaleString() || 0}</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                detailsContainer.innerHTML = html;
+            }
+            
+            // Charger les données géographiques
+            fetch('../assets/france-departements.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Erreur HTTP ${response.status} lors du chargement de france-departements.json`);
+                    }
+                    return response.json();
+                })
+                .then(franceGeo => {
+                    // Dessiner la carte
+                    g.selectAll('path')
+                        .data(franceGeo.features)
+                        .enter()
+                        .append('path')
+                        .attr('d', path)
+                        .attr('class', 'departement')
+                        .attr('id', d => `dept-${d.id}`)
+                        .attr('fill', '#EEE')
+                        .on('mouseover', function(event, d) {
+                            d3.select(this).attr('stroke', '#000').attr('stroke-width', 1.5);
+                            showTooltip(event, d);
+                        })
+                        .on('mouseout', function(event, d) {
+                            d3.select(this).attr('stroke', '#FFF').attr('stroke-width', 0.5);
+                            hideTooltip();
+                        })
+                        .on('click', function(event, d) {
+                            const dept = departements.find(dept => dept.code === d.id);
+                            if (dept) {
+                                d3.selectAll('.departement').classed('selected-dept', false);
+                                d3.select(this).classed('selected-dept', true);
+                                showDepartementDetails(dept);
+                            }
+                        });
+                })
+                .catch(error => {
+                    console.error('Erreur lors du chargement des données géographiques:', error);
+                    document.getElementById('map-container').innerHTML = `
+                        <div class="alert alert-danger">
+                            Erreur lors du chargement de la carte: ${error.message}
+                        </div>
+                    `;
+                });
+            
+            // Redimensionner la carte si la fenêtre change de taille
+            window.addEventListener('resize', function() {
+                const newWidth = document.getElementById('map-container').clientWidth;
+                svg.attr('width', newWidth);
+                projection.translate([newWidth / 2, height / 2]);
+                g.selectAll('path').attr('d', path);
+            });
+            
+            // Ajouter un gestionnaire d'événements pour les clics sur les départements
+            d3.selectAll(".departement")
+                .on("click", function(event, d) {
+                    const codeDept = d.properties.code;
+                    const nomDept = d.properties.nom;
+                    
+                    // Mettre à jour le titre
+                    document.getElementById("details-title").textContent = `Détails du département : ${nomDept} (${codeDept})`;
+                    
+                    // Récupérer les données du département
+                    const deptData = departementsData[codeDept];
+                    if (!deptData) {
+                        document.getElementById("details-content").innerHTML = `<div class="alert alert-warning">Aucune donnée disponible pour le département ${nomDept} (${codeDept})</div>`;
+                        return;
+                    }
+                    
+                    // Récupérer les valeurs des filtres
+                    const syndicatFiltre = document.getElementById("filtre-syndicat").value;
+                    const federationFiltre = document.getElementById("filtre-federation").value;
+                    
+                    // Générer le contenu des détails avec les vrais PV
+                    const pvHTML = generateEntreprises(codeDept, syndicatFiltre, federationFiltre);
+                    document.getElementById("details-content").innerHTML = pvHTML;
+                    
+                    // Afficher la section des détails
+                    document.getElementById("details-section").style.display = "block";
+                    document.getElementById("details-section").scrollIntoView({ behavior: 'smooth' });
+                });
+        }
+        
+        // Mettre à jour la coloration de la carte
+        function updateMapColoring() {
+            // Échelle de couleur pour la visualisation croisée
+            const colorScale = d3.scaleThreshold()
+                .domain([100, 500, 1000, 2000])
+                .range(['#edf8e9', '#bae4b3', '#74c476', '#31a354', '#006d2c']);
+            
+            // Appliquer la coloration
+            d3.selectAll('.departement').attr('fill', function(d) {
+                const dept = departements.find(dept => dept.code === d.id);
+                if (!dept || !dept.croisement || !dept.croisement[currentSyndicat] || !dept.croisement[currentSyndicat][currentFederation]) {
+                    return '#EEE';
+                }
+                
+                const voix = dept.croisement[currentSyndicat][currentFederation].voix;
+                return colorScale(voix);
+            });
+            
+            // Mettre à jour la légende
+            const syndicatColor = couleursSyndicats[currentSyndicat];
+            document.querySelectorAll('.legend-color').forEach((el, i) => {
+                // Garder les couleurs de l'échelle verte pour la visualisation
+                // el.style.backgroundColor = colorScale.range()[i];
+            });
+        }
+        
+        // Mettre à jour les statistiques
+        function updateStatistics() {
+            // Calculer les statistiques pour la combinaison actuelle
+            let totalVoix = 0;
+            let totalScrutins = 0;
+            let totalVoixSyndicat = 0;
+            
+            departements.forEach(dept => {
+                if (dept.croisement && dept.croisement[currentSyndicat] && dept.croisement[currentSyndicat][currentFederation]) {
+                    totalVoix += dept.croisement[currentSyndicat][currentFederation].voix;
+                    totalScrutins += dept.croisement[currentSyndicat][currentFederation].scrutins;
+                }
+                
+                if (dept.syndicats && dept.syndicats[currentSyndicat]) {
+                    totalVoixSyndicat += dept.syndicats[currentSyndicat].voix;
+                }
+            });
+            
+            // Calculer le pourcentage
+            const pourcentage = totalVoixSyndicat > 0 ? (totalVoix / totalVoixSyndicat * 100).toFixed(1) : '0.0';
+            
+            // Mettre à jour l'affichage
+            document.getElementById('total-voix').textContent = totalVoix.toLocaleString();
+            document.getElementById('pourcentage').textContent = pourcentage + '%';
+            document.getElementById('total-scrutins').textContent = totalScrutins;
+        }
+        
+        // Afficher les PV réels pour un département
+        function generateEntreprises(codeDept, syndicat, federation) {
+            // Récupérer les PV réels du département
+            if (!window.detailsPV || !window.detailsPV[codeDept]) {
+                return `<div class="alert alert-warning">Aucun PV disponible pour le département ${codeDept}</div>`;
+            }
+            
+            const pvDepartement = window.detailsPV[codeDept].pv;
+            console.log(`${pvDepartement.length} PV trouvés pour le département ${codeDept}`);
+            
+            // Filtrer les PV selon le syndicat et la fédération (IDCC) si spécifiés
+            let pvFiltres = pvDepartement;
+            
+            if (syndicat && syndicat !== 'tous') {
+                // Filtrer par syndicat (celui qui a le plus de voix dans le PV)
+                pvFiltres = pvFiltres.filter(pv => {
+                    const syndicatMax = Object.entries(pv.voix)
+                        .sort((a, b) => b[1] - a[1])[0][0];
+                    return syndicatMax === syndicat;
+                });
+            }
+            
+            if (federation && federation !== 'tous') {
+                // Filtrer par IDCC (fédération)
+                pvFiltres = pvFiltres.filter(pv => pv.idcc === federation);
+            }
+            
+            // Si aucun PV ne correspond aux critères
+            if (pvFiltres.length === 0) {
+                return `<div class="alert alert-warning">Aucun PV ne correspond aux critères sélectionnés pour le département ${codeDept}</div>`;
+            }
+            
+            // Générer le tableau HTML des PV
+            let html = `
+                <div class="card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Liste des PV du département ${codeDept} (${pvFiltres.length} PV)</h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Raison sociale</th>
+                                        <th>Ville</th>
+                                        <th>IDCC</th>
+                                        <th>Date</th>
+                                        <th>CGT</th>
+                                        <th>CFDT</th>
+                                        <th>CGT-FO</th>
+                                        <th>CFTC</th>
+                                        <th>CFE-CGC</th>
+                                        <th>SOLIDAIRES</th>
+                                        <th>UNSA</th>
+                                        <th>AUTRES</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+            `;
+            
+            // Trier les PV par raison sociale
+            pvFiltres.sort((a, b) => a.raison_sociale.localeCompare(b.raison_sociale));
+            
+            // Limiter à 100 PV maximum pour des raisons de performance
+            const pvAffichables = pvFiltres.slice(0, 100);
+            
+            // Générer les lignes du tableau
+            pvAffichables.forEach(pv => {
+                html += `
+                    <tr>
+                        <td>${pv.raison_sociale}</td>
+                        <td>${pv.ville}</td>
+                        <td title="${pv.lib_idcc}">${pv.idcc}</td>
+                        <td>${pv.date}</td>
+                        <td>${pv.voix.CGT.toLocaleString()}</td>
+                        <td>${pv.voix.CFDT.toLocaleString()}</td>
+                        <td>${pv.voix['CGT-FO'].toLocaleString()}</td>
+                        <td>${pv.voix.CFTC.toLocaleString()}</td>
+                        <td>${pv.voix['CFE-CGC'].toLocaleString()}</td>
+                        <td>${pv.voix.SOLIDAIRES.toLocaleString()}</td>
+                        <td>${pv.voix.UNSA.toLocaleString()}</td>
+                        <td>${pv.voix.AUTRES.toLocaleString()}</td>
+                        <td>${pv.total_voix.toLocaleString()}</td>
+                    </tr>
+                `;
+            });
+            
+            // Ajouter un message si tous les PV ne sont pas affichés
+            if (pvFiltres.length > 100) {
+                html += `
+                    <tr>
+                        <td colspan="13" class="text-center font-italic">
+                            ${pvFiltres.length - 100} autres PV non affichés
+                        </td>
+                    </tr>
+                `;
+            }
+            
+            html += `
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            return html;
+
+
+                    'FNAF': [
+                        { nom: 'SOCIETE FROMAGERE DE RODEZ', ville: 'RODEZ', effectif: 150 },
+                        { nom: 'LACTALIS', ville: 'VILLEFRANCHE-DE-ROUERGUE', effectif: 120 },
+                        { nom: 'RAYNAL ET ROQUELAURE', ville: 'CAPDENAC', effectif: 95 },
+                        { nom: 'CAVES DE ROQUEFORT', ville: 'ROQUEFORT-SUR-SOULZON', effectif: 220 }
+                    ],
+                    'SANTE': [
+                        { nom: 'CENTRE HOSPITALIER DE RODEZ', ville: 'RODEZ', effectif: 1800 },
+                        { nom: 'CLINIQUE DES PEUPLIERS', ville: 'RODEZ', effectif: 150 },
+                        { nom: 'EHPAD LES CHEVEUX D\'ANGE', ville: 'MILLAU', effectif: 85 },
+                        { nom: 'HOPITAL DE VILLEFRANCHE', ville: 'VILLEFRANCHE-DE-ROUERGUE', effectif: 450 }
+                    ],
+                    'SERVICES PUBLICS': [
+                        { nom: 'MAIRIE DE RODEZ', ville: 'RODEZ', effectif: 450 },
+                        { nom: 'CONSEIL DEPARTEMENTAL DE L\'AVEYRON', ville: 'RODEZ', effectif: 850 },
+                        { nom: 'COMMUNAUTE D\'AGGLOMERATION', ville: 'RODEZ', effectif: 320 },
+                        { nom: 'SDIS DE L\'AVEYRON', ville: 'RODEZ', effectif: 180 }
+                    ]
+                },
+                // Rhône (69)
+                '69': {
+                    'FTM': [
+                        { nom: 'RENAULT TRUCKS', ville: 'VENISSIEUX', effectif: 4200 },
+                        { nom: 'IVECO BUS', ville: 'VENISSIEUX', effectif: 1300 },
+                        { nom: 'PLASTIC OMNIUM', ville: 'LYON', effectif: 850 },
+                        { nom: 'ALSTOM TRANSPORT', ville: 'VILLEURBANNE', effectif: 780 },
+                        { nom: 'SEB', ville: 'ECULLY', effectif: 650 },
+                        { nom: 'ABB FRANCE', ville: 'CHASSIEU', effectif: 420 }
+                    ],
+                    'FNIC': [
+                        { nom: 'SANOFI PASTEUR', ville: 'MARCY-L\'ETOILE', effectif: 3500 },
+                    { nom: 'AUCHAN', ville: 'PRINCIPALE', effectif: 1100 },
+                    { nom: 'LECLERC', ville: 'PRINCIPALE', effectif: 900 },
+                    { nom: 'CASINO', ville: 'PRINCIPALE', effectif: 850 }
+                ],
+                'TRANSPORTS': [
+                    { nom: 'SNCF', ville: 'PRINCIPALE', effectif: 5000 },
+                    { nom: 'RATP', ville: 'PRINCIPALE', effectif: 4500 },
+                    { nom: 'AIR FRANCE', ville: 'PRINCIPALE', effectif: 3500 },
+                    { nom: 'KEOLIS', ville: 'PRINCIPALE', effectif: 1200 }
+                ],
+                'FNAF': [
+                    { nom: 'DANONE', ville: 'PRINCIPALE', effectif: 1200 },
+                    { nom: 'LACTALIS', ville: 'PRINCIPALE', effectif: 1100 },
+                    { nom: 'BONDUELLE', ville: 'PRINCIPALE', effectif: 900 },
+                    { nom: 'FLEURY MICHON', ville: 'PRINCIPALE', effectif: 850 }
+                ],
+                'SANTE': [
+                    { nom: 'CHU', ville: 'PRINCIPALE', effectif: 5000 },
+                    { nom: 'CLINIQUE REGIONALE', ville: 'PRINCIPALE', effectif: 1200 },
+                    { nom: 'KORIAN', ville: 'PRINCIPALE', effectif: 800 },
+                    { nom: 'ORPEA', ville: 'PRINCIPALE', effectif: 750 }
+                ],
+                'FNME': [
+                    { nom: 'EDF', ville: 'PRINCIPALE', effectif: 2000 },
+                    { nom: 'ENGIE', ville: 'PRINCIPALE', effectif: 1800 },
+                    { nom: 'TOTAL ENERGIES', ville: 'PRINCIPALE', effectif: 1500 },
+                    { nom: 'RTE', ville: 'PRINCIPALE', effectif: 900 }
+                ],
+                'SERVICES PUBLICS': [
+                    { nom: 'MAIRIE', ville: 'PRINCIPALE', effectif: 2500 },
+                    { nom: 'CONSEIL DEPARTEMENTAL', ville: 'PRINCIPALE', effectif: 1800 },
+                    { nom: 'METROPOLE', ville: 'PRINCIPALE', effectif: 1500 },
+                    { nom: 'OFFICE HLM', ville: 'PRINCIPALE', effectif: 600 }
+                ]
+            };
+            
+            // Villes par département pour les départements sans données spécifiques
+            const villesParDepartement = {
+                '01': ['BOURG-EN-BRESSE', 'OYONNAX', 'AMBERIEU-EN-BUGEY', 'BELLEGARDE-SUR-VALSERINE'],
+                '02': ['SAINT-QUENTIN', 'SOISSONS', 'LAON', 'CHATEAU-THIERRY'],
+                '03': ['MONTLUCON', 'VICHY', 'MOULINS', 'CUSSET'],
+                '04': ['MANOSQUE', 'DIGNE-LES-BAINS', 'SISTERON', 'CHATEAU-ARNOUX'],
+                '05': ['GAP', 'BRIANCON', 'EMBRUN', 'LARAGNE-MONTEGLIN'],
+                '06': ['NICE', 'CANNES', 'ANTIBES', 'GRASSE', 'MENTON'],
+                '07': ['ANNONAY', 'AUBENAS', 'PRIVAS', 'TOURNON-SUR-RHONE'],
+                '08': ['CHARLEVILLE-MEZIERES', 'SEDAN', 'RETHEL', 'GIVET'],
+                '09': ['FOIX', 'PAMIERS', 'SAINT-GIRONS', 'LAVELANET'],
+                '10': ['TROYES', 'ROMILLY-SUR-SEINE', 'LA CHAPELLE-SAINT-LUC', 'BAR-SUR-AUBE'],
+                '11': ['NARBONNE', 'CARCASSONNE', 'CASTELNAUDARY', 'LIMOUX']
+                // Autres départements...
+            };
+            
+            // Récupérer les entreprises spécifiques au département et à la fédération
+            let entreprisesDepartement = [];
+            
+            if (entreprisesParDepartement[codeDept] && entreprisesParDepartement[codeDept][federation]) {
+                // Utiliser les entreprises spécifiques au département et à la fédération
+                entreprisesDepartement = [...entreprisesParDepartement[codeDept][federation]];
+            } else {
+                // Utiliser les entreprises génériques de la fédération
+                const entreprisesGeneriques = entreprisesParFederation[federation] || entreprisesParFederation['COMMERCE'];
+                
+                // Adapter les villes au département
+                const villes = villesParDepartement[codeDept] || ['VILLE PRINCIPALE', 'VILLE SECONDAIRE'];
+                
+                // Créer des copies des entreprises génériques avec des villes du département
+                entreprisesDepartement = entreprisesGeneriques.map(entreprise => {
+                    const villeIndex = Math.floor(Math.random() * villes.length);
+                    return {
+                        nom: entreprise.nom,
+                        ville: villes[villeIndex],
+                        effectif: entreprise.effectif
+                    };
+                });
+            }
+            
+            // Générer les résultats pour le syndicat sélectionné
+            const entreprisesAvecVoix = entreprisesDepartement.map(entreprise => {
+                // Calculer un nombre de voix réaliste basé sur l'effectif
+                let tauxVoix;
+                
+                // Ajuster le taux de voix en fonction du syndicat
+                switch(syndicat) {
+                    case 'CGT':
+                        tauxVoix = Math.random() * 0.3 + 0.1; // 10-40%
+                        break;
+                    case 'CFDT':
+                        tauxVoix = Math.random() * 0.25 + 0.1; // 10-35%
+                        break;
+                    case 'CGT-FO':
+                        tauxVoix = Math.random() * 0.2 + 0.05; // 5-25%
+                        break;
+                    case 'CFTC':
+                    case 'CFE-CGC':
+                        tauxVoix = Math.random() * 0.15 + 0.05; // 5-20%
+                        break;
+                    case 'SOLIDAIRES':
+                    case 'UNSA':
+                        tauxVoix = Math.random() * 0.1 + 0.02; // 2-12%
+                        break;
+                    default:
+                        tauxVoix = Math.random() * 0.2 + 0.05; // 5-25%
+                }
+                
+                // Calculer le nombre de voix
+                const voix = Math.floor(entreprise.effectif * tauxVoix);
+                
+                return {
+                    nom: entreprise.nom,
+                    ville: entreprise.ville,
+                    voix: voix
+                };
+            });
+            
+            // Trier par nombre de voix décroissant
+            return entreprisesAvecVoix.sort((a, b) => b.voix - a.voix);
+        }
+        
+        // Mettre à jour le top 5 des départements
+        function updateTopDepartements() {
+            // Trier les départements par nombre de voix pour la combinaison sélectionnée
+            const sortedDepts = [...departements]
+                .filter(dept => 
+                    dept.croisement && 
+                    dept.croisement[currentSyndicat] && 
+                    dept.croisement[currentSyndicat][currentFederation] &&
+                    dept.croisement[currentSyndicat][currentFederation].voix > 0
+                )
+                .sort((a, b) => {
+                    return b.croisement[currentSyndicat][currentFederation].voix - 
+                           a.croisement[currentSyndicat][currentFederation].voix;
+                })
+                .slice(0, 5);
+            
+            // Générer le HTML
+            let html = '';
+            sortedDepts.forEach(dept => {
+                const voix = dept.croisement[currentSyndicat][currentFederation].voix;
+                
+                html += `
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        ${dept.departement} (${dept.code})
+                        <span class="badge bg-success rounded-pill">${voix.toLocaleString()}</span>
+                    </li>
+                `;
+            });
+            
+            // Mettre à jour l'affichage
+            document.getElementById('top-departements').innerHTML = html || '<li class="list-group-item">Aucune donnée disponible</li>';
+        }
+    </script>
+</body>
+</html>

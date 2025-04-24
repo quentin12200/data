@@ -1,0 +1,25 @@
+[
+  {
+    "siret": "TPE",
+    "raison_sociale": "TPE",
+    "ville": "TPE",
+    "cp": "TPE",
+    "idcc": "XXXX",
+    "lib_idcc": "Petites urnes",
+    "college": "TPE",
+    "date": "TPE",
+    "inscrits": 7076,
+    "votants": 213,
+    "sve_total": 209734,
+    "voix": {
+      "CGT": 57970,
+      "CFDT": 31159,
+      "CGT-FO": 24517,
+      "CFTC": 17381,
+      "CFE-CGC": 8601,
+      "SOLIDAIRES": 11210,
+      "UNSA": 30156,
+      "AUTRES": 28740
+    }
+  }
+]

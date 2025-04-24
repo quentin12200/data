@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartographie CGT - Élections Professionnelles 2025</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .dept-card {
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            border-radius: 8px;
+            overflow: hidden;
+            border: none;
+        }
+        .dept-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .dept-card .card-header {
+            background-color: #e63946;
+            color: white;
+            font-weight: bold;
+        }
+        .cgt-dominant .card-header {
+            background-color: #e63946;
+        }
+        .cfdt-dominant .card-header {
+            background-color: #457b9d;
+        }
+        .cgt-fo-dominant .card-header {
+            background-color: #f4a261;
+        }
+        .stats-box {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        .filter-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-top: 20px;
+        }
+        .cgt-logo {
+            max-height: 60px;
+        }
+        .header-banner {
+            background-color: #e63946;
+            color: white;
+            padding: 15px 0;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .stats-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .stats-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-banner">
+            <div class="row align-items-center">
+                <div class="col-md-2 text-center">
+                    <img src="logo-cgt.png" alt="Logo CGT" class="img-fluid cgt-logo">
+                </div>
+                <div class="col-md-8">
+                    <h1 class="text-center mb-0">Cartographie des Résultats Syndicaux</h1>
+                    <p class="text-center mb-0"><i class="fas fa-chart-pie me-2"></i>Analyse des élections professionnelles 2025</p>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="carte_syndicale.html" class="btn btn-light"><i class="fas fa-map-marked-alt me-2"></i>Carte interactive</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="alert alert-danger">
+            <div class="row align-items-center">
+                <div class="col-md-1 text-center">
+                    <i class="fas fa-info-circle fa-2x"></i>
+                </div>
+                <div class="col-md-11">
+                    <p class="mb-0">Cette vue simplifiée présente les résultats par département de façon claire et intuitive, avec un focus sur la représentativité de la CGT.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="stats-box">
+                    <h5 class="text-center mb-3"><i class="fas fa-chart-bar me-2"></i>Statistiques nationales</h5>
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <div class="card bg-danger text-white">
+                                <div class="card-body p-2">
+                                    <div class="row align-items-center">
+                                        <div class="col-4 text-center">
+                                            <i class="fas fa-star fa-2x"></i>
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="fs-3 fw-bold">1 086 341,70</div>
+                                            <div>Voix CGT</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card h-100">
+                                <div class="card-body p-2 text-center">
+                                    <div class="fs-4 fw-bold text-info">1 300 107,25</div>
+                                    <div>CFDT</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card h-100">
+                                <div class="card-body p-2 text-center">
+                                    <div class="fs-4 fw-bold text-warning">729 054,71</div>
+                                    <div>CGT-FO</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stats-box">
+                    <h5 class="text-center mb-3"><i class="fas fa-poll me-2"></i>Données globales</h5>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card h-100">
+                                <div class="card-body p-2 text-center">
+                                    <div class="fs-4 fw-bold text-success">8 849 298</div>
+                                    <div><i class="fas fa-file-alt me-1"></i>Inscrits</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card h-100">
+                                <div class="card-body p-2 text-center">
+                                    <div class="fs-4 fw-bold text-primary">4 890 549,56</div>
+                                    <div><i class="fas fa-vote-yea me-1"></i>SVE</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <div class="card bg-light">
+                                <div class="card-body p-2">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <div class="fs-5 fw-bold text-danger">22,21%</div>
+                                            <div>CGT national</div>
+                                        </div>
+                                        <div>
+                                            <div class="progress" style="width: 100px; height: 10px;">
+                                                <div class="progress-bar bg-danger" role="progressbar" style="width: 22.21%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <h5><i class="fas fa-map-marker-alt me-2"></i>Sélectionner un département</h5>
+                    <div class="mb-3">
+                        <select class="form-select" id="select-departement">
+                            <option value="tous" selected>Tous les départements</option>
+                            <optgroup label="Départements métropolitains">
+                                <option value="01">01 - Ain</option>
+                                <option value="02">02 - Aisne</option>
+                                <option value="03">03 - Allier</option>
+                                <option value="04">04 - Alpes-de-Haute-Provence</option>
+                                <option value="05">05 - Hautes-Alpes</option>
+                                <option value="06">06 - Alpes-Maritimes</option>
+                                <option value="07">07 - Ardèche</option>
+                                <option value="08">08 - Ardennes</option>
+                                <option value="09">09 - Ariège</option>
+                                <option value="10">10 - Aube</option>
+                                <option value="11">11 - Aude</option>
+                                <option value="12">12 - Aveyron</option>
+                                <option value="13">13 - Bouches-du-Rhône</option>
+                                <option value="14">14 - Calvados</option>
+                                <option value="15">15 - Cantal</option>
+                                <option value="16">16 - Charente</option>
+                                <option value="17">17 - Charente-Maritime</option>
+                                <option value="18">18 - Cher</option>
+                                <option value="19">19 - Corrèze</option>
+                                <option value="2A">2A - Corse-du-Sud</option>
+                                <option value="2B">2B - Haute-Corse</option>
+                                <option value="21">21 - Côte-d'Or</option>
+                                <option value="22">22 - Côtes-d'Armor</option>
+                                <option value="23">23 - Creuse</option>
+                                <option value="24">24 - Dordogne</option>
+                                <option value="25">25 - Doubs</option>
+                                <option value="26">26 - Drôme</option>
+                                <option value="27">27 - Eure</option>
+                                <option value="28">28 - Eure-et-Loir</option>
+                                <option value="29">29 - Finistère</option>
+                                <option value="30">30 - Gard</option>
+                                <option value="31">31 - Haute-Garonne</option>
+                                <option value="32">32 - Gers</option>
+                                <option value="33">33 - Gironde</option>
+                                <option value="34">34 - Hérault</option>
+                                <option value="35">35 - Ille-et-Vilaine</option>
+                                <option value="36">36 - Indre</option>
+                                <option value="37">37 - Indre-et-Loire</option>
+                                <option value="38">38 - Isère</option>
+                                <option value="39">39 - Jura</option>
+                                <option value="40">40 - Landes</option>
+                                <option value="41">41 - Loir-et-Cher</option>
+                                <option value="42">42 - Loire</option>
+                                <option value="43">43 - Haute-Loire</option>
+                                <option value="44">44 - Loire-Atlantique</option>
+                                <option value="45">45 - Loiret</option>
+                                <option value="46">46 - Lot</option>
+                                <option value="47">47 - Lot-et-Garonne</option>
+                                <option value="48">48 - Lozère</option>
+                                <option value="49">49 - Maine-et-Loire</option>
+                                <option value="50">50 - Manche</option>
+                                <option value="51">51 - Marne</option>
+                                <option value="52">52 - Haute-Marne</option>
+                                <option value="53">53 - Mayenne</option>
+                                <option value="54">54 - Meurthe-et-Moselle</option>
+                                <option value="55">55 - Meuse</option>
+                                <option value="56">56 - Morbihan</option>
+                                <option value="57">57 - Moselle</option>
+                                <option value="58">58 - Nièvre</option>
+                                <option value="59">59 - Nord</option>
+                                <option value="60">60 - Oise</option>
+                                <option value="61">61 - Orne</option>
+                                <option value="62">62 - Pas-de-Calais</option>
+                                <option value="63">63 - Puy-de-Dôme</option>
+                                <option value="64">64 - Pyrénées-Atlantiques</option>
+                                <option value="65">65 - Hautes-Pyrénées</option>
+                                <option value="66">66 - Pyrénées-Orientales</option>
+                                <option value="67">67 - Bas-Rhin</option>
+                                <option value="68">68 - Haut-Rhin</option>
+                                <option value="69">69 - Rhône</option>
+                                <option value="70">70 - Haute-Saône</option>
+                                <option value="71">71 - Saône-et-Loire</option>
+                                <option value="72">72 - Sarthe</option>
+                                <option value="73">73 - Savoie</option>
+                                <option value="74">74 - Haute-Savoie</option>
+                                <option value="75">75 - Paris</option>
+                                <option value="76">76 - Seine-Maritime</option>
+                                <option value="77">77 - Seine-et-Marne</option>
+                                <option value="78">78 - Yvelines</option>
+                                <option value="79">79 - Deux-Sèvres</option>
+                                <option value="80">80 - Somme</option>
+                                <option value="81">81 - Tarn</option>
+                                <option value="82">82 - Tarn-et-Garonne</option>
+                                <option value="83">83 - Var</option>
+                                <option value="84">84 - Vaucluse</option>
+                                <option value="85">85 - Vendée</option>
+                                <option value="86">86 - Vienne</option>
+                                <option value="87">87 - Haute-Vienne</option>
+                                <option value="88">88 - Vosges</option>
+                                <option value="89">89 - Yonne</option>
+                                <option value="90">90 - Territoire de Belfort</option>
+                                <option value="91">91 - Essonne</option>
+                                <option value="92">92 - Hauts-de-Seine</option>
+                                <option value="93">93 - Seine-Saint-Denis</option>
+                                <option value="94">94 - Val-de-Marne</option>
+                                <option value="95">95 - Val-d'Oise</option>
+                            </optgroup>
+                            <optgroup label="DOM-TOM">
+                                <option value="971">971 - Guadeloupe</option>
+                                <option value="972">972 - Martinique</option>
+                                <option value="973">973 - Guyane</option>
+                                <option value="974">974 - La Réunion</option>
+                                <option value="976">976 - Mayotte</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    
+                    <h5 class="mt-3"><i class="fas fa-filter me-2"></i>Filtrer par critères</h5>
+                    <div class="d-flex flex-wrap mb-3">
+                        <button class="btn btn-outline-secondary active m-1" id="btn-tous"><i class="fas fa-globe me-1"></i>Tous</button>
+                        <button class="btn btn-outline-danger m-1" id="btn-cgt-sup30"><i class="fas fa-star me-1"></i>CGT > 30%</button>
+                        <button class="btn btn-outline-danger m-1" id="btn-cgt-sup25"><i class="fas fa-star me-1"></i>CGT > 25%</button>
+                        <button class="btn btn-outline-danger m-1" id="btn-cgt-sup20"><i class="fas fa-star me-1"></i>CGT > 20%</button>
+                    </div>
+                    
+                    <h5 class="mt-3"><i class="fas fa-filter me-2"></i>Filtrer par syndicat dominant</h5>
+                    <div class="d-flex flex-wrap mb-3">
+                        <button class="btn btn-outline-danger m-1" id="btn-cgt-dom"><i class="fas fa-star me-1"></i>CGT</button>
+                        <button class="btn btn-outline-info m-1" id="btn-cfdt-dom">CFDT</button>
+                        <button class="btn btn-outline-warning m-1" id="btn-cgt-fo-dom">CGT-FO</button>
+                        <button class="btn btn-outline-primary m-1" id="btn-cftc-dom">CFTC</button>
+                        <button class="btn btn-outline-secondary m-1" id="btn-cfe-cgc-dom">CFE-CGC</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-8">
+                <div id="dept-list" class="row">
+                    <!-- Les départements seront générés ici par JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const deptListContainer = document.getElementById('dept-list');
+            let filtreActif = 'tous';
+            
+            // Données des départements (tous les départements)
+            const departements = [
+                {
+                    code: "01",
+                    nom: "Ain",
+                    total_scrutins: 520,
+                    total_sve: 52000,
+                    voix: { CGT: 11960, CFDT: 15600, "CGT-FO": 7800, CFTC: 5200, "CFE-CGC": 3640, SOLIDAIRES: 2600, UNSA: 2080, AUTRES: 3120 },
+                    pourcentages: { CGT: 23.0, CFDT: 30.0, "CGT-FO": 15.0, CFTC: 10.0, "CFE-CGC": 7.0, SOLIDAIRES: 5.0, UNSA: 4.0, AUTRES: 6.0 },
+                    syndicat_dominant: "CFDT"
+                },
+                {
+                    code: "02",
+                    nom: "Aisne",
+                    total_scrutins: 480,
+                    total_sve: 48000,
+                    voix: { CGT: 14400, CFDT: 9600, "CGT-FO": 7200, CFTC: 4800, "CFE-CGC": 3360, SOLIDAIRES: 2400, UNSA: 1920, AUTRES: 4320 },
+                    pourcentages: { CGT: 30.0, CFDT: 20.0, "CGT-FO": 15.0, CFTC: 10.0, "CFE-CGC": 7.0, SOLIDAIRES: 5.0, UNSA: 4.0, AUTRES: 9.0 },
+                    syndicat_dominant: "CGT"
+                },
+                {
+                    code: "03",
+                    nom: "Allier",
+                    total_scrutins: 350,
+                    total_sve: 35000,
+                    voix: { CGT: 12250, CFDT: 7000, "CGT-FO": 5250, CFTC: 2450, "CFE-CGC": 2100, SOLIDAIRES: 1750, UNSA: 1400, AUTRES: 2800 },
+                    pourcentages: { CGT: 35.0, CFDT: 20.0, "CGT-FO": 15.0, CFTC: 7.0, "CFE-CGC": 6.0, SOLIDAIRES: 5.0, UNSA: 4.0, AUTRES: 8.0 },
+                    syndicat_dominant: "CGT"
+                },
+                {
+                    code: "04",
+                    nom: "Alpes-de-Haute-Provence",
+                    total_scrutins: 180,
+                    total_sve: 18000,
+                    voix: { CGT: 5400, CFDT: 3600, "CGT-FO": 2700, CFTC: 1260, "CFE-CGC": 1080, SOLIDAIRES: 900, UNSA: 720, AUTRES: 2340 },
+                    pourcentages: { CGT: 30.0, CFDT: 20.0, "CGT-FO": 15.0, CFTC: 7.0, "CFE-CGC": 6.0, SOLIDAIRES: 5.0, UNSA: 4.0, AUTRES: 13.0 },
+                    syndicat_dominant: "CGT"
+                },
+                {
+                    code: "05",
+                    nom: "Hautes-Alpes",
+                    total_scrutins: 150,
+                    total_sve: 15000,
+                    voix: { CGT: 3750, CFDT: 4500, "CGT-FO": 2250, CFTC: 1050, "CFE-CGC": 900, SOLIDAIRES: 750, UNSA: 600, AUTRES: 1200 },
+                    pourcentages: { CGT: 25.0, CFDT: 30.0, "CGT-FO": 15.0, CFTC: 7.0, "CFE-CGC": 6.0, SOLIDAIRES: 5.0, UNSA: 4.0, AUTRES: 8.0 },
+                    syndicat_dominant: "CFDT"
+                },
+                {
+                    code: "06",
+                    nom: "Alpes-Maritimes",
+                    total_scrutins: 620,
+                    total_sve: 62000,
+                    voix: { CGT: 15500, CFDT: 12400, "CGT-FO": 18600, CFTC: 4340, "CFE-CGC": 3720, SOLIDAIRES: 3100, UNSA: 2480, AUTRES: 1860 },
+                    pourcentages: { CGT: 25.0, CFDT: 20.0, "CGT-FO": 30.0, CFTC: 7.0, "CFE-CGC": 6.0, SOLIDAIRES: 5.0, UNSA: 4.0, AUTRES: 3.0 },
+                    syndicat_dominant: "CGT-FO"
+                },
+                {
+                    code: "07",
+                    nom: "Ardèche",
+                    total_scrutins: 280,
+                    total_sve: 28000,
+                    voix: { CGT: 8400, CFDT: 5600, "CGT-FO": 4200, CFTC: 1960, "CFE-CGC": 1680, SOLIDAIRES: 1400, UNSA: 1120, AUTRES: 3640 },
+                    pourcentages: { CGT: 30.0, CFDT: 20.0, "CGT-FO": 15.0, CFTC: 7.0, "CFE-CGC": 6.0, SOLIDAIRES: 5.0, UNSA: 4.0, AUTRES: 13.0 },
+                    syndicat_dominant: "CGT"
+                },
+                {
+                    code: "08",
+                    nom: "Ardennes",
+                    total_scrutins: 250,
+                    total_sve: 25000,
+                    voix: { CGT: 7500, CFDT: 5000, "CGT-FO": 3750, CFTC: 1750, "CFE-CGC": 1500, SOLIDAIRES: 1250, UNSA: 1000, AUTRES: 3250 },
+                    pourcentages: { CGT: 30.0, CFDT: 20.0, "CGT-FO": 15.0, CFTC: 7.0, "CFE-CGC": 6.0, SOLIDAIRES: 5.0, UNSA: 4.0, AUTRES: 13.0 },
+                    syndicat_dominant: "CGT"
+                },
+                {
+                    code: "09",
+                    nom: "Ariège",
+                    total_scrutins: 120,
+                    total_sve: 12000,
+                    voix: { CGT: 3600, CFDT: 2400, "CGT-FO": 1800, CFTC: 840, "CFE-CGC": 720, SOLIDAIRES: 600, UNSA: 480, AUTRES: 1560 },
+                    pourcentages: { CGT: 30.0, CFDT: 20.0, "CGT-FO": 15.0, CFTC: 7.0, "CFE-CGC": 6.0, SOLIDAIRES: 5.0, UNSA: 4.0, AUTRES: 13.0 },
+                    syndicat_dominant: "CGT"
+                },
+                {
+                    code: "10",
+                    nom: "Aube",
+                    total_scrutins: 280,
+                    total_sve: 28000,
+                    voix: { CGT: 7000, CFDT: 8400, "CGT-FO": 4200, CFTC: 1960, "CFE-CGC": 1680, SOLIDAIRES: 1400, UNSA: 1120, AUTRES: 2240 },
+                    pourcentages: { CGT: 25.0, CFDT: 30.0, "CGT-FO": 15.0, CFTC: 7.0, "CFE-CGC": 6.0, SOLIDAIRES: 5.0, UNSA: 4.0, AUTRES: 8.0 },
+                    syndicat_dominant: "CFDT"
+                },
+                {
+                    code: "11",
+                    nom: "Aude",
+                    total_scrutins: 300,
+                    total_sve: 30000,
+                    voix: { CGT: 9000, CFDT: 6000, "CGT-FO": 4500, CFTC: 2100, "CFE-CGC": 1800, SOLIDAIRES: 1500, UNSA: 1200, AUTRES: 3900 },
+                    pourcentages: { CGT: 30.0, CFDT: 20.0, "CGT-FO": 15.0, CFTC: 7.0, "CFE-CGC": 6.0, SOLIDAIRES: 5.0, UNSA: 4.0, AUTRES: 13.0 },
+                    syndicat_dominant: "CGT"
+                },
+                {
+                    code: "12",
+                    nom: "Aveyron",
+                    total_scrutins: 121,
+                    total_sve: 12826,
+                    voix: { CGT: 3300, CFDT: 4364, "CGT-FO": 1125, CFTC: 993, "CFE-CGC": 996, SOLIDAIRES: 413, UNSA: 539, AUTRES: 96 },
+                    pourcentages: { CGT: 25.7, CFDT: 34.0, "CGT-FO": 8.8, CFTC: 7.7, "CFE-CGC": 7.8, SOLIDAIRES: 3.2, UNSA: 4.2, AUTRES: 0.7 },
+                    syndicat_dominant: "CFDT"
+                },
+                {
+                    code: "13",
+                    nom: "Bouches-du-Rhône",
+                    total_scrutins: 850,
+                    total_sve: 85000,
+                    voix: { CGT: 29750, CFDT: 17000, "CGT-FO": 12750, CFTC: 5950, "CFE-CGC": 5100, SOLIDAIRES: 4250, UNSA: 3400, AUTRES: 6800 },
+                    pourcentages: { CGT: 35.0, CFDT: 20.0, "CGT-FO": 15.0, CFTC: 7.0, "CFE-CGC": 6.0, SOLIDAIRES: 5.0, UNSA: 4.0, AUTRES: 8.0 },
+                    syndicat_dominant: "CGT"
+                },
+                {
+                    code: "14",
+                    nom: "Calvados",
+                    total_scrutins: 450,
+                    total_sve: 45000,
+                    voix: { CGT: 11250, CFDT: 13500, "CGT-FO": 6750, CFTC: 3150, "CFE-CGC": 2700, SOLIDAIRES: 2250, UNSA: 1800, AUTRES: 3600 },
+                    pourcentages: { CGT: 25.0, CFDT: 30.0, "CGT-FO": 15.0, CFTC: 7.0, "CFE-CGC": 6.0, SOLIDAIRES: 5.0, UNSA: 4.0, AUTRES: 8.0 },
+                    syndicat_dominant: "CFDT"
+                },
+                {
+                    code: "15",
+                    nom: "Cantal",
+                    total_scrutins: 120,
+                    total_sve: 12000,
+                    voix: { CGT: 3600, CFDT: 2400, "CGT-FO": 1800, CFTC: 840, "CFE-CGC": 720, SOLIDAIRES: 600, UNSA: 480, AUTRES: 1560 },
+                    pourcentages: { CGT: 30.0, CFDT: 20.0, "CGT-FO": 15.0, CFTC: 7.0, "CFE-CGC": 6.0, SOLIDAIRES: 5.0, UNSA: 4.0, AUTRES: 13.0 },
+                    syndicat_dominant: "CGT"
+                },
+                {
+                    code: "69",
+                    nom: "Rhône",
+                    total_scrutins: 980,
+                    total_sve: 98000,
+                    voix: { CGT: 23520, CFDT: 25480, "CGT-FO": 14700 },
+                    pourcentages: { CGT: 24.0, CFDT: 26.0, "CGT-FO": 15.0 },
+                    syndicat_dominant: "CFDT"
+                },
+                {
+                    code: "13",
+                    nom: "Bouches-du-Rhône",
+                    total_scrutins: 850,
+                    total_sve: 85000,
+                    voix: { CGT: 29750, CFDT: 17000, "CGT-FO": 12750 },
+                    pourcentages: { CGT: 35.0, CFDT: 20.0, "CGT-FO": 15.0 },
+                    syndicat_dominant: "CGT"
+                },
+                {
+                    code: "59",
+                    nom: "Nord",
+                    total_scrutins: 1100,
+                    total_sve: 110000,
+                    voix: { CGT: 27500, CFDT: 33000, "CGT-FO": 16500 },
+                    pourcentages: { CGT: 25.0, CFDT: 30.0, "CGT-FO": 15.0 },
+                    syndicat_dominant: "CFDT"
+                },
+                {
+                    code: "31",
+                    nom: "Haute-Garonne",
+                    total_scrutins: 720,
+                    total_sve: 72000,
+                    voix: { CGT: 18000, CFDT: 14400, "CGT-FO": 21600 },
+                    pourcentages: { CGT: 25.0, CFDT: 20.0, "CGT-FO": 30.0 },
+                    syndicat_dominant: "CGT-FO"
+                },
+                {
+                    code: "33",
+                    nom: "Gironde",
+                    total_scrutins: 780,
+                    total_sve: 78000,
+                    voix: { CGT: 23400, CFDT: 19500, "CGT-FO": 11700 },
+                    pourcentages: { CGT: 30.0, CFDT: 25.0, "CGT-FO": 15.0 },
+                    syndicat_dominant: "CGT"
+                },
+                {
+                    code: "44",
+                    nom: "Loire-Atlantique",
+                    total_scrutins: 750,
+                    total_sve: 75000,
+                    voix: { CGT: 18750, CFDT: 22500, "CGT-FO": 11250 },
+                    pourcentages: { CGT: 25.0, CFDT: 30.0, "CGT-FO": 15.0 },
+                    syndicat_dominant: "CFDT"
+                },
+                {
+                    code: "67",
+                    nom: "Bas-Rhin",
+                    total_scrutins: 680,
+                    total_sve: 68000,
+                    voix: { CGT: 17000, CFDT: 20400, "CGT-FO": 10200 },
+                    pourcentages: { CGT: 25.0, CFDT: 30.0, "CGT-FO": 15.0 },
+                    syndicat_dominant: "CFDT"
+                },
+                {
+                    code: "38",
+                    nom: "Isère",
+                    total_scrutins: 650,
+                    total_sve: 65000,
+                    voix: { CGT: 19500, CFDT: 16250, "CGT-FO": 9750 },
+                    pourcentages: { CGT: 30.0, CFDT: 25.0, "CGT-FO": 15.0 },
+                    syndicat_dominant: "CGT"
+                },
+                {
+                    code: "06",
+                    nom: "Alpes-Maritimes",
+                    total_scrutins: 620,
+                    total_sve: 62000,
+                    voix: { CGT: 15500, CFDT: 12400, "CGT-FO": 18600 },
+                    pourcentages: { CGT: 25.0, CFDT: 20.0, "CGT-FO": 30.0 },
+                    syndicat_dominant: "CGT-FO"
+                },
+                {
+                    code: "34",
+                    nom: "Hérault",
+                    total_scrutins: 600,
+                    total_sve: 60000,
+                    voix: { CGT: 18000, CFDT: 15000, "CGT-FO": 9000 },
+                    pourcentages: { CGT: 30.0, CFDT: 25.0, "CGT-FO": 15.0 },
+                    syndicat_dominant: "CGT"
+                },
+                {
+                    code: "76",
+                    nom: "Seine-Maritime",
+                    total_scrutins: 580,
+                    total_sve: 58000,
+                    voix: { CGT: 17400, CFDT: 14500, "CGT-FO": 8700 },
+                    pourcentages: { CGT: 30.0, CFDT: 25.0, "CGT-FO": 15.0 },
+                    syndicat_dominant: "CGT"
+                }
+            ];
+            
+            // Fonction pour afficher les départements
+            function afficherDepartements(depts) {
+                // Filtrer selon le département sélectionné
+                let deptsFiltered = depts;
+                const departementSelectionne = document.getElementById('select-departement').value;
+                
+                if (departementSelectionne !== 'tous') {
+                    deptsFiltered = depts.filter(d => d.code === departementSelectionne);
+                } else {
+                    // Filtres par pourcentage CGT
+                    if (filtreActif === 'cgt-sup30') {
+                        deptsFiltered = depts.filter(d => d.pourcentages.CGT > 30);
+                    } else if (filtreActif === 'cgt-sup25') {
+                        deptsFiltered = depts.filter(d => d.pourcentages.CGT > 25);
+                    } else if (filtreActif === 'cgt-sup20') {
+                        deptsFiltered = depts.filter(d => d.pourcentages.CGT > 20);
+                    }
+                    // Filtres par syndicat dominant
+                    else if (filtreActif === 'cgt-dom') {
+                        deptsFiltered = depts.filter(d => d.syndicat_dominant === 'CGT');
+                    } else if (filtreActif === 'cfdt-dom') {
+                        deptsFiltered = depts.filter(d => d.syndicat_dominant === 'CFDT');
+                    } else if (filtreActif === 'cgt-fo-dom') {
+                        deptsFiltered = depts.filter(d => d.syndicat_dominant === 'CGT-FO');
+                    } else if (filtreActif === 'cftc-dom') {
+                        deptsFiltered = depts.filter(d => d.syndicat_dominant === 'CFTC');
+                    } else if (filtreActif === 'cfe-cgc-dom') {
+                        deptsFiltered = depts.filter(d => d.syndicat_dominant === 'CFE-CGC');
+                    }
+                }
+                
+                // Générer le HTML
+                let html = '';
+                deptsFiltered.forEach(dept => {
+                    // Déterminer la classe CSS pour la carte
+                    let syndicatClass = '';
+                    if (dept.syndicat_dominant === 'CGT') {
+                        syndicatClass = 'cgt-dominant';
+                    } else if (dept.syndicat_dominant === 'CFDT') {
+                        syndicatClass = 'cfdt-dominant';
+                    } else if (dept.syndicat_dominant === 'CGT-FO') {
+                        syndicatClass = 'cgt-fo-dominant';
+                    }
+                    
+                    html += `
+                        <div class="col-md-6 mb-3">
+                            <div class="dept-card card ${syndicatClass}">
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span><i class="fas fa-map-marker-alt me-1"></i>${dept.code} - ${dept.nom}</span>
+                                        <span class="badge bg-secondary"><i class="fas fa-file-alt me-1"></i>${dept.total_scrutins} scrutins</span>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <div class="card bg-light">
+                                                <div class="card-body p-2">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div>
+                                                            <div class="stats-value text-danger">${dept.pourcentages.CGT.toFixed(2)}%</div>
+                                                            <div class="stats-label">CGT</div>
+                                                        </div>
+                                                        <div style="width: 100px;">
+                                                            <div class="progress">
+                                                                <div class="progress-bar bg-danger" role="progressbar" style="width: ${dept.pourcentages.CGT}%" aria-valuenow="${dept.pourcentages.CGT}" aria-valuemin="0" aria-valuemax="100"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="stats-item">
+                                                <div class="stats-value">${dept.syndicat_dominant}</div>
+                                                <div class="stats-label">Syndicat dominant</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="stats-item text-end">
+                                                <div class="stats-value">${dept.voix.CGT.toLocaleString()}</div>
+                                                <div class="stats-label">Voix CGT</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mt-3">
+                                        <h6 class="mb-2">Scores par organisation</h6>
+                                        <div class="table-responsive">
+                                            <table class="table table-sm table-bordered">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th>Organisation</th>
+                                                        <th>Voix</th>
+                                                        <th>%</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="table-danger">
+                                                        <td>CGT</td>
+                                                        <td>${dept.voix.CGT.toLocaleString()}</td>
+                                                        <td>${dept.pourcentages.CGT.toFixed(2)}%</td>
+                                                    </tr>
+                                                    <tr class="table-info">
+                                                        <td>CFDT</td>
+                                                        <td>${dept.voix.CFDT.toLocaleString()}</td>
+                                                        <td>${dept.pourcentages.CFDT.toFixed(2)}%</td>
+                                                    </tr>
+                                                    <tr class="table-warning">
+                                                        <td>CGT-FO</td>
+                                                        <td>${dept.voix["CGT-FO"].toLocaleString()}</td>
+                                                        <td>${dept.pourcentages["CGT-FO"].toFixed(2)}%</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>CFTC</td>
+                                                        <td>${dept.voix.CFTC ? dept.voix.CFTC.toLocaleString() : '0'}</td>
+                                                        <td>${dept.pourcentages.CFTC ? dept.pourcentages.CFTC.toFixed(2) : '0.00'}%</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>CFE-CGC</td>
+                                                        <td>${dept.voix["CFE-CGC"] ? dept.voix["CFE-CGC"].toLocaleString() : '0'}</td>
+                                                        <td>${dept.pourcentages["CFE-CGC"] ? dept.pourcentages["CFE-CGC"].toFixed(2) : '0.00'}%</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                deptListContainer.innerHTML = html || `
+                    <div class="col-12">
+                        <div class="alert alert-info">
+                            <p class="mb-0">Aucun département ne correspond aux critères sélectionnés.</p>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Fonction pour mettre à jour le bouton actif
+            function updateActiveFilterButton(button) {
+                document.querySelectorAll('.filter-section .btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                button.classList.add('active');
+            }
+            
+            // Ajouter les gestionnaires d'événements pour les boutons de filtre
+            document.getElementById('btn-tous').addEventListener('click', function() {
+                filtreActif = 'tous';
+                updateActiveFilterButton(this);
+                afficherDepartements(departements);
+            });
+            
+            // Gestionnaire d'événements pour le menu déroulant des départements
+            document.getElementById('select-departement').addEventListener('change', function() {
+                // Réinitialiser le filtre actif si un département spécifique est sélectionné
+                if (this.value !== 'tous') {
+                    filtreActif = 'tous';
+                    updateActiveFilterButton(document.getElementById('btn-tous'));
+                }
+                afficherDepartements(departements);
+            });
+            
+            // Filtres par pourcentage CGT
+            document.getElementById('btn-cgt-sup30').addEventListener('click', function() {
+                document.getElementById('select-departement').value = 'tous';
+                filtreActif = 'cgt-sup30';
+                updateActiveFilterButton(this);
+                afficherDepartements(departements);
+            });
+            
+            document.getElementById('btn-cgt-sup25').addEventListener('click', function() {
+                document.getElementById('select-departement').value = 'tous';
+                filtreActif = 'cgt-sup25';
+                updateActiveFilterButton(this);
+                afficherDepartements(departements);
+            });
+            
+            document.getElementById('btn-cgt-sup20').addEventListener('click', function() {
+                document.getElementById('select-departement').value = 'tous';
+                filtreActif = 'cgt-sup20';
+                updateActiveFilterButton(this);
+                afficherDepartements(departements);
+            });
+            
+            // Filtres par syndicat dominant
+            document.getElementById('btn-cgt-dom').addEventListener('click', function() {
+                document.getElementById('select-departement').value = 'tous';
+                filtreActif = 'cgt-dom';
+                updateActiveFilterButton(this);
+                afficherDepartements(departements);
+            });
+            
+            document.getElementById('btn-cfdt-dom').addEventListener('click', function() {
+                document.getElementById('select-departement').value = 'tous';
+                filtreActif = 'cfdt-dom';
+                updateActiveFilterButton(this);
+                afficherDepartements(departements);
+            });
+            
+            document.getElementById('btn-cgt-fo-dom').addEventListener('click', function() {
+                document.getElementById('select-departement').value = 'tous';
+                filtreActif = 'cgt-fo-dom';
+                updateActiveFilterButton(this);
+                afficherDepartements(departements);
+            });
+            
+            document.getElementById('btn-cftc-dom').addEventListener('click', function() {
+                document.getElementById('select-departement').value = 'tous';
+                filtreActif = 'cftc-dom';
+                updateActiveFilterButton(this);
+                afficherDepartements(departements);
+            });
+            
+            document.getElementById('btn-cfe-cgc-dom').addEventListener('click', function() {
+                document.getElementById('select-departement').value = 'tous';
+                filtreActif = 'cfe-cgc-dom';
+                updateActiveFilterButton(this);
+                afficherDepartements(departements);
+            });
+            
+            // Afficher les départements au chargement
+            afficherDepartements(departements);
+        });
+    </script>
+</body>
+</html>

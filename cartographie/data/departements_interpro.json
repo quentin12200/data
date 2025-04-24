@@ -1,0 +1,1892 @@
+{
+  "01": {
+    "departement": "01",
+    "region": "",
+    "scores": {
+      "CGT": 7693,
+      "CFDT": 8610,
+      "CGT-FO": 5680,
+      "CFTC": 1355,
+      "CFE-CGC": 2752,
+      "SOLIDAIRES": 611,
+      "UNSA": 1385,
+      "AUTRES": 346
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -917.5700000000006,
+    "ecart_voix_CGT_CFDT": -917,
+    "total_votes": 28432
+  },
+  "02": {
+    "departement": "02",
+    "region": "",
+    "scores": {
+      "CGT": 5926,
+      "CFDT": 5785,
+      "CGT-FO": 3974,
+      "CFTC": 2282,
+      "CFE-CGC": 1541,
+      "SOLIDAIRES": 249,
+      "UNSA": 491,
+      "AUTRES": 92
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 140.84000000000015,
+    "ecart_voix_CGT_CFDT": 140,
+    "total_votes": 20340
+  },
+  "03": {
+    "departement": "03",
+    "region": "",
+    "scores": {
+      "CGT": 4766,
+      "CFDT": 3137,
+      "CGT-FO": 2712,
+      "CFTC": 628,
+      "CFE-CGC": 942,
+      "SOLIDAIRES": 284,
+      "UNSA": 365,
+      "AUTRES": 135
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 1628.8500000000004,
+    "ecart_voix_CGT_CFDT": 1628,
+    "total_votes": 12969
+  },
+  "04": {
+    "departement": "04",
+    "region": "",
+    "scores": {
+      "CGT": 1625,
+      "CFDT": 887,
+      "CGT-FO": 1390,
+      "CFTC": 1231,
+      "CFE-CGC": 969,
+      "SOLIDAIRES": 27,
+      "UNSA": 447,
+      "AUTRES": 0
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 738.0,
+    "ecart_voix_CGT_CFDT": 738,
+    "total_votes": 6576
+  },
+  "05": {
+    "departement": "05",
+    "region": "",
+    "scores": {
+      "CGT": 984,
+      "CFDT": 914,
+      "CGT-FO": 686,
+      "CFTC": 42,
+      "CFE-CGC": 134,
+      "SOLIDAIRES": 0,
+      "UNSA": 43,
+      "AUTRES": 0
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 70.0,
+    "ecart_voix_CGT_CFDT": 70,
+    "total_votes": 2803
+  },
+  "06": {
+    "departement": "06",
+    "region": "",
+    "scores": {
+      "CGT": 11811,
+      "CFDT": 14424,
+      "CGT-FO": 9238,
+      "CFTC": 4259,
+      "CFE-CGC": 7722,
+      "SOLIDAIRES": 1004,
+      "UNSA": 2635,
+      "AUTRES": 600
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -2612.99,
+    "ecart_voix_CGT_CFDT": -2612,
+    "total_votes": 51693
+  },
+  "07": {
+    "departement": "07",
+    "region": "",
+    "scores": {
+      "CGT": 4710,
+      "CFDT": 3185,
+      "CGT-FO": 1598,
+      "CFTC": 831,
+      "CFE-CGC": 1096,
+      "SOLIDAIRES": 316,
+      "UNSA": 171,
+      "AUTRES": 100
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 1525.0,
+    "ecart_voix_CGT_CFDT": 1525,
+    "total_votes": 12007
+  },
+  "08": {
+    "departement": "08",
+    "region": "",
+    "scores": {
+      "CGT": 2920,
+      "CFDT": 2123,
+      "CGT-FO": 3025,
+      "CFTC": 961,
+      "CFE-CGC": 785,
+      "SOLIDAIRES": 390,
+      "UNSA": 383,
+      "AUTRES": 33
+    },
+    "syndicat_dominant": "CGT-FO",
+    "ecart_CGT_CFDT": 797.0,
+    "ecart_voix_CGT_CFDT": 797,
+    "total_votes": 10620
+  },
+  "09": {
+    "departement": "09",
+    "region": "",
+    "scores": {
+      "CGT": 2265,
+      "CFDT": 639,
+      "CGT-FO": 708,
+      "CFTC": 311,
+      "CFE-CGC": 313,
+      "SOLIDAIRES": 237,
+      "UNSA": 0,
+      "AUTRES": 0
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 1626.4,
+    "ecart_voix_CGT_CFDT": 1626,
+    "total_votes": 4473
+  },
+  "10": {
+    "departement": "10",
+    "region": "",
+    "scores": {
+      "CGT": 3545,
+      "CFDT": 3661,
+      "CGT-FO": 1650,
+      "CFTC": 1079,
+      "CFE-CGC": 1527,
+      "SOLIDAIRES": 151,
+      "UNSA": 687,
+      "AUTRES": 451
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -116.0,
+    "ecart_voix_CGT_CFDT": -116,
+    "total_votes": 12751
+  },
+  "11": {
+    "departement": "11",
+    "region": "",
+    "scores": {
+      "CGT": 2226,
+      "CFDT": 2443,
+      "CGT-FO": 2462,
+      "CFTC": 983,
+      "CFE-CGC": 326,
+      "SOLIDAIRES": 98,
+      "UNSA": 442,
+      "AUTRES": 177
+    },
+    "syndicat_dominant": "CGT-FO",
+    "ecart_CGT_CFDT": -217.5,
+    "ecart_voix_CGT_CFDT": -217,
+    "total_votes": 9157
+  },
+  "12": {
+    "departement": "12",
+    "region": "",
+    "scores": {
+      "CGT": 3361,
+      "CFDT": 1799,
+      "CGT-FO": 3993,
+      "CFTC": 256,
+      "CFE-CGC": 901,
+      "SOLIDAIRES": 485,
+      "UNSA": 426,
+      "AUTRES": 131
+    },
+    "syndicat_dominant": "CGT-FO",
+    "ecart_CGT_CFDT": 1562.4999999999998,
+    "ecart_voix_CGT_CFDT": 1562,
+    "total_votes": 11352
+  },
+  "13": {
+    "departement": "13",
+    "region": "",
+    "scores": {
+      "CGT": 41387,
+      "CFDT": 33688,
+      "CGT-FO": 35824,
+      "CFTC": 15019,
+      "CFE-CGC": 24509,
+      "SOLIDAIRES": 5833,
+      "UNSA": 10834,
+      "AUTRES": 5992
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 7698.690000000002,
+    "ecart_voix_CGT_CFDT": 7698,
+    "total_votes": 173086
+  },
+  "14": {
+    "departement": "14",
+    "region": "",
+    "scores": {
+      "CGT": 8851,
+      "CFDT": 12503,
+      "CGT-FO": 5603,
+      "CFTC": 3425,
+      "CFE-CGC": 4293,
+      "SOLIDAIRES": 2597,
+      "UNSA": 1767,
+      "AUTRES": 422
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -3651.959999999999,
+    "ecart_voix_CGT_CFDT": -3651,
+    "total_votes": 39461
+  },
+  "15": {
+    "departement": "15",
+    "region": "",
+    "scores": {
+      "CGT": 1820,
+      "CFDT": 1141,
+      "CGT-FO": 1182,
+      "CFTC": 285,
+      "CFE-CGC": 181,
+      "SOLIDAIRES": 94,
+      "UNSA": 69,
+      "AUTRES": 12
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 679.5,
+    "ecart_voix_CGT_CFDT": 679,
+    "total_votes": 4784
+  },
+  "16": {
+    "departement": "16",
+    "region": "",
+    "scores": {
+      "CGT": 5559,
+      "CFDT": 3183,
+      "CGT-FO": 3151,
+      "CFTC": 1161,
+      "CFE-CGC": 1611,
+      "SOLIDAIRES": 363,
+      "UNSA": 1058,
+      "AUTRES": 78
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 2376.5,
+    "ecart_voix_CGT_CFDT": 2376,
+    "total_votes": 16164
+  },
+  "17": {
+    "departement": "17",
+    "region": "",
+    "scores": {
+      "CGT": 5591,
+      "CFDT": 5035,
+      "CGT-FO": 3580,
+      "CFTC": 1190,
+      "CFE-CGC": 1979,
+      "SOLIDAIRES": 664,
+      "UNSA": 1258,
+      "AUTRES": 97
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 555.8199999999997,
+    "ecart_voix_CGT_CFDT": 555,
+    "total_votes": 19394
+  },
+  "18": {
+    "departement": "18",
+    "region": "",
+    "scores": {
+      "CGT": 3540,
+      "CFDT": 4250,
+      "CGT-FO": 1867,
+      "CFTC": 459,
+      "CFE-CGC": 1660,
+      "SOLIDAIRES": 365,
+      "UNSA": 218,
+      "AUTRES": 205
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -709.8299999999999,
+    "ecart_voix_CGT_CFDT": -709,
+    "total_votes": 12564
+  },
+  "19": {
+    "departement": "19",
+    "region": "",
+    "scores": {
+      "CGT": 3062,
+      "CFDT": 2251,
+      "CGT-FO": 1493,
+      "CFTC": 246,
+      "CFE-CGC": 694,
+      "SOLIDAIRES": 209,
+      "UNSA": 219,
+      "AUTRES": 148
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 811.5,
+    "ecart_voix_CGT_CFDT": 811,
+    "total_votes": 8322
+  },
+  "21": {
+    "departement": "21",
+    "region": "",
+    "scores": {
+      "CGT": 7699,
+      "CFDT": 11893,
+      "CGT-FO": 6190,
+      "CFTC": 3932,
+      "CFE-CGC": 4242,
+      "SOLIDAIRES": 1136,
+      "UNSA": 2873,
+      "AUTRES": 866
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -4193.879999999999,
+    "ecart_voix_CGT_CFDT": -4193,
+    "total_votes": 38831
+  },
+  "22": {
+    "departement": "22",
+    "region": "",
+    "scores": {
+      "CGT": 5039,
+      "CFDT": 8377,
+      "CGT-FO": 3307,
+      "CFTC": 1861,
+      "CFE-CGC": 1706,
+      "SOLIDAIRES": 902,
+      "UNSA": 381,
+      "AUTRES": 494
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -3338.0,
+    "ecart_voix_CGT_CFDT": -3338,
+    "total_votes": 22067
+  },
+  "23": {
+    "departement": "23",
+    "region": "",
+    "scores": {
+      "CGT": 1316,
+      "CFDT": 557,
+      "CGT-FO": 383,
+      "CFTC": 54,
+      "CFE-CGC": 55,
+      "SOLIDAIRES": 35,
+      "UNSA": 33,
+      "AUTRES": 13
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 759.0,
+    "ecart_voix_CGT_CFDT": 759,
+    "total_votes": 2446
+  },
+  "24": {
+    "departement": "24",
+    "region": "",
+    "scores": {
+      "CGT": 4441,
+      "CFDT": 3729,
+      "CGT-FO": 2249,
+      "CFTC": 585,
+      "CFE-CGC": 760,
+      "SOLIDAIRES": 0,
+      "UNSA": 492,
+      "AUTRES": 168
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 712.0,
+    "ecart_voix_CGT_CFDT": 712,
+    "total_votes": 12424
+  },
+  "25": {
+    "departement": "25",
+    "region": "",
+    "scores": {
+      "CGT": 4913,
+      "CFDT": 8180,
+      "CGT-FO": 4397,
+      "CFTC": 2611,
+      "CFE-CGC": 4577,
+      "SOLIDAIRES": 335,
+      "UNSA": 1378,
+      "AUTRES": 77
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -3266.66,
+    "ecart_voix_CGT_CFDT": -3266,
+    "total_votes": 26468
+  },
+  "26": {
+    "departement": "26",
+    "region": "",
+    "scores": {
+      "CGT": 7377,
+      "CFDT": 8725,
+      "CGT-FO": 4556,
+      "CFTC": 1693,
+      "CFE-CGC": 2875,
+      "SOLIDAIRES": 711,
+      "UNSA": 809,
+      "AUTRES": 1039
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -1347.8500000000004,
+    "ecart_voix_CGT_CFDT": -1347,
+    "total_votes": 27785
+  },
+  "27": {
+    "departement": "27",
+    "region": "",
+    "scores": {
+      "CGT": 6572,
+      "CFDT": 7079,
+      "CGT-FO": 4586,
+      "CFTC": 1523,
+      "CFE-CGC": 2447,
+      "SOLIDAIRES": 163,
+      "UNSA": 1881,
+      "AUTRES": 248
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -507.1400000000003,
+    "ecart_voix_CGT_CFDT": -507,
+    "total_votes": 24499
+  },
+  "28": {
+    "departement": "28",
+    "region": "",
+    "scores": {
+      "CGT": 3539,
+      "CFDT": 4399,
+      "CGT-FO": 4232,
+      "CFTC": 1375,
+      "CFE-CGC": 1754,
+      "SOLIDAIRES": 542,
+      "UNSA": 1201,
+      "AUTRES": 210
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -860.5,
+    "ecart_voix_CGT_CFDT": -860,
+    "total_votes": 17252
+  },
+  "29": {
+    "departement": "29",
+    "region": "",
+    "scores": {
+      "CGT": 11018,
+      "CFDT": 19010,
+      "CGT-FO": 3784,
+      "CFTC": 2055,
+      "CFE-CGC": 3029,
+      "SOLIDAIRES": 2061,
+      "UNSA": 1583,
+      "AUTRES": 218
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -7991.66,
+    "ecart_voix_CGT_CFDT": -7991,
+    "total_votes": 42758
+  },
+  "2A": {
+    "departement": "2A",
+    "region": "",
+    "scores": {
+      "CGT": 2779,
+      "CFDT": 617,
+      "CGT-FO": 599,
+      "CFTC": 21,
+      "CFE-CGC": 633,
+      "SOLIDAIRES": 57,
+      "UNSA": 393,
+      "AUTRES": 4599
+    },
+    "syndicat_dominant": "AUTRES",
+    "ecart_CGT_CFDT": 2161.9,
+    "ecart_voix_CGT_CFDT": 2161,
+    "total_votes": 9698
+  },
+  "2B": {
+    "departement": "2B",
+    "region": "",
+    "scores": {
+      "CGT": 1280,
+      "CFDT": 217,
+      "CGT-FO": 567,
+      "CFTC": 79,
+      "CFE-CGC": 165,
+      "SOLIDAIRES": 17,
+      "UNSA": 185,
+      "AUTRES": 2540
+    },
+    "syndicat_dominant": "AUTRES",
+    "ecart_CGT_CFDT": 1062.6999999999998,
+    "ecart_voix_CGT_CFDT": 1062,
+    "total_votes": 5050
+  },
+  "30": {
+    "departement": "30",
+    "region": "",
+    "scores": {
+      "CGT": 6488,
+      "CFDT": 5685,
+      "CGT-FO": 3431,
+      "CFTC": 2165,
+      "CFE-CGC": 3095,
+      "SOLIDAIRES": 716,
+      "UNSA": 781,
+      "AUTRES": 561
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 802.8899999999994,
+    "ecart_voix_CGT_CFDT": 802,
+    "total_votes": 22922
+  },
+  "31": {
+    "departement": "31",
+    "region": "",
+    "scores": {
+      "CGT": 26605,
+      "CFDT": 28002,
+      "CGT-FO": 27002,
+      "CFTC": 11804,
+      "CFE-CGC": 23546,
+      "SOLIDAIRES": 7074,
+      "UNSA": 3941,
+      "AUTRES": 2637
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -1396.7200000000012,
+    "ecart_voix_CGT_CFDT": -1396,
+    "total_votes": 130611
+  },
+  "32": {
+    "departement": "32",
+    "region": "",
+    "scores": {
+      "CGT": 1801,
+      "CFDT": 1974,
+      "CGT-FO": 520,
+      "CFTC": 293,
+      "CFE-CGC": 323,
+      "SOLIDAIRES": 96,
+      "UNSA": 52,
+      "AUTRES": 0
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -172.66000000000008,
+    "ecart_voix_CGT_CFDT": -172,
+    "total_votes": 5059
+  },
+  "33": {
+    "departement": "33",
+    "region": "",
+    "scores": {
+      "CGT": 24407,
+      "CFDT": 28678,
+      "CGT-FO": 17178,
+      "CFTC": 7654,
+      "CFE-CGC": 15164,
+      "SOLIDAIRES": 4499,
+      "UNSA": 6149,
+      "AUTRES": 3072
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -4270.7199999999975,
+    "ecart_voix_CGT_CFDT": -4270,
+    "total_votes": 106801
+  },
+  "34": {
+    "departement": "34",
+    "region": "",
+    "scores": {
+      "CGT": 15486,
+      "CFDT": 12542,
+      "CGT-FO": 10479,
+      "CFTC": 3836,
+      "CFE-CGC": 5658,
+      "SOLIDAIRES": 1252,
+      "UNSA": 2789,
+      "AUTRES": 1026
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 2944.6800000000003,
+    "ecart_voix_CGT_CFDT": 2944,
+    "total_votes": 53068
+  },
+  "35": {
+    "departement": "35",
+    "region": "",
+    "scores": {
+      "CGT": 16080,
+      "CFDT": 31172,
+      "CGT-FO": 9620,
+      "CFTC": 9225,
+      "CFE-CGC": 9553,
+      "SOLIDAIRES": 3641,
+      "UNSA": 3246,
+      "AUTRES": 1512
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -15091.950000000003,
+    "ecart_voix_CGT_CFDT": -15091,
+    "total_votes": 84049
+  },
+  "36": {
+    "departement": "36",
+    "region": "",
+    "scores": {
+      "CGT": 2450,
+      "CFDT": 2351,
+      "CGT-FO": 2220,
+      "CFTC": 693,
+      "CFE-CGC": 847,
+      "SOLIDAIRES": 279,
+      "UNSA": 219,
+      "AUTRES": 27
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 99.0,
+    "ecart_voix_CGT_CFDT": 99,
+    "total_votes": 9086
+  },
+  "37": {
+    "departement": "37",
+    "region": "",
+    "scores": {
+      "CGT": 9839,
+      "CFDT": 8492,
+      "CGT-FO": 4772,
+      "CFTC": 2335,
+      "CFE-CGC": 2878,
+      "SOLIDAIRES": 2072,
+      "UNSA": 2768,
+      "AUTRES": 236
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 1347.3700000000008,
+    "ecart_voix_CGT_CFDT": 1347,
+    "total_votes": 33392
+  },
+  "38": {
+    "departement": "38",
+    "region": "",
+    "scores": {
+      "CGT": 18623,
+      "CFDT": 19177,
+      "CGT-FO": 11463,
+      "CFTC": 6357,
+      "CFE-CGC": 10139,
+      "SOLIDAIRES": 1675,
+      "UNSA": 2565,
+      "AUTRES": 2247
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -553.6399999999994,
+    "ecart_voix_CGT_CFDT": -553,
+    "total_votes": 72246
+  },
+  "39": {
+    "departement": "39",
+    "region": "",
+    "scores": {
+      "CGT": 2335,
+      "CFDT": 3315,
+      "CGT-FO": 1102,
+      "CFTC": 527,
+      "CFE-CGC": 622,
+      "SOLIDAIRES": 148,
+      "UNSA": 405,
+      "AUTRES": 291
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -980.0,
+    "ecart_voix_CGT_CFDT": -980,
+    "total_votes": 8745
+  },
+  "40": {
+    "departement": "40",
+    "region": "",
+    "scores": {
+      "CGT": 3903,
+      "CFDT": 4342,
+      "CGT-FO": 2671,
+      "CFTC": 399,
+      "CFE-CGC": 1632,
+      "SOLIDAIRES": 158,
+      "UNSA": 592,
+      "AUTRES": 438
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -439.75,
+    "ecart_voix_CGT_CFDT": -439,
+    "total_votes": 14135
+  },
+  "41": {
+    "departement": "41",
+    "region": "",
+    "scores": {
+      "CGT": 3688,
+      "CFDT": 5179,
+      "CGT-FO": 2642,
+      "CFTC": 1356,
+      "CFE-CGC": 1548,
+      "SOLIDAIRES": 103,
+      "UNSA": 1140,
+      "AUTRES": 27
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -1491.5,
+    "ecart_voix_CGT_CFDT": -1491,
+    "total_votes": 15683
+  },
+  "42": {
+    "departement": "42",
+    "region": "",
+    "scores": {
+      "CGT": 9225,
+      "CFDT": 11016,
+      "CGT-FO": 3560,
+      "CFTC": 1784,
+      "CFE-CGC": 3392,
+      "SOLIDAIRES": 994,
+      "UNSA": 2898,
+      "AUTRES": 521
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -1790.3799999999992,
+    "ecart_voix_CGT_CFDT": -1790,
+    "total_votes": 33390
+  },
+  "43": {
+    "departement": "43",
+    "region": "",
+    "scores": {
+      "CGT": 3565,
+      "CFDT": 1336,
+      "CGT-FO": 1652,
+      "CFTC": 98,
+      "CFE-CGC": 550,
+      "SOLIDAIRES": 0,
+      "UNSA": 61,
+      "AUTRES": 49
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 2229.0,
+    "ecart_voix_CGT_CFDT": 2229,
+    "total_votes": 7311
+  },
+  "44": {
+    "departement": "44",
+    "region": "",
+    "scores": {
+      "CGT": 24043,
+      "CFDT": 38453,
+      "CGT-FO": 15683,
+      "CFTC": 7053,
+      "CFE-CGC": 14635,
+      "SOLIDAIRES": 4125,
+      "UNSA": 3716,
+      "AUTRES": 2046
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -14409.379999999997,
+    "ecart_voix_CGT_CFDT": -14409,
+    "total_votes": 109754
+  },
+  "45": {
+    "departement": "45",
+    "region": "",
+    "scores": {
+      "CGT": 9500,
+      "CFDT": 13954,
+      "CGT-FO": 7341,
+      "CFTC": 2733,
+      "CFE-CGC": 5935,
+      "SOLIDAIRES": 2712,
+      "UNSA": 3788,
+      "AUTRES": 848
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -4453.390000000001,
+    "ecart_voix_CGT_CFDT": -4453,
+    "total_votes": 46811
+  },
+  "46": {
+    "departement": "46",
+    "region": "",
+    "scores": {
+      "CGT": 2440,
+      "CFDT": 2223,
+      "CGT-FO": 1307,
+      "CFTC": 79,
+      "CFE-CGC": 699,
+      "SOLIDAIRES": 53,
+      "UNSA": 90,
+      "AUTRES": 0
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 217.0,
+    "ecart_voix_CGT_CFDT": 217,
+    "total_votes": 6891
+  },
+  "47": {
+    "departement": "47",
+    "region": "",
+    "scores": {
+      "CGT": 2836,
+      "CFDT": 3846,
+      "CGT-FO": 3011,
+      "CFTC": 968,
+      "CFE-CGC": 962,
+      "SOLIDAIRES": 422,
+      "UNSA": 412,
+      "AUTRES": 369
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -1010.0,
+    "ecart_voix_CGT_CFDT": -1010,
+    "total_votes": 12826
+  },
+  "48": {
+    "departement": "48",
+    "region": "",
+    "scores": {
+      "CGT": 1073,
+      "CFDT": 1383,
+      "CGT-FO": 854,
+      "CFTC": 143,
+      "CFE-CGC": 72,
+      "SOLIDAIRES": 105,
+      "UNSA": 28,
+      "AUTRES": 5
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -309.4000000000001,
+    "ecart_voix_CGT_CFDT": -309,
+    "total_votes": 3663
+  },
+  "49": {
+    "departement": "49",
+    "region": "",
+    "scores": {
+      "CGT": 7403,
+      "CFDT": 17542,
+      "CGT-FO": 6055,
+      "CFTC": 5394,
+      "CFE-CGC": 2908,
+      "SOLIDAIRES": 1391,
+      "UNSA": 1577,
+      "AUTRES": 487
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -10139.259999999998,
+    "ecart_voix_CGT_CFDT": -10139,
+    "total_votes": 42757
+  },
+  "50": {
+    "departement": "50",
+    "region": "",
+    "scores": {
+      "CGT": 5174,
+      "CFDT": 7735,
+      "CGT-FO": 3639,
+      "CFTC": 1270,
+      "CFE-CGC": 2282,
+      "SOLIDAIRES": 974,
+      "UNSA": 732,
+      "AUTRES": 114
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -2560.6000000000004,
+    "ecart_voix_CGT_CFDT": -2560,
+    "total_votes": 21920
+  },
+  "51": {
+    "departement": "51",
+    "region": "",
+    "scores": {
+      "CGT": 8862,
+      "CFDT": 9272,
+      "CGT-FO": 6059,
+      "CFTC": 2560,
+      "CFE-CGC": 4361,
+      "SOLIDAIRES": 652,
+      "UNSA": 1308,
+      "AUTRES": 229
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -409.5100000000002,
+    "ecart_voix_CGT_CFDT": -409,
+    "total_votes": 33303
+  },
+  "52": {
+    "departement": "52",
+    "region": "",
+    "scores": {
+      "CGT": 1886,
+      "CFDT": 2520,
+      "CGT-FO": 1572,
+      "CFTC": 508,
+      "CFE-CGC": 861,
+      "SOLIDAIRES": 160,
+      "UNSA": 15,
+      "AUTRES": 123
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -634.5,
+    "ecart_voix_CGT_CFDT": -634,
+    "total_votes": 7645
+  },
+  "53": {
+    "departement": "53",
+    "region": "",
+    "scores": {
+      "CGT": 2817,
+      "CFDT": 5231,
+      "CGT-FO": 2757,
+      "CFTC": 3407,
+      "CFE-CGC": 1566,
+      "SOLIDAIRES": 306,
+      "UNSA": 385,
+      "AUTRES": 36
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -2413.27,
+    "ecart_voix_CGT_CFDT": -2413,
+    "total_votes": 16505
+  },
+  "54": {
+    "departement": "54",
+    "region": "",
+    "scores": {
+      "CGT": 9286,
+      "CFDT": 11613,
+      "CGT-FO": 5911,
+      "CFTC": 4216,
+      "CFE-CGC": 3581,
+      "SOLIDAIRES": 1802,
+      "UNSA": 1000,
+      "AUTRES": 239
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -2327.1800000000003,
+    "ecart_voix_CGT_CFDT": -2327,
+    "total_votes": 37648
+  },
+  "55": {
+    "departement": "55",
+    "region": "",
+    "scores": {
+      "CGT": 1636,
+      "CFDT": 2362,
+      "CGT-FO": 1511,
+      "CFTC": 505,
+      "CFE-CGC": 425,
+      "SOLIDAIRES": 142,
+      "UNSA": 317,
+      "AUTRES": 18
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -726.8400000000001,
+    "ecart_voix_CGT_CFDT": -726,
+    "total_votes": 6916
+  },
+  "56": {
+    "departement": "56",
+    "region": "",
+    "scores": {
+      "CGT": 7100,
+      "CFDT": 13608,
+      "CGT-FO": 3067,
+      "CFTC": 2136,
+      "CFE-CGC": 1519,
+      "SOLIDAIRES": 633,
+      "UNSA": 790,
+      "AUTRES": 295
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -6507.5,
+    "ecart_voix_CGT_CFDT": -6507,
+    "total_votes": 29148
+  },
+  "57": {
+    "departement": "57",
+    "region": "",
+    "scores": {
+      "CGT": 11266,
+      "CFDT": 15229,
+      "CGT-FO": 8810,
+      "CFTC": 8562,
+      "CFE-CGC": 5639,
+      "SOLIDAIRES": 1819,
+      "UNSA": 3108,
+      "AUTRES": 503
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -3962.699999999999,
+    "ecart_voix_CGT_CFDT": -3962,
+    "total_votes": 54936
+  },
+  "58": {
+    "departement": "58",
+    "region": "",
+    "scores": {
+      "CGT": 2115,
+      "CFDT": 2169,
+      "CGT-FO": 685,
+      "CFTC": 330,
+      "CFE-CGC": 362,
+      "SOLIDAIRES": 134,
+      "UNSA": 123,
+      "AUTRES": 74
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -54.32999999999993,
+    "ecart_voix_CGT_CFDT": -54,
+    "total_votes": 5992
+  },
+  "59": {
+    "departement": "59",
+    "region": "",
+    "scores": {
+      "CGT": 48609,
+      "CFDT": 52159,
+      "CGT-FO": 32402,
+      "CFTC": 31043,
+      "CFE-CGC": 27810,
+      "SOLIDAIRES": 12430,
+      "UNSA": 9596,
+      "AUTRES": 4122
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -3550.3600000000006,
+    "ecart_voix_CGT_CFDT": -3550,
+    "total_votes": 218171
+  },
+  "60": {
+    "departement": "60",
+    "region": "",
+    "scores": {
+      "CGT": 10475,
+      "CFDT": 13356,
+      "CGT-FO": 6528,
+      "CFTC": 4033,
+      "CFE-CGC": 4470,
+      "SOLIDAIRES": 915,
+      "UNSA": 2672,
+      "AUTRES": 677
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -2881.3500000000004,
+    "ecart_voix_CGT_CFDT": -2881,
+    "total_votes": 43126
+  },
+  "61": {
+    "departement": "61",
+    "region": "",
+    "scores": {
+      "CGT": 2990,
+      "CFDT": 4300,
+      "CGT-FO": 1686,
+      "CFTC": 1518,
+      "CFE-CGC": 788,
+      "SOLIDAIRES": 470,
+      "UNSA": 185,
+      "AUTRES": 0
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -1309.5,
+    "ecart_voix_CGT_CFDT": -1309,
+    "total_votes": 11937
+  },
+  "62": {
+    "departement": "62",
+    "region": "",
+    "scores": {
+      "CGT": 19443,
+      "CFDT": 19923,
+      "CGT-FO": 13992,
+      "CFTC": 9302,
+      "CFE-CGC": 4512,
+      "SOLIDAIRES": 3008,
+      "UNSA": 4283,
+      "AUTRES": 664
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -479.85999999999694,
+    "ecart_voix_CGT_CFDT": -479,
+    "total_votes": 75127
+  },
+  "63": {
+    "departement": "63",
+    "region": "",
+    "scores": {
+      "CGT": 11415,
+      "CFDT": 10773,
+      "CGT-FO": 5372,
+      "CFTC": 2083,
+      "CFE-CGC": 5861,
+      "SOLIDAIRES": 1962,
+      "UNSA": 1772,
+      "AUTRES": 207
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 641.8600000000006,
+    "ecart_voix_CGT_CFDT": 641,
+    "total_votes": 39445
+  },
+  "64": {
+    "departement": "64",
+    "region": "",
+    "scores": {
+      "CGT": 8145,
+      "CFDT": 9817,
+      "CGT-FO": 5580,
+      "CFTC": 1021,
+      "CFE-CGC": 3131,
+      "SOLIDAIRES": 302,
+      "UNSA": 1104,
+      "AUTRES": 1524
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -1671.3900000000012,
+    "ecart_voix_CGT_CFDT": -1671,
+    "total_votes": 30624
+  },
+  "65": {
+    "departement": "65",
+    "region": "",
+    "scores": {
+      "CGT": 2604,
+      "CFDT": 2795,
+      "CGT-FO": 1340,
+      "CFTC": 674,
+      "CFE-CGC": 1180,
+      "SOLIDAIRES": 509,
+      "UNSA": 6,
+      "AUTRES": 119
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -191.74000000000024,
+    "ecart_voix_CGT_CFDT": -191,
+    "total_votes": 9227
+  },
+  "66": {
+    "departement": "66",
+    "region": "",
+    "scores": {
+      "CGT": 3538,
+      "CFDT": 4265,
+      "CGT-FO": 3869,
+      "CFTC": 1329,
+      "CFE-CGC": 1735,
+      "SOLIDAIRES": 424,
+      "UNSA": 510,
+      "AUTRES": 220
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -727.0599999999995,
+    "ecart_voix_CGT_CFDT": -727,
+    "total_votes": 15890
+  },
+  "67": {
+    "departement": "67",
+    "region": "",
+    "scores": {
+      "CGT": 15306,
+      "CFDT": 29545,
+      "CGT-FO": 12815,
+      "CFTC": 22398,
+      "CFE-CGC": 11256,
+      "SOLIDAIRES": 2187,
+      "UNSA": 6052,
+      "AUTRES": 3170
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -14239.21,
+    "ecart_voix_CGT_CFDT": -14239,
+    "total_votes": 102729
+  },
+  "68": {
+    "departement": "68",
+    "region": "",
+    "scores": {
+      "CGT": 7392,
+      "CFDT": 11541,
+      "CGT-FO": 5860,
+      "CFTC": 10604,
+      "CFE-CGC": 5275,
+      "SOLIDAIRES": 197,
+      "UNSA": 1737,
+      "AUTRES": 276
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -4149.0,
+    "ecart_voix_CGT_CFDT": -4149,
+    "total_votes": 42882
+  },
+  "69": {
+    "departement": "69",
+    "region": "",
+    "scores": {
+      "CGT": 46154,
+      "CFDT": 58446,
+      "CGT-FO": 27193,
+      "CFTC": 17341,
+      "CFE-CGC": 31730,
+      "SOLIDAIRES": 9619,
+      "UNSA": 13650,
+      "AUTRES": 5837
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -12291.279999999999,
+    "ecart_voix_CGT_CFDT": -12291,
+    "total_votes": 209970
+  },
+  "70": {
+    "departement": "70",
+    "region": "",
+    "scores": {
+      "CGT": 2283,
+      "CFDT": 2774,
+      "CGT-FO": 2111,
+      "CFTC": 919,
+      "CFE-CGC": 583,
+      "SOLIDAIRES": 0,
+      "UNSA": 29,
+      "AUTRES": 98
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -491.2999999999997,
+    "ecart_voix_CGT_CFDT": -491,
+    "total_votes": 8797
+  },
+  "71": {
+    "departement": "71",
+    "region": "",
+    "scores": {
+      "CGT": 7479,
+      "CFDT": 6202,
+      "CGT-FO": 4170,
+      "CFTC": 1035,
+      "CFE-CGC": 2546,
+      "SOLIDAIRES": 591,
+      "UNSA": 1542,
+      "AUTRES": 392
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 1277.0,
+    "ecart_voix_CGT_CFDT": 1277,
+    "total_votes": 23957
+  },
+  "72": {
+    "departement": "72",
+    "region": "",
+    "scores": {
+      "CGT": 7914,
+      "CFDT": 12846,
+      "CGT-FO": 3669,
+      "CFTC": 1903,
+      "CFE-CGC": 3730,
+      "SOLIDAIRES": 680,
+      "UNSA": 998,
+      "AUTRES": 261
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -4931.05,
+    "ecart_voix_CGT_CFDT": -4931,
+    "total_votes": 32001
+  },
+  "73": {
+    "departement": "73",
+    "region": "",
+    "scores": {
+      "CGT": 7153,
+      "CFDT": 4386,
+      "CGT-FO": 5405,
+      "CFTC": 1651,
+      "CFE-CGC": 1894,
+      "SOLIDAIRES": 560,
+      "UNSA": 584,
+      "AUTRES": 250
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 2767.45,
+    "ecart_voix_CGT_CFDT": 2767,
+    "total_votes": 21883
+  },
+  "74": {
+    "departement": "74",
+    "region": "",
+    "scores": {
+      "CGT": 5313,
+      "CFDT": 11647,
+      "CGT-FO": 5881,
+      "CFTC": 2282,
+      "CFE-CGC": 5518,
+      "SOLIDAIRES": 1774,
+      "UNSA": 1675,
+      "AUTRES": 6547
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -6333.85,
+    "ecart_voix_CGT_CFDT": -6333,
+    "total_votes": 40637
+  },
+  "75": {
+    "departement": "75",
+    "region": "",
+    "scores": {
+      "CGT": 91695,
+      "CFDT": 131153,
+      "CGT-FO": 55679,
+      "CFTC": 43810,
+      "CFE-CGC": 77082,
+      "SOLIDAIRES": 29167,
+      "UNSA": 52613,
+      "AUTRES": 9706
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -39457.93000000001,
+    "ecart_voix_CGT_CFDT": -39457,
+    "total_votes": 490905
+  },
+  "76": {
+    "departement": "76",
+    "region": "",
+    "scores": {
+      "CGT": 30681,
+      "CFDT": 19498,
+      "CGT-FO": 12097,
+      "CFTC": 6754,
+      "CFE-CGC": 11520,
+      "SOLIDAIRES": 3894,
+      "UNSA": 2619,
+      "AUTRES": 1505
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 11182.740000000002,
+    "ecart_voix_CGT_CFDT": 11182,
+    "total_votes": 88568
+  },
+  "77": {
+    "departement": "77",
+    "region": "",
+    "scores": {
+      "CGT": 17587,
+      "CFDT": 19497,
+      "CGT-FO": 13950,
+      "CFTC": 10830,
+      "CFE-CGC": 8334,
+      "SOLIDAIRES": 3548,
+      "UNSA": 5427,
+      "AUTRES": 2159
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -1910.2700000000004,
+    "ecart_voix_CGT_CFDT": -1910,
+    "total_votes": 81332
+  },
+  "78": {
+    "departement": "78",
+    "region": "",
+    "scores": {
+      "CGT": 19700,
+      "CFDT": 28637,
+      "CGT-FO": 22146,
+      "CFTC": 16302,
+      "CFE-CGC": 23073,
+      "SOLIDAIRES": 3036,
+      "UNSA": 5408,
+      "AUTRES": 3147
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -8937.41,
+    "ecart_voix_CGT_CFDT": -8937,
+    "total_votes": 121449
+  },
+  "79": {
+    "departement": "79",
+    "region": "",
+    "scores": {
+      "CGT": 6951,
+      "CFDT": 13471,
+      "CGT-FO": 4736,
+      "CFTC": 2813,
+      "CFE-CGC": 3632,
+      "SOLIDAIRES": 329,
+      "UNSA": 1746,
+      "AUTRES": 1459
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -6519.17,
+    "ecart_voix_CGT_CFDT": -6519,
+    "total_votes": 35137
+  },
+  "80": {
+    "departement": "80",
+    "region": "",
+    "scores": {
+      "CGT": 9823,
+      "CFDT": 10105,
+      "CGT-FO": 5746,
+      "CFTC": 3470,
+      "CFE-CGC": 3108,
+      "SOLIDAIRES": 1039,
+      "UNSA": 1248,
+      "AUTRES": 127
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -281.2000000000007,
+    "ecart_voix_CGT_CFDT": -281,
+    "total_votes": 34666
+  },
+  "81": {
+    "departement": "81",
+    "region": "",
+    "scores": {
+      "CGT": 3835,
+      "CFDT": 3607,
+      "CGT-FO": 1844,
+      "CFTC": 667,
+      "CFE-CGC": 901,
+      "SOLIDAIRES": 902,
+      "UNSA": 492,
+      "AUTRES": 375
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 228.19999999999982,
+    "ecart_voix_CGT_CFDT": 228,
+    "total_votes": 12623
+  },
+  "82": {
+    "departement": "82",
+    "region": "",
+    "scores": {
+      "CGT": 2783,
+      "CFDT": 1965,
+      "CGT-FO": 2345,
+      "CFTC": 1192,
+      "CFE-CGC": 460,
+      "SOLIDAIRES": 105,
+      "UNSA": 162,
+      "AUTRES": 157
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 818.46,
+    "ecart_voix_CGT_CFDT": 818,
+    "total_votes": 9169
+  },
+  "83": {
+    "departement": "83",
+    "region": "",
+    "scores": {
+      "CGT": 5928,
+      "CFDT": 6720,
+      "CGT-FO": 6513,
+      "CFTC": 2922,
+      "CFE-CGC": 2577,
+      "SOLIDAIRES": 712,
+      "UNSA": 2836,
+      "AUTRES": 1072
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -791.3800000000001,
+    "ecart_voix_CGT_CFDT": -791,
+    "total_votes": 29280
+  },
+  "84": {
+    "departement": "84",
+    "region": "",
+    "scores": {
+      "CGT": 5089,
+      "CFDT": 5948,
+      "CGT-FO": 3211,
+      "CFTC": 2061,
+      "CFE-CGC": 2572,
+      "SOLIDAIRES": 370,
+      "UNSA": 797,
+      "AUTRES": 412
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -858.5,
+    "ecart_voix_CGT_CFDT": -858,
+    "total_votes": 20460
+  },
+  "85": {
+    "departement": "85",
+    "region": "",
+    "scores": {
+      "CGT": 4119,
+      "CFDT": 15296,
+      "CGT-FO": 3418,
+      "CFTC": 3493,
+      "CFE-CGC": 1579,
+      "SOLIDAIRES": 623,
+      "UNSA": 715,
+      "AUTRES": 225
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -11177.55,
+    "ecart_voix_CGT_CFDT": -11177,
+    "total_votes": 29468
+  },
+  "86": {
+    "departement": "86",
+    "region": "",
+    "scores": {
+      "CGT": 6447,
+      "CFDT": 5245,
+      "CGT-FO": 2554,
+      "CFTC": 1550,
+      "CFE-CGC": 1773,
+      "SOLIDAIRES": 1367,
+      "UNSA": 498,
+      "AUTRES": 64
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 1201.6000000000004,
+    "ecart_voix_CGT_CFDT": 1201,
+    "total_votes": 19498
+  },
+  "87": {
+    "departement": "87",
+    "region": "",
+    "scores": {
+      "CGT": 6514,
+      "CFDT": 4687,
+      "CGT-FO": 3121,
+      "CFTC": 387,
+      "CFE-CGC": 2154,
+      "SOLIDAIRES": 445,
+      "UNSA": 507,
+      "AUTRES": 468
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 1826.83,
+    "ecart_voix_CGT_CFDT": 1826,
+    "total_votes": 18283
+  },
+  "88": {
+    "departement": "88",
+    "region": "",
+    "scores": {
+      "CGT": 3347,
+      "CFDT": 5512,
+      "CGT-FO": 3288,
+      "CFTC": 1400,
+      "CFE-CGC": 1030,
+      "SOLIDAIRES": 161,
+      "UNSA": 879,
+      "AUTRES": 59
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -2164.9700000000003,
+    "ecart_voix_CGT_CFDT": -2164,
+    "total_votes": 15676
+  },
+  "89": {
+    "departement": "89",
+    "region": "",
+    "scores": {
+      "CGT": 2917,
+      "CFDT": 3643,
+      "CGT-FO": 2196,
+      "CFTC": 1059,
+      "CFE-CGC": 661,
+      "SOLIDAIRES": 361,
+      "UNSA": 472,
+      "AUTRES": 163
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -725.6999999999998,
+    "ecart_voix_CGT_CFDT": -725,
+    "total_votes": 11472
+  },
+  "90": {
+    "departement": "90",
+    "region": "",
+    "scores": {
+      "CGT": 1551,
+      "CFDT": 1733,
+      "CGT-FO": 653,
+      "CFTC": 440,
+      "CFE-CGC": 1425,
+      "SOLIDAIRES": 251,
+      "UNSA": 0,
+      "AUTRES": 6
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -182.0,
+    "ecart_voix_CGT_CFDT": -182,
+    "total_votes": 6059
+  },
+  "91": {
+    "departement": "91",
+    "region": "",
+    "scores": {
+      "CGT": 19971,
+      "CFDT": 19805,
+      "CGT-FO": 12503,
+      "CFTC": 8638,
+      "CFE-CGC": 13027,
+      "SOLIDAIRES": 2384,
+      "UNSA": 6747,
+      "AUTRES": 2267
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 166.27999999999884,
+    "ecart_voix_CGT_CFDT": 166,
+    "total_votes": 85342
+  },
+  "92": {
+    "departement": "92",
+    "region": "",
+    "scores": {
+      "CGT": 68352,
+      "CFDT": 119388,
+      "CGT-FO": 54252,
+      "CFTC": 57675,
+      "CFE-CGC": 107681,
+      "SOLIDAIRES": 9517,
+      "UNSA": 41572,
+      "AUTRES": 14028
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -51036.67999999999,
+    "ecart_voix_CGT_CFDT": -51036,
+    "total_votes": 472465
+  },
+  "93": {
+    "departement": "93",
+    "region": "",
+    "scores": {
+      "CGT": 39864,
+      "CFDT": 43439,
+      "CGT-FO": 26377,
+      "CFTC": 11850,
+      "CFE-CGC": 27708,
+      "SOLIDAIRES": 9669,
+      "UNSA": 19812,
+      "AUTRES": 12378
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -3575.0499999999956,
+    "ecart_voix_CGT_CFDT": -3575,
+    "total_votes": 191097
+  },
+  "94": {
+    "departement": "94",
+    "region": "",
+    "scores": {
+      "CGT": 21045,
+      "CFDT": 26356,
+      "CGT-FO": 13338,
+      "CFTC": 11287,
+      "CFE-CGC": 14140,
+      "SOLIDAIRES": 4572,
+      "UNSA": 6810,
+      "AUTRES": 2380
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -5310.939999999999,
+    "ecart_voix_CGT_CFDT": -5310,
+    "total_votes": 99928
+  },
+  "95": {
+    "departement": "95",
+    "region": "",
+    "scores": {
+      "CGT": 16180,
+      "CFDT": 18074,
+      "CGT-FO": 13108,
+      "CFTC": 6764,
+      "CFE-CGC": 9795,
+      "SOLIDAIRES": 2664,
+      "UNSA": 5377,
+      "AUTRES": 3529
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -1894.380000000001,
+    "ecart_voix_CGT_CFDT": -1894,
+    "total_votes": 75491
+  },
+  "971": {
+    "departement": "971",
+    "region": "",
+    "scores": {
+      "CGT": 4076,
+      "CFDT": 1488,
+      "CGT-FO": 1839,
+      "CFTC": 686,
+      "CFE-CGC": 572,
+      "SOLIDAIRES": 977,
+      "UNSA": 984,
+      "AUTRES": 6322
+    },
+    "syndicat_dominant": "AUTRES",
+    "ecart_CGT_CFDT": 2588.1600000000003,
+    "ecart_voix_CGT_CFDT": 2588,
+    "total_votes": 16944
+  },
+  "972": {
+    "departement": "972",
+    "region": "",
+    "scores": {
+      "CGT": 5678,
+      "CFDT": 1510,
+      "CGT-FO": 1422,
+      "CFTC": 477,
+      "CFE-CGC": 694,
+      "SOLIDAIRES": 560,
+      "UNSA": 165,
+      "AUTRES": 5371
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 4168.33,
+    "ecart_voix_CGT_CFDT": 4168,
+    "total_votes": 15877
+  },
+  "973": {
+    "departement": "973",
+    "region": "",
+    "scores": {
+      "CGT": 2314,
+      "CFDT": 624,
+      "CGT-FO": 744,
+      "CFTC": 722,
+      "CFE-CGC": 525,
+      "SOLIDAIRES": 258,
+      "UNSA": 51,
+      "AUTRES": 252
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 1689.5,
+    "ecart_voix_CGT_CFDT": 1689,
+    "total_votes": 5490
+  },
+  "974": {
+    "departement": "974",
+    "region": "",
+    "scores": {
+      "CGT": 9567,
+      "CFDT": 12684,
+      "CGT-FO": 7181,
+      "CFTC": 4320,
+      "CFE-CGC": 2180,
+      "SOLIDAIRES": 1486,
+      "UNSA": 1904,
+      "AUTRES": 3582
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -3116.66,
+    "ecart_voix_CGT_CFDT": -3116,
+    "total_votes": 42904
+  },
+  "975": {
+    "departement": "975",
+    "region": "",
+    "scores": {
+      "CGT": 20,
+      "CFDT": 69,
+      "CGT-FO": 54,
+      "CFTC": 36,
+      "CFE-CGC": 7,
+      "SOLIDAIRES": 8,
+      "UNSA": 4,
+      "AUTRES": 0
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -49.0,
+    "ecart_voix_CGT_CFDT": -49,
+    "total_votes": 198
+  },
+  "976": {
+    "departement": "976",
+    "region": "",
+    "scores": {
+      "CGT": 1475,
+      "CFDT": 1041,
+      "CGT-FO": 1292,
+      "CFTC": 14,
+      "CFE-CGC": 242,
+      "SOLIDAIRES": 75,
+      "UNSA": 62,
+      "AUTRES": 393
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 434.0,
+    "ecart_voix_CGT_CFDT": 434,
+    "total_votes": 4594
+  },
+  "977": {
+    "departement": "977",
+    "region": "",
+    "scores": {
+      "CGT": 0,
+      "CFDT": 0,
+      "CGT-FO": 0,
+      "CFTC": 0,
+      "CFE-CGC": 0,
+      "SOLIDAIRES": 0,
+      "UNSA": 0,
+      "AUTRES": 17
+    },
+    "syndicat_dominant": "AUTRES",
+    "ecart_CGT_CFDT": 0.0,
+    "ecart_voix_CGT_CFDT": 0,
+    "total_votes": 17
+  },
+  "978": {
+    "departement": "978",
+    "region": "",
+    "scores": {
+      "CGT": 44,
+      "CFDT": 120,
+      "CGT-FO": 92,
+      "CFTC": 0,
+      "CFE-CGC": 0,
+      "SOLIDAIRES": 24,
+      "UNSA": 0,
+      "AUTRES": 56
+    },
+    "syndicat_dominant": "CFDT",
+    "ecart_CGT_CFDT": -76.0,
+    "ecart_voix_CGT_CFDT": -76,
+    "total_votes": 336
+  },
+  "NAT": {
+    "departement": "NAT",
+    "region": "",
+    "scores": {
+      "CGT": 58165,
+      "CFDT": 31159,
+      "CGT-FO": 24517,
+      "CFTC": 17381,
+      "CFE-CGC": 8601,
+      "SOLIDAIRES": 11210,
+      "UNSA": 30156,
+      "AUTRES": 28545
+    },
+    "syndicat_dominant": "CGT",
+    "ecart_CGT_CFDT": 27006.0,
+    "ecart_voix_CGT_CFDT": 27006,
+    "total_votes": 209734
+  }
+}

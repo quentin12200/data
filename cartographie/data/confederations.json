@@ -1,0 +1,26 @@
+{
+  "CGT": {
+    "nom": "CGT"
+  },
+  "CFDT": {
+    "nom": "CFDT"
+  },
+  "CGT-FO": {
+    "nom": "CGT-FO"
+  },
+  "CFTC": {
+    "nom": "CFTC"
+  },
+  "CFE-CGC": {
+    "nom": "CFE-CGC"
+  },
+  "SOLIDAIRES": {
+    "nom": "SOLIDAIRES"
+  },
+  "UNSA": {
+    "nom": "UNSA"
+  },
+  "AUTRES": {
+    "nom": "AUTRES"
+  }
+}

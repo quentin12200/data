@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartographie par Fédération Professionnelle</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+        }
+        #map-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .departement {
+            stroke: #FFF;
+            stroke-width: 0.5;
+            transition: fill 0.3s;
+        }
+        .departement:hover {
+            stroke: #000;
+            stroke-width: 1.5;
+        }
+        .selected-dept {
+            stroke: #000;
+            stroke-width: 2;
+        }
+        .tooltip {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            pointer-events: none;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: none;
+        }
+        .legend {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+            margin-top: 15px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+        }
+        .federation-selector {
+            margin-bottom: 20px;
+        }
+        .btn-federation {
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        .btn-federation.active {
+            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.5);
+        }
+        .stats-box {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .stats-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .stats-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #0d6efd;
+        }
+        .stats-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        .federation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4">Cartographie par Fédération Professionnelle</h1>
+        
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="federation-selector">
+                    <h5>Sélectionner une fédération professionnelle :</h5>
+                    <div class="federation-grid">
+                        <button type="button" class="btn btn-outline-danger btn-federation active" data-federation="FTM">FTM (Métallurgie)</button>
+                        <button type="button" class="btn btn-outline-danger btn-federation" data-federation="FNIC">FNIC (Chimie)</button>
+                        <button type="button" class="btn btn-outline-danger btn-federation" data-federation="FNSCBA">FNSCBA (Construction)</button>
+                        <button type="button" class="btn btn-outline-danger btn-federation" data-federation="COMMERCE">COMMERCE</button>
+                        <button type="button" class="btn btn-outline-danger btn-federation" data-federation="TRANSPORTS">TRANSPORTS</button>
+                        <button type="button" class="btn btn-outline-danger btn-federation" data-federation="FNAF">FNAF (Agroalimentaire)</button>
+                        <button type="button" class="btn btn-outline-danger btn-federation" data-federation="SANTE">SANTE</button>
+                        <button type="button" class="btn btn-outline-danger btn-federation" data-federation="FNME">FNME (Mines-Énergie)</button>
+                        <button type="button" class="btn btn-outline-danger btn-federation" data-federation="SERVICES PUBLICS">SERVICES PUBLICS</button>
+                        <button type="button" class="btn btn-outline-danger btn-federation" data-federation="FSPBA">FSPBA (Banques-Assurances)</button>
+                        <button type="button" class="btn btn-outline-danger btn-federation" data-federation="FERC">FERC (Éducation)</button>
+                        <button type="button" class="btn btn-outline-danger btn-federation" data-federation="FAPT">FAPT (Postes-Télécom)</button>
+                        <button type="button" class="btn btn-outline-danger btn-federation" data-federation="THCB">THCB (Textile-Habillement)</button>
+                        <button type="button" class="btn btn-outline-danger btn-federation" data-federation="FILPAC">FILPAC (Papier-Carton)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="stats-box">
+                    <div class="stats-title">Nombre de scrutins</div>
+                    <div class="stats-value" id="total-scrutins">-</div>
+                    <div class="stats-label">pour cette fédération</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stats-box">
+                    <div class="stats-title">Nombre de voix</div>
+                    <div class="stats-value" id="total-voix">-</div>
+                    <div class="stats-label">pour cette fédération</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stats-box">
+                    <div class="stats-title">Départements principaux</div>
+                    <div class="stats-value" id="departements-principaux">-</div>
+                    <div class="stats-label">avec forte présence</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-9">
+                <div id="map-container">
+                    <div id="tooltip" class="tooltip"></div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="legend">
+                    <h5>Légende</h5>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #fee5d9;"></div>
+                        <span>Faible présence</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #fcbba1;"></div>
+                        <span>Présence modérée</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #fc9272;"></div>
+                        <span>Présence moyenne</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #fb6a4a;"></div>
+                        <span>Présence forte</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #de2d26;"></div>
+                        <span>Présence très forte</span>
+                    </div>
+                </div>
+                
+                <div class="mt-4">
+                    <h5>Top 5 départements</h5>
+                    <ul class="list-group" id="top-departements">
+                        <li class="list-group-item">Chargement...</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-12">
+                <div id="details-container" class="card">
+                    <div class="card-header">
+                        Détails du département
+                    </div>
+                    <div class="card-body">
+                        <p>Sélectionnez un département sur la carte pour voir les détails.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Variables globales
+        let map;
+        let departements = [];
+        let donneesScrutins = [];
+        let currentFederation = 'FTM';
+        
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Créer la carte
+            initMap();
+            
+            // Gestionnaires d'événements pour les boutons de fédération
+            document.querySelectorAll('.btn-federation').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Mettre à jour la fédération active
+                    document.querySelectorAll('.btn-federation').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentFederation = this.getAttribute('data-federation');
+                    
+                    // Mettre à jour la carte
+                    updateMapColoring();
+                    updateStatistics();
+                    updateTopDepartements();
+                });
+            });
+            
+            // Charger les données des scrutins
+            loadScrutinsData();
+        });
+        
+        // Charger les données des scrutins
+        function loadScrutinsData() {
+            // Simuler le chargement des données des scrutins
+            // Dans un cas réel, vous chargeriez un fichier JSON contenant ces données
+            console.log("Chargement des données des scrutins...");
+            
+            // Exemple de données simulées - à remplacer par vos données réelles
+            const federations = [
+                'FTM', 'FNIC', 'FNSCBA', 'COMMERCE', 'TRANSPORTS', 'FNAF', 'SANTE', 'FNME', 
+                'SERVICES PUBLICS', 'FSPBA', 'FERC', 'FAPT', 'THCB', 'FILPAC'
+            ];
+            
+            // Générer des données aléatoires pour chaque département
+            fetch('./data/departements.json')
+                .then(response => response.json())
+                .then(data => {
+                    // Convertir les données en tableau
+                    departements = Object.entries(data).map(([code, dept]) => ({
+                        code: code,
+                        departement: dept.nom || `Département ${code}`,
+                        region: dept.region || 'Inconnue',
+                        total_votes: dept.total_votes || 0,
+                        federations: {}
+                    }));
+                    
+                    // Générer des données pour chaque fédération et département
+                    departements.forEach(dept => {
+                        // Répartir les scrutins par fédération
+                        const totalScrutins = Math.floor(Math.random() * 50) + 10; // Entre 10 et 60 scrutins
+                        
+                        // Répartition des scrutins entre les fédérations
+                        let scrutinsRestants = totalScrutins;
+                        let fedIndex = 0;
+                        
+                        while (scrutinsRestants > 0 && fedIndex < federations.length) {
+                            const fed = federations[fedIndex];
+                            const nbScrutins = Math.min(
+                                Math.floor(Math.random() * (scrutinsRestants / 2)) + 1,
+                                scrutinsRestants
+                            );
+                            
+                            // Nombre de voix pour cette fédération dans ce département
+                            const nbVoix = Math.floor(Math.random() * 500) + 50;
+                            
+                            dept.federations[fed] = {
+                                scrutins: nbScrutins,
+                                voix: nbVoix
+                            };
+                            
+                            scrutinsRestants -= nbScrutins;
+                            fedIndex++;
+                        }
+                    });
+                    
+                    console.log("Données des scrutins générées:", departements);
+                    
+                    // Mettre à jour la carte
+                    updateMapColoring();
+                    updateStatistics();
+                    updateTopDepartements();
+                })
+                .catch(error => {
+                    console.error("Erreur lors du chargement des données:", error);
+                    document.getElementById('map-container').innerHTML = `
+                        <div class="alert alert-danger">
+                            Erreur lors du chargement des données: ${error.message}
+                        </div>
+                    `;
+                });
+        }
+        
+        // Initialiser la carte
+        function initMap() {
+            const width = document.getElementById('map-container').clientWidth;
+            const height = 600;
+            
+            // Créer le SVG
+            const svg = d3.select('#map-container')
+                .append('svg')
+                .attr('width', width)
+                .attr('height', height);
+            
+            // Créer le groupe pour la carte
+            const g = svg.append('g');
+            
+            // Projection géographique
+            const projection = d3.geoMercator()
+                .center([2.5, 46.5]) // Centrer sur la France
+                .scale(width * 3)
+                .translate([width / 2, height / 2]);
+            
+            // Générateur de chemin
+            const path = d3.geoPath()
+                .projection(projection);
+            
+            // Tooltip
+            const tooltip = d3.select('#tooltip');
+            
+            // Fonction pour afficher le tooltip
+            function showTooltip(event, d) {
+                const dept = departements.find(dept => dept.code === d.id);
+                if (dept) {
+                    const fedData = dept.federations[currentFederation] || { scrutins: 0, voix: 0 };
+                    
+                    tooltip.html(`
+                        <strong>${dept.departement} (${dept.code})</strong><br>
+                        Fédération: ${currentFederation}<br>
+                        Scrutins: ${fedData.scrutins}<br>
+                        Voix: ${fedData.voix}
+                    `)
+                    .style('left', (event.pageX + 10) + 'px')
+                    .style('top', (event.pageY - 30) + 'px')
+                    .style('display', 'block');
+                }
+            }
+            
+            // Fonction pour cacher le tooltip
+            function hideTooltip() {
+                tooltip.style('display', 'none');
+            }
+            
+            // Fonction pour afficher les détails d'un département
+            function showDepartementDetails(dept) {
+                const detailsContainer = document.getElementById('details-container');
+                
+                // Créer le contenu HTML
+                let html = `
+                    <div class="card-header">
+                        <h5>${dept.departement} (${dept.code})</h5>
+                        <div class="text-muted">Région: ${dept.region || 'Non spécifiée'}</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Répartition par fédération professionnelle</h6>
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Fédération</th>
+                                            <th>Scrutins</th>
+                                            <th>Voix</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                `;
+                
+                // Trier les fédérations par nombre de scrutins
+                const federationsSorted = Object.entries(dept.federations)
+                    .sort((a, b) => b[1].scrutins - a[1].scrutins);
+                
+                // Ajouter les lignes pour chaque fédération
+                federationsSorted.forEach(([fed, data]) => {
+                    const isHighlighted = fed === currentFederation ? 'table-danger' : '';
+                    
+                    html += `
+                        <tr class="${isHighlighted}">
+                            <td>${fed}</td>
+                            <td>${data.scrutins}</td>
+                            <td>${data.voix}</td>
+                        </tr>
+                    `;
+                });
+                
+                html += `
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Fédération ${currentFederation}</h6>
+                                <div class="card bg-light mb-3">
+                                    <div class="card-body">
+                                        <p>Nombre de scrutins: <strong>${dept.federations[currentFederation]?.scrutins || 0}</strong></p>
+                                        <p>Nombre de voix: <strong>${dept.federations[currentFederation]?.voix || 0}</strong></p>
+                                        <p>Pourcentage des scrutins: <strong>${calculatePercentage(dept, 'scrutins')}%</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                detailsContainer.innerHTML = html;
+            }
+            
+            // Calculer le pourcentage pour une fédération dans un département
+            function calculatePercentage(dept, type) {
+                if (!dept.federations[currentFederation]) return '0.0';
+                
+                const fedValue = dept.federations[currentFederation][type];
+                const totalValue = Object.values(dept.federations).reduce((sum, fed) => sum + fed[type], 0);
+                
+                return totalValue > 0 ? ((fedValue / totalValue) * 100).toFixed(1) : '0.0';
+            }
+            
+            // Charger les données géographiques
+            fetch('../assets/france-departements.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Erreur HTTP ${response.status} lors du chargement de france-departements.json`);
+                    }
+                    return response.json();
+                })
+                .then(franceGeo => {
+                    // Dessiner la carte
+                    g.selectAll('path')
+                        .data(franceGeo.features)
+                        .enter()
+                        .append('path')
+                        .attr('d', path)
+                        .attr('class', 'departement')
+                        .attr('id', d => `dept-${d.id}`)
+                        .attr('fill', '#EEE')
+                        .on('mouseover', function(event, d) {
+                            d3.select(this).attr('stroke', '#000').attr('stroke-width', 1.5);
+                            showTooltip(event, d);
+                        })
+                        .on('mouseout', function(event, d) {
+                            d3.select(this).attr('stroke', '#FFF').attr('stroke-width', 0.5);
+                            hideTooltip();
+                        })
+                        .on('click', function(event, d) {
+                            const dept = departements.find(dept => dept.code === d.id);
+                            if (dept) {
+                                d3.selectAll('.departement').classed('selected-dept', false);
+                                d3.select(this).classed('selected-dept', true);
+                                showDepartementDetails(dept);
+                            }
+                        });
+                })
+                .catch(error => {
+                    console.error('Erreur lors du chargement des données géographiques:', error);
+                    document.getElementById('map-container').innerHTML = `
+                        <div class="alert alert-danger">
+                            Erreur lors du chargement de la carte: ${error.message}
+                        </div>
+                    `;
+                });
+            
+            // Redimensionner la carte si la fenêtre change de taille
+            window.addEventListener('resize', function() {
+                const newWidth = document.getElementById('map-container').clientWidth;
+                svg.attr('width', newWidth);
+                projection.translate([newWidth / 2, height / 2]);
+                g.selectAll('path').attr('d', path);
+            });
+        }
+        
+        // Mettre à jour la coloration de la carte
+        function updateMapColoring() {
+            // Échelle de couleur pour la fédération sélectionnée
+            const colorScale = d3.scaleThreshold()
+                .domain([5, 10, 15, 20])
+                .range(['#fee5d9', '#fcbba1', '#fc9272', '#fb6a4a', '#de2d26']);
+            
+            // Appliquer la coloration
+            d3.selectAll('.departement').attr('fill', function(d) {
+                const dept = departements.find(dept => dept.code === d.id);
+                if (!dept || !dept.federations || !dept.federations[currentFederation]) return '#EEE';
+                
+                const fedData = dept.federations[currentFederation];
+                return colorScale(fedData.scrutins);
+            });
+        }
+        
+        // Mettre à jour les statistiques
+        function updateStatistics() {
+            // Calculer le nombre total de scrutins pour la fédération
+            let totalScrutins = 0;
+            let totalVoix = 0;
+            let deptsAvecPresence = 0;
+            
+            departements.forEach(dept => {
+                if (dept.federations[currentFederation]) {
+                    totalScrutins += dept.federations[currentFederation].scrutins || 0;
+                    totalVoix += dept.federations[currentFederation].voix || 0;
+                    
+                    if (dept.federations[currentFederation].scrutins > 5) {
+                        deptsAvecPresence++;
+                    }
+                }
+            });
+            
+            // Mettre à jour l'affichage
+            document.getElementById('total-scrutins').textContent = totalScrutins;
+            document.getElementById('total-voix').textContent = totalVoix.toLocaleString();
+            document.getElementById('departements-principaux').textContent = deptsAvecPresence;
+        }
+        
+        // Mettre à jour le top 5 des départements
+        function updateTopDepartements() {
+            // Trier les départements par nombre de scrutins pour la fédération sélectionnée
+            const sortedDepts = [...departements]
+                .filter(dept => dept.federations[currentFederation] && dept.federations[currentFederation].scrutins > 0)
+                .sort((a, b) => {
+                    return (b.federations[currentFederation]?.scrutins || 0) - (a.federations[currentFederation]?.scrutins || 0);
+                })
+                .slice(0, 5);
+            
+            // Générer le HTML
+            let html = '';
+            sortedDepts.forEach(dept => {
+                const scrutins = dept.federations[currentFederation]?.scrutins || 0;
+                const voix = dept.federations[currentFederation]?.voix || 0;
+                
+                html += `
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        ${dept.departement} (${dept.code})
+                        <span class="badge bg-danger rounded-pill">${scrutins} scrutins</span>
+                    </li>
+                `;
+            });
+            
+            // Mettre à jour l'affichage
+            document.getElementById('top-departements').innerHTML = html || '<li class="list-group-item">Aucune donnée disponible</li>';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartographie Croisée - Organisations Syndicales et Fédérations Professionnelles</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-bottom: 50px;
+        }
+        
+        #map-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            margin-bottom: 20px;
+        }
+        
+        .departement {
+            fill: #e0e0e0;
+            stroke: #ffffff;
+            stroke-width: 0.5;
+            transition: fill 0.3s;
+            cursor: pointer;
+        }
+        
+        .departement:hover {
+            fill: #a0a0a0;
+        }
+        
+        .tooltip {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            max-width: 300px;
+        }
+        
+        .stats-box {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .filter-section {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress {
+            height: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .top-departements {
+            margin-top: 20px;
+        }
+        
+        .top-departements-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            padding: 5px;
+            background-color: #f8f9fa;
+            border-radius: 3px;
+        }
+        
+        .details-section {
+            margin-top: 30px;
+            display: none;
+        }
+        
+        .CGT { color: #e41a1c; }
+        .CFDT { color: #377eb8; }
+        .FO, .CGT-FO { color: #ff7f00; }
+        .CFTC { color: #4daf4a; }
+        .CFE-CGC { color: #984ea3; }
+        .SOLIDAIRES { color: #e6ab02; }
+        .UNSA { color: #a65628; }
+        .AUTRES { color: #999999; }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4">Cartographie Croisée - Organisations Syndicales et Fédérations Professionnelles</h1>
+        <div class="alert alert-info">
+            <p class="mb-0"><strong>Objectif :</strong> Cette carte permet de visualiser le nombre de voix par organisation syndicale et par fédération professionnelle pour chaque département. Cliquez sur un département pour voir les PV concernés.</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-9">
+                <div id="map-container">
+                    <div id="tooltip" class="tooltip"></div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="filter-section">
+                    <h5>Filtres</h5>
+                    <div class="mb-3">
+                        <label for="filtre-syndicat" class="form-label">Organisation syndicale</label>
+                        <select id="filtre-syndicat" class="form-select">
+                            <option value="tous">Toutes</option>
+                            <option value="CGT">CGT</option>
+                            <option value="CFDT">CFDT</option>
+                            <option value="CGT-FO">FO</option>
+                            <option value="CFTC">CFTC</option>
+                            <option value="CFE-CGC">CFE-CGC</option>
+                            <option value="SOLIDAIRES">SOLIDAIRES</option>
+                            <option value="UNSA">UNSA</option>
+                            <option value="AUTRES">AUTRES</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="filtre-federation" class="form-label">IDCC (Convention collective)</label>
+                        <select id="filtre-federation" class="form-select">
+                            <option value="tous">Tous</option>
+                            <!-- Les options seront ajoutées dynamiquement -->
+                        </select>
+                    </div>
+                    <button id="btn-appliquer-filtres" class="btn btn-primary w-100">Appliquer les filtres</button>
+                </div>
+                
+                <div class="stats-box">
+                    <h5>Statistiques</h5>
+                    <div class="mb-2">
+                        <strong>Total des voix :</strong> <span id="total-voix">0</span>
+                    </div>
+                    <div class="mb-2">
+                        <strong>Nombre de scrutins :</strong> <span id="total-scrutins">0</span>
+                    </div>
+                    <div class="mb-2">
+                        <strong>Départements :</strong> <span id="total-departements">0</span>
+                    </div>
+                    <div class="mb-2">
+                        <strong>IDCC :</strong> <span id="total-idcc">0</span>
+                    </div>
+                </div>
+                
+                <div class="stats-box">
+                    <h5>Top 5 des départements</h5>
+                    <div id="top-departements"></div>
+                </div>
+                
+                <div class="stats-box">
+                    <h5>Légende</h5>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #e41a1c;"></div>
+                        <div>CGT</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #377eb8;"></div>
+                        <div>CFDT</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #ff7f00;"></div>
+                        <div>FO</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #4daf4a;"></div>
+                        <div>CFTC</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #984ea3;"></div>
+                        <div>CFE-CGC</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #e6ab02;"></div>
+                        <div>SOLIDAIRES</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #a65628;"></div>
+                        <div>UNSA</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #999999;"></div>
+                        <div>AUTRES</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="details-section" class="details-section">
+            <h2 id="details-title" class="mb-3">Détails du département</h2>
+            <div id="details-content"></div>
+        </div>
+    </div>
+    <script>
+        // Variables globales
+        let map;
+        let departements = [];
+        let federations = [];
+        let syndicats = ['CGT', 'CFDT', 'CGT-FO', 'CFTC', 'CFE-CGC', 'SOLIDAIRES', 'UNSA', 'AUTRES'];
+        let couleursSyndicats = {
+            'CGT': '#e41a1c',
+            'CFDT': '#377eb8',
+            'CGT-FO': '#ff7f00',
+            'FO': '#ff7f00',
+            'CFTC': '#4daf4a',
+            'CFE-CGC': '#984ea3',
+            'SOLIDAIRES': '#e6ab02',
+            'UNSA': '#a65628',
+            'AUTRES': '#999999'
+        };
+        
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialiser la carte
+            initMap();
+            
+            // Gestionnaire d'événement pour le bouton d'application des filtres
+            document.getElementById('btn-appliquer-filtres').addEventListener('click', function() {
+                updateMapColoring();
+                updateStatistics();
+                updateTopDepartements();
+            });
+            
+            // Charger les données des scrutins
+            loadScrutinsData();
+        });
+        
+        // Charger les données des scrutins
+        function loadScrutinsData() {
+            // Charger les données réelles depuis les fichiers JSON générés
+            console.log("Chargement des données des scrutins...");
+            
+            // Définir les confédérations syndicales principales
+            const syndicats = ['CGT', 'CFDT', 'CGT-FO', 'CFTC', 'CFE-CGC', 'SOLIDAIRES', 'UNSA', 'AUTRES'];
+            
+            // Charger les données des départements et les détails des PV
+            Promise.all([
+                fetch('./data/departements.json'),
+                fetch('./data/details_pv.json')
+            ])
+                .then(responses => {
+                    // Vérifier si toutes les réponses sont OK
+                    for (const response of responses) {
+                        if (!response.ok) {
+                            throw new Error(`Erreur HTTP ${response.status} - ${response.statusText}`);
+                        }
+                    }
+                    return Promise.all(responses.map(response => response.json()));
+                })
+                .then(([departementsData, detailsPvData]) => {
+                    // Stocker les détails des PV dans une variable globale
+                    window.detailsPV = detailsPvData;
+                    console.log("Détails des PV chargés:", Object.keys(window.detailsPV).length, "départements");
+                    
+                    // Continuer avec le traitement des données des départements
+                    return departementsData;
+                })
+                .then(data => {
+                    // Charger les données des IDCC (qui serviront de "fédérations" pour cette visualisation)
+                    fetch('./data/idcc.json')
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(`Erreur HTTP ${response.status} - ${response.statusText} lors du chargement de idcc.json`);
+                            }
+                            return response.json();
+                        })
+                        .then(idccData => {
+                            // Stocker les données
+                            departementsData = data;
+                            federationsData = idccData;
+                            
+                            // Remplir le sélecteur de fédérations (IDCC)
+                            const selectFederation = document.getElementById('filtre-federation');
+                            selectFederation.innerHTML = '<option value="tous">Tous</option>';
+                            
+                            // Trier les IDCC par nom
+                            const idccTries = Object.entries(idccData)
+                                .map(([code, data]) => ({ code, nom: data.nom }))
+                                .sort((a, b) => a.nom.localeCompare(b.nom));
+                            
+                            idccTries.forEach(idcc => {
+                                const option = document.createElement('option');
+                                option.value = idcc.code;
+                                option.textContent = idcc.nom;
+                                selectFederation.appendChild(option);
+                            });
+                            
+                            // Mettre à jour la carte
+                            updateMapColoring();
+                            
+                            // Mettre à jour les statistiques
+                            updateStatistics();
+                            
+                            // Mettre à jour le top 5 des départements
+                            updateTopDepartements();
+                        });
+                })
+                .catch(error => {
+                    console.error("Erreur lors du chargement des données:", error);
+                    document.getElementById('map-container').innerHTML = `
+                        <div class="alert alert-danger">
+                            <h4>Erreur lors du chargement des données</h4>
+                            <p>${error.message}</p>
+                        </div>
+                    `;
+                });
+        }

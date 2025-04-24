@@ -1,0 +1,527 @@
+{
+  "17": {
+    "confederation": "CGT",
+    "voix": 5591,
+    "pourcentage": 28.83
+  },
+  "34": {
+    "confederation": "CGT",
+    "voix": 15478,
+    "pourcentage": 29.18
+  },
+  "75": {
+    "confederation": "CFDT",
+    "voix": 131085,
+    "pourcentage": 26.72
+  },
+  "78": {
+    "confederation": "CFDT",
+    "voix": 28631,
+    "pourcentage": 23.58
+  },
+  "63": {
+    "confederation": "CGT",
+    "voix": 11411,
+    "pourcentage": 28.94
+  },
+  "08": {
+    "confederation": "CGT-FO",
+    "voix": 3025,
+    "pourcentage": 28.48
+  },
+  "973": {
+    "confederation": "CGT",
+    "voix": 2314,
+    "pourcentage": 42.15
+  },
+  "67": {
+    "confederation": "CFDT",
+    "voix": 29535,
+    "pourcentage": 28.76
+  },
+  "93": {
+    "confederation": "CFDT",
+    "voix": 43432,
+    "pourcentage": 22.73
+  },
+  "28": {
+    "confederation": "CFDT",
+    "voix": 4399,
+    "pourcentage": 25.5
+  },
+  "94": {
+    "confederation": "CFDT",
+    "voix": 26345,
+    "pourcentage": 26.38
+  },
+  "27": {
+    "confederation": "CFDT",
+    "voix": 7078,
+    "pourcentage": 28.9
+  },
+  "21": {
+    "confederation": "CFDT",
+    "voix": 11892,
+    "pourcentage": 30.63
+  },
+  "57": {
+    "confederation": "CFDT",
+    "voix": 15223,
+    "pourcentage": 27.72
+  },
+  "2A": {
+    "confederation": "AUTRES",
+    "voix": 4598,
+    "pourcentage": 47.44
+  },
+  "77": {
+    "confederation": "CFDT",
+    "voix": 19492,
+    "pourcentage": 23.98
+  },
+  "37": {
+    "confederation": "CGT",
+    "voix": 9837,
+    "pourcentage": 29.46
+  },
+  "80": {
+    "confederation": "CFDT",
+    "voix": 10105,
+    "pourcentage": 29.15
+  },
+  "85": {
+    "confederation": "CFDT",
+    "voix": 15293,
+    "pourcentage": 51.92
+  },
+  "42": {
+    "confederation": "CFDT",
+    "voix": 11014,
+    "pourcentage": 32.99
+  },
+  "59": {
+    "confederation": "CFDT",
+    "voix": 52139,
+    "pourcentage": 23.91
+  },
+  "14": {
+    "confederation": "CFDT",
+    "voix": 12498,
+    "pourcentage": 31.69
+  },
+  "13": {
+    "confederation": "CGT",
+    "voix": 41377,
+    "pourcentage": 23.91
+  },
+  "33": {
+    "confederation": "CFDT",
+    "voix": 28675,
+    "pourcentage": 26.86
+  },
+  "06": {
+    "confederation": "CFDT",
+    "voix": 14416,
+    "pourcentage": 27.91
+  },
+  "38": {
+    "confederation": "CFDT",
+    "voix": 19172,
+    "pourcentage": 26.54
+  },
+  "12": {
+    "confederation": "CGT-FO",
+    "voix": 3992,
+    "pourcentage": 35.17
+  },
+  "79": {
+    "confederation": "CFDT",
+    "voix": 13471,
+    "pourcentage": 38.34
+  },
+  "47": {
+    "confederation": "CFDT",
+    "voix": 3846,
+    "pourcentage": 29.99
+  },
+  "72": {
+    "confederation": "CFDT",
+    "voix": 12845,
+    "pourcentage": 40.14
+  },
+  "51": {
+    "confederation": "CFDT",
+    "voix": 9269,
+    "pourcentage": 27.84
+  },
+  "41": {
+    "confederation": "CFDT",
+    "voix": 5179,
+    "pourcentage": 33.03
+  },
+  "92": {
+    "confederation": "CFDT",
+    "voix": 119330,
+    "pourcentage": 25.27
+  },
+  "66": {
+    "confederation": "CFDT",
+    "voix": 4265,
+    "pourcentage": 26.86
+  },
+  "36": {
+    "confederation": "CGT",
+    "voix": 2449,
+    "pourcentage": 26.96
+  },
+  "46": {
+    "confederation": "CGT",
+    "voix": 2436,
+    "pourcentage": 35.39
+  },
+  "972": {
+    "confederation": "CGT",
+    "voix": 5677,
+    "pourcentage": 35.76
+  },
+  "69": {
+    "confederation": "CFDT",
+    "voix": 58430,
+    "pourcentage": 27.84
+  },
+  "62": {
+    "confederation": "CFDT",
+    "voix": 19912,
+    "pourcentage": 26.52
+  },
+  "74": {
+    "confederation": "CFDT",
+    "voix": 11645,
+    "pourcentage": 28.66
+  },
+  "44": {
+    "confederation": "CFDT",
+    "voix": 38445,
+    "pourcentage": 35.04
+  },
+  "56": {
+    "confederation": "CFDT",
+    "voix": 13606,
+    "pourcentage": 46.69
+  },
+  "76": {
+    "confederation": "CGT",
+    "voix": 30679,
+    "pourcentage": 34.65
+  },
+  "29": {
+    "confederation": "CFDT",
+    "voix": 19006,
+    "pourcentage": 44.47
+  },
+  "35": {
+    "confederation": "CFDT",
+    "voix": 31168,
+    "pourcentage": 37.09
+  },
+  "974": {
+    "confederation": "CFDT",
+    "voix": 12683,
+    "pourcentage": 29.56
+  },
+  "91": {
+    "confederation": "CGT",
+    "voix": 19963,
+    "pourcentage": 23.4
+  },
+  "95": {
+    "confederation": "CFDT",
+    "voix": 18070,
+    "pourcentage": 23.95
+  },
+  "977": {
+    "confederation": "AUTRES",
+    "voix": 17,
+    "pourcentage": 100.0
+  },
+  "26": {
+    "confederation": "CFDT",
+    "voix": 8720,
+    "pourcentage": 31.4
+  },
+  "971": {
+    "confederation": "AUTRES",
+    "voix": 6321,
+    "pourcentage": 37.32
+  },
+  "02": {
+    "confederation": "CGT",
+    "voix": 5925,
+    "pourcentage": 29.14
+  },
+  "03": {
+    "confederation": "CGT",
+    "voix": 4763,
+    "pourcentage": 36.76
+  },
+  "64": {
+    "confederation": "CFDT",
+    "voix": 9813,
+    "pourcentage": 32.06
+  },
+  "50": {
+    "confederation": "CFDT",
+    "voix": 7734,
+    "pourcentage": 35.29
+  },
+  "16": {
+    "confederation": "CGT",
+    "voix": 5558,
+    "pourcentage": 34.39
+  },
+  "54": {
+    "confederation": "CFDT",
+    "voix": 11607,
+    "pourcentage": 30.85
+  },
+  "30": {
+    "confederation": "CGT",
+    "voix": 6482,
+    "pourcentage": 28.3
+  },
+  "81": {
+    "confederation": "CGT",
+    "voix": 3833,
+    "pourcentage": 30.38
+  },
+  "89": {
+    "confederation": "CFDT",
+    "voix": 3642,
+    "pourcentage": 31.75
+  },
+  "84": {
+    "confederation": "CFDT",
+    "voix": 5948,
+    "pourcentage": 29.08
+  },
+  "87": {
+    "confederation": "CGT",
+    "voix": 6512,
+    "pourcentage": 35.63
+  },
+  "43": {
+    "confederation": "CGT",
+    "voix": 3565,
+    "pourcentage": 48.77
+  },
+  "01": {
+    "confederation": "CFDT",
+    "voix": 8608,
+    "pourcentage": 30.29
+  },
+  "10": {
+    "confederation": "CFDT",
+    "voix": 3660,
+    "pourcentage": 28.71
+  },
+  "65": {
+    "confederation": "CFDT",
+    "voix": 2793,
+    "pourcentage": 30.28
+  },
+  "49": {
+    "confederation": "CFDT",
+    "voix": 17537,
+    "pourcentage": 41.03
+  },
+  "31": {
+    "confederation": "CFDT",
+    "voix": 27992,
+    "pourcentage": 21.44
+  },
+  "68": {
+    "confederation": "CFDT",
+    "voix": 11538,
+    "pourcentage": 26.91
+  },
+  "04": {
+    "confederation": "CGT",
+    "voix": 1625,
+    "pourcentage": 24.71
+  },
+  "53": {
+    "confederation": "CFDT",
+    "voix": 5231,
+    "pourcentage": 31.69
+  },
+  "2B": {
+    "confederation": "AUTRES",
+    "voix": 2537,
+    "pourcentage": 50.29
+  },
+  "83": {
+    "confederation": "CFDT",
+    "voix": 6718,
+    "pourcentage": 22.95
+  },
+  "86": {
+    "confederation": "CGT",
+    "voix": 6447,
+    "pourcentage": 33.07
+  },
+  "71": {
+    "confederation": "CGT",
+    "voix": 7479,
+    "pourcentage": 31.22
+  },
+  "19": {
+    "confederation": "CGT",
+    "voix": 3062,
+    "pourcentage": 36.79
+  },
+  "60": {
+    "confederation": "CFDT",
+    "voix": 13356,
+    "pourcentage": 30.97
+  },
+  "25": {
+    "confederation": "CFDT",
+    "voix": 8179,
+    "pourcentage": 30.9
+  },
+  "45": {
+    "confederation": "CFDT",
+    "voix": 13950,
+    "pourcentage": 29.81
+  },
+  "88": {
+    "confederation": "CFDT",
+    "voix": 5510,
+    "pourcentage": 35.16
+  },
+  "22": {
+    "confederation": "CFDT",
+    "voix": 8377,
+    "pourcentage": 37.97
+  },
+  "18": {
+    "confederation": "CFDT",
+    "voix": 4250,
+    "pourcentage": 33.84
+  },
+  "05": {
+    "confederation": "CGT",
+    "voix": 984,
+    "pourcentage": 35.11
+  },
+  "82": {
+    "confederation": "CGT",
+    "voix": 2782,
+    "pourcentage": 30.35
+  },
+  "90": {
+    "confederation": "CFDT",
+    "voix": 1733,
+    "pourcentage": 28.6
+  },
+  "40": {
+    "confederation": "CFDT",
+    "voix": 4342,
+    "pourcentage": 30.73
+  },
+  "55": {
+    "confederation": "CFDT",
+    "voix": 2361,
+    "pourcentage": 34.15
+  },
+  "73": {
+    "confederation": "CGT",
+    "voix": 7151,
+    "pourcentage": 32.69
+  },
+  "32": {
+    "confederation": "CFDT",
+    "voix": 1973,
+    "pourcentage": 39.03
+  },
+  "70": {
+    "confederation": "CFDT",
+    "voix": 2774,
+    "pourcentage": 31.53
+  },
+  "23": {
+    "confederation": "CGT",
+    "voix": 1316,
+    "pourcentage": 53.8
+  },
+  "07": {
+    "confederation": "CGT",
+    "voix": 4710,
+    "pourcentage": 39.23
+  },
+  "978": {
+    "confederation": "CFDT",
+    "voix": 120,
+    "pourcentage": 35.71
+  },
+  "11": {
+    "confederation": "CGT-FO",
+    "voix": 2462,
+    "pourcentage": 26.89
+  },
+  "24": {
+    "confederation": "CGT",
+    "voix": 4441,
+    "pourcentage": 35.75
+  },
+  "09": {
+    "confederation": "CGT",
+    "voix": 2263,
+    "pourcentage": 50.71
+  },
+  "976": {
+    "confederation": "CGT",
+    "voix": 1475,
+    "pourcentage": 32.11
+  },
+  "61": {
+    "confederation": "CFDT",
+    "voix": 4299,
+    "pourcentage": 36.02
+  },
+  "15": {
+    "confederation": "CGT",
+    "voix": 1820,
+    "pourcentage": 38.04
+  },
+  "48": {
+    "confederation": "CFDT",
+    "voix": 1383,
+    "pourcentage": 37.76
+  },
+  "52": {
+    "confederation": "CFDT",
+    "voix": 2520,
+    "pourcentage": 32.96
+  },
+  "39": {
+    "confederation": "CFDT",
+    "voix": 3315,
+    "pourcentage": 37.92
+  },
+  "58": {
+    "confederation": "CFDT",
+    "voix": 2169,
+    "pourcentage": 36.2
+  },
+  "975": {
+    "confederation": "CFDT",
+    "voix": 69,
+    "pourcentage": 34.85
+  },
+  "NAT": {
+    "confederation": "CGT",
+    "voix": 58165,
+    "pourcentage": 27.73
+  }
+}

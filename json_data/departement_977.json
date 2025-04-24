@@ -1,0 +1,25 @@
+[
+  {
+    "siret": "31460402600018",
+    "raison_sociale": "ECOLE STE MARIE",
+    "ville": "ST BARTHELEMY",
+    "cp": "97133",
+    "idcc": "3218",
+    "lib_idcc": "ENSEIGNEMENT PRIVE NON LUCRATIF (EPNL)",
+    "college": "05",
+    "date": "20210105",
+    "inscrits": 19,
+    "votants": 17,
+    "sve_total": 17,
+    "voix": {
+      "CGT": 0,
+      "CFDT": 0,
+      "CGT-FO": 0,
+      "CFTC": 0,
+      "CFE-CGC": 0,
+      "SOLIDAIRES": 0,
+      "UNSA": 0,
+      "AUTRES": 17
+    }
+  }
+]

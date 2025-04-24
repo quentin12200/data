@@ -1,0 +1,28 @@
+{
+  "nom": "974",
+  "total_scrutins": 865,
+  "total_inscrits": 72391.0,
+  "total_votants": 46251.0,
+  "total_sve": 42906.979999999996,
+  "voix": {
+    "CGT": 9567.5,
+    "CFDT": 12684.16,
+    "CGT-FO": 7181.5,
+    "CFTC": 4320.0599999999995,
+    "CFE-CGC": 2131.35,
+    "SOLIDAIRES": 1486.25,
+    "UNSA": 1904.5,
+    "AUTRES": 3631.66
+  },
+  "pourcentages": {
+    "CGT": 22.3,
+    "CFDT": 29.56,
+    "CGT-FO": 16.74,
+    "CFTC": 10.07,
+    "CFE-CGC": 4.97,
+    "SOLIDAIRES": 3.46,
+    "UNSA": 4.44,
+    "AUTRES": 8.46
+  },
+  "syndicat_dominant": "CFDT"
+}
