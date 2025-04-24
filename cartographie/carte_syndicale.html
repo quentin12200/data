@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="css/animated-background.css">
     <script src="js/animated-background.js"></script>
     <script src="carte_syndicale.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- DataTables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css">
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
     <style>
         body {
             padding: 20px;
@@ -402,128 +407,190 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
 
         // Charger les détails d'un département
         function loadDepartementDetails(codeDept) {
-            // Charger les données du département
-            fetch(`../json_data/departement_${codeDept}.json`)
-                .then(response => response.json())
-                .then(pvList => {
-                    // Charger aussi les données TPE
-                    fetch('../json_data_ordonnees/resultats_departements_avec_tpe.json')
-                        .then(response => response.json())
-                        .then(data => {
-                            const deptData = data[codeDept];
-                            if (!deptData) {
-                                console.error(`Pas de données pour le département ${codeDept}`);
-                                return;
-                            }
+            Promise.all([
+                fetch(`../json_data_ordonnees/resultats_combines.json`),
+                fetch(`../json_data/departement_${codeDept}.json`)
+            ])
+            .then(responses => Promise.all(responses.map(r => r.json())))
+            .then(([data_combines, data_pv]) => {
+                const dept = data_combines[codeDept];
+                if (!dept) {
+                    console.error(`Pas de données pour le département ${codeDept}`);
+                    return;
+                }
 
-                            // Calculer les totaux pour les PV
-                            let totalInscrits = deptData.total_inscrits;
-                            let totalVotants = deptData.total_votants;
-                            let totalSVE = deptData.total_sve;
+                // Calculer les totaux pour chaque type
+                const totalCSE = Object.values(dept.voix.CSE).reduce((a, b) => a + b, 0);
+                const totalTPE = Object.values(dept.voix.TPE).reduce((a, b) => a + b, 0);
+                const totalAGRI = Object.values(dept.voix.AGRI).reduce((a, b) => a + b, 0);
+                const totalGlobal = totalCSE + totalTPE + totalAGRI;
 
-                            // Calculer les voix pour chaque syndicat
-                            const totalVoix = {};
-                            const pourcentages = {};
-                            for (const syndicat of Object.keys(deptData.voix)) {
-                                totalVoix[syndicat] = deptData.voix[syndicat] || 0;
-                                pourcentages[syndicat] = totalSVE > 0 ? (totalVoix[syndicat] * 100 / totalSVE) : 0;
-                            }
-
-                            // Générer le HTML pour les détails du département
-                            document.getElementById('departement-details').innerHTML = `
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <h4 class="mb-0">${deptData.nom} (${codeDept})</h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row mb-3">
-                                            <div class="col-md-4">
-                                                <div class="card h-100">
-                                                    <div class="card-body text-center">
-                                                        <h5>Participation</h5>
-                                                        <div class="display-6 mb-2">${totalVotants > 0 && totalInscrits > 0 ? (totalVotants/totalInscrits*100).toFixed(2) : 0}%</div>
-                                                        <div><b>Inscrits :</b> ${totalInscrits.toLocaleString()}</div>
-                                                        <div><b>Votants :</b> ${totalVotants.toLocaleString()}</div>
-                                                        <div><b>SVE :</b> ${totalSVE.toLocaleString()}</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="card h-100">
-                                                    <div class="card-body text-center">
-                                                        <h5>Voix TPE</h5>
-                                                        <div class="small">
-                                                            <div><b>CGT :</b> ${deptData.voix_tpe ? deptData.voix_tpe.CGT || 0 : 0}</div>
-                                                            <div><b>CFDT :</b> ${deptData.voix_tpe ? deptData.voix_tpe.CFDT || 0 : 0}</div>
-                                                            <div><b>CGT-FO :</b> ${deptData.voix_tpe ? deptData.voix_tpe['CGT-FO'] || 0 : 0}</div>
-                                                            <div><b>CFTC :</b> ${deptData.voix_tpe ? deptData.voix_tpe.CFTC || 0 : 0}</div>
-                                                            <div><b>CFE-CGC :</b> ${deptData.voix_tpe ? deptData.voix_tpe['CFE-CGC'] || 0 : 0}</div>
-                                                            <div><b>SOLIDAIRES :</b> ${deptData.voix_tpe ? deptData.voix_tpe.SOLIDAIRES || 0 : 0}</div>
-                                                            <div><b>UNSA :</b> ${deptData.voix_tpe ? deptData.voix_tpe.UNSA || 0 : 0}</div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="card h-100">
-                                                    <div class="card-body text-center">
-                                                        <h5>Audience ${selectedSyndicat === 'all' ? 'CGT' : selectedSyndicat}</h5>
-                                                        <div class="display-6 mb-2 text-${selectedSyndicat === 'CGT' ? 'danger' : selectedSyndicat === 'CFDT' ? 'info' : selectedSyndicat === 'CGT-FO' ? 'warning' : selectedSyndicat === 'SOLIDAIRES' ? 'success' : 'primary'}">${pourcentages[selectedSyndicat === 'all' ? 'CGT' : selectedSyndicat].toFixed(2)}%</div>
-                                                        <div><b>Voix totales :</b> ${totalVoix[selectedSyndicat === 'all' ? 'CGT' : selectedSyndicat].toLocaleString()}</div>
-                                                        <div><b>dont TPE :</b> ${deptData.voix_tpe ? deptData.voix_tpe[selectedSyndicat === 'all' ? 'CGT' : selectedSyndicat] || 0 : 0}</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Liste des PV -->
-                                        <div class="table-responsive">
-                                            <table class="table table-striped table-hover" id="pv-table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>SIRET</th>
-                                                        <th>Raison sociale</th>
-                                                        <th>Collège</th>
-                                                        <th>Inscrits</th>
-                                                        <th>Votants</th>
-                                                        <th>SVE</th>
-                                                        <th>CGT</th>
-                                                        <th>CFDT</th>
-                                                        <th>CGT-FO</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    ${pvList.map(pv => `
-                                                        <tr>
-                                                            <td>${pv.siret}</td>
-                                                            <td>${pv.raison_sociale}</td>
-                                                            <td>${pv.college}</td>
-                                                            <td>${pv.inscrits}</td>
-                                                            <td>${pv.votants}</td>
-                                                            <td>${pv.sve}</td>
-                                                            <td>${pv.voix.CGT || 0}</td>
-                                                            <td>${pv.voix.CFDT || 0}</td>
-                                                            <td>${pv.voix['CGT-FO'] || 0}</td>
-                                                        </tr>
-                                                    `).join('')}
-                                                </tbody>
-                                            </table>
+                // Générer le HTML pour les détails du département
+                document.getElementById('departement-details').innerHTML = `
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h4 class="mb-0">Département ${codeDept}</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-md-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <h5>CSE</h5>
+                                            <div class="display-6">${Math.round(totalCSE).toLocaleString()}</div>
+                                            <div>voix</div>
                                         </div>
                                     </div>
                                 </div>
-                            `;
+                                <div class="col-md-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <h5>TPE</h5>
+                                            <div class="display-6">${Math.round(totalTPE).toLocaleString()}</div>
+                                            <div>voix</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <h5>AGRI</h5>
+                                            <div class="display-6">${Math.round(totalAGRI).toLocaleString()}</div>
+                                            <div>voix</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <h5>Total</h5>
+                                            <div class="display-6">${Math.round(totalGlobal).toLocaleString()}</div>
+                                            <div>voix</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                            // Initialiser le tableau avec DataTables
-                            $('#pv-table').DataTable({
-                                "language": {
-                                    "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/French.json"
-                                }
-                            });
-                        });
-                })
-                .catch(error => {
-                    console.error('Erreur lors du chargement des données:', error);
+                            <!-- Tableau des résultats -->
+                            <div class="table-responsive mb-4">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Organisation</th>
+                                            <th>Voix CSE</th>
+                                            <th>%</th>
+                                            <th>Voix TPE</th>
+                                            <th>%</th>
+                                            <th>Voix AGRI</th>
+                                            <th>%</th>
+                                            <th>Total</th>
+                                            <th>% Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${['CGT', 'CFDT', 'CGT-FO', 'CFTC', 'CFE-CGC', 'SOLIDAIRES', 'UNSA', 'AUTRES'].map(syndicat => {
+                                            const voixCSE = dept.voix.CSE[syndicat] || 0;
+                                            const voixTPE = dept.voix.TPE[syndicat] || 0;
+                                            const voixAGRI = dept.voix.AGRI[syndicat] || 0;
+                                            const totalSyndicat = voixCSE + voixTPE + voixAGRI;
+                                            
+                                            return `
+                                                <tr>
+                                                    <td>${syndicat}</td>
+                                                    <td>${Math.round(voixCSE).toLocaleString()}</td>
+                                                    <td>${totalCSE > 0 ? ((voixCSE / totalCSE) * 100).toFixed(2) : '0.00'}%</td>
+                                                    <td>${Math.round(voixTPE).toLocaleString()}</td>
+                                                    <td>${totalTPE > 0 ? ((voixTPE / totalTPE) * 100).toFixed(2) : '0.00'}%</td>
+                                                    <td>${Math.round(voixAGRI).toLocaleString()}</td>
+                                                    <td>${totalAGRI > 0 ? ((voixAGRI / totalAGRI) * 100).toFixed(2) : '0.00'}%</td>
+                                                    <td>${Math.round(totalSyndicat).toLocaleString()}</td>
+                                                    <td>${totalGlobal > 0 ? ((totalSyndicat / totalGlobal) * 100).toFixed(2) : '0.00'}%</td>
+                                                </tr>
+                                            `;
+                                        }).join('')}
+                                        <tr class="table-info">
+                                            <td><strong>Total</strong></td>
+                                            <td><strong>${Math.round(totalCSE).toLocaleString()}</strong></td>
+                                            <td><strong>100%</strong></td>
+                                            <td><strong>${Math.round(totalTPE).toLocaleString()}</strong></td>
+                                            <td><strong>100%</strong></td>
+                                            <td><strong>${Math.round(totalAGRI).toLocaleString()}</strong></td>
+                                            <td><strong>100%</strong></td>
+                                            <td><strong>${Math.round(totalGlobal).toLocaleString()}</strong></td>
+                                            <td><strong>100%</strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Liste des PV -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Liste des PV du département ${codeDept}</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped" id="pv-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>SIRET</th>
+                                                    <th>Raison sociale</th>
+                                                    <th>Ville</th>
+                                                    <th>Inscrits</th>
+                                                    <th>Votants</th>
+                                                    <th>SVE</th>
+                                                    <th>CGT</th>
+                                                    <th>CFDT</th>
+                                                    <th>CGT-FO</th>
+                                                    <th>CFTC</th>
+                                                    <th>CFE-CGC</th>
+                                                    <th>SOLIDAIRES</th>
+                                                    <th>UNSA</th>
+                                                    <th>AUTRES</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                ${data_pv.map(pv => `
+                                                    <tr>
+                                                        <td>${pv.siret}</td>
+                                                        <td>${pv.raison_sociale}</td>
+                                                        <td>${pv.ville}</td>
+                                                        <td>${pv.inscrits}</td>
+                                                        <td>${pv.votants}</td>
+                                                        <td>${pv.sve}</td>
+                                                        <td>${pv.voix.CGT || 0}</td>
+                                                        <td>${pv.voix.CFDT || 0}</td>
+                                                        <td>${pv.voix['CGT-FO'] || 0}</td>
+                                                        <td>${pv.voix.CFTC || 0}</td>
+                                                        <td>${pv.voix['CFE-CGC'] || 0}</td>
+                                                        <td>${pv.voix.SOLIDAIRES || 0}</td>
+                                                        <td>${pv.voix.UNSA || 0}</td>
+                                                        <td>${pv.voix.AUTRES || 0}</td>
+                                                    </tr>
+                                                `).join('')}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                // Initialiser DataTables sur la table des PV
+                if ($.fn.DataTable.isDataTable('#pv-table')) {
+                    $('#pv-table').DataTable().destroy();
+                }
+                $('#pv-table').DataTable({
+                    pageLength: 10,
+                    language: {
+                        url: 'https://cdn.datatables.net/plug-ins/1.10.24/i18n/French.json'
+                    }
                 });
+            })
+            .catch(error => {
+                console.error('Erreur lors du chargement des données:', error);
+            });
         }
 
         // Mettre à jour la coloration de la carte
@@ -608,84 +675,38 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
         
         // Fonction pour mettre à jour la légende
         function updateLegend(values) {
-            const legendContainer = document.getElementById('color-legend');
-            legendContainer.innerHTML = '';
+            if (!values || values.length === 0) {
+                return;
+            }
             
-            // Créer la légende en fonction du type de données
-            if (selectedSyndicat === 'all') {
-                // Légende pour le nombre d'inscrits avec des seuils prédéfinis
-                const thresholds = [
-                    0,
-                    1000,
-                    5000,
-                    10000,
-                    20000,
-                    50000,
-                    100000,
-                    d3.max(values)
-                ];
-                
-                const customColors = [
-                    "#f7f4f9",
-                    "#e7e1ef",
-                    "#d4b9da",
-                    "#c994c7",
-                    "#df65b0",
-                    "#e7298a",
-                    "#ce1256",
-                    "#91003f"
-                ];
-                
-                const formattedThresholds = thresholds.map(d => Math.round(d).toLocaleString());
-                
-                const legendHTML = `
-                    <div class="d-flex justify-content-between">
-                        <div class="legend-item">
-                            <div class="legend-color" style="background-color: #f5f5f5;"></div>
-                            <span>Pas de données</span>
-                        </div>
-                    </div>
-                    <div class="d-flex flex-wrap mt-2">
-                        ${customColors.map((color, i) => {
-                            // Ne pas afficher le dernier seuil qui est le max
-                            if (i < customColors.length - 1) {
-                                return `<div class="legend-item mb-1">
+            const min = Math.min(...values);
+            const max = Math.max(...values);
+            const step = (max - min) / 5;
+            
+            const colorScale = d3.scaleQuantize()
+                .domain([min, max])
+                .range(['#fee5d9', '#fcae91', '#fb6a4a', '#de2d26', '#a50f15']);
+            
+            const legendHTML = `
+                <div class="d-flex justify-content-between">
+                    <div>Moins représentatif</div>
+                    <div class="d-flex">
+                        ${colorScale.range().map((color, i) => {
+                            const value = min + (i * step);
+                            return `
+                                <div class="legend-item">
                                     <div class="legend-color" style="background-color: ${color};"></div>
-                                    <span>${formattedThresholds[i]} - ${formattedThresholds[i+1]}</span>
-                                </div>`;
-                            } else {
-                                return `<div class="legend-item mb-1">
-                                    <div class="legend-color" style="background-color: ${color};"></div>
-                                    <span>> ${formattedThresholds[i-1]}</span>
-                                </div>`;
-                            }
+                                    <span>${Math.round(value)}%</span>
+                                </div>
+                            `;
                         }).join('')}
                     </div>
-                `;
-                
-                legendContainer.innerHTML = legendHTML;
-            } else {
-                // Légende pour les pourcentages
-                const thresholds = colorScale.quantiles();
-                const formattedThresholds = [0, ...thresholds].map(d => d.toFixed(1) + '%');
-                
-                const legendHTML = `
-                    <div class="d-flex justify-content-between">
-                        <div>Moins représentatif</div>
-                        <div class="d-flex">
-                            ${colorScale.range().map((color, i) => {
-                                return `<div class="legend-item">
-                                    <div class="legend-color" style="background-color: ${color};"></div>
-                                    <span>${i < formattedThresholds.length - 1 ? formattedThresholds[i] + ' - ' + formattedThresholds[i+1] : '> ' + formattedThresholds[i]}</span>
-                                </div>`;
-                            }).join('')}
-                        </div>
-                        <div>Plus représentatif</div>
-                    </div>
-                `;
-                
-                legendContainer.innerHTML = legendHTML;
-            }
+                    <div>Plus représentatif</div>
+                </div>
+            `;
+            
+            document.getElementById('color-legend').innerHTML = legendHTML;
+            return colorScale;
         }
 
         // Mettre à jour les statistiques nationales
