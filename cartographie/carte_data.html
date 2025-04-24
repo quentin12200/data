@@ -301,7 +301,7 @@
                     remplirMenuDepartements(departements);
                     
                     // Afficher les départements
-                    afficherDepartements(departements);
+                    afficherDepartements();
                 })
                 .catch(error => {
                     console.error('Erreur:', error);
@@ -357,234 +357,56 @@
             }
             
             // Fonction pour afficher les départements
-            function afficherDepartements(data) {
-                // Trier les départements par nombre de scrutins
-                const departements = Object.entries(data)
-                    .map(([code, dept]) => ({
-                        code,
-                        nom: dept.nom,
-                        total_scrutins: dept.total_scrutins || 0,
-                        total_inscrits: dept.total_inscrits || 0,
-                        total_votants: dept.total_votants || 0,
-                        total_sve: dept.total_sve || 0,
-                        voix: dept.voix || {},
-                        voix_tpe: dept.voix_tpe || {}
-                    }))
-                    .sort((a, b) => b.total_scrutins - a.total_scrutins);
+            function afficherDepartements() {
+                fetch('../json_data_ordonnees/resultats_combines.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        const tbody = document.querySelector('#details-table tbody');
+                        if (!tbody) {
+                            console.error("L'élément tbody n'existe pas");
+                            return;
+                        }
+                        tbody.innerHTML = '';
 
-                // Filtrer selon le département sélectionné
-                let deptsFiltered = departements;
-                const departementSelectionne = document.getElementById('select-departement').value;
-                
-                if (departementSelectionne !== 'tous') {
-                    deptsFiltered = deptsFiltered.filter(d => d.code === departementSelectionne);
-                } else {
-                    // Filtres par pourcentage CGT
-                    if (filtreActif === 'cgt-sup30') {
-                        deptsFiltered = deptsFiltered.filter(d => d.voix.CGT > 30);
-                    } else if (filtreActif === 'cgt-sup25') {
-                        deptsFiltered = deptsFiltered.filter(d => d.voix.CGT > 25);
-                    } else if (filtreActif === 'cgt-sup20') {
-                        deptsFiltered = deptsFiltered.filter(d => d.voix.CGT > 20);
-                    }
-                    // Filtres par syndicat dominant
-                    else if (filtreActif === 'cgt-dom') {
-                        deptsFiltered = deptsFiltered.filter(d => d.syndicat_dominant === 'CGT');
-                    } else if (filtreActif === 'cfdt-dom') {
-                        deptsFiltered = deptsFiltered.filter(d => d.syndicat_dominant === 'CFDT');
-                    } else if (filtreActif === 'cgt-fo-dom') {
-                        deptsFiltered = deptsFiltered.filter(d => d.syndicat_dominant === 'CGT-FO');
-                    } else if (filtreActif === 'cftc-dom') {
-                        deptsFiltered = deptsFiltered.filter(d => d.syndicat_dominant === 'CFTC');
-                    } else if (filtreActif === 'cfe-cgc-dom') {
-                        deptsFiltered = deptsFiltered.filter(d => d.syndicat_dominant === 'CFE-CGC');
-                    }
-                }
-                
-                // Générer le HTML
-                let html = '';
-                deptsFiltered.forEach(dept => {
-                    // Déterminer la classe CSS pour la carte
-                    let syndicatClass = '';
-                    if (dept.syndicat_dominant === 'CGT') {
-                        syndicatClass = 'cgt-dominant';
-                    } else if (dept.syndicat_dominant === 'CFDT') {
-                        syndicatClass = 'cfdt-dominant';
-                    } else if (dept.syndicat_dominant === 'CGT-FO') {
-                        syndicatClass = 'cgt-fo-dominant';
-                    } else if (dept.syndicat_dominant === 'CFTC') {
-                        syndicatClass = 'cftc-dominant';
-                    } else if (dept.syndicat_dominant === 'CFE-CGC') {
-                        syndicatClass = 'cfe-cgc-dominant';
-                    }
-                    
-                    html += `
-                        <div class="col-md-6 mb-3">
-                            <div class="dept-card card ${syndicatClass}">
-                                <div class="card-header">
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <span><i class="fas fa-map-marker-alt me-1"></i>${dept.code} - ${dept.nom !== dept.code ? dept.nom : 'Département ' + dept.code}</span>
-                                        <span class="badge bg-secondary"><i class="fas fa-file-alt me-1"></i>${dept.total_scrutins} scrutins</span>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row mb-3">
-                                        <div class="col-12">
-                                            <div class="card bg-light">
-                                                <div class="card-body p-2">
-                                                    <div class="d-flex justify-content-between align-items-center">
-                                                        <div>
-                                                            <div class="stats-value text-danger">${dept.voix.CGT.toFixed(2)}%</div>
-                                                            <div class="stats-label">CGT</div>
-                                                        </div>
-                                                        <div style="width: 100px;">
-                                                            <div class="progress">
-                                                                <div class="progress-bar bg-danger" role="progressbar" style="width: ${Math.min(dept.voix.CGT, 100)}%" aria-valuenow="${dept.voix.CGT}" aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="stats-item">
-                                                <div class="stats-value">${dept.syndicat_dominant}</div>
-                                                <div class="stats-label">Syndicat dominant</div>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <div class="stats-item text-end">
-                                                <div class="stats-value">${Math.round(dept.voix.CGT).toLocaleString()}</div>
-                                                <div class="stats-label">Voix CGT</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="mt-3">
-                                        <h6 class="mb-2">Scores par organisation</h6>
-                                        <div class="table-responsive">
-                                            <table class="table table-sm table-bordered">
-                                                <thead class="table-light">
-                                                    <tr>
-                                                        <th>Organisation</th>
-                                                        <th>Voix CSE</th>
-                                                        <th>%</th>
-                                                        <th>Voix TPE</th>
-                                                        <th>%</th>
-                                                        <th>Voix AGRI</th>
-                                                        <th>%</th>
-                                                        <th>Total</th>
-                                                        <th>% Total</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr class="table-danger">
-                                                        <td>CGT</td>
-                                                        <td>${Math.round(dept.voix.CGT).toLocaleString()}</td>
-                                                        <td>${dept.voix.CGT.toFixed(2)}%</td>
-                                                        <td>${Math.round(dept.voix_tpe.CGT).toLocaleString()}</td>
-                                                        <td>${dept.voix_tpe.CGT.toFixed(2)}%</td>
-                                                        <td>${Math.round(dept.voix_agri.CGT).toLocaleString()}</td>
-                                                        <td>${dept.voix_agri.CGT.toFixed(2)}%</td>
-                                                        <td>${Math.round(dept.voix.CGT + dept.voix_tpe.CGT + dept.voix_agri.CGT).toLocaleString()}</td>
-                                                        <td>${((dept.voix.CGT + dept.voix_tpe.CGT + dept.voix_agri.CGT) / (dept.total_scrutins)).toFixed(2)}%</td>
-                                                    </tr>
-                                                    <tr class="table-info">
-                                                        <td>CFDT</td>
-                                                        <td>${Math.round(dept.voix.CFDT).toLocaleString()}</td>
-                                                        <td>${dept.voix.CFDT.toFixed(2)}%</td>
-                                                        <td>${Math.round(dept.voix_tpe.CFDT).toLocaleString()}</td>
-                                                        <td>${dept.voix_tpe.CFDT.toFixed(2)}%</td>
-                                                        <td>${Math.round(dept.voix_agri.CFDT).toLocaleString()}</td>
-                                                        <td>${dept.voix_agri.CFDT.toFixed(2)}%</td>
-                                                        <td>${Math.round(dept.voix.CFDT + dept.voix_tpe.CFDT + dept.voix_agri.CFDT).toLocaleString()}</td>
-                                                        <td>${((dept.voix.CFDT + dept.voix_tpe.CFDT + dept.voix_agri.CFDT) / (dept.total_scrutins)).toFixed(2)}%</td>
-                                                    </tr>
-                                                    <tr class="table-warning">
-                                                        <td>CGT-FO</td>
-                                                        <td>${Math.round(dept.voix["CGT-FO"]).toLocaleString()}</td>
-                                                        <td>${dept.voix["CGT-FO"].toFixed(2)}%</td>
-                                                        <td>${Math.round(dept.voix_tpe["CGT-FO"]).toLocaleString()}</td>
-                                                        <td>${dept.voix_tpe["CGT-FO"].toFixed(2)}%</td>
-                                                        <td>${Math.round(dept.voix_agri["CGT-FO"]).toLocaleString()}</td>
-                                                        <td>${dept.voix_agri["CGT-FO"].toFixed(2)}%</td>
-                                                        <td>${Math.round(dept.voix["CGT-FO"] + dept.voix_tpe["CGT-FO"] + dept.voix_agri["CGT-FO"]).toLocaleString()}</td>
-                                                        <td>${((dept.voix["CGT-FO"] + dept.voix_tpe["CGT-FO"] + dept.voix_agri["CGT-FO"]) / (dept.total_scrutins)).toFixed(2)}%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>CFTC</td>
-                                                        <td>${Math.round(dept.voix.CFTC).toLocaleString()}</td>
-                                                        <td>${dept.voix.CFTC.toFixed(2)}%</td>
-                                                        <td>${Math.round(dept.voix_tpe.CFTC).toLocaleString()}</td>
-                                                        <td>${dept.voix_tpe.CFTC.toFixed(2)}%</td>
-                                                        <td>${Math.round(dept.voix_agri.CFTC).toLocaleString()}</td>
-                                                        <td>${dept.voix_agri.CFTC.toFixed(2)}%</td>
-                                                        <td>${Math.round(dept.voix.CFTC + dept.voix_tpe.CFTC + dept.voix_agri.CFTC).toLocaleString()}</td>
-                                                        <td>${((dept.voix.CFTC + dept.voix_tpe.CFTC + dept.voix_agri.CFTC) / (dept.total_scrutins)).toFixed(2)}%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>CFE-CGC</td>
-                                                        <td>${Math.round(dept.voix["CFE-CGC"]).toLocaleString()}</td>
-                                                        <td>${dept.voix["CFE-CGC"].toFixed(2)}%</td>
-                                                        <td>${Math.round(dept.voix_tpe["CFE-CGC"]).toLocaleString()}</td>
-                                                        <td>${dept.voix_tpe["CFE-CGC"].toFixed(2)}%</td>
-                                                        <td>${Math.round(dept.voix_agri["CFE-CGC"]).toLocaleString()}</td>
-                                                        <td>${dept.voix_agri["CFE-CGC"].toFixed(2)}%</td>
-                                                        <td>${Math.round(dept.voix["CFE-CGC"] + dept.voix_tpe["CFE-CGC"] + dept.voix_agri["CFE-CGC"]).toLocaleString()}</td>
-                                                        <td>${((dept.voix["CFE-CGC"] + dept.voix_tpe["CFE-CGC"] + dept.voix_agri["CFE-CGC"]) / (dept.total_scrutins)).toFixed(2)}%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>SOLIDAIRES</td>
-                                                        <td>${Math.round(dept.voix.SOLIDAIRES).toLocaleString()}</td>
-                                                        <td>${dept.voix.SOLIDAIRES.toFixed(2)}%</td>
-                                                        <td>${Math.round(dept.voix_tpe.SOLIDAIRES).toLocaleString()}</td>
-                                                        <td>${dept.voix_tpe.SOLIDAIRES.toFixed(2)}%</td>
-                                                        <td>${Math.round(dept.voix_agri.SOLIDAIRES).toLocaleString()}</td>
-                                                        <td>${dept.voix_agri.SOLIDAIRES.toFixed(2)}%</td>
-                                                        <td>${Math.round(dept.voix.SOLIDAIRES + dept.voix_tpe.SOLIDAIRES + dept.voix_agri.SOLIDAIRES).toLocaleString()}</td>
-                                                        <td>${((dept.voix.SOLIDAIRES + dept.voix_tpe.SOLIDAIRES + dept.voix_agri.SOLIDAIRES) / (dept.total_scrutins)).toFixed(2)}%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>UNSA</td>
-                                                        <td>${Math.round(dept.voix.UNSA).toLocaleString()}</td>
-                                                        <td>${dept.voix.UNSA.toFixed(2)}%</td>
-                                                        <td>${Math.round(dept.voix_tpe.UNSA).toLocaleString()}</td>
-                                                        <td>${dept.voix_tpe.UNSA.toFixed(2)}%</td>
-                                                        <td>${Math.round(dept.voix_agri.UNSA).toLocaleString()}</td>
-                                                        <td>${dept.voix_agri.UNSA.toFixed(2)}%</td>
-                                                        <td>${Math.round(dept.voix.UNSA + dept.voix_tpe.UNSA + dept.voix_agri.UNSA).toLocaleString()}</td>
-                                                        <td>${((dept.voix.UNSA + dept.voix_tpe.UNSA + dept.voix_agri.UNSA) / (dept.total_scrutins)).toFixed(2)}%</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>AUTRES</td>
-                                                        <td>${Math.round(dept.voix.AUTRES).toLocaleString()}</td>
-                                                        <td>${dept.voix.AUTRES.toFixed(2)}%</td>
-                                                        <td>${Math.round(dept.voix_tpe.AUTRES).toLocaleString()}</td>
-                                                        <td>${dept.voix_tpe.AUTRES.toFixed(2)}%</td>
-                                                        <td>${Math.round(dept.voix_agri.AUTRES).toLocaleString()}</td>
-                                                        <td>${dept.voix_agri.AUTRES.toFixed(2)}%</td>
-                                                        <td>${Math.round(dept.voix.AUTRES + dept.voix_tpe.AUTRES + dept.voix_agri.AUTRES).toLocaleString()}</td>
-                                                        <td>${((dept.voix.AUTRES + dept.voix_tpe.AUTRES + dept.voix_agri.AUTRES) / (dept.total_scrutins)).toFixed(2)}%</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                });
-                
-                deptListContainer.innerHTML = html || `
-                    <div class="col-12">
-                        <div class="alert alert-info">
-                            <p class="mb-0">Aucun département ne correspond aux critères sélectionnés.</p>
-                        </div>
-                    </div>
-                `;
+                        Object.entries(data).forEach(([codeDept, dept]) => {
+                            // Vérifier que toutes les données nécessaires existent
+                            if (!dept || !dept.voix || !dept.voix.CSE || !dept.voix.TPE || !dept.voix.AGRI) {
+                                console.error(`Données manquantes pour le département ${codeDept}`, dept);
+                                return;
+                            }
+
+                            const totalCSE = Object.values(dept.voix.CSE).reduce((a, b) => a + (Number(b) || 0), 0);
+                            const totalTPE = Object.values(dept.voix.TPE).reduce((a, b) => a + (Number(b) || 0), 0);
+                            const totalAGRI = Object.values(dept.voix.AGRI).reduce((a, b) => a + (Number(b) || 0), 0);
+                            const totalGlobal = totalCSE + totalTPE + totalAGRI;
+
+                            const syndicats = ['CGT', 'CFDT', 'CGT-FO', 'CFTC', 'CFE-CGC', 'SOLIDAIRES', 'UNSA', 'AUTRES'];
+                            syndicats.forEach(syndicat => {
+                                const voixCSE = Number(dept.voix.CSE[syndicat]) || 0;
+                                const voixTPE = Number(dept.voix.TPE[syndicat]) || 0;
+                                const voixAGRI = Number(dept.voix.AGRI[syndicat]) || 0;
+                                const totalSyndicat = voixCSE + voixTPE + voixAGRI;
+
+                                const row = document.createElement('tr');
+                                row.innerHTML = `
+                                    <td>${codeDept}</td>
+                                    <td>${syndicat}</td>
+                                    <td>${Math.round(voixCSE).toLocaleString()}</td>
+                                    <td>${totalCSE > 0 ? ((voixCSE / totalCSE) * 100).toFixed(2) : '0.00'}%</td>
+                                    <td>${Math.round(voixTPE).toLocaleString()}</td>
+                                    <td>${totalTPE > 0 ? ((voixTPE / totalTPE) * 100).toFixed(2) : '0.00'}%</td>
+                                    <td>${Math.round(voixAGRI).toLocaleString()}</td>
+                                    <td>${totalAGRI > 0 ? ((voixAGRI / totalAGRI) * 100).toFixed(2) : '0.00'}%</td>
+                                    <td>${Math.round(totalSyndicat).toLocaleString()}</td>
+                                    <td>${totalGlobal > 0 ? ((totalSyndicat / totalGlobal) * 100).toFixed(2) : '0.00'}%</td>
+                                `;
+                                tbody.appendChild(row);
+                            });
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Erreur:', error);
+                    });
             }
             
             // Fonction pour mettre à jour le bouton actif
@@ -600,7 +422,7 @@
                 document.getElementById('select-departement').value = 'tous';
                 filtreActif = 'tous';
                 updateActiveFilterButton(this);
-                afficherDepartements(departements);
+                afficherDepartements();
             });
             
             // Gestionnaire d'événements pour le menu déroulant des départements
@@ -610,7 +432,7 @@
                     filtreActif = 'tous';
                     updateActiveFilterButton(document.getElementById('btn-tous'));
                 }
-                afficherDepartements(departements);
+                afficherDepartements();
             });
             
             // Filtres par pourcentage CGT
@@ -618,21 +440,21 @@
                 document.getElementById('select-departement').value = 'tous';
                 filtreActif = 'cgt-sup30';
                 updateActiveFilterButton(this);
-                afficherDepartements(departements);
+                afficherDepartements();
             });
             
             document.getElementById('btn-cgt-sup25').addEventListener('click', function() {
                 document.getElementById('select-departement').value = 'tous';
                 filtreActif = 'cgt-sup25';
                 updateActiveFilterButton(this);
-                afficherDepartements(departements);
+                afficherDepartements();
             });
             
             document.getElementById('btn-cgt-sup20').addEventListener('click', function() {
                 document.getElementById('select-departement').value = 'tous';
                 filtreActif = 'cgt-sup20';
                 updateActiveFilterButton(this);
-                afficherDepartements(departements);
+                afficherDepartements();
             });
             
             // Filtres par syndicat dominant
@@ -640,35 +462,35 @@
                 document.getElementById('select-departement').value = 'tous';
                 filtreActif = 'cgt-dom';
                 updateActiveFilterButton(this);
-                afficherDepartements(departements);
+                afficherDepartements();
             });
             
             document.getElementById('btn-cfdt-dom').addEventListener('click', function() {
                 document.getElementById('select-departement').value = 'tous';
                 filtreActif = 'cfdt-dom';
                 updateActiveFilterButton(this);
-                afficherDepartements(departements);
+                afficherDepartements();
             });
             
             document.getElementById('btn-cgt-fo-dom').addEventListener('click', function() {
                 document.getElementById('select-departement').value = 'tous';
                 filtreActif = 'cgt-fo-dom';
                 updateActiveFilterButton(this);
-                afficherDepartements(departements);
+                afficherDepartements();
             });
             
             document.getElementById('btn-cftc-dom').addEventListener('click', function() {
                 document.getElementById('select-departement').value = 'tous';
                 filtreActif = 'cftc-dom';
                 updateActiveFilterButton(this);
-                afficherDepartements(departements);
+                afficherDepartements();
             });
             
             document.getElementById('btn-cfe-cgc-dom').addEventListener('click', function() {
                 document.getElementById('select-departement').value = 'tous';
                 filtreActif = 'cfe-cgc-dom';
                 updateActiveFilterButton(this);
-                afficherDepartements(departements);
+                afficherDepartements();
             });
         });
     </script>

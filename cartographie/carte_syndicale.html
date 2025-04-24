@@ -183,29 +183,31 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-9">
-                <div id="map-container">
-                    <div id="tooltip" class="tooltip"></div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    <div id="map-container">
+                        <div id="tooltip" class="tooltip"></div>
+                    </div>
+                    <div class="legend mt-3">
+                        <h6>Légende</h6>
+                        <div id="color-legend"></div>
+                    </div>
                 </div>
-                <div class="legend mt-3">
-                    <h6>Légende</h6>
-                    <div id="color-legend"></div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="stats-box">
-                    <div class="stats-title">Statistiques Nationales</div>
-                    <div id="national-stats"></div>
-                </div>
-                <div class="stats-box">
-                    <h2 class="mt-4 mb-3">Top 5 Départements</h2>
-                    <div id="top-departements" class="mb-4 card border-secondary">
-                        <div class="card-header bg-secondary text-white">
-                            <h5 class="mb-0">Départements avec le plus de scrutins</h5>
-                        </div>
-                        <div class="card-body">
-                            <!-- Contenu généré dynamiquement -->
+                <div class="col-md-4">
+                    <div class="stats-box">
+                        <div class="stats-title">Statistiques Nationales</div>
+                        <div id="national-stats"></div>
+                    </div>
+                    <div class="stats-box">
+                        <h2 class="mt-4 mb-3">Top 5 Départements</h2>
+                        <div id="top-departements" class="mb-4 card border-secondary">
+                            <div class="card-header bg-secondary text-white">
+                                <h5 class="mb-0">Départements avec le plus de scrutins</h5>
+                            </div>
+                            <div class="card-body">
+                                <!-- Contenu généré dynamiquement -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -213,6 +215,7 @@
         </div>
 
         <div id="entreprises-container" class="mt-4"></div>
+        <div id="departement-details"></div>
     </div>
 
     <script>
@@ -407,6 +410,12 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
 
         // Charger les détails d'un département
         function loadDepartementDetails(codeDept) {
+            const detailsElement = document.getElementById('departement-details');
+            if (!detailsElement) {
+                console.error("L'élément 'departement-details' n'existe pas");
+                return;
+            }
+
             Promise.all([
                 fetch(`../json_data_ordonnees/resultats_combines.json`),
                 fetch(`../json_data/departement_${codeDept}.json`)
@@ -414,19 +423,19 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
             .then(responses => Promise.all(responses.map(r => r.json())))
             .then(([data_combines, data_pv]) => {
                 const dept = data_combines[codeDept];
-                if (!dept) {
-                    console.error(`Pas de données pour le département ${codeDept}`);
+                if (!dept || !dept.voix || !dept.voix.CSE || !dept.voix.TPE || !dept.voix.AGRI) {
+                    console.error(`Données manquantes pour le département ${codeDept}`, dept);
                     return;
                 }
 
                 // Calculer les totaux pour chaque type
-                const totalCSE = Object.values(dept.voix.CSE).reduce((a, b) => a + b, 0);
-                const totalTPE = Object.values(dept.voix.TPE).reduce((a, b) => a + b, 0);
-                const totalAGRI = Object.values(dept.voix.AGRI).reduce((a, b) => a + b, 0);
+                const totalCSE = Object.values(dept.voix.CSE).reduce((a, b) => a + (Number(b) || 0), 0);
+                const totalTPE = Object.values(dept.voix.TPE).reduce((a, b) => a + (Number(b) || 0), 0);
+                const totalAGRI = Object.values(dept.voix.AGRI).reduce((a, b) => a + (Number(b) || 0), 0);
                 const totalGlobal = totalCSE + totalTPE + totalAGRI;
 
-                // Générer le HTML pour les détails du département
-                document.getElementById('departement-details').innerHTML = `
+                // Générer le HTML
+                detailsElement.innerHTML = `
                     <div class="card mb-4">
                         <div class="card-header">
                             <h4 class="mb-0">Département ${codeDept}</h4>
@@ -915,7 +924,7 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
                 html += `
                     <div class="legend-item">
                         <div class="legend-color" style="background-color: ${color};"></div>
-                        <div>${label}</div>
+                        <span>${label}</span>
                     </div>
                 `;
             }
