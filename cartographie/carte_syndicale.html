@@ -791,7 +791,7 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
             
             for (const dept of top5) {
                 const badgeClass = selectedSyndicat === 'all' ? 'bg-primary' : 'bg-danger';
-                const valueDisplay = selectedSyndicat === 'all' ? dept.value.toLocaleString() : dept.value.toFixed(2) + '%';
+                const valueDisplay = selectedSyndicat === 'all' ? (dept.value ? dept.value.toLocaleString() : '0') : (dept.value ? dept.value.toFixed(2) : '0') + '%';
                 
                 html += `
                     <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" onclick="event.preventDefault(); showDepartementDetails('${dept.code}')">
