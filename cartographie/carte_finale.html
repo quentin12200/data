@@ -328,8 +328,35 @@
             const deptListContainer = document.getElementById('dept-list');
             let filtreActif = 'tous';
             
-            // Données des départements (tous les départements)
-            const departements = [
+            // Charger les données depuis le fichier JSON ordonné
+            let departements = [];
+            
+            fetch('../json_data_ordonnees/carte_data.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erreur lors du chargement des données');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    departements = data;
+                    
+                    // Afficher les départements
+                    afficherDepartements(departements);
+                })
+                .catch(error => {
+                    console.error('Erreur:', error);
+                    deptListContainer.innerHTML = `
+                        <div class="col-12">
+                            <div class="alert alert-danger">
+                                <p class="mb-0">Erreur lors du chargement des données: ${error.message}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+            
+            // Exemple de structure des données (pour référence)
+            /*
                 {
                     code: "01",
                     nom: "Ain",
@@ -564,7 +591,7 @@
                     pourcentages: { CGT: 30.0, CFDT: 25.0, "CGT-FO": 15.0 },
                     syndicat_dominant: "CGT"
                 }
-            ];
+            */
             
             // Fonction pour afficher les départements
             function afficherDepartements(depts) {

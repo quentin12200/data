@@ -1,0 +1,29 @@
+{
+  "nom": "Guadeloupe",
+  "total_scrutins": 394,
+  "total_inscrits": 25390.0,
+  "total_votants": 18487.0,
+  "total_sve": 16946.0,
+  "voix": {
+    "CGT": 352,
+    "CFDT": 1488,
+    "CGT-FO": 1839,
+    "CFTC": 686,
+    "CFE-CGC": 561,
+    "SOLIDAIRES": 978,
+    "UNSA": 984,
+    "AUTRES": 10058
+  },
+  "pourcentages": {
+    "CGT": 2.08,
+    "CFDT": 8.78,
+    "CGT-FO": 10.85,
+    "CFTC": 4.05,
+    "CFE-CGC": 3.31,
+    "SOLIDAIRES": 5.77,
+    "UNSA": 5.81,
+    "AUTRES": 59.35
+  },
+  "syndicat_dominant": "AUTRES",
+  "code": "971"
+}

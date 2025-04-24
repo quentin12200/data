@@ -1,0 +1,29 @@
+{
+  "nom": "Hauts-de-Seine",
+  "total_scrutins": 3595,
+  "total_inscrits": 974022.0,
+  "total_votants": 491568.0,
+  "total_sve": 472469.68999999994,
+  "voix": {
+    "CGT": 68352,
+    "CFDT": 119389,
+    "CGT-FO": 54252,
+    "CFTC": 57676,
+    "CFE-CGC": 107069,
+    "SOLIDAIRES": 9517,
+    "UNSA": 41573,
+    "AUTRES": 14641
+  },
+  "pourcentages": {
+    "CGT": 14.47,
+    "CFDT": 25.27,
+    "CGT-FO": 11.48,
+    "CFTC": 12.21,
+    "CFE-CGC": 22.66,
+    "SOLIDAIRES": 2.01,
+    "UNSA": 8.8,
+    "AUTRES": 3.1
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "92"
+}

@@ -1,0 +1,29 @@
+{
+  "nom": "Haute-Saône",
+  "total_scrutins": 160,
+  "total_inscrits": 16322.0,
+  "total_votants": 9705.0,
+  "total_sve": 8799.0,
+  "voix": {
+    "CGT": 2283,
+    "CFDT": 2775,
+    "CGT-FO": 2112,
+    "CFTC": 919,
+    "CFE-CGC": 541,
+    "SOLIDAIRES": 0,
+    "UNSA": 29,
+    "AUTRES": 140
+  },
+  "pourcentages": {
+    "CGT": 25.95,
+    "CFDT": 31.54,
+    "CGT-FO": 24.0,
+    "CFTC": 10.44,
+    "CFE-CGC": 6.15,
+    "SOLIDAIRES": 0.0,
+    "UNSA": 0.33,
+    "AUTRES": 1.59
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "70"
+}

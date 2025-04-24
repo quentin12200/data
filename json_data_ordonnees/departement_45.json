@@ -1,0 +1,29 @@
+{
+  "nom": "Loiret",
+  "total_scrutins": 612,
+  "total_inscrits": 96068.0,
+  "total_votants": 50104.0,
+  "total_sve": 46813.979999999996,
+  "voix": {
+    "CGT": 9501,
+    "CFDT": 13954,
+    "CGT-FO": 7342,
+    "CFTC": 2734,
+    "CFE-CGC": 5833,
+    "SOLIDAIRES": 2713,
+    "UNSA": 3788,
+    "AUTRES": 950
+  },
+  "pourcentages": {
+    "CGT": 20.29,
+    "CFDT": 29.81,
+    "CGT-FO": 15.68,
+    "CFTC": 5.84,
+    "CFE-CGC": 12.46,
+    "SOLIDAIRES": 5.8,
+    "UNSA": 8.09,
+    "AUTRES": 2.03
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "45"
+}

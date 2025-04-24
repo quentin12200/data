@@ -1,0 +1,29 @@
+{
+  "nom": "Haute-Savoie",
+  "total_scrutins": 543,
+  "total_inscrits": 69026.0,
+  "total_votants": 43506.0,
+  "total_sve": 40638.0,
+  "voix": {
+    "CGT": 5313,
+    "CFDT": 11647,
+    "CGT-FO": 5881,
+    "CFTC": 2282,
+    "CFE-CGC": 5518,
+    "SOLIDAIRES": 1774,
+    "UNSA": 1675,
+    "AUTRES": 6548
+  },
+  "pourcentages": {
+    "CGT": 13.07,
+    "CFDT": 28.66,
+    "CGT-FO": 14.47,
+    "CFTC": 5.62,
+    "CFE-CGC": 13.58,
+    "SOLIDAIRES": 4.37,
+    "UNSA": 4.12,
+    "AUTRES": 16.11
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "74"
+}

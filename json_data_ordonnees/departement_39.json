@@ -1,0 +1,29 @@
+{
+  "nom": "Jura",
+  "total_scrutins": 184,
+  "total_inscrits": 17538.0,
+  "total_votants": 9597.0,
+  "total_sve": 8745.0,
+  "voix": {
+    "CGT": 2335,
+    "CFDT": 3315,
+    "CGT-FO": 1102,
+    "CFTC": 527,
+    "CFE-CGC": 622,
+    "SOLIDAIRES": 148,
+    "UNSA": 405,
+    "AUTRES": 291
+  },
+  "pourcentages": {
+    "CGT": 26.7,
+    "CFDT": 37.91,
+    "CGT-FO": 12.6,
+    "CFTC": 6.03,
+    "CFE-CGC": 7.11,
+    "SOLIDAIRES": 1.69,
+    "UNSA": 4.63,
+    "AUTRES": 3.33
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "39"
+}

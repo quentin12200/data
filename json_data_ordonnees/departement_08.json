@@ -1,0 +1,29 @@
+{
+  "nom": "Ardennes",
+  "total_scrutins": 240,
+  "total_inscrits": 18801.0,
+  "total_votants": 11504.0,
+  "total_sve": 10621.0,
+  "voix": {
+    "CGT": 2920,
+    "CFDT": 2123,
+    "CGT-FO": 3026,
+    "CFTC": 961,
+    "CFE-CGC": 785,
+    "SOLIDAIRES": 390,
+    "UNSA": 383,
+    "AUTRES": 33
+  },
+  "pourcentages": {
+    "CGT": 27.49,
+    "CFDT": 19.99,
+    "CGT-FO": 28.49,
+    "CFTC": 9.05,
+    "CFE-CGC": 7.39,
+    "SOLIDAIRES": 3.67,
+    "UNSA": 3.61,
+    "AUTRES": 0.31
+  },
+  "syndicat_dominant": "CGT-FO",
+  "code": "08"
+}

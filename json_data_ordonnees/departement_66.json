@@ -1,0 +1,29 @@
+{
+  "nom": "Pyrénées-Orientales",
+  "total_scrutins": 307,
+  "total_inscrits": 31149.0,
+  "total_votants": 17184.0,
+  "total_sve": 15895.0,
+  "voix": {
+    "CGT": 3539,
+    "CFDT": 4266,
+    "CGT-FO": 3869,
+    "CFTC": 1330,
+    "CFE-CGC": 1696,
+    "SOLIDAIRES": 425,
+    "UNSA": 511,
+    "AUTRES": 260
+  },
+  "pourcentages": {
+    "CGT": 22.26,
+    "CFDT": 26.84,
+    "CGT-FO": 24.34,
+    "CFTC": 8.37,
+    "CFE-CGC": 10.67,
+    "SOLIDAIRES": 2.67,
+    "UNSA": 3.21,
+    "AUTRES": 1.64
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "66"
+}

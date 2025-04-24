@@ -1,0 +1,29 @@
+{
+  "nom": "Haute-Loire",
+  "total_scrutins": 166,
+  "total_inscrits": 13987.0,
+  "total_votants": 8207.0,
+  "total_sve": 7313.0,
+  "voix": {
+    "CGT": 3566,
+    "CFDT": 1336,
+    "CGT-FO": 1652,
+    "CFTC": 98,
+    "CFE-CGC": 481,
+    "SOLIDAIRES": 0,
+    "UNSA": 61,
+    "AUTRES": 118
+  },
+  "pourcentages": {
+    "CGT": 48.77,
+    "CFDT": 18.27,
+    "CGT-FO": 22.59,
+    "CFTC": 1.34,
+    "CFE-CGC": 6.58,
+    "SOLIDAIRES": 0.0,
+    "UNSA": 0.83,
+    "AUTRES": 1.61
+  },
+  "syndicat_dominant": "CGT",
+  "code": "43"
+}

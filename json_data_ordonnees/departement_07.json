@@ -1,0 +1,29 @@
+{
+  "nom": "Ardèche",
+  "total_scrutins": 201,
+  "total_inscrits": 22643.0,
+  "total_votants": 13059.0,
+  "total_sve": 12009.970000000001,
+  "voix": {
+    "CGT": 4711,
+    "CFDT": 3186,
+    "CGT-FO": 1599,
+    "CFTC": 831,
+    "CFE-CGC": 1096,
+    "SOLIDAIRES": 316,
+    "UNSA": 171,
+    "AUTRES": 100
+  },
+  "pourcentages": {
+    "CGT": 39.23,
+    "CFDT": 26.53,
+    "CGT-FO": 13.31,
+    "CFTC": 6.92,
+    "CFE-CGC": 9.13,
+    "SOLIDAIRES": 2.63,
+    "UNSA": 1.42,
+    "AUTRES": 0.83
+  },
+  "syndicat_dominant": "CGT",
+  "code": "07"
+}

@@ -1,0 +1,29 @@
+{
+  "nom": "Morbihan",
+  "total_scrutins": 516,
+  "total_inscrits": 58866.0,
+  "total_votants": 31930.0,
+  "total_sve": 29150.010000000002,
+  "voix": {
+    "CGT": 7101,
+    "CFDT": 13608,
+    "CGT-FO": 3067,
+    "CFTC": 2137,
+    "CFE-CGC": 1519,
+    "SOLIDAIRES": 633,
+    "UNSA": 790,
+    "AUTRES": 295
+  },
+  "pourcentages": {
+    "CGT": 24.36,
+    "CFDT": 46.68,
+    "CGT-FO": 10.52,
+    "CFTC": 7.33,
+    "CFE-CGC": 5.21,
+    "SOLIDAIRES": 2.17,
+    "UNSA": 2.71,
+    "AUTRES": 1.01
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "56"
+}

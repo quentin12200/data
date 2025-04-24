@@ -1,0 +1,29 @@
+{
+  "nom": "Cher",
+  "total_scrutins": 214,
+  "total_inscrits": 25322.0,
+  "total_votants": 13785.0,
+  "total_sve": 12567.0,
+  "voix": {
+    "CGT": 3540,
+    "CFDT": 4250,
+    "CGT-FO": 1868,
+    "CFTC": 459,
+    "CFE-CGC": 1660,
+    "SOLIDAIRES": 366,
+    "UNSA": 219,
+    "AUTRES": 205
+  },
+  "pourcentages": {
+    "CGT": 28.17,
+    "CFDT": 33.82,
+    "CGT-FO": 14.86,
+    "CFTC": 3.65,
+    "CFE-CGC": 13.21,
+    "SOLIDAIRES": 2.91,
+    "UNSA": 1.74,
+    "AUTRES": 1.63
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "18"
+}

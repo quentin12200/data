@@ -1,0 +1,29 @@
+{
+  "nom": "Dordogne",
+  "total_scrutins": 254,
+  "total_inscrits": 25756.0,
+  "total_votants": 13680.0,
+  "total_sve": 12424.0,
+  "voix": {
+    "CGT": 4441,
+    "CFDT": 3729,
+    "CGT-FO": 2249,
+    "CFTC": 585,
+    "CFE-CGC": 760,
+    "SOLIDAIRES": 0,
+    "UNSA": 492,
+    "AUTRES": 168
+  },
+  "pourcentages": {
+    "CGT": 35.75,
+    "CFDT": 30.01,
+    "CGT-FO": 18.1,
+    "CFTC": 4.71,
+    "CFE-CGC": 6.12,
+    "SOLIDAIRES": 0.0,
+    "UNSA": 3.96,
+    "AUTRES": 1.35
+  },
+  "syndicat_dominant": "CGT",
+  "code": "24"
+}

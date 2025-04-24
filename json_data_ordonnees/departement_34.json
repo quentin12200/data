@@ -1,0 +1,29 @@
+{
+  "nom": "Hérault",
+  "total_scrutins": 903,
+  "total_inscrits": 94908.0,
+  "total_votants": 56701.0,
+  "total_sve": 53071.96,
+  "voix": {
+    "CGT": 15487,
+    "CFDT": 12542,
+    "CGT-FO": 10479,
+    "CFTC": 3837,
+    "CFE-CGC": 5476,
+    "SOLIDAIRES": 1253,
+    "UNSA": 2790,
+    "AUTRES": 1209
+  },
+  "pourcentages": {
+    "CGT": 29.18,
+    "CFDT": 23.63,
+    "CGT-FO": 19.74,
+    "CFTC": 7.23,
+    "CFE-CGC": 10.32,
+    "SOLIDAIRES": 2.36,
+    "UNSA": 5.26,
+    "AUTRES": 2.28
+  },
+  "syndicat_dominant": "CGT",
+  "code": "34"
+}

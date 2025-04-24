@@ -1,0 +1,29 @@
+{
+  "nom": "Loire-Atlantique",
+  "total_scrutins": 1384,
+  "total_inscrits": 217073.0,
+  "total_votants": 116574.0,
+  "total_sve": 109758.0,
+  "voix": {
+    "CGT": 24044,
+    "CFDT": 38453,
+    "CGT-FO": 15684,
+    "CFTC": 7054,
+    "CFE-CGC": 14607,
+    "SOLIDAIRES": 4125,
+    "UNSA": 3717,
+    "AUTRES": 2075
+  },
+  "pourcentages": {
+    "CGT": 21.91,
+    "CFDT": 35.03,
+    "CGT-FO": 14.29,
+    "CFTC": 6.43,
+    "CFE-CGC": 13.31,
+    "SOLIDAIRES": 3.76,
+    "UNSA": 3.39,
+    "AUTRES": 1.89
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "44"
+}

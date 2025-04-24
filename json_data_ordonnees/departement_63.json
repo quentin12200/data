@@ -1,0 +1,29 @@
+{
+  "nom": "Puy-de-Dôme",
+  "total_scrutins": 576,
+  "total_inscrits": 71324.0,
+  "total_votants": 42340.0,
+  "total_sve": 39447.990000000005,
+  "voix": {
+    "CGT": 11415,
+    "CFDT": 10773,
+    "CGT-FO": 5373,
+    "CFTC": 2083,
+    "CFE-CGC": 5805,
+    "SOLIDAIRES": 1962,
+    "UNSA": 1772,
+    "AUTRES": 264
+  },
+  "pourcentages": {
+    "CGT": 28.94,
+    "CFDT": 27.31,
+    "CGT-FO": 13.62,
+    "CFTC": 5.28,
+    "CFE-CGC": 14.72,
+    "SOLIDAIRES": 4.97,
+    "UNSA": 4.49,
+    "AUTRES": 0.67
+  },
+  "syndicat_dominant": "CGT",
+  "code": "63"
+}

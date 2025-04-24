@@ -1,0 +1,29 @@
+{
+  "nom": "Côte-d'Or",
+  "total_scrutins": 587,
+  "total_inscrits": 75528.0,
+  "total_votants": 41373.0,
+  "total_sve": 38834.98,
+  "voix": {
+    "CGT": 7700,
+    "CFDT": 11893,
+    "CGT-FO": 6191,
+    "CFTC": 3932,
+    "CFE-CGC": 4145,
+    "SOLIDAIRES": 1136,
+    "UNSA": 2874,
+    "AUTRES": 964
+  },
+  "pourcentages": {
+    "CGT": 19.83,
+    "CFDT": 30.62,
+    "CGT-FO": 15.94,
+    "CFTC": 10.12,
+    "CFE-CGC": 10.67,
+    "SOLIDAIRES": 2.93,
+    "UNSA": 7.4,
+    "AUTRES": 2.48
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "21"
+}

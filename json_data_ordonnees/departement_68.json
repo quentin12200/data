@@ -1,0 +1,29 @@
+{
+  "nom": "Haut-Rhin",
+  "total_scrutins": 742,
+  "total_inscrits": 72268.0,
+  "total_votants": 45504.0,
+  "total_sve": 42884.0,
+  "voix": {
+    "CGT": 7392,
+    "CFDT": 11542,
+    "CGT-FO": 5860,
+    "CFTC": 10604,
+    "CFE-CGC": 5257,
+    "SOLIDAIRES": 197,
+    "UNSA": 1738,
+    "AUTRES": 294
+  },
+  "pourcentages": {
+    "CGT": 17.24,
+    "CFDT": 26.91,
+    "CGT-FO": 13.66,
+    "CFTC": 24.73,
+    "CFE-CGC": 12.26,
+    "SOLIDAIRES": 0.46,
+    "UNSA": 4.05,
+    "AUTRES": 0.69
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "68"
+}

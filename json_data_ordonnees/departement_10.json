@@ -1,0 +1,29 @@
+{
+  "nom": "Aube",
+  "total_scrutins": 246,
+  "total_inscrits": 26029.0,
+  "total_votants": 13894.0,
+  "total_sve": 12751.0,
+  "voix": {
+    "CGT": 3545,
+    "CFDT": 3661,
+    "CGT-FO": 1650,
+    "CFTC": 1079,
+    "CFE-CGC": 1527,
+    "SOLIDAIRES": 151,
+    "UNSA": 687,
+    "AUTRES": 451
+  },
+  "pourcentages": {
+    "CGT": 27.8,
+    "CFDT": 28.71,
+    "CGT-FO": 12.94,
+    "CFTC": 8.46,
+    "CFE-CGC": 11.98,
+    "SOLIDAIRES": 1.18,
+    "UNSA": 5.39,
+    "AUTRES": 3.54
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "10"
+}

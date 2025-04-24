@@ -1,0 +1,29 @@
+{
+  "nom": "Saint-Martin",
+  "total_scrutins": 13,
+  "total_inscrits": 480.0,
+  "total_votants": 365.0,
+  "total_sve": 337.0,
+  "voix": {
+    "CGT": 0,
+    "CFDT": 120,
+    "CGT-FO": 92,
+    "CFTC": 0,
+    "CFE-CGC": 0,
+    "SOLIDAIRES": 24,
+    "UNSA": 0,
+    "AUTRES": 100
+  },
+  "pourcentages": {
+    "CGT": 0.0,
+    "CFDT": 35.71,
+    "CGT-FO": 27.38,
+    "CFTC": 0.0,
+    "CFE-CGC": 0.0,
+    "SOLIDAIRES": 7.14,
+    "UNSA": 0.0,
+    "AUTRES": 29.76
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "978"
+}

@@ -1,0 +1,29 @@
+{
+  "nom": "Mayenne",
+  "total_scrutins": 279,
+  "total_inscrits": 33364.0,
+  "total_votants": 18096.0,
+  "total_sve": 16507.0,
+  "voix": {
+    "CGT": 2818,
+    "CFDT": 5231,
+    "CGT-FO": 2757,
+    "CFTC": 3408,
+    "CFE-CGC": 1456,
+    "SOLIDAIRES": 306,
+    "UNSA": 385,
+    "AUTRES": 147
+  },
+  "pourcentages": {
+    "CGT": 17.07,
+    "CFDT": 31.69,
+    "CGT-FO": 16.7,
+    "CFTC": 20.64,
+    "CFE-CGC": 8.82,
+    "SOLIDAIRES": 1.85,
+    "UNSA": 2.33,
+    "AUTRES": 0.89
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "53"
+}

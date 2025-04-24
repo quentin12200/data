@@ -1,0 +1,29 @@
+{
+  "nom": "Aveyron",
+  "total_scrutins": 249,
+  "total_inscrits": 21151.0,
+  "total_votants": 12542.0,
+  "total_sve": 11354.97,
+  "voix": {
+    "CGT": 3362,
+    "CFDT": 1799,
+    "CGT-FO": 3993,
+    "CFTC": 256,
+    "CFE-CGC": 902,
+    "SOLIDAIRES": 485,
+    "UNSA": 426,
+    "AUTRES": 131
+  },
+  "pourcentages": {
+    "CGT": 29.61,
+    "CFDT": 15.84,
+    "CGT-FO": 35.17,
+    "CFTC": 2.25,
+    "CFE-CGC": 7.94,
+    "SOLIDAIRES": 4.27,
+    "UNSA": 3.75,
+    "AUTRES": 1.15
+  },
+  "syndicat_dominant": "CGT-FO",
+  "code": "12"
+}

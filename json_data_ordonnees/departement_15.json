@@ -1,0 +1,29 @@
+{
+  "nom": "Cantal",
+  "total_scrutins": 98,
+  "total_inscrits": 8328.0,
+  "total_votants": 5302.0,
+  "total_sve": 4785.0,
+  "voix": {
+    "CGT": 1820,
+    "CFDT": 1141,
+    "CGT-FO": 1182,
+    "CFTC": 285,
+    "CFE-CGC": 181,
+    "SOLIDAIRES": 94,
+    "UNSA": 69,
+    "AUTRES": 12
+  },
+  "pourcentages": {
+    "CGT": 38.04,
+    "CFDT": 23.85,
+    "CGT-FO": 24.71,
+    "CFTC": 5.96,
+    "CFE-CGC": 3.78,
+    "SOLIDAIRES": 1.96,
+    "UNSA": 1.44,
+    "AUTRES": 0.25
+  },
+  "syndicat_dominant": "CGT",
+  "code": "15"
+}

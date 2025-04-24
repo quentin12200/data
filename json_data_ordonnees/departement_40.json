@@ -1,0 +1,29 @@
+{
+  "nom": "Landes",
+  "total_scrutins": 272,
+  "total_inscrits": 27978.0,
+  "total_votants": 15402.0,
+  "total_sve": 14136.0,
+  "voix": {
+    "CGT": 3903,
+    "CFDT": 4343,
+    "CGT-FO": 2671,
+    "CFTC": 399,
+    "CFE-CGC": 1632,
+    "SOLIDAIRES": 158,
+    "UNSA": 592,
+    "AUTRES": 438
+  },
+  "pourcentages": {
+    "CGT": 27.61,
+    "CFDT": 30.72,
+    "CGT-FO": 18.9,
+    "CFTC": 2.82,
+    "CFE-CGC": 11.54,
+    "SOLIDAIRES": 1.12,
+    "UNSA": 4.19,
+    "AUTRES": 3.1
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "40"
+}

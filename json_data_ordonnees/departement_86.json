@@ -1,0 +1,29 @@
+{
+  "nom": "Vienne",
+  "total_scrutins": 332,
+  "total_inscrits": 34732.0,
+  "total_votants": 21095.0,
+  "total_sve": 19499.0,
+  "voix": {
+    "CGT": 6447,
+    "CFDT": 5245,
+    "CGT-FO": 2554,
+    "CFTC": 1550,
+    "CFE-CGC": 1744,
+    "SOLIDAIRES": 1368,
+    "UNSA": 498,
+    "AUTRES": 93
+  },
+  "pourcentages": {
+    "CGT": 33.06,
+    "CFDT": 26.9,
+    "CGT-FO": 13.1,
+    "CFTC": 7.95,
+    "CFE-CGC": 8.94,
+    "SOLIDAIRES": 7.02,
+    "UNSA": 2.55,
+    "AUTRES": 0.48
+  },
+  "syndicat_dominant": "CGT",
+  "code": "86"
+}

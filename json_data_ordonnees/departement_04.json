@@ -1,0 +1,29 @@
+{
+  "nom": "Alpes-de-Haute-Provence",
+  "total_scrutins": 112,
+  "total_inscrits": 51044.0,
+  "total_votants": 6975.0,
+  "total_sve": 6576.0,
+  "voix": {
+    "CGT": 1625,
+    "CFDT": 887,
+    "CGT-FO": 1390,
+    "CFTC": 1231,
+    "CFE-CGC": 969,
+    "SOLIDAIRES": 27,
+    "UNSA": 447,
+    "AUTRES": 0
+  },
+  "pourcentages": {
+    "CGT": 24.71,
+    "CFDT": 13.49,
+    "CGT-FO": 21.14,
+    "CFTC": 18.72,
+    "CFE-CGC": 14.74,
+    "SOLIDAIRES": 0.41,
+    "UNSA": 6.8,
+    "AUTRES": 0.0
+  },
+  "syndicat_dominant": "CGT",
+  "code": "04"
+}

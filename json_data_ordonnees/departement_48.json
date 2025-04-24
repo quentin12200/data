@@ -1,0 +1,29 @@
+{
+  "nom": "Lozère",
+  "total_scrutins": 76,
+  "total_inscrits": 5817.0,
+  "total_votants": 3988.0,
+  "total_sve": 3664.0,
+  "voix": {
+    "CGT": 1074,
+    "CFDT": 1383,
+    "CGT-FO": 854,
+    "CFTC": 143,
+    "CFE-CGC": 72,
+    "SOLIDAIRES": 105,
+    "UNSA": 28,
+    "AUTRES": 5
+  },
+  "pourcentages": {
+    "CGT": 29.31,
+    "CFDT": 37.75,
+    "CGT-FO": 23.31,
+    "CFTC": 3.9,
+    "CFE-CGC": 1.97,
+    "SOLIDAIRES": 2.87,
+    "UNSA": 0.76,
+    "AUTRES": 0.14
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "48"
+}

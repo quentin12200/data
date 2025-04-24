@@ -1,0 +1,29 @@
+{
+  "nom": "Pas-de-Calais",
+  "total_scrutins": 1235,
+  "total_inscrits": 128859.0,
+  "total_votants": 81146.0,
+  "total_sve": 75130.99,
+  "voix": {
+    "CGT": 19444,
+    "CFDT": 19924,
+    "CGT-FO": 13993,
+    "CFTC": 9303,
+    "CFE-CGC": 4439,
+    "SOLIDAIRES": 3008,
+    "UNSA": 4283,
+    "AUTRES": 738
+  },
+  "pourcentages": {
+    "CGT": 25.88,
+    "CFDT": 26.52,
+    "CGT-FO": 18.62,
+    "CFTC": 12.38,
+    "CFE-CGC": 5.91,
+    "SOLIDAIRES": 4.0,
+    "UNSA": 5.7,
+    "AUTRES": 0.98
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "62"
+}

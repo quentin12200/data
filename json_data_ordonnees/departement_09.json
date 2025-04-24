@@ -1,0 +1,29 @@
+{
+  "nom": "Ariège",
+  "total_scrutins": 92,
+  "total_inscrits": 7638.0,
+  "total_votants": 5151.0,
+  "total_sve": 4475.0,
+  "voix": {
+    "CGT": 2266,
+    "CFDT": 640,
+    "CGT-FO": 708,
+    "CFTC": 311,
+    "CFE-CGC": 313,
+    "SOLIDAIRES": 237,
+    "UNSA": 0,
+    "AUTRES": 0
+  },
+  "pourcentages": {
+    "CGT": 50.64,
+    "CFDT": 14.3,
+    "CGT-FO": 15.82,
+    "CFTC": 6.95,
+    "CFE-CGC": 6.99,
+    "SOLIDAIRES": 5.3,
+    "UNSA": 0.0,
+    "AUTRES": 0.0
+  },
+  "syndicat_dominant": "CGT",
+  "code": "09"
+}

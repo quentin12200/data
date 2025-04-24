@@ -1,0 +1,29 @@
+{
+  "nom": "Corse-du-Sud",
+  "total_scrutins": 144,
+  "total_inscrits": 13100.0,
+  "total_votants": 10157.0,
+  "total_sve": 9701.0,
+  "voix": {
+    "CGT": 2779,
+    "CFDT": 618,
+    "CGT-FO": 599,
+    "CFTC": 22,
+    "CFE-CGC": 628,
+    "SOLIDAIRES": 57,
+    "UNSA": 393,
+    "AUTRES": 4606
+  },
+  "pourcentages": {
+    "CGT": 28.64,
+    "CFDT": 6.37,
+    "CGT-FO": 6.17,
+    "CFTC": 0.23,
+    "CFE-CGC": 6.47,
+    "SOLIDAIRES": 0.59,
+    "UNSA": 4.05,
+    "AUTRES": 47.47
+  },
+  "syndicat_dominant": "AUTRES",
+  "code": "2A"
+}

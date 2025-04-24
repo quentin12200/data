@@ -1,0 +1,29 @@
+{
+  "nom": "Saint-Pierre-et-Miquelon",
+  "total_scrutins": 10,
+  "total_inscrits": 288.0,
+  "total_votants": 205.0,
+  "total_sve": 198.0,
+  "voix": {
+    "CGT": 20,
+    "CFDT": 69,
+    "CGT-FO": 54,
+    "CFTC": 36,
+    "CFE-CGC": 7,
+    "SOLIDAIRES": 8,
+    "UNSA": 4,
+    "AUTRES": 0
+  },
+  "pourcentages": {
+    "CGT": 10.1,
+    "CFDT": 34.85,
+    "CGT-FO": 27.27,
+    "CFTC": 18.18,
+    "CFE-CGC": 3.54,
+    "SOLIDAIRES": 4.04,
+    "UNSA": 2.02,
+    "AUTRES": 0.0
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "975"
+}

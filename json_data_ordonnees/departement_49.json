@@ -1,0 +1,29 @@
+{
+  "nom": "Maine-et-Loire",
+  "total_scrutins": 705,
+  "total_inscrits": 88226.0,
+  "total_votants": 46410.0,
+  "total_sve": 42758.979999999996,
+  "voix": {
+    "CGT": 7403,
+    "CFDT": 17542,
+    "CGT-FO": 6055,
+    "CFTC": 5394,
+    "CFE-CGC": 2908,
+    "SOLIDAIRES": 1392,
+    "UNSA": 1577,
+    "AUTRES": 487
+  },
+  "pourcentages": {
+    "CGT": 17.31,
+    "CFDT": 41.03,
+    "CGT-FO": 14.16,
+    "CFTC": 12.62,
+    "CFE-CGC": 6.8,
+    "SOLIDAIRES": 3.26,
+    "UNSA": 3.69,
+    "AUTRES": 1.14
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "49"
+}

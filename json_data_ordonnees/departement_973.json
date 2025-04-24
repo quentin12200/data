@@ -1,0 +1,29 @@
+{
+  "nom": "Guyane",
+  "total_scrutins": 162,
+  "total_inscrits": 8457.0,
+  "total_votants": 5863.0,
+  "total_sve": 5493.0,
+  "voix": {
+    "CGT": 2297,
+    "CFDT": 624,
+    "CGT-FO": 744,
+    "CFTC": 722,
+    "CFE-CGC": 510,
+    "SOLIDAIRES": 259,
+    "UNSA": 51,
+    "AUTRES": 284
+  },
+  "pourcentages": {
+    "CGT": 41.83,
+    "CFDT": 11.36,
+    "CGT-FO": 13.55,
+    "CFTC": 13.15,
+    "CFE-CGC": 9.29,
+    "SOLIDAIRES": 4.72,
+    "UNSA": 0.93,
+    "AUTRES": 5.17
+  },
+  "syndicat_dominant": "CGT",
+  "code": "973"
+}

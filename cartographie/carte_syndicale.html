@@ -235,8 +235,8 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
         // Charger les données
         function loadData() {
             Promise.all([
-                fetch('../json_data/statistiques_nationales.json'),
-                fetch('../json_data/resultats_departements.json'),
+                fetch('../json_data_ordonnees/stats_regions.json'),
+                fetch('../json_data_ordonnees/resultats_departements.json'),
                 fetch('../assets/france-departements.json')
             ])
             .then(responses => {

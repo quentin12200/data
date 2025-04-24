@@ -1,0 +1,29 @@
+{
+  "nom": "Bas-Rhin",
+  "total_scrutins": 1312,
+  "total_inscrits": 193162.0,
+  "total_votants": 108527.0,
+  "total_sve": 102732.0,
+  "voix": {
+    "CGT": 15306,
+    "CFDT": 29545,
+    "CGT-FO": 12816,
+    "CFTC": 22399,
+    "CFE-CGC": 11219,
+    "SOLIDAIRES": 2187,
+    "UNSA": 6052,
+    "AUTRES": 3208
+  },
+  "pourcentages": {
+    "CGT": 14.9,
+    "CFDT": 28.76,
+    "CGT-FO": 12.48,
+    "CFTC": 21.8,
+    "CFE-CGC": 10.92,
+    "SOLIDAIRES": 2.13,
+    "UNSA": 5.89,
+    "AUTRES": 3.12
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "67"
+}

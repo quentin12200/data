@@ -1,0 +1,29 @@
+{
+  "nom": "Hautes-Alpes",
+  "total_scrutins": 88,
+  "total_inscrits": 5871.0,
+  "total_votants": 3106.0,
+  "total_sve": 2803.0,
+  "voix": {
+    "CGT": 984,
+    "CFDT": 914,
+    "CGT-FO": 686,
+    "CFTC": 42,
+    "CFE-CGC": 134,
+    "SOLIDAIRES": 0,
+    "UNSA": 43,
+    "AUTRES": 0
+  },
+  "pourcentages": {
+    "CGT": 35.11,
+    "CFDT": 32.61,
+    "CGT-FO": 24.47,
+    "CFTC": 1.5,
+    "CFE-CGC": 4.78,
+    "SOLIDAIRES": 0.0,
+    "UNSA": 1.53,
+    "AUTRES": 0.0
+  },
+  "syndicat_dominant": "CGT",
+  "code": "05"
+}

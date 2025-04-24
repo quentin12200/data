@@ -1,0 +1,29 @@
+{
+  "nom": "Val-de-Marne",
+  "total_scrutins": 1176,
+  "total_inscrits": 181589.0,
+  "total_votants": 105403.0,
+  "total_sve": 99931.95000000001,
+  "voix": {
+    "CGT": 21046,
+    "CFDT": 26343,
+    "CGT-FO": 13339,
+    "CFTC": 11288,
+    "CFE-CGC": 14032,
+    "SOLIDAIRES": 4572,
+    "UNSA": 6810,
+    "AUTRES": 2503
+  },
+  "pourcentages": {
+    "CGT": 21.06,
+    "CFDT": 26.36,
+    "CGT-FO": 13.35,
+    "CFTC": 11.3,
+    "CFE-CGC": 14.04,
+    "SOLIDAIRES": 4.58,
+    "UNSA": 6.81,
+    "AUTRES": 2.5
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "94"
+}

@@ -1,0 +1,29 @@
+{
+  "nom": "Somme",
+  "total_scrutins": 551,
+  "total_inscrits": 61144.0,
+  "total_votants": 37270.0,
+  "total_sve": 34669.0,
+  "voix": {
+    "CGT": 9824,
+    "CFDT": 10105,
+    "CGT-FO": 5747,
+    "CFTC": 3471,
+    "CFE-CGC": 3026,
+    "SOLIDAIRES": 1039,
+    "UNSA": 1248,
+    "AUTRES": 209
+  },
+  "pourcentages": {
+    "CGT": 28.34,
+    "CFDT": 29.15,
+    "CGT-FO": 16.58,
+    "CFTC": 10.01,
+    "CFE-CGC": 8.73,
+    "SOLIDAIRES": 3.0,
+    "UNSA": 3.6,
+    "AUTRES": 0.6
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "80"
+}

@@ -1,0 +1,29 @@
+{
+  "nom": "Eure-et-Loir",
+  "total_scrutins": 356,
+  "total_inscrits": 33683.0,
+  "total_votants": 18494.0,
+  "total_sve": 17254.0,
+  "voix": {
+    "CGT": 3539,
+    "CFDT": 4400,
+    "CGT-FO": 4232,
+    "CFTC": 1376,
+    "CFE-CGC": 1748,
+    "SOLIDAIRES": 542,
+    "UNSA": 1202,
+    "AUTRES": 217
+  },
+  "pourcentages": {
+    "CGT": 20.51,
+    "CFDT": 25.5,
+    "CGT-FO": 24.52,
+    "CFTC": 7.97,
+    "CFE-CGC": 10.13,
+    "SOLIDAIRES": 3.14,
+    "UNSA": 6.97,
+    "AUTRES": 1.26
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "28"
+}

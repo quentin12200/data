@@ -1,0 +1,29 @@
+{
+  "nom": "Allier",
+  "total_scrutins": 260,
+  "total_inscrits": 23342.0,
+  "total_votants": 14253.0,
+  "total_sve": 12972.0,
+  "voix": {
+    "CGT": 4767,
+    "CFDT": 3138,
+    "CGT-FO": 2713,
+    "CFTC": 628,
+    "CFE-CGC": 849,
+    "SOLIDAIRES": 284,
+    "UNSA": 365,
+    "AUTRES": 228
+  },
+  "pourcentages": {
+    "CGT": 36.75,
+    "CFDT": 24.19,
+    "CGT-FO": 20.91,
+    "CFTC": 4.84,
+    "CFE-CGC": 6.54,
+    "SOLIDAIRES": 2.19,
+    "UNSA": 2.81,
+    "AUTRES": 1.76
+  },
+  "syndicat_dominant": "CGT",
+  "code": "03"
+}

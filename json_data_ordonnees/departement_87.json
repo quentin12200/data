@@ -1,0 +1,29 @@
+{
+  "nom": "Haute-Vienne",
+  "total_scrutins": 280,
+  "total_inscrits": 32705.0,
+  "total_votants": 19890.0,
+  "total_sve": 18286.0,
+  "voix": {
+    "CGT": 6515,
+    "CFDT": 4688,
+    "CGT-FO": 3122,
+    "CFTC": 387,
+    "CFE-CGC": 2155,
+    "SOLIDAIRES": 446,
+    "UNSA": 507,
+    "AUTRES": 468
+  },
+  "pourcentages": {
+    "CGT": 35.62,
+    "CFDT": 25.63,
+    "CGT-FO": 17.07,
+    "CFTC": 2.12,
+    "CFE-CGC": 11.78,
+    "SOLIDAIRES": 2.44,
+    "UNSA": 2.77,
+    "AUTRES": 2.56
+  },
+  "syndicat_dominant": "CGT",
+  "code": "87"
+}

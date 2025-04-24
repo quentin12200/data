@@ -1,0 +1,29 @@
+{
+  "nom": "Lot",
+  "total_scrutins": 121,
+  "total_inscrits": 13340.0,
+  "total_votants": 7478.0,
+  "total_sve": 6891.0,
+  "voix": {
+    "CGT": 2440,
+    "CFDT": 2223,
+    "CGT-FO": 1307,
+    "CFTC": 79,
+    "CFE-CGC": 699,
+    "SOLIDAIRES": 53,
+    "UNSA": 90,
+    "AUTRES": 0
+  },
+  "pourcentages": {
+    "CGT": 35.41,
+    "CFDT": 32.26,
+    "CGT-FO": 18.97,
+    "CFTC": 1.15,
+    "CFE-CGC": 10.14,
+    "SOLIDAIRES": 0.77,
+    "UNSA": 1.31,
+    "AUTRES": 0.0
+  },
+  "syndicat_dominant": "CGT",
+  "code": "46"
+}

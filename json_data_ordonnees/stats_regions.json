@@ -1,0 +1,394 @@
+{
+  "Auvergne-Rhône-Alpes": {
+    "nom": "Auvergne-Rhône-Alpes",
+    "total_scrutins": 7553,
+    "total_inscrits": 927446.0,
+    "total_votants": 545093.0,
+    "total_sve": 510892.93000000005,
+    "voix": {
+      "CGT": 127821,
+      "CFDT": 141583,
+      "CGT-FO": 76209,
+      "CFTC": 36390,
+      "CFE-CGC": 66330,
+      "SOLIDAIRES": 18601,
+      "UNSA": 26005,
+      "AUTRES": 17950
+    },
+    "pourcentages": {
+      "CGT": 25.02,
+      "CFDT": 27.71,
+      "CGT-FO": 14.92,
+      "CFTC": 7.12,
+      "CFE-CGC": 12.98,
+      "SOLIDAIRES": 3.64,
+      "UNSA": 5.09,
+      "AUTRES": 3.51
+    },
+    "syndicat_dominant": "CFDT"
+  },
+  "Bourgogne-Franche-Comté": {
+    "nom": "Bourgogne-Franche-Comté",
+    "total_scrutins": 2245,
+    "total_inscrits": 242481.0,
+    "total_votants": 140398.0,
+    "total_sve": 130334.98000000001,
+    "voix": {
+      "CGT": 31295,
+      "CFDT": 39911,
+      "CGT-FO": 21507,
+      "CFTC": 10854,
+      "CFE-CGC": 14855,
+      "SOLIDAIRES": 2957,
+      "UNSA": 6823,
+      "AUTRES": 2133
+    },
+    "pourcentages": {
+      "CGT": 24.01,
+      "CFDT": 30.62,
+      "CGT-FO": 16.5,
+      "CFTC": 8.33,
+      "CFE-CGC": 11.4,
+      "SOLIDAIRES": 2.27,
+      "UNSA": 5.23,
+      "AUTRES": 1.64
+    },
+    "syndicat_dominant": "CFDT"
+  },
+  "Bretagne": {
+    "nom": "Bretagne",
+    "total_scrutins": 2753,
+    "total_inscrits": 354596.0,
+    "total_votants": 191949.0,
+    "total_sve": 178031.96000000002,
+    "voix": {
+      "CGT": 39239,
+      "CFDT": 72168,
+      "CGT-FO": 19778,
+      "CFTC": 15280,
+      "CFE-CGC": 15670,
+      "SOLIDAIRES": 7238,
+      "UNSA": 6001,
+      "AUTRES": 2656
+    },
+    "pourcentages": {
+      "CGT": 22.04,
+      "CFDT": 40.54,
+      "CGT-FO": 11.11,
+      "CFTC": 8.58,
+      "CFE-CGC": 8.8,
+      "SOLIDAIRES": 4.07,
+      "UNSA": 3.37,
+      "AUTRES": 1.49
+    },
+    "syndicat_dominant": "CFDT"
+  },
+  "Centre-Val de Loire": {
+    "nom": "Centre-Val de Loire",
+    "total_scrutins": 2121,
+    "total_inscrits": 265106.0,
+    "total_votants": 145276.0,
+    "total_sve": 134801.96999999997,
+    "voix": {
+      "CGT": 32557,
+      "CFDT": 38627,
+      "CGT-FO": 23079,
+      "CFTC": 8953,
+      "CFE-CGC": 14509,
+      "SOLIDAIRES": 6076,
+      "UNSA": 9336,
+      "AUTRES": 1669
+    },
+    "pourcentages": {
+      "CGT": 24.15,
+      "CFDT": 28.65,
+      "CGT-FO": 17.12,
+      "CFTC": 6.64,
+      "CFE-CGC": 10.76,
+      "SOLIDAIRES": 4.51,
+      "UNSA": 6.93,
+      "AUTRES": 1.24
+    },
+    "syndicat_dominant": "CFDT"
+  },
+  "Corse": {
+    "nom": "Corse",
+    "total_scrutins": 252,
+    "total_inscrits": 20734.0,
+    "total_votants": 15510.0,
+    "total_sve": 14754.0,
+    "voix": {
+      "CGT": 4060,
+      "CFDT": 836,
+      "CGT-FO": 1167,
+      "CFTC": 102,
+      "CFE-CGC": 793,
+      "SOLIDAIRES": 74,
+      "UNSA": 578,
+      "AUTRES": 7146
+    },
+    "pourcentages": {
+      "CGT": 27.51,
+      "CFDT": 5.67,
+      "CGT-FO": 7.91,
+      "CFTC": 0.69,
+      "CFE-CGC": 5.37,
+      "SOLIDAIRES": 0.5,
+      "UNSA": 3.92,
+      "AUTRES": 48.43
+    },
+    "syndicat_dominant": "AUTRES"
+  },
+  "Grand Est": {
+    "nom": "Grand Est",
+    "total_scrutins": 5332,
+    "total_inscrits": 613871.0,
+    "total_votants": 347505.0,
+    "total_sve": 325126.99,
+    "voix": {
+      "CGT": 65448,
+      "CFDT": 93381,
+      "CGT-FO": 50505,
+      "CFTC": 52796,
+      "CFE-CGC": 34517,
+      "SOLIDAIRES": 7662,
+      "UNSA": 15489,
+      "AUTRES": 5327
+    },
+    "pourcentages": {
+      "CGT": 20.13,
+      "CFDT": 28.72,
+      "CGT-FO": 15.53,
+      "CFTC": 16.24,
+      "CFE-CGC": 10.62,
+      "SOLIDAIRES": 2.36,
+      "UNSA": 4.76,
+      "AUTRES": 1.64
+    },
+    "syndicat_dominant": "CFDT"
+  },
+  "Hauts-de-France": {
+    "nom": "Hauts-de-France",
+    "total_scrutins": 5656,
+    "total_inscrits": 717890.0,
+    "total_votants": 418581.0,
+    "total_sve": 391446.77999999997,
+    "voix": {
+      "CGT": 94278,
+      "CFDT": 101332,
+      "CGT-FO": 62645,
+      "CFTC": 50125,
+      "CFE-CGC": 40600,
+      "SOLIDAIRES": 17641,
+      "UNSA": 18293,
+      "AUTRES": 6534
+    },
+    "pourcentages": {
+      "CGT": 24.08,
+      "CFDT": 25.89,
+      "CGT-FO": 16.0,
+      "CFTC": 12.81,
+      "CFE-CGC": 10.37,
+      "SOLIDAIRES": 4.51,
+      "UNSA": 4.67,
+      "AUTRES": 1.67
+    },
+    "syndicat_dominant": "CFDT"
+  },
+  "Île-de-France": {
+    "nom": "Île-de-France",
+    "total_scrutins": 14907,
+    "total_inscrits": 3101394.0,
+    "total_votants": 1693168.0,
+    "total_sve": 1618037.2299999997,
+    "voix": {
+      "CGT": 294383,
+      "CFDT": 406336,
+      "CGT-FO": 211230,
+      "CFTC": 167161,
+      "CFE-CGC": 278230,
+      "SOLIDAIRES": 64560,
+      "UNSA": 143769,
+      "AUTRES": 52367
+    },
+    "pourcentages": {
+      "CGT": 18.19,
+      "CFDT": 25.11,
+      "CGT-FO": 13.05,
+      "CFTC": 10.33,
+      "CFE-CGC": 17.2,
+      "SOLIDAIRES": 3.99,
+      "UNSA": 8.89,
+      "AUTRES": 3.24
+    },
+    "syndicat_dominant": "CFDT"
+  },
+  "Normandie": {
+    "nom": "Normandie",
+    "total_scrutins": 2740,
+    "total_inscrits": 333210.0,
+    "total_votants": 199687.0,
+    "total_sve": 186397.96999999997,
+    "voix": {
+      "CGT": 54269,
+      "CFDT": 51117,
+      "CGT-FO": 27478,
+      "CFTC": 14492,
+      "CFE-CGC": 21206,
+      "SOLIDAIRES": 8100,
+      "UNSA": 7186,
+      "AUTRES": 2552
+    },
+    "pourcentages": {
+      "CGT": 29.11,
+      "CFDT": 27.42,
+      "CGT-FO": 14.74,
+      "CFTC": 7.77,
+      "CFE-CGC": 11.38,
+      "SOLIDAIRES": 4.35,
+      "UNSA": 3.86,
+      "AUTRES": 1.37
+    },
+    "syndicat_dominant": "CGT"
+  },
+  "Nouvelle-Aquitaine": {
+    "nom": "Nouvelle-Aquitaine",
+    "total_scrutins": 4586,
+    "total_inscrits": 574614.0,
+    "total_votants": 318476.0,
+    "total_sve": 296073.99,
+    "voix": {
+      "CGT": 79178,
+      "CFDT": 84844,
+      "CGT-FO": 49711,
+      "CFTC": 18030,
+      "CFE-CGC": 33351,
+      "SOLIDAIRES": 8795,
+      "UNSA": 14068,
+      "AUTRES": 8098
+    },
+    "pourcentages": {
+      "CGT": 26.74,
+      "CFDT": 28.66,
+      "CGT-FO": 16.79,
+      "CFTC": 6.09,
+      "CFE-CGC": 11.26,
+      "SOLIDAIRES": 2.97,
+      "UNSA": 4.75,
+      "AUTRES": 2.74
+    },
+    "syndicat_dominant": "CFDT"
+  },
+  "Occitanie": {
+    "nom": "Occitanie",
+    "total_scrutins": 4491,
+    "total_inscrits": 535456.0,
+    "total_votants": 315024.0,
+    "total_sve": 294136.88,
+    "voix": {
+      "CGT": 74513,
+      "CFDT": 69327,
+      "CGT-FO": 60158,
+      "CFTC": 23734,
+      "CFE-CGC": 38646,
+      "SOLIDAIRES": 12191,
+      "UNSA": 9725,
+      "AUTRES": 5846
+    },
+    "pourcentages": {
+      "CGT": 25.33,
+      "CFDT": 23.57,
+      "CGT-FO": 20.45,
+      "CFTC": 8.07,
+      "CFE-CGC": 13.14,
+      "SOLIDAIRES": 4.14,
+      "UNSA": 3.31,
+      "AUTRES": 1.99
+    },
+    "syndicat_dominant": "CGT"
+  },
+  "Pays de la Loire": {
+    "nom": "Pays de la Loire",
+    "total_scrutins": 3268,
+    "total_inscrits": 463984.0,
+    "total_votants": 248232.0,
+    "total_sve": 230497.97999999998,
+    "voix": {
+      "CGT": 46299,
+      "CFDT": 89369,
+      "CGT-FO": 31584,
+      "CFTC": 21253,
+      "CFE-CGC": 24257,
+      "SOLIDAIRES": 7126,
+      "UNSA": 7392,
+      "AUTRES": 3221
+    },
+    "pourcentages": {
+      "CGT": 20.09,
+      "CFDT": 38.77,
+      "CGT-FO": 13.7,
+      "CFTC": 9.22,
+      "CFE-CGC": 10.52,
+      "SOLIDAIRES": 3.09,
+      "UNSA": 3.21,
+      "AUTRES": 1.4
+    },
+    "syndicat_dominant": "CFDT"
+  },
+  "Provence-Alpes-Côte d'Azur": {
+    "nom": "Provence-Alpes-Côte d'Azur",
+    "total_scrutins": 4099,
+    "total_inscrits": 548369.0,
+    "total_votants": 300092.0,
+    "total_sve": 283908.92000000004,
+    "voix": {
+      "CGT": 66823,
+      "CFDT": 62582,
+      "CGT-FO": 56863,
+      "CFTC": 25534,
+      "CFE-CGC": 37724,
+      "SOLIDAIRES": 7947,
+      "UNSA": 17594,
+      "AUTRES": 8842
+    },
+    "pourcentages": {
+      "CGT": 23.54,
+      "CFDT": 22.04,
+      "CGT-FO": 20.03,
+      "CFTC": 8.99,
+      "CFE-CGC": 13.29,
+      "SOLIDAIRES": 2.8,
+      "UNSA": 6.2,
+      "AUTRES": 3.11
+    },
+    "syndicat_dominant": "CGT"
+  },
+  "DOM-TOM": {
+    "nom": "DOM-TOM",
+    "total_scrutins": 1948,
+    "total_inscrits": 143071.0,
+    "total_votants": 93404.0,
+    "total_sve": 86372.98,
+    "voix": {
+      "CGT": 18211,
+      "CFDT": 17536,
+      "CGT-FO": 12625,
+      "CFTC": 6255,
+      "CFE-CGC": 4041,
+      "SOLIDAIRES": 3391,
+      "UNSA": 3171,
+      "AUTRES": 21139
+    },
+    "pourcentages": {
+      "CGT": 21.09,
+      "CFDT": 20.3,
+      "CGT-FO": 14.62,
+      "CFTC": 7.24,
+      "CFE-CGC": 4.68,
+      "SOLIDAIRES": 3.93,
+      "UNSA": 3.67,
+      "AUTRES": 24.48
+    },
+    "syndicat_dominant": "AUTRES"
+  }
+}

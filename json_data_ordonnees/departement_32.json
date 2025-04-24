@@ -1,0 +1,29 @@
+{
+  "nom": "Gers",
+  "total_scrutins": 123,
+  "total_inscrits": 11004.0,
+  "total_votants": 5532.0,
+  "total_sve": 5061.98,
+  "voix": {
+    "CGT": 1802,
+    "CFDT": 1974,
+    "CGT-FO": 521,
+    "CFTC": 293,
+    "CFE-CGC": 299,
+    "SOLIDAIRES": 96,
+    "UNSA": 53,
+    "AUTRES": 24
+  },
+  "pourcentages": {
+    "CGT": 35.6,
+    "CFDT": 39.0,
+    "CGT-FO": 10.29,
+    "CFTC": 5.79,
+    "CFE-CGC": 5.91,
+    "SOLIDAIRES": 1.9,
+    "UNSA": 1.05,
+    "AUTRES": 0.47
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "32"
+}

@@ -1,0 +1,29 @@
+{
+  "nom": "Doubs",
+  "total_scrutins": 407,
+  "total_inscrits": 46351.0,
+  "total_votants": 28303.0,
+  "total_sve": 26470.0,
+  "voix": {
+    "CGT": 4913,
+    "CFDT": 8180,
+    "CGT-FO": 4398,
+    "CFTC": 2612,
+    "CFE-CGC": 4567,
+    "SOLIDAIRES": 335,
+    "UNSA": 1378,
+    "AUTRES": 87
+  },
+  "pourcentages": {
+    "CGT": 18.56,
+    "CFDT": 30.9,
+    "CGT-FO": 16.62,
+    "CFTC": 9.87,
+    "CFE-CGC": 17.25,
+    "SOLIDAIRES": 1.27,
+    "UNSA": 5.21,
+    "AUTRES": 0.33
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "25"
+}

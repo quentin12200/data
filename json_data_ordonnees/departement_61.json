@@ -1,0 +1,29 @@
+{
+  "nom": "Orne",
+  "total_scrutins": 231,
+  "total_inscrits": 23529.0,
+  "total_votants": 13244.0,
+  "total_sve": 11938.0,
+  "voix": {
+    "CGT": 2990,
+    "CFDT": 4300,
+    "CGT-FO": 1686,
+    "CFTC": 1518,
+    "CFE-CGC": 788,
+    "SOLIDAIRES": 470,
+    "UNSA": 185,
+    "AUTRES": 0
+  },
+  "pourcentages": {
+    "CGT": 25.05,
+    "CFDT": 36.02,
+    "CGT-FO": 14.12,
+    "CFTC": 12.72,
+    "CFE-CGC": 6.6,
+    "SOLIDAIRES": 3.94,
+    "UNSA": 1.55,
+    "AUTRES": 0.0
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "61"
+}

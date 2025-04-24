@@ -1,0 +1,29 @@
+{
+  "nom": "Saône-et-Loire",
+  "total_scrutins": 396,
+  "total_inscrits": 43364.0,
+  "total_votants": 25705.0,
+  "total_sve": 23960.0,
+  "voix": {
+    "CGT": 7480,
+    "CFDT": 6203,
+    "CGT-FO": 4170,
+    "CFTC": 1035,
+    "CFE-CGC": 2547,
+    "SOLIDAIRES": 592,
+    "UNSA": 1542,
+    "AUTRES": 392
+  },
+  "pourcentages": {
+    "CGT": 31.22,
+    "CFDT": 25.89,
+    "CGT-FO": 17.4,
+    "CFTC": 4.32,
+    "CFE-CGC": 10.63,
+    "SOLIDAIRES": 2.47,
+    "UNSA": 6.44,
+    "AUTRES": 1.64
+  },
+  "syndicat_dominant": "CGT",
+  "code": "71"
+}

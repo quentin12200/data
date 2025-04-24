@@ -1,0 +1,29 @@
+{
+  "nom": "Var",
+  "total_scrutins": 506,
+  "total_inscrits": 57932.0,
+  "total_votants": 31188.0,
+  "total_sve": 29282.97,
+  "voix": {
+    "CGT": 5929,
+    "CFDT": 6720,
+    "CGT-FO": 6514,
+    "CFTC": 2922,
+    "CFE-CGC": 2536,
+    "SOLIDAIRES": 712,
+    "UNSA": 2837,
+    "AUTRES": 1113
+  },
+  "pourcentages": {
+    "CGT": 20.25,
+    "CFDT": 22.95,
+    "CGT-FO": 22.24,
+    "CFTC": 9.98,
+    "CFE-CGC": 8.66,
+    "SOLIDAIRES": 2.43,
+    "UNSA": 9.69,
+    "AUTRES": 3.8
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "83"
+}

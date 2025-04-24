@@ -1,0 +1,29 @@
+{
+  "nom": "Meurthe-et-Moselle",
+  "total_scrutins": 640,
+  "total_inscrits": 72006.0,
+  "total_votants": 40326.0,
+  "total_sve": 37652.0,
+  "voix": {
+    "CGT": 9286,
+    "CFDT": 11614,
+    "CGT-FO": 5911,
+    "CFTC": 4217,
+    "CFE-CGC": 3458,
+    "SOLIDAIRES": 1802,
+    "UNSA": 1000,
+    "AUTRES": 363
+  },
+  "pourcentages": {
+    "CGT": 24.66,
+    "CFDT": 30.85,
+    "CGT-FO": 15.7,
+    "CFTC": 11.2,
+    "CFE-CGC": 9.18,
+    "SOLIDAIRES": 4.79,
+    "UNSA": 2.66,
+    "AUTRES": 0.96
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "54"
+}

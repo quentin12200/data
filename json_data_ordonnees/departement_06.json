@@ -1,0 +1,29 @@
+{
+  "nom": "Alpes-Maritimes",
+  "total_scrutins": 869,
+  "total_inscrits": 89279.0,
+  "total_votants": 54596.0,
+  "total_sve": 51696.0,
+  "voix": {
+    "CGT": 11808,
+    "CFDT": 14425,
+    "CGT-FO": 9238,
+    "CFTC": 4259,
+    "CFE-CGC": 7557,
+    "SOLIDAIRES": 1004,
+    "UNSA": 2635,
+    "AUTRES": 770
+  },
+  "pourcentages": {
+    "CGT": 22.84,
+    "CFDT": 27.9,
+    "CGT-FO": 17.87,
+    "CFTC": 8.24,
+    "CFE-CGC": 14.62,
+    "SOLIDAIRES": 1.94,
+    "UNSA": 5.1,
+    "AUTRES": 1.49
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "06"
+}

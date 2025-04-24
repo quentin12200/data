@@ -1,0 +1,29 @@
+{
+  "nom": "Ille-et-Vilaine",
+  "total_scrutins": 1123,
+  "total_inscrits": 161320.0,
+  "total_votants": 90023.0,
+  "total_sve": 84052.99,
+  "voix": {
+    "CGT": 16080,
+    "CFDT": 31172,
+    "CGT-FO": 9620,
+    "CFTC": 9226,
+    "CFE-CGC": 9430,
+    "SOLIDAIRES": 3642,
+    "UNSA": 3247,
+    "AUTRES": 1635
+  },
+  "pourcentages": {
+    "CGT": 19.13,
+    "CFDT": 37.09,
+    "CGT-FO": 11.45,
+    "CFTC": 10.98,
+    "CFE-CGC": 11.22,
+    "SOLIDAIRES": 4.33,
+    "UNSA": 3.86,
+    "AUTRES": 1.95
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "35"
+}

@@ -1,0 +1,29 @@
+{
+  "nom": "Mayotte",
+  "total_scrutins": 103,
+  "total_inscrits": 6576.0,
+  "total_votants": 4924.0,
+  "total_sve": 4597.0,
+  "voix": {
+    "CGT": 1475,
+    "CFDT": 1041,
+    "CGT-FO": 1292,
+    "CFTC": 14,
+    "CFE-CGC": 148,
+    "SOLIDAIRES": 76,
+    "UNSA": 63,
+    "AUTRES": 488
+  },
+  "pourcentages": {
+    "CGT": 32.09,
+    "CFDT": 22.65,
+    "CGT-FO": 28.11,
+    "CFTC": 0.3,
+    "CFE-CGC": 3.22,
+    "SOLIDAIRES": 1.65,
+    "UNSA": 1.37,
+    "AUTRES": 10.62
+  },
+  "syndicat_dominant": "CGT",
+  "code": "976"
+}

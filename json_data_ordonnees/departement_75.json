@@ -1,0 +1,29 @@
+{
+  "nom": "Paris",
+  "total_scrutins": 4293,
+  "total_inscrits": 1002211.0,
+  "total_votants": 514168.0,
+  "total_sve": 490908.69,
+  "voix": {
+    "CGT": 91681,
+    "CFDT": 131148,
+    "CGT-FO": 55555,
+    "CFTC": 43811,
+    "CFE-CGC": 76505,
+    "SOLIDAIRES": 29168,
+    "UNSA": 52613,
+    "AUTRES": 10428
+  },
+  "pourcentages": {
+    "CGT": 18.68,
+    "CFDT": 26.72,
+    "CGT-FO": 11.32,
+    "CFTC": 8.92,
+    "CFE-CGC": 15.58,
+    "SOLIDAIRES": 5.94,
+    "UNSA": 10.72,
+    "AUTRES": 2.12
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "75"
+}

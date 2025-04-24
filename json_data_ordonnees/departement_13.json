@@ -1,0 +1,29 @@
+{
+  "nom": "Bouches-du-Rhône",
+  "total_scrutins": 2103,
+  "total_inscrits": 302113.0,
+  "total_votants": 182074.0,
+  "total_sve": 173088.95,
+  "voix": {
+    "CGT": 41387,
+    "CFDT": 33688,
+    "CGT-FO": 35824,
+    "CFTC": 15019,
+    "CFE-CGC": 24085,
+    "SOLIDAIRES": 5834,
+    "UNSA": 10834,
+    "AUTRES": 6417
+  },
+  "pourcentages": {
+    "CGT": 23.91,
+    "CFDT": 19.46,
+    "CGT-FO": 20.7,
+    "CFTC": 8.68,
+    "CFE-CGC": 13.91,
+    "SOLIDAIRES": 3.37,
+    "UNSA": 6.26,
+    "AUTRES": 3.71
+  },
+  "syndicat_dominant": "CGT",
+  "code": "13"
+}

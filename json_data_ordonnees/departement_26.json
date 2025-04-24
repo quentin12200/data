@@ -1,0 +1,29 @@
+{
+  "nom": "Drôme",
+  "total_scrutins": 511,
+  "total_inscrits": 52439.0,
+  "total_votants": 30006.0,
+  "total_sve": 27788.010000000002,
+  "voix": {
+    "CGT": 7378,
+    "CFDT": 8726,
+    "CGT-FO": 4557,
+    "CFTC": 1693,
+    "CFE-CGC": 2875,
+    "SOLIDAIRES": 711,
+    "UNSA": 809,
+    "AUTRES": 1039
+  },
+  "pourcentages": {
+    "CGT": 26.55,
+    "CFDT": 31.4,
+    "CGT-FO": 16.4,
+    "CFTC": 6.09,
+    "CFE-CGC": 10.35,
+    "SOLIDAIRES": 2.56,
+    "UNSA": 2.91,
+    "AUTRES": 3.74
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "26"
+}

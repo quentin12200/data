@@ -1,0 +1,29 @@
+{
+  "nom": "Vaucluse",
+  "total_scrutins": 421,
+  "total_inscrits": 42130.0,
+  "total_votants": 22153.0,
+  "total_sve": 20462.0,
+  "voix": {
+    "CGT": 5090,
+    "CFDT": 5948,
+    "CGT-FO": 3211,
+    "CFTC": 2061,
+    "CFE-CGC": 2443,
+    "SOLIDAIRES": 370,
+    "UNSA": 798,
+    "AUTRES": 542
+  },
+  "pourcentages": {
+    "CGT": 24.87,
+    "CFDT": 29.07,
+    "CGT-FO": 15.69,
+    "CFTC": 10.07,
+    "CFE-CGC": 11.94,
+    "SOLIDAIRES": 1.81,
+    "UNSA": 3.9,
+    "AUTRES": 2.65
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "84"
+}

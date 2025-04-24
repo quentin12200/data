@@ -1,0 +1,29 @@
+{
+  "nom": "Haute-Corse",
+  "total_scrutins": 108,
+  "total_inscrits": 7634.0,
+  "total_votants": 5353.0,
+  "total_sve": 5053.0,
+  "voix": {
+    "CGT": 1281,
+    "CFDT": 218,
+    "CGT-FO": 568,
+    "CFTC": 80,
+    "CFE-CGC": 165,
+    "SOLIDAIRES": 17,
+    "UNSA": 185,
+    "AUTRES": 2540
+  },
+  "pourcentages": {
+    "CGT": 25.35,
+    "CFDT": 4.31,
+    "CGT-FO": 11.24,
+    "CFTC": 1.58,
+    "CFE-CGC": 3.26,
+    "SOLIDAIRES": 0.34,
+    "UNSA": 3.66,
+    "AUTRES": 50.26
+  },
+  "syndicat_dominant": "AUTRES",
+  "code": "2B"
+}

@@ -1,0 +1,29 @@
+{
+  "nom": "Tarn-et-Garonne",
+  "total_scrutins": 200,
+  "total_inscrits": 18663.0,
+  "total_votants": 10209.0,
+  "total_sve": 9171.0,
+  "voix": {
+    "CGT": 2784,
+    "CFDT": 1965,
+    "CGT-FO": 2345,
+    "CFTC": 1192,
+    "CFE-CGC": 460,
+    "SOLIDAIRES": 105,
+    "UNSA": 163,
+    "AUTRES": 157
+  },
+  "pourcentages": {
+    "CGT": 30.36,
+    "CFDT": 21.43,
+    "CGT-FO": 25.57,
+    "CFTC": 13.0,
+    "CFE-CGC": 5.02,
+    "SOLIDAIRES": 1.14,
+    "UNSA": 1.78,
+    "AUTRES": 1.71
+  },
+  "syndicat_dominant": "CGT",
+  "code": "82"
+}

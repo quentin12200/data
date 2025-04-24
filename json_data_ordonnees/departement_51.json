@@ -1,0 +1,29 @@
+{
+  "nom": "Marne",
+  "total_scrutins": 617,
+  "total_inscrits": 74643.0,
+  "total_votants": 36054.0,
+  "total_sve": 33305.0,
+  "voix": {
+    "CGT": 8863,
+    "CFDT": 9272,
+    "CGT-FO": 6060,
+    "CFTC": 2560,
+    "CFE-CGC": 4361,
+    "SOLIDAIRES": 652,
+    "UNSA": 1308,
+    "AUTRES": 229
+  },
+  "pourcentages": {
+    "CGT": 26.61,
+    "CFDT": 27.84,
+    "CGT-FO": 18.2,
+    "CFTC": 7.69,
+    "CFE-CGC": 13.09,
+    "SOLIDAIRES": 1.96,
+    "UNSA": 3.93,
+    "AUTRES": 0.69
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "51"
+}

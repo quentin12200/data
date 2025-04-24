@@ -1,0 +1,29 @@
+{
+  "nom": "Côtes-d'Armor",
+  "total_scrutins": 383,
+  "total_inscrits": 47785.0,
+  "total_votants": 23831.0,
+  "total_sve": 22069.0,
+  "voix": {
+    "CGT": 5040,
+    "CFDT": 8378,
+    "CGT-FO": 3307,
+    "CFTC": 1861,
+    "CFE-CGC": 1706,
+    "SOLIDAIRES": 902,
+    "UNSA": 381,
+    "AUTRES": 494
+  },
+  "pourcentages": {
+    "CGT": 22.84,
+    "CFDT": 37.96,
+    "CGT-FO": 14.98,
+    "CFTC": 8.43,
+    "CFE-CGC": 7.73,
+    "SOLIDAIRES": 4.09,
+    "UNSA": 1.73,
+    "AUTRES": 2.24
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "22"
+}

@@ -247,8 +247,8 @@
             let filtreActif = 'tous';
             let departements = [];
             
-            // Charger les données depuis le fichier JSON
-            fetch('../json_data_new/carte_data.json')
+            // Charger les données depuis le fichier JSON ordonné
+            fetch('../json_data_ordonnees/carte_data.json')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Erreur lors du chargement des données');

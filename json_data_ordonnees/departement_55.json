@@ -1,0 +1,29 @@
+{
+  "nom": "Meuse",
+  "total_scrutins": 149,
+  "total_inscrits": 12712.0,
+  "total_votants": 7441.0,
+  "total_sve": 6918.02,
+  "voix": {
+    "CGT": 1636,
+    "CFDT": 2363,
+    "CGT-FO": 1511,
+    "CFTC": 506,
+    "CFE-CGC": 425,
+    "SOLIDAIRES": 142,
+    "UNSA": 317,
+    "AUTRES": 18
+  },
+  "pourcentages": {
+    "CGT": 23.65,
+    "CFDT": 34.16,
+    "CGT-FO": 21.84,
+    "CFTC": 7.31,
+    "CFE-CGC": 6.14,
+    "SOLIDAIRES": 2.05,
+    "UNSA": 4.58,
+    "AUTRES": 0.26
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "55"
+}

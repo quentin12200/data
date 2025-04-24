@@ -1,0 +1,29 @@
+{
+  "nom": "Indre",
+  "total_scrutins": 175,
+  "total_inscrits": 15931.0,
+  "total_votants": 10041.0,
+  "total_sve": 9088.0,
+  "voix": {
+    "CGT": 2450,
+    "CFDT": 2351,
+    "CGT-FO": 2221,
+    "CFTC": 693,
+    "CFE-CGC": 847,
+    "SOLIDAIRES": 279,
+    "UNSA": 219,
+    "AUTRES": 28
+  },
+  "pourcentages": {
+    "CGT": 26.96,
+    "CFDT": 25.87,
+    "CGT-FO": 24.44,
+    "CFTC": 7.63,
+    "CFE-CGC": 9.32,
+    "SOLIDAIRES": 3.07,
+    "UNSA": 2.41,
+    "AUTRES": 0.31
+  },
+  "syndicat_dominant": "CGT",
+  "code": "36"
+}

@@ -1,0 +1,29 @@
+{
+  "nom": "Calvados",
+  "total_scrutins": 673,
+  "total_inscrits": 73982.0,
+  "total_votants": 42254.0,
+  "total_sve": 39463.99,
+  "voix": {
+    "CGT": 8851,
+    "CFDT": 12503,
+    "CGT-FO": 5604,
+    "CFTC": 3425,
+    "CFE-CGC": 4279,
+    "SOLIDAIRES": 2598,
+    "UNSA": 1768,
+    "AUTRES": 436
+  },
+  "pourcentages": {
+    "CGT": 22.43,
+    "CFDT": 31.68,
+    "CGT-FO": 14.2,
+    "CFTC": 8.68,
+    "CFE-CGC": 10.84,
+    "SOLIDAIRES": 6.58,
+    "UNSA": 4.48,
+    "AUTRES": 1.1
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "14"
+}

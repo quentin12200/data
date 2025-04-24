@@ -1,0 +1,29 @@
+{
+  "nom": "Aude",
+  "total_scrutins": 206,
+  "total_inscrits": 18364.0,
+  "total_votants": 9863.0,
+  "total_sve": 9160.0,
+  "voix": {
+    "CGT": 2226,
+    "CFDT": 2444,
+    "CGT-FO": 2463,
+    "CFTC": 983,
+    "CFE-CGC": 327,
+    "SOLIDAIRES": 98,
+    "UNSA": 443,
+    "AUTRES": 177
+  },
+  "pourcentages": {
+    "CGT": 24.3,
+    "CFDT": 26.68,
+    "CGT-FO": 26.89,
+    "CFTC": 10.73,
+    "CFE-CGC": 3.57,
+    "SOLIDAIRES": 1.07,
+    "UNSA": 4.84,
+    "AUTRES": 1.93
+  },
+  "syndicat_dominant": "CGT-FO",
+  "code": "11"
+}

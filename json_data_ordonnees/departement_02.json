@@ -1,0 +1,29 @@
+{
+  "nom": "Aisne",
+  "total_scrutins": 425,
+  "total_inscrits": 36176.0,
+  "total_votants": 22005.0,
+  "total_sve": 20343.0,
+  "voix": {
+    "CGT": 5926,
+    "CFDT": 5786,
+    "CGT-FO": 3975,
+    "CFTC": 2282,
+    "CFE-CGC": 1511,
+    "SOLIDAIRES": 249,
+    "UNSA": 492,
+    "AUTRES": 122
+  },
+  "pourcentages": {
+    "CGT": 29.13,
+    "CFDT": 28.44,
+    "CGT-FO": 19.54,
+    "CFTC": 11.22,
+    "CFE-CGC": 7.43,
+    "SOLIDAIRES": 1.22,
+    "UNSA": 2.42,
+    "AUTRES": 0.6
+  },
+  "syndicat_dominant": "CGT",
+  "code": "02"
+}

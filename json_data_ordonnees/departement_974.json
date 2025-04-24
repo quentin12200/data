@@ -1,0 +1,29 @@
+{
+  "nom": "La Réunion",
+  "total_scrutins": 865,
+  "total_inscrits": 72391.0,
+  "total_votants": 46251.0,
+  "total_sve": 42906.979999999996,
+  "voix": {
+    "CGT": 9568,
+    "CFDT": 12684,
+    "CGT-FO": 7182,
+    "CFTC": 4320,
+    "CFE-CGC": 2131,
+    "SOLIDAIRES": 1486,
+    "UNSA": 1904,
+    "AUTRES": 3632
+  },
+  "pourcentages": {
+    "CGT": 22.3,
+    "CFDT": 29.56,
+    "CGT-FO": 16.74,
+    "CFTC": 10.07,
+    "CFE-CGC": 4.97,
+    "SOLIDAIRES": 3.46,
+    "UNSA": 4.44,
+    "AUTRES": 8.46
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "974"
+}

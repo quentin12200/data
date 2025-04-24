@@ -1,0 +1,29 @@
+{
+  "nom": "Loire",
+  "total_scrutins": 707,
+  "total_inscrits": 59390.0,
+  "total_votants": 36246.0,
+  "total_sve": 33393.0,
+  "voix": {
+    "CGT": 9226,
+    "CFDT": 11016,
+    "CGT-FO": 3560,
+    "CFTC": 1784,
+    "CFE-CGC": 3361,
+    "SOLIDAIRES": 995,
+    "UNSA": 2898,
+    "AUTRES": 552
+  },
+  "pourcentages": {
+    "CGT": 27.63,
+    "CFDT": 32.99,
+    "CGT-FO": 10.66,
+    "CFTC": 5.34,
+    "CFE-CGC": 10.07,
+    "SOLIDAIRES": 2.98,
+    "UNSA": 8.68,
+    "AUTRES": 1.65
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "42"
+}

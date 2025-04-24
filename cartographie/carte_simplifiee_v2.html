@@ -416,6 +416,29 @@
                 updateActiveFilterButton(this);
                 afficherDepartements(departements);
             });
+            
+            // Charger les données depuis le fichier JSON ordonné
+            fetch('../json_data_ordonnees/carte_data.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erreur lors du chargement des données');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    departements = data;
+                    afficherDepartements(departements);
+                })
+                .catch(error => {
+                    console.error('Erreur:', error);
+                    document.getElementById('dept-list').innerHTML = `
+                        <div class="col-12">
+                            <div class="alert alert-danger">
+                                <p class="mb-0">Erreur lors du chargement des données: ${error.message}</p>
+                            </div>
+                        </div>
+                    `;
+                });
         });
     </script>
 </body>

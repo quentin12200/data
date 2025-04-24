@@ -1,0 +1,29 @@
+{
+  "nom": "Martinique",
+  "total_scrutins": 400,
+  "total_inscrits": 29470.0,
+  "total_votants": 17292.0,
+  "total_sve": 15878.0,
+  "voix": {
+    "CGT": 4499,
+    "CFDT": 1510,
+    "CGT-FO": 1422,
+    "CFTC": 477,
+    "CFE-CGC": 684,
+    "SOLIDAIRES": 560,
+    "UNSA": 165,
+    "AUTRES": 6560
+  },
+  "pourcentages": {
+    "CGT": 28.34,
+    "CFDT": 9.51,
+    "CGT-FO": 8.96,
+    "CFTC": 3.0,
+    "CFE-CGC": 4.31,
+    "SOLIDAIRES": 3.53,
+    "UNSA": 1.04,
+    "AUTRES": 41.32
+  },
+  "syndicat_dominant": "AUTRES",
+  "code": "972"
+}

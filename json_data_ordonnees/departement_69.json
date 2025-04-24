@@ -1,0 +1,29 @@
+{
+  "nom": "Rhône",
+  "total_scrutins": 2445,
+  "total_inscrits": 382645.0,
+  "total_votants": 221623.0,
+  "total_sve": 209973.96000000002,
+  "voix": {
+    "CGT": 46155,
+    "CFDT": 58446,
+    "CGT-FO": 27193,
+    "CFTC": 17342,
+    "CFE-CGC": 31515,
+    "SOLIDAIRES": 9619,
+    "UNSA": 13651,
+    "AUTRES": 6053
+  },
+  "pourcentages": {
+    "CGT": 21.98,
+    "CFDT": 27.83,
+    "CGT-FO": 12.95,
+    "CFTC": 8.26,
+    "CFE-CGC": 15.01,
+    "SOLIDAIRES": 4.58,
+    "UNSA": 6.5,
+    "AUTRES": 2.88
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "69"
+}

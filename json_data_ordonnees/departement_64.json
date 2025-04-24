@@ -1,0 +1,29 @@
+{
+  "nom": "Pyrénées-Atlantiques",
+  "total_scrutins": 596,
+  "total_inscrits": 53403.0,
+  "total_votants": 33017.0,
+  "total_sve": 30626.0,
+  "voix": {
+    "CGT": 8146,
+    "CFDT": 9817,
+    "CGT-FO": 5580,
+    "CFTC": 1021,
+    "CFE-CGC": 3131,
+    "SOLIDAIRES": 302,
+    "UNSA": 1104,
+    "AUTRES": 1525
+  },
+  "pourcentages": {
+    "CGT": 26.6,
+    "CFDT": 32.05,
+    "CGT-FO": 18.22,
+    "CFTC": 3.33,
+    "CFE-CGC": 10.22,
+    "SOLIDAIRES": 0.99,
+    "UNSA": 3.6,
+    "AUTRES": 4.98
+  },
+  "syndicat_dominant": "CFDT",
+  "code": "64"
+}
