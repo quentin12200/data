@@ -732,11 +732,11 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
             }
             
             // Mettre à jour la légende
-            updateLegend();
+            updateLegend(values);
         }
         
         // Fonction pour mettre à jour la légende
-        function updateLegend() {
+        function updateLegend(values) {
             const legendContainer = document.getElementById('color-legend');
             legendContainer.innerHTML = '';
             
