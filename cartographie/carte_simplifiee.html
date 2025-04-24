@@ -366,16 +366,13 @@
 
                         // Calculer les totaux en incluant les voix TPE
                         const totalVoixTPE = Object.values(voixTPE).reduce((a, b) => a + b, 0);
-                        const totalSVE = dept.total_sve + totalVoixTPE;
-                        const totalVotants = dept.total_votants + totalVoixTPE;
-                        const totalInscrits = dept.total_inscrits + totalVoixTPE;
 
                         return {
                             code: code,
                             nom: dept.nom || 'Département ' + code,
-                            total_inscrits: totalInscrits,
-                            total_votants: totalVotants,
-                            total_sve: totalSVE,
+                            total_inscrits: dept.total_inscrits,
+                            total_votants: dept.total_votants,
+                            total_sve: dept.total_sve,
                             total_scrutins: dept.total_scrutins,
                             voix: voixSyndicats,
                             voix_tpe: voixTPE,

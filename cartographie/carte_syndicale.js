@@ -14,29 +14,20 @@ function loadNationalStats() {
 
             // Parcourir tous les départements
             Object.values(data).forEach(dept => {
-                // Calculer le total des voix TPE pour ce département
-                const voixTPEDept = {
-                    'CGT': dept.voix_tpe ? dept.voix_tpe['CGT'] || 0 : 0,
-                    'CFDT': dept.voix_tpe ? dept.voix_tpe['CFDT'] || 0 : 0,
-                    'CGT-FO': dept.voix_tpe ? dept.voix_tpe['CGT-FO'] || 0 : 0,
-                    'CFTC': dept.voix_tpe ? dept.voix_tpe['CFTC'] || 0 : 0,
-                    'CFE-CGC': dept.voix_tpe ? dept.voix_tpe['CFE-CGC'] || 0 : 0,
-                    'SOLIDAIRES': dept.voix_tpe ? dept.voix_tpe['SOLIDAIRES'] || 0 : 0,
-                    'UNSA': dept.voix_tpe ? dept.voix_tpe['UNSA'] || 0 : 0,
-                    'AUTRES': dept.voix_tpe ? (dept.voix_tpe['CAT'] || 0) + (dept.voix_tpe['CNT-SO'] || 0) + (dept.voix_tpe['le_SGJ'] || 0) : 0
-                };
-                const totalTPEDept = Object.values(voixTPEDept).reduce((a, b) => a + b, 0);
-
-                // Ajouter au total national
-                totalInscrits += dept.total_inscrits + totalTPEDept;
-                totalVotants += dept.total_votants + totalTPEDept;
-                totalSVE += dept.total_sve + totalTPEDept;
+                // Pour les totaux nationaux, on prend directement les valeurs car elles incluent déjà les TPE
+                totalInscrits += dept.total_inscrits;
+                totalVotants += dept.total_votants;
+                totalSVE += dept.total_sve;
                 
-                // Ajouter les voix par syndicat
-                totalVoixCGT += (dept.voix.CGT || 0) + voixTPEDept.CGT;
-                totalVoixCFDT += (dept.voix.CFDT || 0) + voixTPEDept.CFDT;
-                totalVoixFO += (dept.voix['CGT-FO'] || 0) + voixTPEDept['CGT-FO'];
-                totalVoixTPE += totalTPEDept;
+                // Pour les voix par syndicat, on prend aussi directement les valeurs
+                totalVoixCGT += dept.voix.CGT || 0;
+                totalVoixCFDT += dept.voix.CFDT || 0;
+                totalVoixFO += dept.voix['CGT-FO'] || 0;
+
+                // On garde juste le compte des voix TPE pour l'affichage
+                if (dept.voix_tpe) {
+                    totalVoixTPE += Object.values(dept.voix_tpe).reduce((a, b) => a + (b || 0), 0);
+                }
             });
 
             // Mettre à jour l'affichage des statistiques nationales
