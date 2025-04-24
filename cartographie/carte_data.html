@@ -447,54 +447,25 @@
                                     <thead>
                                         <tr>
                                             <th>Organisation</th>
-                                            <th class="text-end">CSE</th>
-                                            <th class="text-end">%</th>
-                                            <th class="text-end">TPE</th>
-                                            <th class="text-end">%</th>
-                                            <th class="text-end">AGRI</th>
-                                            <th class="text-end">%</th>
-                                            <th class="text-end">Total</th>
+                                            <th class="text-end">Voix</th>
                                             <th class="text-end">%</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         ${['CGT', 'CFDT', 'CGT-FO', 'CFTC', 'CFE-CGC', 'SOLIDAIRES', 'UNSA', 'AUTRES'].map(syndicat => {
-                                            const voixCSE = dept.voix.CSE[syndicat] || 0;
-                                            const voixTPE = dept.voix.TPE[syndicat] || 0;
-                                            const voixAGRI = dept.voix.AGRI[syndicat] || 0;
-                                            const totalVoix = voixCSE + voixTPE + voixAGRI;
-                                            
-                                            const totalCSE = dept.voix.CSE.total || 0;
-                                            const totalTPE = dept.voix.TPE.total || 0;
-                                            const totalAGRI = dept.voix.AGRI.total || 0;
-                                            
-                                            const pctCSE = totalCSE > 0 ? (voixCSE / totalCSE * 100) : 0;
-                                            const pctTPE = totalTPE > 0 ? (voixTPE / totalTPE * 100) : 0;
-                                            const pctAGRI = totalAGRI > 0 ? (voixAGRI / totalAGRI * 100) : 0;
-                                            const pctTotal = dept.total_sve > 0 ? (totalVoix / dept.total_sve * 100) : 0;
+                                            const voix = dept.voix[syndicat] || 0;
+                                            const pourcentage = dept.pourcentages[syndicat] || 0;
 
                                             return `
                                                 <tr>
                                                     <td>${syndicat}</td>
-                                                    <td class="text-end">${Math.round(voixCSE).toLocaleString()}</td>
-                                                    <td class="text-end">${pctCSE.toFixed(2)}%</td>
-                                                    <td class="text-end">${Math.round(voixTPE).toLocaleString()}</td>
-                                                    <td class="text-end">${pctTPE.toFixed(2)}%</td>
-                                                    <td class="text-end">${Math.round(voixAGRI).toLocaleString()}</td>
-                                                    <td class="text-end">${pctAGRI.toFixed(2)}%</td>
-                                                    <td class="text-end">${Math.round(totalVoix).toLocaleString()}</td>
-                                                    <td class="text-end">${pctTotal.toFixed(2)}%</td>
+                                                    <td class="text-end">${Math.round(voix).toLocaleString()}</td>
+                                                    <td class="text-end">${pourcentage.toFixed(2)}%</td>
                                                 </tr>
                                             `;
                                         }).join('')}
                                         <tr class="table-info fw-bold">
                                             <td>Total</td>
-                                            <td class="text-end">${Math.round(dept.voix.CSE.total || 0).toLocaleString()}</td>
-                                            <td class="text-end">100%</td>
-                                            <td class="text-end">${Math.round(dept.voix.TPE.total || 0).toLocaleString()}</td>
-                                            <td class="text-end">100%</td>
-                                            <td class="text-end">${Math.round(dept.voix.AGRI.total || 0).toLocaleString()}</td>
-                                            <td class="text-end">100%</td>
                                             <td class="text-end">${Math.round(dept.total_sve || 0).toLocaleString()}</td>
                                             <td class="text-end">100%</td>
                                         </tr>
