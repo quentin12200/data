@@ -135,7 +135,7 @@
                 <div class="col-md-10">
                     <h4 class="mb-2">Analyse des données issues de la mesure de représentativité du 8 avril 2025 pour le cycle 4</h4>
                     <p class="mb-0"><strong>Objectif :</strong> Cette carte interactive permet de visualiser les résultats des élections syndicales par département. Cliquez sur un département pour voir les détails des PV et analyser la présence syndicale.</p>
-                    <p class="mb-0"><strong>Note :</strong> Dans les départements, les voix agricoles sont comptées mais pas les voix TPE.</p>
+                    <p class="mb-0"><strong>Note :</strong> Les résultats incluent les voix des élections professionnelles, les voix agricoles et les voix TPE.</p>
                 </div>
             </div>
         </div>
@@ -247,7 +247,7 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
         function loadData() {
             Promise.all([
                 fetch('../json_data_ordonnees/stats_regions.json'),
-                fetch('../json_data_ordonnees/resultats_departements.json'),
+                fetch('../json_data_ordonnees/resultats_departements_avec_tpe.json'),
                 fetch('assets/france-departements.json')
             ])
             .then(responses => {

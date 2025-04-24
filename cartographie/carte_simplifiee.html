@@ -176,7 +176,7 @@
                 <div class="col-md-8">
                     <h1 class="text-center mb-0">Cartographie des Résultats Syndicaux</h1>
                     <p class="text-center mb-0"><i class="fas fa-chart-pie me-2"></i>Analyse des données issues de la mesure de représentativité du 8 avril 2025 pour le cycle 4</p>
-                    <p class="text-center mb-0"><small><strong>Note :</strong> Dans les départements, les voix agricoles sont comptées mais pas les voix TPE.</small></p>
+                    <p class="text-center mb-0"><small><strong>Note :</strong> Les résultats incluent les voix des élections professionnelles, les voix agricoles et les voix TPE.</small></p>
                 </div>
                 <div class="col-md-2 text-center">
                     <a href="carte_syndicale.html" class="btn btn-light"><i class="fas fa-map-marked-alt me-2"></i>Carte interactive</a>
@@ -331,7 +331,7 @@
             }
             
             // Charger les données des départements
-            fetch('../json_data_ordonnees/resultats_departements.json')
+            fetch('../json_data_ordonnees/resultats_departements_avec_tpe.json')
                 .then(response => response.json())
                 .then(data => {
                     // Convertir l'objet en tableau
