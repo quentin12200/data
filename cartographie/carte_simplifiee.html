@@ -336,34 +336,45 @@
                 .then(data => {
                     // Convertir l'objet en tableau
                     departements = Object.entries(data).map(([code, dept]) => {
-                        // Calculer le total des votes pour ce département
-                        const totalVotes = dept.total_sve || 0;
-                        
-                        // Créer un objet pour les voix par syndicat
+                        // Calculer les voix par syndicat
                         const voixSyndicats = {
-                            CGT: dept.voix?.CGT || 0,
-                            CFDT: dept.voix?.CFDT || 0,
-                            'CGT-FO': dept.voix?.['CGT-FO'] || 0,
-                            CFTC: dept.voix?.CFTC || 0,
-                            'CFE-CGC': dept.voix?.['CFE-CGC'] || 0,
-                            SOLIDAIRES: dept.voix?.SOLIDAIRES || 0,
-                            UNSA: dept.voix?.UNSA || 0,
-                            AUTRES: dept.voix?.AUTRES || 0
+                            'CGT': dept.voix['CGT'] || 0,
+                            'CFDT': dept.voix['CFDT'] || 0,
+                            'CGT-FO': dept.voix['CGT-FO'] || 0,
+                            'CFTC': dept.voix['CFTC'] || 0,
+                            'CFE-CGC': dept.voix['CFE-CGC'] || 0,
+                            'SOLIDAIRES': dept.voix['SOLIDAIRES'] || 0,
+                            'UNSA': dept.voix['UNSA'] || 0,
+                            'AUTRES': dept.voix['AUTRES'] || 0
                         };
-                        
-                        // Calculer les pourcentages
-                        const pourcentages = {};
-                        for (const [syndicat, voix] of Object.entries(voixSyndicats)) {
-                            pourcentages[syndicat] = totalVotes > 0 ? (voix * 100 / totalVotes) : 0;
-                        }
-                        
+
+                        // Récupérer les voix TPE depuis le fichier Excel
+                        const voixTPE = {
+                            'CGT': dept.voix_tpe ? dept.voix_tpe['CGT'] || 0 : 0,
+                            'CFDT': dept.voix_tpe ? dept.voix_tpe['CFDT'] || 0 : 0,
+                            'CGT-FO': dept.voix_tpe ? dept.voix_tpe['CGT-FO'] || 0 : 0,
+                            'CFTC': dept.voix_tpe ? dept.voix_tpe['CFTC'] || 0 : 0,
+                            'CFE-CGC': dept.voix_tpe ? dept.voix_tpe['CFE-CGC'] || 0 : 0,
+                            'SOLIDAIRES': dept.voix_tpe ? dept.voix_tpe['SOLIDAIRES'] || 0 : 0,
+                            'UNSA': dept.voix_tpe ? dept.voix_tpe['UNSA'] || 0 : 0,
+                            'AUTRES': dept.voix_tpe ? (dept.voix_tpe['CAT'] || 0) + (dept.voix_tpe['CNT-SO'] || 0) + (dept.voix_tpe['le_SGJ'] || 0) : 0
+                        };
+
+                        // Calculer les totaux en incluant les voix TPE
+                        const totalVoixTPE = Object.values(voixTPE).reduce((a, b) => a + b, 0);
+                        const totalSVE = dept.total_sve + totalVoixTPE;
+                        const totalVotants = dept.total_votants + totalVoixTPE;
+                        const totalInscrits = dept.total_inscrits + totalVoixTPE;
+
                         return {
                             code: code,
                             nom: dept.nom || 'Département ' + code,
-                            total_scrutins: dept.total_scrutins || 0,
-                            total_sve: totalVotes,
+                            total_inscrits: totalInscrits,
+                            total_votants: totalVotants,
+                            total_sve: totalSVE,
+                            total_scrutins: dept.total_scrutins,
                             voix: voixSyndicats,
-                            pourcentages: pourcentages,
+                            voix_tpe: voixTPE,
                             syndicat_dominant: determineSyndicatDominant(voixSyndicats)
                         };
                     });
@@ -506,6 +517,25 @@
                         syndicatClass = 'autres-dominant';
                     }
                     
+                    // Calculer l'écart avec la CGT
+                    let ecartCGT = '';
+                    if (dept.syndicat_dominant !== 'CGT') {
+                        const ecart = ((dept.voix[dept.syndicat_dominant] - dept.voix.CGT) / dept.total_sve * 100).toFixed(2);
+                        ecartCGT = `<div class="text-muted small">Écart avec la CGT: <span class="ecart-negatif">-${ecart}%</span></div>`;
+                    }
+
+                    // Récupérer les voix TPE depuis le fichier Excel
+                    const voixTPE = {
+                        'CGT': dept.voix_tpe ? dept.voix_tpe['CGT'] || 0 : 0,
+                        'CFDT': dept.voix_tpe ? dept.voix_tpe['CFDT'] || 0 : 0,
+                        'CGT-FO': dept.voix_tpe ? dept.voix_tpe['CGT-FO'] || 0 : 0,
+                        'CFTC': dept.voix_tpe ? dept.voix_tpe['CFTC'] || 0 : 0,
+                        'CFE-CGC': dept.voix_tpe ? dept.voix_tpe['CFE-CGC'] || 0 : 0,
+                        'SOLIDAIRES': dept.voix_tpe ? dept.voix_tpe['SOLIDAIRES'] || 0 : 0,
+                        'UNSA': dept.voix_tpe ? dept.voix_tpe['UNSA'] || 0 : 0,
+                        'AUTRES': dept.voix_tpe ? (dept.voix_tpe['CAT'] || 0) + (dept.voix_tpe['CNT-SO'] || 0) + (dept.voix_tpe['le_SGJ'] || 0) : 0
+                    };
+
                     html += `
                         <div class="col-md-6">
                             <div class="dept-card card ${syndicatClass}">
@@ -516,103 +546,53 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="stats-item">
-                                                <div class="stats-value">${dept.syndicat_dominant}</div>
-                                                <div class="stats-label">Syndicat dominant</div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <h6>Résultats Globaux</h6>
+                                            <div class="small mb-2">
+                                                <strong>Inscrits:</strong> ${dept.total_inscrits.toLocaleString()}<br>
+                                                <strong>Votants:</strong> ${dept.total_votants.toLocaleString()}<br>
+                                                <strong>SVE:</strong> ${dept.total_sve.toLocaleString()}
                                             </div>
                                         </div>
-                                        <div class="col-6">
-                                            <div class="stats-item">
-                                                <div class="stats-value">${dept.pourcentages[dept.syndicat_dominant].toFixed(2)}%</div>
-                                                <div class="stats-label">Score</div>
+                                        <div class="col-md-6">
+                                            <h6>Voix TPE</h6>
+                                            <div class="small">
+                                                <strong>CGT:</strong> ${voixTPE['CGT']}<br>
+                                                <strong>CFDT:</strong> ${voixTPE['CFDT']}<br>
+                                                <strong>CGT-FO:</strong> ${voixTPE['CGT-FO']}
                                             </div>
                                         </div>
                                     </div>
                                     
-                                    <!-- Focus sur la CGT -->
-                                    <div class="row mt-3">
-                                        <div class="col-12">
-                                            <div class="card bg-light">
-                                                <div class="card-body p-2">
-                                                    <div class="d-flex justify-content-between align-items-center">
-                                                        <div>
-                                                            <div class="stats-value text-danger">${dept.pourcentages.CGT.toFixed(2)}%</div>
-                                                            <div class="stats-label">CGT</div>
-                                                        </div>
-                                                        <div style="width: 100px;">
-                                                            <div class="progress">
-                                                                <div class="progress-bar bg-danger" role="progressbar" style="width: ${dept.pourcentages.CGT}%" aria-valuenow="${dept.pourcentages.CGT}" aria-valuemin="0" aria-valuemax="100"></div>
-                                                            </div>
+                                    <h6>Résultats par organisation</h6>
+                                    <div class="mb-3">
+                                        ${Object.entries(dept.voix).map(([syndicat, voix]) => {
+                                            const pourcentage = (voix / dept.total_sve * 100).toFixed(2);
+                                            const voixTotal = voix + voixTPE[syndicat];
+                                            const pourcentageTotal = (voixTotal / (dept.total_sve + Object.values(voixTPE).reduce((a, b) => a + b, 0)) * 100).toFixed(2);
+                                            return `
+                                                <div class="mb-2">
+                                                    <div class="d-flex justify-content-between align-items-center small">
+                                                        <span>${syndicat}</span>
+                                                        <span>
+                                                            <strong>${voixTotal.toLocaleString()}</strong> voix
+                                                            <span class="text-muted">(${pourcentageTotal}%)</span>
+                                                        </span>
+                                                    </div>
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-${syndicat.toLowerCase()}" 
+                                                            role="progressbar" 
+                                                            style="width: ${pourcentageTotal}%" 
+                                                            aria-valuenow="${pourcentageTotal}" 
+                                                            aria-valuemin="0" 
+                                                            aria-valuemax="100">
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                </div>`;
+                                        }).join('')}
                                     </div>
-                                    <div class="progress mb-2 position-relative">
-                                        <div class="progress-bar" 
-                                             style="width: ${dept.pourcentages.CFDT}%; background-color: ${couleursSyndicats.CFDT};" 
-                                             title="CFDT: ${dept.voix.CFDT !== undefined ? dept.voix.CFDT.toLocaleString() : '0'} voix">
-                                        </div>
-                                        <div class="position-absolute w-100 text-start ps-2" style="color: black;">
-                                            CFDT ${(dept.voix.CFDT !== undefined ? dept.voix.CFDT.toLocaleString() : '0')}
-                                        </div>
-                                    </div>
-                                    <div class="progress mb-2 position-relative">
-                                        <div class="progress-bar" 
-                                             style="width: ${dept.pourcentages['CGT-FO']}%; background-color: ${couleursSyndicats['CGT-FO']};" 
-                                             title="FO: ${dept.voix['CGT-FO'] !== undefined ? dept.voix['CGT-FO'].toLocaleString() : '0'} voix">
-                                        </div>
-                                        <div class="position-absolute w-100 text-start ps-2" style="color: black;">
-                                            FO ${(dept.voix['CGT-FO'] !== undefined ? dept.voix['CGT-FO'].toLocaleString() : '0')}
-                                        </div>
-                                    </div>
-                                    <div class="progress mb-2 position-relative">
-                                        <div class="progress-bar" 
-                                             style="width: ${dept.pourcentages.CFTC}%; background-color: ${couleursSyndicats.CFTC};" 
-                                             title="CFTC: ${dept.voix.CFTC !== undefined ? dept.voix.CFTC.toLocaleString() : '0'} voix">
-                                        </div>
-                                        <div class="position-absolute w-100 text-start ps-2" style="color: black;">
-                                            CFTC ${(dept.voix.CFTC !== undefined ? dept.voix.CFTC.toLocaleString() : '0')}
-                                        </div>
-                                    </div>
-                                    <div class="progress mb-2 position-relative">
-                                        <div class="progress-bar" 
-                                             style="width: ${dept.pourcentages['CFE-CGC']}%; background-color: ${couleursSyndicats['CFE-CGC']};" 
-                                             title="CFE-CGC: ${dept.voix['CFE-CGC'] !== undefined ? dept.voix['CFE-CGC'].toLocaleString() : '0'} voix">
-                                        </div>
-                                        <div class="position-absolute w-100 text-start ps-2" style="color: black;">
-                                            CFE-CGC ${(dept.voix['CFE-CGC'] !== undefined ? dept.voix['CFE-CGC'].toLocaleString() : '0')}
-                                        </div>
-                                    </div>
-                                    <div class="progress mb-2 position-relative">
-                                        <div class="progress-bar" 
-                                             style="width: ${dept.pourcentages.SOLIDAIRES}%; background-color: ${couleursSyndicats.SOLIDAIRES};" 
-                                             title="SOLIDAIRES: ${dept.voix.SOLIDAIRES !== undefined ? dept.voix.SOLIDAIRES.toLocaleString() : '0'} voix">
-                                        </div>
-                                        <div class="position-absolute w-100 text-start ps-2" style="color: black;">
-                                            SOLIDAIRES ${(dept.voix.SOLIDAIRES || 0).toLocaleString()}
-                                        </div>
-                                    </div>
-                                    <div class="progress mb-2 position-relative">
-                                        <div class="progress-bar" 
-                                             style="width: ${dept.pourcentages.UNSA}%; background-color: ${couleursSyndicats.UNSA};" 
-                                             title="UNSA: ${dept.voix.UNSA !== undefined ? dept.voix.UNSA.toLocaleString() : '0'} voix">
-                                        </div>
-                                        <div class="position-absolute w-100 text-start ps-2" style="color: black;">
-                                            UNSA ${(dept.voix.UNSA || 0).toLocaleString()}
-                                        </div>
-                                    </div>
-                                    <div class="mt-3 d-flex justify-content-between">
-                                        <span>Écart CGT-CFDT: 
-                                            <strong class="${dept.ecart_CGT_CFDT > 0 ? 'ecart-positif' : 'ecart-negatif'}">
-                                                ${dept.ecart_CGT_CFDT > 0 ? '+' : ''}${(dept.ecart_CGT_CFDT || 0).toLocaleString()} voix
-                                            </strong>
-                                        </span>
-                                        <span>Total votes: ${(dept.total_sve || 0).toLocaleString()}</span>
-                                    </div>
+                                    ${ecartCGT}
                                 </div>
                             </div>
                         </div>
