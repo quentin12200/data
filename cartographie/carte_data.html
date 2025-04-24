@@ -421,33 +421,44 @@
             
             // Fonction pour afficher les départements
             function afficherDepartements(depts) {
-                // Filtrer selon le département sélectionné
-                let deptsFiltered = depts;
-                const departementSelectionne = document.getElementById('select-departement').value;
+                // Convertir l'objet en tableau pour pouvoir le filtrer
+                let deptsArray = [];
                 
-                if (departementSelectionne !== 'tous') {
-                    deptsFiltered = depts.filter(d => d.code === departementSelectionne);
+                if (!Array.isArray(depts)) {
+                    for (const code in depts) {
+                        deptsArray.push({
+                            code: code,
+                            nom: depts[code].nom || getDepartementName(code),
+                            ...depts[code] // Inclure toutes les autres propriétés
+                        });
+                    }
                 } else {
+                    deptsArray = depts;
+                }
+                
+                // Filtrer selon le département sélectionné
+                let deptsFiltered = deptsArray;
+                const selectDept = document.getElementById('dept-select');
+                const departementSelectionne = selectDept ? selectDept.value : '';
+                
+                if (departementSelectionne && departementSelectionne !== 'tous') {
+                    deptsFiltered = deptsArray.filter(d => d.code === departementSelectionne);
+                } else {
+                    // Pour l'instant, nous n'appliquons pas de filtres car le format des données a changé
+                    // Nous affichons tous les départements
+                    deptsFiltered = deptsArray;
+                    
+                    /* Ancien code de filtrage - à adapter au nouveau format de données si nécessaire
                     // Filtres par pourcentage CGT
                     if (filtreActif === 'cgt-sup30') {
-                        deptsFiltered = depts.filter(d => d.pourcentages.CGT > 30);
+                        deptsFiltered = deptsArray.filter(d => getPourcentageSyndicat(d, 'CGT') > 30);
                     } else if (filtreActif === 'cgt-sup25') {
-                        deptsFiltered = depts.filter(d => d.pourcentages.CGT > 25);
+                        deptsFiltered = deptsArray.filter(d => getPourcentageSyndicat(d, 'CGT') > 25);
                     } else if (filtreActif === 'cgt-sup20') {
-                        deptsFiltered = depts.filter(d => d.pourcentages.CGT > 20);
+                        deptsFiltered = deptsArray.filter(d => getPourcentageSyndicat(d, 'CGT') > 20);
                     }
-                    // Filtres par syndicat dominant
-                    else if (filtreActif === 'cgt-dom') {
-                        deptsFiltered = depts.filter(d => d.syndicat_dominant === 'CGT');
-                    } else if (filtreActif === 'cfdt-dom') {
-                        deptsFiltered = depts.filter(d => d.syndicat_dominant === 'CFDT');
-                    } else if (filtreActif === 'cgt-fo-dom') {
-                        deptsFiltered = depts.filter(d => d.syndicat_dominant === 'CGT-FO');
-                    } else if (filtreActif === 'cftc-dom') {
-                        deptsFiltered = depts.filter(d => d.syndicat_dominant === 'CFTC');
-                    } else if (filtreActif === 'cfe-cgc-dom') {
-                        deptsFiltered = depts.filter(d => d.syndicat_dominant === 'CFE-CGC');
-                    }
+                    // Filtres par syndicat dominant - à implémenter avec le nouveau format de données
+                    */
                 }
                 
                 // Générer le HTML
@@ -455,15 +466,30 @@
                 deptsFiltered.forEach(dept => {
                     // Déterminer la classe CSS pour la carte
                     let syndicatClass = '';
-                    if (dept.syndicat_dominant === 'CGT') {
+                    
+                    // Déterminer le syndicat dominant en fonction des voix totales
+                    const syndicats = ['CGT', 'CFDT', 'CGT-FO', 'CFTC', 'CFE-CGC', 'SOLIDAIRES', 'UNSA', 'AUTRES'];
+                    let maxVoix = 0;
+                    let syndicatDominant = '';
+                    
+                    syndicats.forEach(syndicat => {
+                        const voix = getTotalVoixSyndicat(dept, syndicat);
+                        if (voix > maxVoix) {
+                            maxVoix = voix;
+                            syndicatDominant = syndicat;
+                        }
+                    });
+                    
+                    // Appliquer la classe CSS en fonction du syndicat dominant
+                    if (syndicatDominant === 'CGT') {
                         syndicatClass = 'cgt-dominant';
-                    } else if (dept.syndicat_dominant === 'CFDT') {
+                    } else if (syndicatDominant === 'CFDT') {
                         syndicatClass = 'cfdt-dominant';
-                    } else if (dept.syndicat_dominant === 'CGT-FO') {
+                    } else if (syndicatDominant === 'CGT-FO') {
                         syndicatClass = 'cgt-fo-dominant';
-                    } else if (dept.syndicat_dominant === 'CFTC') {
+                    } else if (syndicatDominant === 'CFTC') {
                         syndicatClass = 'cftc-dominant';
-                    } else if (dept.syndicat_dominant === 'CFE-CGC') {
+                    } else if (syndicatDominant === 'CFE-CGC') {
                         syndicatClass = 'cfe-cgc-dominant';
                     }
                     
