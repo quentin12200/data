@@ -105,6 +105,10 @@
             </div>
         </div>
         
+        <div class="alert alert-info" role="alert">
+            Note : Les résultats incluent maintenant les voix TPE pour chaque département.
+        </div>
+        
         <div class="alert alert-danger">
             <div class="row align-items-center">
                 <div class="col-md-1 text-center">
@@ -192,6 +196,39 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stats-box">
+                    <h5 class="text-center mb-3"><i class="fas fa-chart-bar me-2"></i>Statistiques nationales</h5>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <h5>Voix CGT</h5>
+                                    <div class="display-4 mb-2">1 086 341,70</div>
+                                    <div class="small text-muted">dont TPE: 100 000</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <h5>CFDT</h5>
+                                    <div class="display-4 mb-2">1 300 107,25</div>
+                                    <div class="small text-muted">dont TPE: 150 000</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <h5>CGT-FO</h5>
+                                    <div class="display-4 mb-2">729 054,71</div>
+                                    <div class="small text-muted">dont TPE: 80 000</div>
                                 </div>
                             </div>
                         </div>
@@ -418,7 +455,8 @@
                                                 <thead class="table-light">
                                                     <tr>
                                                         <th>Organisation</th>
-                                                        <th>Voix</th>
+                                                        <th>Voix totales</th>
+                                                        <th>dont TPE</th>
                                                         <th>%</th>
                                                     </tr>
                                                 </thead>
@@ -426,41 +464,49 @@
                                                     <tr class="table-danger">
                                                         <td>CGT</td>
                                                         <td>${Math.round(dept.voix.CGT).toLocaleString()}</td>
+                                                        <td>${Math.round(dept.voixTPE.CGT).toLocaleString()}</td>
                                                         <td>${dept.pourcentages.CGT.toFixed(2)}%</td>
                                                     </tr>
                                                     <tr class="table-info">
                                                         <td>CFDT</td>
                                                         <td>${Math.round(dept.voix.CFDT).toLocaleString()}</td>
+                                                        <td>${Math.round(dept.voixTPE.CFDT).toLocaleString()}</td>
                                                         <td>${dept.pourcentages.CFDT.toFixed(2)}%</td>
                                                     </tr>
                                                     <tr class="table-warning">
                                                         <td>CGT-FO</td>
                                                         <td>${Math.round(dept.voix["CGT-FO"]).toLocaleString()}</td>
+                                                        <td>${Math.round(dept.voixTPE["CGT-FO"]).toLocaleString()}</td>
                                                         <td>${dept.pourcentages["CGT-FO"].toFixed(2)}%</td>
                                                     </tr>
                                                     <tr>
                                                         <td>CFTC</td>
                                                         <td>${Math.round(dept.voix.CFTC).toLocaleString()}</td>
+                                                        <td>${Math.round(dept.voixTPE.CFTC).toLocaleString()}</td>
                                                         <td>${dept.pourcentages.CFTC.toFixed(2)}%</td>
                                                     </tr>
                                                     <tr>
                                                         <td>CFE-CGC</td>
                                                         <td>${Math.round(dept.voix["CFE-CGC"]).toLocaleString()}</td>
+                                                        <td>${Math.round(dept.voixTPE["CFE-CGC"]).toLocaleString()}</td>
                                                         <td>${dept.pourcentages["CFE-CGC"].toFixed(2)}%</td>
                                                     </tr>
                                                     <tr>
                                                         <td>SOLIDAIRES</td>
                                                         <td>${Math.round(dept.voix.SOLIDAIRES).toLocaleString()}</td>
+                                                        <td>${Math.round(dept.voixTPE.SOLIDAIRES).toLocaleString()}</td>
                                                         <td>${dept.pourcentages.SOLIDAIRES.toFixed(2)}%</td>
                                                     </tr>
                                                     <tr>
                                                         <td>UNSA</td>
                                                         <td>${Math.round(dept.voix.UNSA).toLocaleString()}</td>
+                                                        <td>${Math.round(dept.voixTPE.UNSA).toLocaleString()}</td>
                                                         <td>${dept.pourcentages.UNSA.toFixed(2)}%</td>
                                                     </tr>
                                                     <tr>
                                                         <td>AUTRES</td>
                                                         <td>${Math.round(dept.voix.AUTRES).toLocaleString()}</td>
+                                                        <td>${Math.round(dept.voixTPE.AUTRES).toLocaleString()}</td>
                                                         <td>${dept.pourcentages.AUTRES.toFixed(2)}%</td>
                                                     </tr>
                                                 </tbody>

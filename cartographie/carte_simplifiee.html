@@ -184,6 +184,10 @@
             </div>
         </div>
         
+        <div class="alert alert-info" role="alert">
+            Note : Les résultats incluent maintenant les voix TPE pour chaque département.
+        </div>
+        
         <div class="alert alert-danger">
             <div class="row align-items-center">
                 <div class="col-md-1 text-center">
@@ -558,9 +562,13 @@
                                         <div class="col-md-6">
                                             <h6>Voix TPE</h6>
                                             <div class="small">
-                                                <strong>CGT:</strong> ${voixTPE['CGT']}<br>
-                                                <strong>CFDT:</strong> ${voixTPE['CFDT']}<br>
-                                                <strong>CGT-FO:</strong> ${voixTPE['CGT-FO']}
+                                                <strong>CGT:</strong> ${voixTPE['CGT'].toLocaleString()}<br>
+                                                <strong>CFDT:</strong> ${voixTPE['CFDT'].toLocaleString()}<br>
+                                                <strong>CGT-FO:</strong> ${voixTPE['CGT-FO'].toLocaleString()}<br>
+                                                <strong>CFTC:</strong> ${voixTPE['CFTC'].toLocaleString()}<br>
+                                                <strong>CFE-CGC:</strong> ${voixTPE['CFE-CGC'].toLocaleString()}<br>
+                                                <strong>SOLIDAIRES:</strong> ${voixTPE['SOLIDAIRES'].toLocaleString()}<br>
+                                                <strong>UNSA:</strong> ${voixTPE['UNSA'].toLocaleString()}
                                             </div>
                                         </div>
                                     </div>
@@ -568,7 +576,6 @@
                                     <h6>Résultats par organisation</h6>
                                     <div class="mb-3">
                                         ${Object.entries(dept.voix).map(([syndicat, voix]) => {
-                                            const pourcentage = (voix / dept.total_sve * 100).toFixed(2);
                                             const voixTotal = voix + voixTPE[syndicat];
                                             const pourcentageTotal = (voixTotal / (dept.total_sve + Object.values(voixTPE).reduce((a, b) => a + b, 0)) * 100).toFixed(2);
                                             return `
@@ -577,7 +584,8 @@
                                                         <span>${syndicat}</span>
                                                         <span>
                                                             <strong>${voixTotal.toLocaleString()}</strong> voix
-                                                            <span class="text-muted">(${pourcentageTotal}%)</span>
+                                                            <span class="text-muted">(dont TPE: ${voixTPE[syndicat].toLocaleString()})</span>
+                                                            <span class="text-muted ms-2">${pourcentageTotal}%</span>
                                                         </span>
                                                     </div>
                                                     <div class="progress">
