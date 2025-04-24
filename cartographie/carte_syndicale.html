@@ -239,7 +239,7 @@ const colorPalettes = {
     'SOLIDAIRES': d3.interpolatePink,
     'UNSA': d3.interpolateYlGnBu,
     'AUTRES': d3.interpolateGreys,
-    'all': d3.interpolateViridis
+    'all': d3.interpolatePuRd
 };
 let colorScale = d3.scaleSequential(colorPalettes['all']);
 
@@ -670,8 +670,20 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
             
             // Créer une échelle de couleurs plus adaptée
             if (selectedSyndicat === 'all') {
-                // Pour le nombre d'inscrits, utiliser une échelle quantile avec des paliers plus distincts
-                const quantiles = [
+                // Pour le nombre d'inscrits, utiliser une échelle par paliers avec des couleurs distinctes
+                const customColors = [
+                    "#f7f4f9",
+                    "#e7e1ef",
+                    "#d4b9da",
+                    "#c994c7",
+                    "#df65b0",
+                    "#e7298a",
+                    "#ce1256",
+                    "#91003f"
+                ];
+                
+                // Définir des seuils de valeurs pour les paliers
+                const thresholds = [
                     0,
                     1000,
                     5000,
@@ -682,9 +694,10 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
                     d3.max(values)
                 ];
                 
-                colorScale = d3.scaleQuantile()
-                    .domain(values)
-                    .range(d3.quantize(colorPalettes['all'], 7));
+                // Créer une échelle de couleurs par seuils
+                colorScale = d3.scaleThreshold()
+                    .domain(thresholds.slice(1, -1)) // Exclure le premier (0) et le dernier (max)
+                    .range(customColors);
             } else {
                 // Pour les pourcentages, utiliser une échelle quantile avec des paliers plus distincts
                 colorScale = d3.scaleQuantile()
@@ -729,9 +742,30 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
             
             // Créer la légende en fonction du type de données
             if (selectedSyndicat === 'all') {
-                // Légende pour le nombre d'inscrits
-                const thresholds = colorScale.quantiles();
-                const formattedThresholds = [0, ...thresholds].map(d => Math.round(d).toLocaleString());
+                // Légende pour le nombre d'inscrits avec des seuils prédéfinis
+                const thresholds = [
+                    0,
+                    1000,
+                    5000,
+                    10000,
+                    20000,
+                    50000,
+                    100000,
+                    d3.max(values)
+                ];
+                
+                const customColors = [
+                    "#f7f4f9",
+                    "#e7e1ef",
+                    "#d4b9da",
+                    "#c994c7",
+                    "#df65b0",
+                    "#e7298a",
+                    "#ce1256",
+                    "#91003f"
+                ];
+                
+                const formattedThresholds = thresholds.map(d => Math.round(d).toLocaleString());
                 
                 const legendHTML = `
                     <div class="d-flex justify-content-between">
@@ -740,17 +774,21 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
                             <span>Pas de données</span>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-between mt-2">
-                        <div>Moins d'inscrits</div>
-                        <div class="d-flex">
-                            ${colorScale.range().map((color, i) => {
-                                return `<div class="legend-item">
+                    <div class="d-flex flex-wrap mt-2">
+                        ${customColors.map((color, i) => {
+                            // Ne pas afficher le dernier seuil qui est le max
+                            if (i < customColors.length - 1) {
+                                return `<div class="legend-item mb-1">
                                     <div class="legend-color" style="background-color: ${color};"></div>
-                                    <span>${i < formattedThresholds.length - 1 ? formattedThresholds[i] + ' - ' + formattedThresholds[i+1] : '> ' + formattedThresholds[i]}</span>
+                                    <span>${formattedThresholds[i]} - ${formattedThresholds[i+1]}</span>
                                 </div>`;
-                            }).join('')}
-                        </div>
-                        <div>Plus d'inscrits</div>
+                            } else {
+                                return `<div class="legend-item mb-1">
+                                    <div class="legend-color" style="background-color: ${color};"></div>
+                                    <span>> ${formattedThresholds[i-1]}</span>
+                                </div>`;
+                            }
+                        }).join('')}
                     </div>
                 `;
                 
