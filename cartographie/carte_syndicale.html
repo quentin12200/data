@@ -253,8 +253,50 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
             })
             .then(([statsNat, resultatsDeptsData, geoData]) => {
                 // Stocker les données
-                statsNationales = statsNat;
                 resultatsParDepartement = resultatsDeptsData;
+                
+                // Calculer les statistiques nationales à partir des données des départements
+                statsNationales = {
+                    total_scrutins: 0,
+                    total_inscrits: 0,
+                    total_votants: 0,
+                    total_sve: 0,
+                    voix: {
+                        'CGT': 0,
+                        'CFDT': 0,
+                        'CGT-FO': 0,
+                        'CFTC': 0,
+                        'CFE-CGC': 0,
+                        'SOLIDAIRES': 0,
+                        'UNSA': 0,
+                        'AUTRES': 0
+                    },
+                    pourcentages: {}
+                };
+                
+                // Agréger les données de tous les départements
+                for (const deptCode in resultatsParDepartement) {
+                    const dept = resultatsParDepartement[deptCode];
+                    statsNationales.total_scrutins += dept.total_scrutins || 0;
+                    statsNationales.total_inscrits += dept.total_inscrits || 0;
+                    statsNationales.total_votants += dept.total_votants || 0;
+                    statsNationales.total_sve += dept.total_sve || 0;
+                    
+                    // Agréger les voix par syndicat
+                    for (const syndicat in statsNationales.voix) {
+                        if (dept.voix && dept.voix[syndicat]) {
+                            statsNationales.voix[syndicat] += dept.voix[syndicat];
+                        }
+                    }
+                }
+                
+                // Calculer les pourcentages
+                for (const syndicat in statsNationales.voix) {
+                    statsNationales.pourcentages[syndicat] = statsNationales.total_sve > 0 ? 
+                        (statsNationales.voix[syndicat] / statsNationales.total_sve * 100).toFixed(2) : 0;
+                }
+                
+                console.log('Statistiques nationales calculées:', statsNationales);
                 
                 // Initialiser la carte avec les données géographiques
                 initMap(geoData);
@@ -431,11 +473,11 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
 
             // Générer le HTML avec un affichage amélioré des globaux
             let html = `
-                <h3 class="mb-4">Département ${codeDept} - ${deptData.nom}</h3>
-                <div class="card mb-4 border-primary">
-                    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                        <h5 class="mb-0">Département ${deptData.code} - ${deptData.nom}</h5>
-                        <span class="badge bg-light text-primary">${collegeTitle}</span>
+                <h3 class="mb-4">Département ${codeDept} - ${deptData.nom} - ${selectedSyndicat === 'all' ? 'Tous syndicats' : selectedSyndicat}</h3>
+                <div class="card mb-4 border-${selectedSyndicat === 'CGT' ? 'danger' : selectedSyndicat === 'CFDT' ? 'info' : selectedSyndicat === 'CGT-FO' ? 'warning' : selectedSyndicat === 'SOLIDAIRES' ? 'success' : 'primary'}">
+                    <div class="card-header bg-${selectedSyndicat === 'CGT' ? 'danger' : selectedSyndicat === 'CFDT' ? 'info' : selectedSyndicat === 'CGT-FO' ? 'warning' : selectedSyndicat === 'SOLIDAIRES' ? 'success' : 'primary'} text-white d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Département ${deptData.code} - ${deptData.nom} - ${selectedSyndicat === 'all' ? 'Tous syndicats' : selectedSyndicat}</h5>
+                        <span class="badge bg-light text-${selectedSyndicat === 'CGT' ? 'danger' : selectedSyndicat === 'CFDT' ? 'info' : selectedSyndicat === 'CGT-FO' ? 'warning' : selectedSyndicat === 'SOLIDAIRES' ? 'success' : 'primary'}">${collegeTitle}</span>
                     </div>
                     <div class="card-body">
                         <div class="row mb-3">
