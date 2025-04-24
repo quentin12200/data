@@ -170,7 +170,7 @@
         <div class="header-banner">
             <div class="row align-items-center">
                 <div class="col-md-2 text-center">
-                    <img src="/data/logo-cgt.png" alt="Logo CGT" class="img-fluid cgt-logo">
+                    <img src="/data/static/logo-cgt.png" alt="Logo CGT" class="img-fluid cgt-logo">
                 </div>
                 <div class="col-md-8">
                     <h1 class="text-center mb-0">Cartographie des Résultats Syndicaux</h1>
@@ -329,7 +329,7 @@
             }
             
             // Charger les données des départements
-            fetch('/data/json_data_ordonnees/resultats_departements.json')
+            fetch('/data/static/json_data_ordonnees/resultats_departements.json')
                 .then(response => response.json())
                 .then(data => {
                     // Convertir l'objet en tableau

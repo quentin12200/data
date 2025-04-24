@@ -123,7 +123,7 @@
         <div class="alert alert-danger">
             <div class="row align-items-center">
                 <div class="col-md-2 text-center">
-                    <img src="/data/logo-cgt.png" alt="Logo CGT" style="max-height: 60px;" class="img-fluid">
+                    <img src="/data/static/logo-cgt.png" alt="Logo CGT" style="max-height: 60px;" class="img-fluid">
                 </div>
                 <div class="col-md-10">
                     <h4 class="mb-2">Analyse des élections professionnelles 2025</h4>
@@ -235,9 +235,9 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
         // Charger les données
         function loadData() {
             Promise.all([
-                fetch('/data/json_data_ordonnees/stats_regions.json'),
-                fetch('/data/json_data_ordonnees/resultats_departements.json'),
-                fetch('/data/assets/france-departements.json')
+                fetch('/data/static/json_data_ordonnees/stats_regions.json'),
+                fetch('/data/static/json_data_ordonnees/resultats_departements.json'),
+                fetch('/data/static/assets/france-departements.json')
             ])
             .then(responses => {
                 // Vérifier si toutes les réponses sont OK
