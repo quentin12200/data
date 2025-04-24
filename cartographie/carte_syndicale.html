@@ -160,19 +160,7 @@
                         <a href="carte_data.html" class="btn btn-success">Voir la carte simplifiée</a>
                     </div>
                 </div>
-                <div class="row mb-3">
-                    <div class="col-12">
-                        <h5>Collège</h5>
-                        <div id="college-selector" class="d-flex flex-wrap">
-                            <button class="btn btn-outline-primary btn-selector active" data-value="all">Tous</button>
-                            <button class="btn btn-outline-primary btn-selector" data-value="Collège 1">Collège 1</button>
-                            <button class="btn btn-outline-primary btn-selector" data-value="Collège 2">Collège 2</button>
-                            <button class="btn btn-outline-primary btn-selector" data-value="Collège 3">Collège 3</button>
-                            <button class="btn btn-outline-primary btn-selector" data-value="Collège 4 (Autre collège)">Collège 4</button>
-                            <button class="btn btn-outline-primary btn-selector" data-value="Collège 5 (Collège unique)">Collège 5</button>
-                        </div>
-                    </div>
-                </div>
+                <!-- Filtre par collège supprimé pour simplifier l'interface -->
             </div>
         </div>
 
@@ -212,10 +200,25 @@
         // Variables globales
         let map;
         let departements = [];
-        let selectedDepartement = null;
         let selectedSyndicat = 'all';
         let selectedCollege = 'all';
-        let statsNationales = {};
+        let selectedDepartement = null;
+        let statsNationales = {
+            total_scrutins: 0,
+            total_inscrits: 0,
+            total_votants: 0,
+            total_sve: 0,
+            voix: {
+                'CGT': 0,
+                'CFDT': 0,
+                'CGT-FO': 0,
+                'CFTC': 0,
+                'CFE-CGC': 0,
+                'SOLIDAIRES': 0,
+                'UNSA': 0,
+                'AUTRES': 0
+            }
+        };
         let resultatsParDepartement = {};
         let detailsDepartements = {};
         // Palette de couleurs par syndicat
@@ -450,20 +453,20 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
                             <div class="col-md-4">
                                 <div class="card h-100 bg-light">
                                     <div class="card-body text-center">
-                                        <h5>Présence CGT</h5>
-                                        <div class="display-6 mb-2">${nbPV > 0 ? (nbCGTPresent/nbPV*100).toFixed(2) : 0}%</div>
-                                        <div><b>PV totaux :</b> ${nbPV}</div>
-                                        <div><b>CGT présente :</b> ${nbCGTPresent}</div>
-                                        <div><b>CGT absente :</b> ${nbCGTAbsent}</div>
+                                        <h5>Présence ${selectedSyndicat === 'all' ? 'CGT' : selectedSyndicat}</h5>
+                                        <div class="display-6 mb-2">${statsFilteredPvs.length > 0 ? (statsFilteredPvs.filter(pv => pv.voix && pv.voix[selectedSyndicat === 'all' ? 'CGT' : selectedSyndicat] > 0).length / statsFilteredPvs.length * 100).toFixed(2) : 0}%</div>
+                                        <div><b>PV totaux :</b> ${statsFilteredPvs.length}</div>
+                                        <div><b>${selectedSyndicat === 'all' ? 'CGT' : selectedSyndicat} présente :</b> ${statsFilteredPvs.filter(pv => pv.voix && pv.voix[selectedSyndicat === 'all' ? 'CGT' : selectedSyndicat] > 0).length}</div>
+                                        <div><b>${selectedSyndicat === 'all' ? 'CGT' : selectedSyndicat} absente :</b> ${statsFilteredPvs.length - statsFilteredPvs.filter(pv => pv.voix && pv.voix[selectedSyndicat === 'all' ? 'CGT' : selectedSyndicat] > 0).length}</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="card h-100 bg-light">
                                     <div class="card-body text-center">
-                                        <h5>Audience CGT</h5>
-                                        <div class="display-6 mb-2 text-danger">${pourcentages['CGT']}%</div>
-                                        <div><b>Voix CGT :</b> ${totalVoix['CGT'].toLocaleString()}</div>
+                                        <h5>Audience ${selectedSyndicat === 'all' ? 'CGT' : selectedSyndicat}</h5>
+                                        <div class="display-6 mb-2 text-${selectedSyndicat === 'CGT' ? 'danger' : selectedSyndicat === 'CFDT' ? 'info' : selectedSyndicat === 'CGT-FO' ? 'warning' : selectedSyndicat === 'SOLIDAIRES' ? 'success' : 'primary'}">${pourcentages[selectedSyndicat === 'all' ? 'CGT' : selectedSyndicat]}%</div>
+                                        <div><b>Voix ${selectedSyndicat === 'all' ? 'CGT' : selectedSyndicat} :</b> ${totalVoix[selectedSyndicat === 'all' ? 'CGT' : selectedSyndicat].toLocaleString()}</div>
                                         <div><b>Total SVE :</b> ${totalSVE.toLocaleString()}</div>
                                     </div>
                                 </div>
@@ -611,7 +614,7 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
             for (const deptCode in resultatsParDepartement) {
                 const dept = resultatsParDepartement[deptCode];
                 if (selectedSyndicat === 'all') {
-                    values.push(dept.total_scrutins);
+                    values.push(dept.total_inscrits || 0);
                 } else {
                     values.push(dept.pourcentages[selectedSyndicat]);
                 }
@@ -628,7 +631,7 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
                         return '#f5f5f5';
                     }
                     if (selectedSyndicat === 'all') {
-                        return colorScale(dept.total_scrutins);
+                        return colorScale(dept.total_inscrits || 0);
                     } else {
                         return colorScale(dept.pourcentages[selectedSyndicat]);
                     }
@@ -638,7 +641,7 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
             let mapTitle = document.getElementById('map-title');
             if (mapTitle) {
                 if (selectedSyndicat === 'all') {
-                    mapTitle.innerHTML = 'Nombre de scrutins par département';
+                    mapTitle.innerHTML = 'Nombre d\'inscrits par département';
                 } else {
                     mapTitle.innerHTML = `Pourcentage de représentativité ${selectedSyndicat} par département`;
                 }
@@ -695,17 +698,21 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
                 const voix = statsNationales.voix[selectedSyndicat];
                 const pourcentage = (voix / statsNationales.total_sve) * 100;
                 
-                // Compter le nombre de scrutins où le syndicat est présent
+                // Compter le nombre de scrutins où le syndicat est présent et le nombre total de scrutins
                 let scrutinsPresents = 0;
+                let totalScrutins = 0;
                 for (const deptCode in resultatsParDepartement) {
                     const dept = resultatsParDepartement[deptCode];
+                    if (dept.total_scrutins) {
+                        totalScrutins += dept.total_scrutins;
+                    }
                     if (dept.scrutins_par_syndicat && dept.scrutins_par_syndicat[selectedSyndicat]) {
                         scrutinsPresents += dept.scrutins_par_syndicat[selectedSyndicat];
                     }
                 }
                 
-                // Calculer le pourcentage de présence
-                const pourcentagePresence = (scrutinsPresents / statsNationales.total_scrutins) * 100;
+                // Calculer le pourcentage de présence par rapport au nombre total de PV
+                const pourcentagePresence = totalScrutins > 0 ? (scrutinsPresents / totalScrutins) * 100 : 0;
                 
                 // Déterminer la couleur de fond selon le syndicat sélectionné
                 let bgColor = 'primary';
@@ -818,7 +825,7 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
             for (const deptCode in resultatsParDepartement) {
                 const dept = resultatsParDepartement[deptCode];
                 if (selectedSyndicat === 'all') {
-                    values.push(dept.total_scrutins);
+                    values.push(dept.total_inscrits || 0);
                 } else {
                     values.push(dept.pourcentages[selectedSyndicat]);
                 }
@@ -836,7 +843,7 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
             }
             
             // Générer le HTML
-            let html = `<h6 class="mb-2">${selectedSyndicat === 'all' ? 'Nombre de scrutins' : 'Pourcentage ' + selectedSyndicat}</h6>`;
+            let html = `<h6 class="mb-2">${selectedSyndicat === 'all' ? 'Nombre d\'inscrits' : 'Pourcentage ' + selectedSyndicat}</h6>`;
             
             for (const value of legendValues) {
                 const color = colorScale(value);
@@ -886,30 +893,8 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
                 });
             });
             
-            // Sélecteur de collège
-            document.querySelectorAll('#college-selector .btn-selector').forEach(button => {
-                button.addEventListener('click', function() {
-                    // Désélectionner tous les boutons
-                    document.querySelectorAll('#college-selector .btn-selector').forEach(btn => {
-                        btn.classList.remove('active', 'btn-primary');
-                        btn.classList.add('btn-outline-primary');
-                    });
-                    
-                    // Sélectionner le nouveau bouton
-                    this.classList.remove('btn-outline-primary');
-                    this.classList.add('active', 'btn-primary');
-                    
-                    // Mettre à jour le collège sélectionné
-                    selectedCollege = this.getAttribute('data-value');
-                    console.log('Collège sélectionné:', selectedCollege);
-                    
-                    // Mettre à jour la liste des entreprises si un département est sélectionné
-                    if (selectedDepartement) {
-                        // Régénérer les entreprises avec le nouveau filtre de collège
-                        showDepartementDetails(selectedDepartement);
-                    }
-                });
-            });
+            // Le filtre par collège a été supprimé, on définit selectedCollege à 'all' par défaut
+            selectedCollege = 'all';
             
             // Charger les données
             loadData();
