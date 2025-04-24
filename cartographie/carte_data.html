@@ -368,17 +368,22 @@
                     return codeA.localeCompare(codeB);
                 });
                 
-                // Ajouter les départements au menu déroulant
-                const deptSelect = document.getElementById('select-departement');
-                deptSelect.innerHTML = '<option value="tous">Tous les départements</option>';
+                // Vérifier si l'élément de sélection existe
+                const deptSelect = document.getElementById('dept-select');
+                if (deptSelect) {
+                    deptSelect.innerHTML = '<option value="">Sélectionnez un département</option>';
+                    
+                    deptsArray.forEach(dept => {
+                        const option = document.createElement('option');
+                        option.value = dept.code;
+                        option.textContent = `${dept.code} - ${dept.nom}`;
+                        deptSelect.appendChild(option);
+                    });
+                }
                 
-                deptsArray.forEach(dept => {
-                    const option = document.createElement('option');
-                    option.value = dept.code;
-                    option.textContent = `${dept.code} - ${dept.nom}`;
-                    deptSelect.appendChild(option);
-                });
-                
+                // Nous n'avons pas besoin de cette partie car les éléments n'existent pas dans cette page
+                // Laissons le code en commentaire pour référence future
+                /*
                 // Séparer les départements métropolitains et DOM-TOM
                 const metroOptions = [];
                 const domTomOptions = [];
@@ -397,11 +402,21 @@
                 });
                 
                 // Ajouter les options au menu déroulant
-                const metroGroup = selectDepartement.querySelector('optgroup[label="Départements métropolitains"]');
-                const domTomGroup = selectDepartement.querySelector('optgroup[label="DOM-TOM"]');
+                const selectDepartement = document.getElementById('select-departement');
+                if (selectDepartement) {
+                    const metroGroup = selectDepartement.querySelector('optgroup[label="Départements métropolitains"]');
+                    const domTomGroup = selectDepartement.querySelector('optgroup[label="DOM-TOM"]');
+                    
+                    if (metroGroup && domTomGroup) {
+                        metroOptions.forEach(option => metroGroup.appendChild(option));
+                        domTomOptions.forEach(option => domTomGroup.appendChild(option));
+                    }
+                }
+                */
                 
-                metroOptions.forEach(option => metroGroup.appendChild(option));
-                domTomOptions.forEach(option => domTomGroup.appendChild(option));
+                // Cette partie est commentée car les éléments n'existent pas
+                // metroOptions.forEach(option => metroGroup.appendChild(option));
+                // domTomOptions.forEach(option => domTomGroup.appendChild(option));
             }
             
             // Fonction pour afficher les départements
