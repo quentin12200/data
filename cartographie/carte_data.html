@@ -278,7 +278,70 @@
         </div>
     </div>
     
+    <div class="container-fluid">
+        <h1 class="mb-4">Données par département</h1>
+
+        <!-- Filtres -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="btn-group" role="group">
+                    <button id="btn-tous" class="btn btn-outline-primary active">Tous</button>
+                    <button id="btn-cgt-sup30" class="btn btn-outline-danger">CGT > 30%</button>
+                    <button id="btn-cgt-sup25" class="btn btn-outline-danger">CGT > 25%</button>
+                    <button id="btn-cgt-sup20" class="btn btn-outline-danger">CGT > 20%</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="btn-group" role="group">
+                    <button id="btn-cgt-dom" class="btn btn-outline-danger">CGT dominant</button>
+                    <button id="btn-cfdt-dom" class="btn btn-outline-info">CFDT dominant</button>
+                    <button id="btn-cgt-fo-dom" class="btn btn-outline-warning">CGT-FO dominant</button>
+                    <button id="btn-cftc-dom" class="btn btn-outline-success">CFTC dominant</button>
+                    <button id="btn-cfe-cgc-dom" class="btn btn-outline-primary">CFE-CGC dominant</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sélection département -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <select id="select-departement" class="form-select">
+                    <option value="tous">Tous les départements</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <button id="btn-export-excel" class="btn btn-success">
+                    <i class="bi bi-file-excel"></i> Exporter en Excel
+                </button>
+            </div>
+        </div>
+
+        <!-- Tableau des résultats -->
+        <div class="table-responsive">
+            <table id="details-table" class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Département</th>
+                        <th>Organisation</th>
+                        <th>Voix CSE</th>
+                        <th>%</th>
+                        <th>Voix TPE</th>
+                        <th>%</th>
+                        <th>Voix AGRI</th>
+                        <th>%</th>
+                        <th>Total</th>
+                        <th>% Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Contenu généré dynamiquement -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const deptListContainer = document.getElementById('dept-list');
@@ -493,6 +556,207 @@
                 afficherDepartements();
             });
         });
+    </script>
+    
+    <script>
+        let departements = {};
+        let filtreActif = 'tous';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Charger les données
+            fetch('../json_data_ordonnees/resultats_combines.json')
+                .then(response => response.json())
+                .then(data => {
+                    departements = data;
+                    remplirMenuDepartements(departements);
+                    afficherDepartements();
+                })
+                .catch(error => {
+                    console.error('Erreur:', error);
+                });
+
+            // Export Excel
+            document.getElementById('btn-export-excel').addEventListener('click', function() {
+                const table = document.getElementById('details-table');
+                const wb = XLSX.utils.table_to_book(table, {sheet: "Données syndicales"});
+                XLSX.writeFile(wb, 'donnees_syndicales.xlsx');
+            });
+
+            // Filtres
+            document.getElementById('btn-tous').addEventListener('click', function() {
+                filtreActif = 'tous';
+                updateActiveFilterButton(this);
+                afficherDepartements();
+            });
+
+            document.getElementById('select-departement').addEventListener('change', function() {
+                if (this.value === 'tous') {
+                    filtreActif = 'tous';
+                    updateActiveFilterButton(document.getElementById('btn-tous'));
+                }
+                afficherDepartements();
+            });
+
+            // Filtres CGT %
+            document.getElementById('btn-cgt-sup30').addEventListener('click', function() {
+                filtreActif = 'cgt-sup30';
+                updateActiveFilterButton(this);
+                afficherDepartements();
+            });
+
+            document.getElementById('btn-cgt-sup25').addEventListener('click', function() {
+                filtreActif = 'cgt-sup25';
+                updateActiveFilterButton(this);
+                afficherDepartements();
+            });
+
+            document.getElementById('btn-cgt-sup20').addEventListener('click', function() {
+                filtreActif = 'cgt-sup20';
+                updateActiveFilterButton(this);
+                afficherDepartements();
+            });
+
+            // Filtres syndicat dominant
+            document.getElementById('btn-cgt-dom').addEventListener('click', function() {
+                filtreActif = 'cgt-dom';
+                updateActiveFilterButton(this);
+                afficherDepartements();
+            });
+
+            document.getElementById('btn-cfdt-dom').addEventListener('click', function() {
+                filtreActif = 'cfdt-dom';
+                updateActiveFilterButton(this);
+                afficherDepartements();
+            });
+
+            document.getElementById('btn-cgt-fo-dom').addEventListener('click', function() {
+                filtreActif = 'cgt-fo-dom';
+                updateActiveFilterButton(this);
+                afficherDepartements();
+            });
+
+            document.getElementById('btn-cftc-dom').addEventListener('click', function() {
+                filtreActif = 'cftc-dom';
+                updateActiveFilterButton(this);
+                afficherDepartements();
+            });
+
+            document.getElementById('btn-cfe-cgc-dom').addEventListener('click', function() {
+                filtreActif = 'cfe-cgc-dom';
+                updateActiveFilterButton(this);
+                afficherDepartements();
+            });
+        });
+
+        // Fonction pour remplir le menu déroulant des départements
+        function remplirMenuDepartements(data) {
+            const select = document.getElementById('select-departement');
+            Object.entries(data)
+                .sort(([a], [b]) => a.localeCompare(b))
+                .forEach(([code, dept]) => {
+                    const option = document.createElement('option');
+                    option.value = code;
+                    option.textContent = `${code} - ${dept.nom || 'Département ' + code}`;
+                    select.appendChild(option);
+                });
+        }
+
+        // Fonction pour afficher les départements
+        function afficherDepartements() {
+            const tbody = document.querySelector('#details-table tbody');
+            if (!tbody) {
+                console.error("L'élément tbody n'existe pas");
+                return;
+            }
+            tbody.innerHTML = '';
+
+            const departementSelectionne = document.getElementById('select-departement').value;
+            
+            Object.entries(departements).forEach(([codeDept, dept]) => {
+                // Vérifier si le département correspond aux filtres
+                if (departementSelectionne !== 'tous' && codeDept !== departementSelectionne) {
+                    return;
+                }
+
+                // Vérifier que toutes les données nécessaires existent
+                if (!dept || !dept.voix || !dept.voix.CSE || !dept.voix.TPE || !dept.voix.AGRI) {
+                    console.error(`Données manquantes pour le département ${codeDept}`, dept);
+                    return;
+                }
+
+                const totalCSE = Object.values(dept.voix.CSE).reduce((a, b) => a + (Number(b) || 0), 0);
+                const totalTPE = Object.values(dept.voix.TPE).reduce((a, b) => a + (Number(b) || 0), 0);
+                const totalAGRI = Object.values(dept.voix.AGRI).reduce((a, b) => a + (Number(b) || 0), 0);
+                const totalGlobal = totalCSE + totalTPE + totalAGRI;
+
+                // Calculer le syndicat dominant
+                const totalParSyndicat = {};
+                ['CGT', 'CFDT', 'CGT-FO', 'CFTC', 'CFE-CGC', 'SOLIDAIRES', 'UNSA', 'AUTRES'].forEach(syndicat => {
+                    const voixCSE = Number(dept.voix.CSE[syndicat]) || 0;
+                    const voixTPE = Number(dept.voix.TPE[syndicat]) || 0;
+                    const voixAGRI = Number(dept.voix.AGRI[syndicat]) || 0;
+                    totalParSyndicat[syndicat] = voixCSE + voixTPE + voixAGRI;
+                });
+
+                const syndicatDominant = Object.entries(totalParSyndicat)
+                    .sort(([,a], [,b]) => b - a)[0][0];
+
+                // Vérifier les filtres
+                const pourcentageCGT = totalGlobal > 0 ? (totalParSyndicat.CGT / totalGlobal) * 100 : 0;
+
+                if (filtreActif === 'cgt-sup30' && pourcentageCGT <= 30) return;
+                if (filtreActif === 'cgt-sup25' && pourcentageCGT <= 25) return;
+                if (filtreActif === 'cgt-sup20' && pourcentageCGT <= 20) return;
+                if (filtreActif === 'cgt-dom' && syndicatDominant !== 'CGT') return;
+                if (filtreActif === 'cfdt-dom' && syndicatDominant !== 'CFDT') return;
+                if (filtreActif === 'cgt-fo-dom' && syndicatDominant !== 'CGT-FO') return;
+                if (filtreActif === 'cftc-dom' && syndicatDominant !== 'CFTC') return;
+                if (filtreActif === 'cfe-cgc-dom' && syndicatDominant !== 'CFE-CGC') return;
+
+                // Afficher les lignes pour chaque syndicat
+                ['CGT', 'CFDT', 'CGT-FO', 'CFTC', 'CFE-CGC', 'SOLIDAIRES', 'UNSA', 'AUTRES'].forEach(syndicat => {
+                    const voixCSE = Number(dept.voix.CSE[syndicat]) || 0;
+                    const voixTPE = Number(dept.voix.TPE[syndicat]) || 0;
+                    const voixAGRI = Number(dept.voix.AGRI[syndicat]) || 0;
+                    const totalSyndicat = voixCSE + voixTPE + voixAGRI;
+
+                    const row = document.createElement('tr');
+                    
+                    // Ajouter une classe de couleur si c'est le syndicat dominant
+                    if (syndicat === syndicatDominant) {
+                        switch(syndicat) {
+                            case 'CGT': row.classList.add('table-danger'); break;
+                            case 'CFDT': row.classList.add('table-info'); break;
+                            case 'CGT-FO': row.classList.add('table-warning'); break;
+                            case 'CFTC': row.classList.add('table-success'); break;
+                            case 'CFE-CGC': row.classList.add('table-primary'); break;
+                        }
+                    }
+
+                    row.innerHTML = `
+                        <td>${codeDept}</td>
+                        <td>${syndicat}</td>
+                        <td>${Math.round(voixCSE).toLocaleString()}</td>
+                        <td>${totalCSE > 0 ? ((voixCSE / totalCSE) * 100).toFixed(2) : '0.00'}%</td>
+                        <td>${Math.round(voixTPE).toLocaleString()}</td>
+                        <td>${totalTPE > 0 ? ((voixTPE / totalTPE) * 100).toFixed(2) : '0.00'}%</td>
+                        <td>${Math.round(voixAGRI).toLocaleString()}</td>
+                        <td>${totalAGRI > 0 ? ((voixAGRI / totalAGRI) * 100).toFixed(2) : '0.00'}%</td>
+                        <td>${Math.round(totalSyndicat).toLocaleString()}</td>
+                        <td>${totalGlobal > 0 ? ((totalSyndicat / totalGlobal) * 100).toFixed(2) : '0.00'}%</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            });
+        }
+
+        // Fonction pour mettre à jour le bouton actif
+        function updateActiveFilterButton(button) {
+            document.querySelectorAll('.btn-group .btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
+        }
     </script>
 </body>
 </html>
