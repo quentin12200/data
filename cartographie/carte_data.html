@@ -359,12 +359,19 @@
                     const codeA = a.code;
                     const codeB = b.code;
                     
-                    // Si les deux codes sont numériques, les comparer comme des nombres
-                    if (!isNaN(codeA) && !isNaN(codeB)) {
-                        return parseInt(codeA) - parseInt(codeB);
+                    // Convertir les codes en nombres si possible pour un tri numérique
+                    const numA = parseInt(codeA);
+                    const numB = parseInt(codeB);
+                    
+                    if (!isNaN(numA) && !isNaN(numB)) {
+                        return numA - numB;
                     }
                     
-                    // Sinon, comparer comme des chaînes de caractères
+                    // Si l'un est numérique et l'autre non, les numériques viennent en premier
+                    if (!isNaN(numA)) return -1;
+                    if (!isNaN(numB)) return 1;
+                    
+                    // Sinon, tri alphabétique
                     return codeA.localeCompare(codeB);
                 });
                 
@@ -531,7 +538,7 @@
                                         </div>
                                         <div class="col-6">
                                             <div class="stats-item text-end">
-                                                <div class="stats-value">${Math.round(dept.voix.CGT).toLocaleString()}</div>
+                                                <div class="stats-value">${getTotalVoixSyndicat(dept, 'CGT').toLocaleString()}</div>
                                                 <div class="stats-label">Voix CGT</div>
                                             </div>
                                         </div>
@@ -581,14 +588,17 @@
                                         <h6 class="mb-2 mt-3">Scores par organisation</h6>
                                         <div class="table-responsive">
                                             <table class="table table-sm table-bordered">
-                                                <thead class="table-light">
+                                                <thead class="table-light" id="dept-resultats-header">
                                                     <tr>
                                                         <th>Organisation</th>
-                                                        <th>Voix</th>
+                                                        <th>Total Voix</th>
                                                         <th>%</th>
+                                                        <th>CSE</th>
+                                                        <th>TPE</th>
+                                                        <th>AGRI</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody id="dept-resultats">
                                                     <tr class="table-danger">
                                                         <td>CGT</td>
                                                         <td>${getTotalVoixSyndicat(dept, 'CGT').toLocaleString()}</td>
@@ -646,6 +656,85 @@
                         </div>
                     </div>
                 `;
+            }
+            
+            // Fonction pour afficher les détails d'un département
+            function showDepartementDetails(dept) {
+                const deptData = data[dept];
+                if (!deptData) return;
+                
+                // Calculer les totaux pour tous les types d'élections
+                const totalInscrits = (deptData.CSE?.inscrits || 0) + (deptData.TPE?.inscrits || 0) + (deptData.AGRI?.inscrits || 0);
+                const totalVotants = (deptData.CSE?.votants || 0) + (deptData.TPE?.votants || 0) + (deptData.AGRI?.votants || 0);
+                const totalSve = (deptData.CSE?.sve || 0) + (deptData.TPE?.sve || 0) + (deptData.AGRI?.sve || 0);
+                
+                document.getElementById('dept-nom').textContent = getDepartementName(dept);
+                document.getElementById('dept-inscrits').textContent = totalInscrits.toLocaleString();
+                document.getElementById('dept-inscrits-cse').textContent = (deptData.CSE?.inscrits || 0).toLocaleString();
+                document.getElementById('dept-inscrits-tpe').textContent = (deptData.TPE?.inscrits || 0).toLocaleString();
+                document.getElementById('dept-inscrits-agri').textContent = (deptData.AGRI?.inscrits || 0).toLocaleString();
+                document.getElementById('dept-votants').textContent = totalVotants.toLocaleString();
+                document.getElementById('dept-participation').textContent = totalInscrits > 0 ? `${((totalVotants / totalInscrits) * 100).toFixed(2)}%` : '0.00%';
+                document.getElementById('dept-sve').textContent = totalSve.toLocaleString();
+                
+                // Mettre à jour le tableau des résultats par syndicat avec détail par type de scrutin
+                let tableHtml = '';
+                for (const syndicat of ['CGT', 'CFDT', 'CGT-FO', 'CFTC', 'CFE-CGC', 'SOLIDAIRES', 'UNSA', 'AUTRES']) {
+                    let totalVoix = 0;
+                    let voixCSE = 0;
+                    let voixTPE = 0;
+                    let voixAGRI = 0;
+                    
+                    // Récupérer les voix par type d'élection
+                    if (deptData.CSE && deptData.CSE.voix) {
+                        voixCSE = deptData.CSE.voix[syndicat] || 0;
+                        totalVoix += voixCSE;
+                    }
+                    if (deptData.TPE && deptData.TPE.voix) {
+                        voixTPE = deptData.TPE.voix[syndicat] || 0;
+                        totalVoix += voixTPE;
+                    }
+                    if (deptData.AGRI && deptData.AGRI.voix) {
+                        voixAGRI = deptData.AGRI.voix[syndicat] || 0;
+                        totalVoix += voixAGRI;
+                    }
+                    
+                    const pourcentage = totalSve > 0 ? (totalVoix / totalSve) * 100 : 0;
+                    
+                    // Déterminer la classe CSS pour la ligne
+                    let rowClass = '';
+                    if (syndicat === 'CGT') rowClass = 'table-danger';
+                    else if (syndicat === 'CFDT') rowClass = 'table-info';
+                    else if (syndicat === 'CGT-FO') rowClass = 'table-warning';
+                    
+                    tableHtml += `
+                        <tr class="${rowClass}">
+                            <td><strong>${syndicat}</strong></td>
+                            <td>${totalVoix.toLocaleString()}</td>
+                            <td>${pourcentage.toFixed(2)}%</td>
+                            <td>${voixCSE.toLocaleString()}</td>
+                            <td>${voixTPE.toLocaleString()}</td>
+                            <td>${voixAGRI.toLocaleString()}</td>
+                        </tr>
+                    `;
+                }
+                
+                // Mettre à jour l'en-tête du tableau avec les colonnes pour les types de scrutin
+                document.getElementById('dept-resultats-header').innerHTML = `
+                    <tr>
+                        <th>Organisation</th>
+                        <th>Total Voix</th>
+                        <th>%</th>
+                        <th>CSE</th>
+                        <th>TPE</th>
+                        <th>AGRI</th>
+                    </tr>
+                `;
+                
+                document.getElementById('dept-resultats').innerHTML = tableHtml;
+                
+                // Afficher le département sélectionné
+                document.getElementById('departement-details').classList.remove('hidden');
             }
             
             // Fonction pour mettre à jour le bouton actif
