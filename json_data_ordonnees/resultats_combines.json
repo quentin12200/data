@@ -1,0 +1,3887 @@
+{
+  "01": {
+    "total_inscrits": 52425.0,
+    "total_votants": 30424.0,
+    "total_sve": 29612.0,
+    "voix": {
+      "CSE": {
+        "CGT": 7637.0,
+        "CFDT": 8561.0,
+        "CGT-FO": 5655.0,
+        "CFTC": 1322.0,
+        "CFE-CGC": 2595.0,
+        "SOLIDAIRES": 611.0,
+        "UNSA": 1294.0,
+        "AUTRES": 559.0
+      },
+      "TPE": {
+        "CGT": 271.0,
+        "CFDT": 191.0,
+        "CGT-FO": 155.0,
+        "CFTC": 117.0,
+        "CFE-CGC": 62.0,
+        "SOLIDAIRES": 59.0,
+        "UNSA": 203.0,
+        "AUTRES": 24.0
+      },
+      "AGRI": {
+        "CGT": 56.0,
+        "CFDT": 50.0,
+        "CGT-FO": 26.0,
+        "CFTC": 33.0,
+        "CFE-CGC": 19.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 91.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "02": {
+    "total_inscrits": 36176.0,
+    "total_votants": 22005.0,
+    "total_sve": 21205.0,
+    "voix": {
+      "CSE": {
+        "CGT": 5818.0,
+        "CFDT": 5695.0,
+        "CGT-FO": 3903.0,
+        "CFTC": 2190.0,
+        "CFE-CGC": 1392.0,
+        "SOLIDAIRES": 249.0,
+        "UNSA": 492.0,
+        "AUTRES": 181.0
+      },
+      "TPE": {
+        "CGT": 291.0,
+        "CFDT": 131.0,
+        "CGT-FO": 122.0,
+        "CFTC": 73.0,
+        "CFE-CGC": 28.0,
+        "SOLIDAIRES": 30.0,
+        "UNSA": 103.0,
+        "AUTRES": 15.0
+      },
+      "AGRI": {
+        "CGT": 108.0,
+        "CFDT": 91.0,
+        "CGT-FO": 72.0,
+        "CFTC": 92.0,
+        "CFE-CGC": 119.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "03": {
+    "total_inscrits": 23342.0,
+    "total_votants": 14253.0,
+    "total_sve": 13778.0,
+    "voix": {
+      "CSE": {
+        "CGT": 4711.0,
+        "CFDT": 3063.0,
+        "CGT-FO": 2713.0,
+        "CFTC": 548.0,
+        "CFE-CGC": 849.0,
+        "SOLIDAIRES": 284.0,
+        "UNSA": 365.0,
+        "AUTRES": 281.0
+      },
+      "TPE": {
+        "CGT": 277.0,
+        "CFDT": 98.0,
+        "CGT-FO": 127.0,
+        "CFTC": 71.0,
+        "CFE-CGC": 25.0,
+        "SOLIDAIRES": 33.0,
+        "UNSA": 110.0,
+        "AUTRES": 8.0
+      },
+      "AGRI": {
+        "CGT": 56.0,
+        "CFDT": 75.0,
+        "CGT-FO": 0.0,
+        "CFTC": 80.0,
+        "CFE-CGC": 0.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "04": {
+    "total_inscrits": 51044.0,
+    "total_votants": 6975.0,
+    "total_sve": 7058.0,
+    "voix": {
+      "CSE": {
+        "CGT": 1567.0,
+        "CFDT": 887.0,
+        "CGT-FO": 1390.0,
+        "CFTC": 1174.0,
+        "CFE-CGC": 915.0,
+        "SOLIDAIRES": 27.0,
+        "UNSA": 447.0,
+        "AUTRES": 36.0
+      },
+      "TPE": {
+        "CGT": 193.0,
+        "CFDT": 63.0,
+        "CGT-FO": 61.0,
+        "CFTC": 18.0,
+        "CFE-CGC": 14.0,
+        "SOLIDAIRES": 29.0,
+        "UNSA": 57.0,
+        "AUTRES": 8.0
+      },
+      "AGRI": {
+        "CGT": 58.0,
+        "CFDT": 0.0,
+        "CGT-FO": 0.0,
+        "CFTC": 57.0,
+        "CFE-CGC": 54.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "05": {
+    "total_inscrits": 5871.0,
+    "total_votants": 3106.0,
+    "total_sve": 3259.0,
+    "voix": {
+      "CSE": {
+        "CGT": 949.0,
+        "CFDT": 878.0,
+        "CGT-FO": 686.0,
+        "CFTC": 0,
+        "CFE-CGC": 134.0,
+        "SOLIDAIRES": 0,
+        "UNSA": 43.0,
+        "AUTRES": 36.0
+      },
+      "TPE": {
+        "CGT": 120.0,
+        "CFDT": 84.0,
+        "CGT-FO": 57.0,
+        "CFTC": 26.0,
+        "CFE-CGC": 13.0,
+        "SOLIDAIRES": 49.0,
+        "UNSA": 53.0,
+        "AUTRES": 11.0
+      },
+      "AGRI": {
+        "CGT": 35.0,
+        "CFDT": 36.0,
+        "CGT-FO": 0.0,
+        "CFTC": 42.0,
+        "CFE-CGC": 0.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "06": {
+    "total_inscrits": 89279.0,
+    "total_votants": 54596.0,
+    "total_sve": 54004.0,
+    "voix": {
+      "CSE": {
+        "CGT": 11743.0,
+        "CFDT": 14384.0,
+        "CGT-FO": 9215.0,
+        "CFTC": 4214.0,
+        "CFE-CGC": 7517.0,
+        "SOLIDAIRES": 1004.0,
+        "UNSA": 2635.0,
+        "AUTRES": 927.0
+      },
+      "TPE": {
+        "CGT": 656.0,
+        "CFDT": 343.0,
+        "CGT-FO": 284.0,
+        "CFTC": 234.0,
+        "CFE-CGC": 126.0,
+        "SOLIDAIRES": 79.0,
+        "UNSA": 362.0,
+        "AUTRES": 38.0
+      },
+      "AGRI": {
+        "CGT": 65.0,
+        "CFDT": 41.0,
+        "CGT-FO": 23.0,
+        "CFTC": 45.0,
+        "CFE-CGC": 40.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "07": {
+    "total_inscrits": 22643.0,
+    "total_votants": 13059.0,
+    "total_sve": 12804.970000000001,
+    "voix": {
+      "CSE": {
+        "CGT": 4655.0,
+        "CFDT": 3117.0,
+        "CGT-FO": 1599.0,
+        "CFTC": 770.0,
+        "CFE-CGC": 1079.0,
+        "SOLIDAIRES": 316.0,
+        "UNSA": 171.0,
+        "AUTRES": 181.0
+      },
+      "TPE": {
+        "CGT": 211.0,
+        "CFDT": 133.0,
+        "CGT-FO": 109.0,
+        "CFTC": 63.0,
+        "CFE-CGC": 22.0,
+        "SOLIDAIRES": 59.0,
+        "UNSA": 95.0,
+        "AUTRES": 14.0
+      },
+      "AGRI": {
+        "CGT": 56.0,
+        "CFDT": 69.0,
+        "CGT-FO": 0.0,
+        "CFTC": 61.0,
+        "CFE-CGC": 17.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "08": {
+    "total_inscrits": 18801.0,
+    "total_votants": 11504.0,
+    "total_sve": 11160.0,
+    "voix": {
+      "CSE": {
+        "CGT": 2904.0,
+        "CFDT": 2055.0,
+        "CGT-FO": 2994.0,
+        "CFTC": 918.0,
+        "CFE-CGC": 741.0,
+        "SOLIDAIRES": 390.0,
+        "UNSA": 383.0,
+        "AUTRES": 49.0
+      },
+      "TPE": {
+        "CGT": 167.0,
+        "CFDT": 82.0,
+        "CGT-FO": 102.0,
+        "CFTC": 51.0,
+        "CFE-CGC": 24.0,
+        "SOLIDAIRES": 16.0,
+        "UNSA": 74.0,
+        "AUTRES": 3.0
+      },
+      "AGRI": {
+        "CGT": 16.0,
+        "CFDT": 68.0,
+        "CGT-FO": 32.0,
+        "CFTC": 43.0,
+        "CFE-CGC": 44.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "09": {
+    "total_inscrits": 7638.0,
+    "total_votants": 5151.0,
+    "total_sve": 4881.0,
+    "voix": {
+      "CSE": {
+        "CGT": 2224.0,
+        "CFDT": 599.0,
+        "CGT-FO": 708.0,
+        "CFTC": 290.0,
+        "CFE-CGC": 313.0,
+        "SOLIDAIRES": 237.0,
+        "UNSA": 0,
+        "AUTRES": 31.0
+      },
+      "TPE": {
+        "CGT": 156.0,
+        "CFDT": 32.0,
+        "CGT-FO": 45.0,
+        "CFTC": 23.0,
+        "CFE-CGC": 11.0,
+        "SOLIDAIRES": 43.0,
+        "UNSA": 57.0,
+        "AUTRES": 4.0
+      },
+      "AGRI": {
+        "CGT": 42.0,
+        "CFDT": 41.0,
+        "CGT-FO": 0.0,
+        "CFTC": 21.0,
+        "CFE-CGC": 0.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "10": {
+    "total_inscrits": 26029.0,
+    "total_votants": 13894.0,
+    "total_sve": 13641.0,
+    "voix": {
+      "CSE": {
+        "CGT": 3486.0,
+        "CFDT": 3561.0,
+        "CGT-FO": 1650.0,
+        "CFTC": 989.0,
+        "CFE-CGC": 1453.0,
+        "SOLIDAIRES": 151.0,
+        "UNSA": 687.0,
+        "AUTRES": 500.0
+      },
+      "TPE": {
+        "CGT": 215.0,
+        "CFDT": 174.0,
+        "CGT-FO": 123.0,
+        "CFTC": 82.0,
+        "CFE-CGC": 24.0,
+        "SOLIDAIRES": 23.0,
+        "UNSA": 129.0,
+        "AUTRES": 13.0
+      },
+      "AGRI": {
+        "CGT": 59.0,
+        "CFDT": 100.0,
+        "CGT-FO": 0.0,
+        "CFTC": 90.0,
+        "CFE-CGC": 74.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "11": {
+    "total_inscrits": 18364.0,
+    "total_votants": 9863.0,
+    "total_sve": 10325.0,
+    "voix": {
+      "CSE": {
+        "CGT": 2155.0,
+        "CFDT": 2361.0,
+        "CGT-FO": 2400.0,
+        "CFTC": 899.0,
+        "CFE-CGC": 292.0,
+        "SOLIDAIRES": 98.0,
+        "UNSA": 443.0,
+        "AUTRES": 243.0
+      },
+      "TPE": {
+        "CGT": 302.0,
+        "CFDT": 153.0,
+        "CGT-FO": 225.0,
+        "CFTC": 92.0,
+        "CFE-CGC": 35.0,
+        "SOLIDAIRES": 59.0,
+        "UNSA": 141.0,
+        "AUTRES": 11.0
+      },
+      "AGRI": {
+        "CGT": 71.0,
+        "CFDT": 83.0,
+        "CGT-FO": 63.0,
+        "CFTC": 84.0,
+        "CFE-CGC": 35.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "12": {
+    "total_inscrits": 21151.0,
+    "total_votants": 12542.0,
+    "total_sve": 12580.97,
+    "voix": {
+      "CSE": {
+        "CGT": 3311.0,
+        "CFDT": 1706.0,
+        "CGT-FO": 3924.0,
+        "CFTC": 182.0,
+        "CFE-CGC": 870.0,
+        "SOLIDAIRES": 485.0,
+        "UNSA": 426.0,
+        "AUTRES": 201.0
+      },
+      "TPE": {
+        "CGT": 322.0,
+        "CFDT": 166.0,
+        "CGT-FO": 229.0,
+        "CFTC": 69.0,
+        "CFE-CGC": 24.0,
+        "SOLIDAIRES": 92.0,
+        "UNSA": 139.0,
+        "AUTRES": 20.0
+      },
+      "AGRI": {
+        "CGT": 51.0,
+        "CFDT": 93.0,
+        "CGT-FO": 69.0,
+        "CFTC": 74.0,
+        "CFE-CGC": 32.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "13": {
+    "total_inscrits": 302113.0,
+    "total_votants": 182074.0,
+    "total_sve": 178613.95,
+    "voix": {
+      "CSE": {
+        "CGT": 41247.0,
+        "CFDT": 33589.0,
+        "CGT-FO": 35746.0,
+        "CFTC": 14943.0,
+        "CFE-CGC": 23984.0,
+        "SOLIDAIRES": 5834.0,
+        "UNSA": 10834.0,
+        "AUTRES": 6770.0
+      },
+      "TPE": {
+        "CGT": 1557.0,
+        "CFDT": 731.0,
+        "CGT-FO": 689.0,
+        "CFTC": 452.0,
+        "CFE-CGC": 292.0,
+        "SOLIDAIRES": 349.0,
+        "UNSA": 798.0,
+        "AUTRES": 73.0
+      },
+      "AGRI": {
+        "CGT": 140.0,
+        "CFDT": 99.0,
+        "CGT-FO": 78.0,
+        "CFTC": 76.0,
+        "CFE-CGC": 101.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "14": {
+    "total_inscrits": 73982.0,
+    "total_votants": 42254.0,
+    "total_sve": 41764.99,
+    "voix": {
+      "CSE": {
+        "CGT": 8780.0,
+        "CFDT": 12431.0,
+        "CGT-FO": 5544.0,
+        "CFTC": 3331.0,
+        "CFE-CGC": 4245.0,
+        "SOLIDAIRES": 2598.0,
+        "UNSA": 1768.0,
+        "AUTRES": 578.0
+      },
+      "TPE": {
+        "CGT": 632.0,
+        "CFDT": 326.0,
+        "CGT-FO": 281.0,
+        "CFTC": 202.0,
+        "CFE-CGC": 63.0,
+        "SOLIDAIRES": 139.0,
+        "UNSA": 342.0,
+        "AUTRES": 26.0
+      },
+      "AGRI": {
+        "CGT": 71.0,
+        "CFDT": 72.0,
+        "CGT-FO": 60.0,
+        "CFTC": 94.0,
+        "CFE-CGC": 34.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "15": {
+    "total_inscrits": 8328.0,
+    "total_votants": 5302.0,
+    "total_sve": 5366.0,
+    "voix": {
+      "CSE": {
+        "CGT": 1807.0,
+        "CFDT": 1093.0,
+        "CGT-FO": 1182.0,
+        "CFTC": 263.0,
+        "CFE-CGC": 156.0,
+        "SOLIDAIRES": 94.0,
+        "UNSA": 69.0,
+        "AUTRES": 26.0
+      },
+      "TPE": {
+        "CGT": 205.0,
+        "CFDT": 76.0,
+        "CGT-FO": 137.0,
+        "CFTC": 26.0,
+        "CFE-CGC": 8.0,
+        "SOLIDAIRES": 19.0,
+        "UNSA": 64.0,
+        "AUTRES": 4.0
+      },
+      "AGRI": {
+        "CGT": 13.0,
+        "CFDT": 48.0,
+        "CGT-FO": 0.0,
+        "CFTC": 22.0,
+        "CFE-CGC": 25.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "16": {
+    "total_inscrits": 32095.0,
+    "total_votants": 17586.0,
+    "total_sve": 17388.0,
+    "voix": {
+      "CSE": {
+        "CGT": 5489.0,
+        "CFDT": 3089.0,
+        "CGT-FO": 3106.0,
+        "CFTC": 1081.0,
+        "CFE-CGC": 1514.0,
+        "SOLIDAIRES": 363.0,
+        "UNSA": 1058.0,
+        "AUTRES": 186.0
+      },
+      "TPE": {
+        "CGT": 309.0,
+        "CFDT": 152.0,
+        "CGT-FO": 197.0,
+        "CFTC": 85.0,
+        "CFE-CGC": 32.0,
+        "SOLIDAIRES": 68.0,
+        "UNSA": 171.0,
+        "AUTRES": 13.0
+      },
+      "AGRI": {
+        "CGT": 71.0,
+        "CFDT": 94.0,
+        "CGT-FO": 45.0,
+        "CFTC": 81.0,
+        "CFE-CGC": 97.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "17": {
+    "total_inscrits": 41417.0,
+    "total_votants": 20962.0,
+    "total_sve": 21547.0,
+    "voix": {
+      "CSE": {
+        "CGT": 5522.0,
+        "CFDT": 4949.0,
+        "CGT-FO": 3504.0,
+        "CFTC": 1091.0,
+        "CFE-CGC": 1927.0,
+        "SOLIDAIRES": 664.0,
+        "UNSA": 1163.0,
+        "AUTRES": 257.0
+      },
+      "TPE": {
+        "CGT": 550.0,
+        "CFDT": 305.0,
+        "CGT-FO": 290.0,
+        "CFTC": 156.0,
+        "CFE-CGC": 58.0,
+        "SOLIDAIRES": 104.0,
+        "UNSA": 354.0,
+        "AUTRES": 34.0
+      },
+      "AGRI": {
+        "CGT": 70.0,
+        "CFDT": 87.0,
+        "CGT-FO": 77.0,
+        "CFTC": 99.0,
+        "CFE-CGC": 53.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 95.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "18": {
+    "total_inscrits": 25322.0,
+    "total_votants": 13785.0,
+    "total_sve": 13479.0,
+    "voix": {
+      "CSE": {
+        "CGT": 3496.0,
+        "CFDT": 4192.0,
+        "CGT-FO": 1836.0,
+        "CFTC": 408.0,
+        "CFE-CGC": 1619.0,
+        "SOLIDAIRES": 366.0,
+        "UNSA": 219.0,
+        "AUTRES": 249.0
+      },
+      "TPE": {
+        "CGT": 253.0,
+        "CFDT": 130.0,
+        "CGT-FO": 119.0,
+        "CFTC": 72.0,
+        "CFE-CGC": 23.0,
+        "SOLIDAIRES": 30.0,
+        "UNSA": 139.0,
+        "AUTRES": 8.0
+      },
+      "AGRI": {
+        "CGT": 44.0,
+        "CFDT": 58.0,
+        "CGT-FO": 32.0,
+        "CFTC": 51.0,
+        "CFE-CGC": 41.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "19": {
+    "total_inscrits": 15181.0,
+    "total_votants": 9156.0,
+    "total_sve": 9156.0,
+    "voix": {
+      "CSE": {
+        "CGT": 3001.0,
+        "CFDT": 2208.0,
+        "CGT-FO": 1461.0,
+        "CFTC": 210.0,
+        "CFE-CGC": 674.0,
+        "SOLIDAIRES": 209.0,
+        "UNSA": 219.0,
+        "AUTRES": 190.0
+      },
+      "TPE": {
+        "CGT": 251.0,
+        "CFDT": 120.0,
+        "CGT-FO": 142.0,
+        "CFTC": 59.0,
+        "CFE-CGC": 15.0,
+        "SOLIDAIRES": 35.0,
+        "UNSA": 119.0,
+        "AUTRES": 9.0
+      },
+      "AGRI": {
+        "CGT": 61.0,
+        "CFDT": 43.0,
+        "CGT-FO": 33.0,
+        "CFTC": 36.0,
+        "CFE-CGC": 20.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "2A": {
+    "total_inscrits": 13100.0,
+    "total_votants": 10157.0,
+    "total_sve": 10161.0,
+    "voix": {
+      "CSE": {
+        "CGT": 2964,
+        "CFDT": 740,
+        "CGT-FO": 635,
+        "CFTC": 41,
+        "CFE-CGC": 645,
+        "SOLIDAIRES": 62,
+        "UNSA": 436,
+        "AUTRES": 4636
+      },
+      "TPE": {
+        "CGT": 0,
+        "CFDT": 0,
+        "CGT-FO": 0,
+        "CFTC": 0,
+        "CFE-CGC": 0,
+        "SOLIDAIRES": 0,
+        "UNSA": 0,
+        "AUTRES": 0
+      },
+      "AGRI": {
+        "CGT": 0,
+        "CFDT": 0,
+        "CGT-FO": 0,
+        "CFTC": 0,
+        "CFE-CGC": 0,
+        "SOLIDAIRES": 0,
+        "UNSA": 0,
+        "AUTRES": 0
+      }
+    }
+  },
+  "2B": {
+    "total_inscrits": 7634.0,
+    "total_votants": 5353.0,
+    "total_sve": 5442.0,
+    "voix": {
+      "CSE": {
+        "CGT": 1409,
+        "CFDT": 289,
+        "CGT-FO": 616,
+        "CFTC": 107,
+        "CFE-CGC": 188,
+        "SOLIDAIRES": 25,
+        "UNSA": 224,
+        "AUTRES": 2579
+      },
+      "TPE": {
+        "CGT": 0,
+        "CFDT": 0,
+        "CGT-FO": 0,
+        "CFTC": 0,
+        "CFE-CGC": 0,
+        "SOLIDAIRES": 0,
+        "UNSA": 0,
+        "AUTRES": 0
+      },
+      "AGRI": {
+        "CGT": 0,
+        "CFDT": 0,
+        "CGT-FO": 0,
+        "CFTC": 0,
+        "CFE-CGC": 0,
+        "SOLIDAIRES": 0,
+        "UNSA": 0,
+        "AUTRES": 0
+      }
+    }
+  },
+  "21": {
+    "total_inscrits": 75528.0,
+    "total_votants": 41373.0,
+    "total_sve": 40673.98,
+    "voix": {
+      "CSE": {
+        "CGT": 7582.0,
+        "CFDT": 11760.0,
+        "CGT-FO": 6141.0,
+        "CFTC": 3802.0,
+        "CFE-CGC": 4059.0,
+        "SOLIDAIRES": 1136.0,
+        "UNSA": 2874.0,
+        "AUTRES": 1083.0
+      },
+      "TPE": {
+        "CGT": 437.0,
+        "CFDT": 296.0,
+        "CGT-FO": 190.0,
+        "CFTC": 192.0,
+        "CFE-CGC": 74.0,
+        "SOLIDAIRES": 90.0,
+        "UNSA": 286.0,
+        "AUTRES": 23.0
+      },
+      "AGRI": {
+        "CGT": 118.0,
+        "CFDT": 133.0,
+        "CGT-FO": 50.0,
+        "CFTC": 130.0,
+        "CFE-CGC": 86.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "22": {
+    "total_inscrits": 47785.0,
+    "total_votants": 23831.0,
+    "total_sve": 24138.0,
+    "voix": {
+      "CSE": {
+        "CGT": 4953.0,
+        "CFDT": 8199.0,
+        "CGT-FO": 3246.0,
+        "CFTC": 1782.0,
+        "CFE-CGC": 1642.0,
+        "SOLIDAIRES": 832.0,
+        "UNSA": 325.0,
+        "AUTRES": 614.0
+      },
+      "TPE": {
+        "CGT": 502.0,
+        "CFDT": 380.0,
+        "CGT-FO": 345.0,
+        "CFTC": 137.0,
+        "CFE-CGC": 35.0,
+        "SOLIDAIRES": 110.0,
+        "UNSA": 264.0,
+        "AUTRES": 21.0
+      },
+      "AGRI": {
+        "CGT": 87.0,
+        "CFDT": 179.0,
+        "CGT-FO": 61.0,
+        "CFTC": 79.0,
+        "CFE-CGC": 64.0,
+        "SOLIDAIRES": 70.0,
+        "UNSA": 56.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "23": {
+    "total_inscrits": 4948.0,
+    "total_votants": 2690.0,
+    "total_sve": 2847.0,
+    "voix": {
+      "CSE": {
+        "CGT": 1294.0,
+        "CFDT": 557.0,
+        "CGT-FO": 383.0,
+        "CFTC": 30.0,
+        "CFE-CGC": 55.0,
+        "SOLIDAIRES": 35.0,
+        "UNSA": 0,
+        "AUTRES": 38.0
+      },
+      "TPE": {
+        "CGT": 114.0,
+        "CFDT": 36.0,
+        "CGT-FO": 91.0,
+        "CFTC": 24.0,
+        "CFE-CGC": 8.0,
+        "SOLIDAIRES": 27.0,
+        "UNSA": 52.0,
+        "AUTRES": 5.0
+      },
+      "AGRI": {
+        "CGT": 22.0,
+        "CFDT": 0.0,
+        "CGT-FO": 0.0,
+        "CFTC": 24.0,
+        "CFE-CGC": 0.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 33.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "24": {
+    "total_inscrits": 25756.0,
+    "total_votants": 13680.0,
+    "total_sve": 13777.0,
+    "voix": {
+      "CSE": {
+        "CGT": 4362.0,
+        "CFDT": 3616.0,
+        "CGT-FO": 2190.0,
+        "CFTC": 509.0,
+        "CFE-CGC": 707.0,
+        "SOLIDAIRES": 0,
+        "UNSA": 410.0,
+        "AUTRES": 259.0
+      },
+      "TPE": {
+        "CGT": 370.0,
+        "CFDT": 211.0,
+        "CGT-FO": 225.0,
+        "CFTC": 87.0,
+        "CFE-CGC": 27.0,
+        "SOLIDAIRES": 64.0,
+        "UNSA": 208.0,
+        "AUTRES": 11.0
+      },
+      "AGRI": {
+        "CGT": 79.0,
+        "CFDT": 113.0,
+        "CGT-FO": 59.0,
+        "CFTC": 76.0,
+        "CFE-CGC": 53.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 82.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "25": {
+    "total_inscrits": 46351.0,
+    "total_votants": 28303.0,
+    "total_sve": 28179.0,
+    "voix": {
+      "CSE": {
+        "CGT": 4876.0,
+        "CFDT": 8085.0,
+        "CGT-FO": 4373.0,
+        "CFTC": 2550.0,
+        "CFE-CGC": 4539.0,
+        "SOLIDAIRES": 335.0,
+        "UNSA": 1378.0,
+        "AUTRES": 185.0
+      },
+      "TPE": {
+        "CGT": 365.0,
+        "CFDT": 310.0,
+        "CGT-FO": 179.0,
+        "CFTC": 144.0,
+        "CFE-CGC": 59.0,
+        "SOLIDAIRES": 88.0,
+        "UNSA": 272.0,
+        "AUTRES": 23.0
+      },
+      "AGRI": {
+        "CGT": 37.0,
+        "CFDT": 95.0,
+        "CGT-FO": 25.0,
+        "CFTC": 62.0,
+        "CFE-CGC": 28.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "26": {
+    "total_inscrits": 52439.0,
+    "total_votants": 30006.0,
+    "total_sve": 29676.010000000002,
+    "voix": {
+      "CSE": {
+        "CGT": 7219.0,
+        "CFDT": 8537.0,
+        "CGT-FO": 4557.0,
+        "CFTC": 1613.0,
+        "CFE-CGC": 2802.0,
+        "SOLIDAIRES": 711.0,
+        "UNSA": 809.0,
+        "AUTRES": 1175.0
+      },
+      "TPE": {
+        "CGT": 526.0,
+        "CFDT": 262.0,
+        "CGT-FO": 187.0,
+        "CFTC": 120.0,
+        "CFE-CGC": 71.0,
+        "SOLIDAIRES": 143.0,
+        "UNSA": 266.0,
+        "AUTRES": 22.0
+      },
+      "AGRI": {
+        "CGT": 159.0,
+        "CFDT": 189.0,
+        "CGT-FO": 0.0,
+        "CFTC": 80.0,
+        "CFE-CGC": 73.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "27": {
+    "total_inscrits": 42908.0,
+    "total_votants": 26489.0,
+    "total_sve": 25951.0,
+    "voix": {
+      "CSE": {
+        "CGT": 6532.0,
+        "CFDT": 7025.0,
+        "CGT-FO": 4405.0,
+        "CFTC": 1474.0,
+        "CFE-CGC": 2378.0,
+        "SOLIDAIRES": 164.0,
+        "UNSA": 1881.0,
+        "AUTRES": 493.0
+      },
+      "TPE": {
+        "CGT": 362.0,
+        "CFDT": 205.0,
+        "CGT-FO": 234.0,
+        "CFTC": 103.0,
+        "CFE-CGC": 36.0,
+        "SOLIDAIRES": 49.0,
+        "UNSA": 247.0,
+        "AUTRES": 11.0
+      },
+      "AGRI": {
+        "CGT": 40.0,
+        "CFDT": 54.0,
+        "CGT-FO": 46.0,
+        "CFTC": 49.0,
+        "CFE-CGC": 41.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "28": {
+    "total_inscrits": 33683.0,
+    "total_votants": 18494.0,
+    "total_sve": 18346.0,
+    "voix": {
+      "CSE": {
+        "CGT": 3508.0,
+        "CFDT": 4340.0,
+        "CGT-FO": 4232.0,
+        "CFTC": 1335.0,
+        "CFE-CGC": 1731.0,
+        "SOLIDAIRES": 542.0,
+        "UNSA": 1147.0,
+        "AUTRES": 279.0
+      },
+      "TPE": {
+        "CGT": 242.0,
+        "CFDT": 154.0,
+        "CGT-FO": 180.0,
+        "CFTC": 77.0,
+        "CFE-CGC": 34.0,
+        "SOLIDAIRES": 30.0,
+        "UNSA": 187.0,
+        "AUTRES": 16.0
+      },
+      "AGRI": {
+        "CGT": 31.0,
+        "CFDT": 60.0,
+        "CGT-FO": 0.0,
+        "CFTC": 41.0,
+        "CFE-CGC": 17.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 55.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "29": {
+    "total_inscrits": 86625.0,
+    "total_votants": 46165.0,
+    "total_sve": 45943.96,
+    "voix": {
+      "CSE": {
+        "CGT": 10871.0,
+        "CFDT": 18664.0,
+        "CGT-FO": 3784.0,
+        "CFTC": 1931.0,
+        "CFE-CGC": 2946.0,
+        "SOLIDAIRES": 2061.0,
+        "UNSA": 1453.0,
+        "AUTRES": 416.0
+      },
+      "TPE": {
+        "CGT": 749.0,
+        "CFDT": 733.0,
+        "CGT-FO": 347.0,
+        "CFTC": 165.0,
+        "CFE-CGC": 59.0,
+        "SOLIDAIRES": 212.0,
+        "UNSA": 488.0,
+        "AUTRES": 18.0
+      },
+      "AGRI": {
+        "CGT": 147.0,
+        "CFDT": 346.0,
+        "CGT-FO": 0.0,
+        "CFTC": 125.0,
+        "CFE-CGC": 69.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 130.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "30": {
+    "total_inscrits": 45397.0,
+    "total_votants": 24549.0,
+    "total_sve": 25130.01,
+    "voix": {
+      "CSE": {
+        "CGT": 6377.0,
+        "CFDT": 5561.0,
+        "CGT-FO": 3368.0,
+        "CFTC": 2079.0,
+        "CFE-CGC": 3009.0,
+        "SOLIDAIRES": 717.0,
+        "UNSA": 782.0,
+        "AUTRES": 716.0
+      },
+      "TPE": {
+        "CGT": 585.0,
+        "CFDT": 306.0,
+        "CGT-FO": 340.0,
+        "CFTC": 150.0,
+        "CFE-CGC": 78.0,
+        "SOLIDAIRES": 108.0,
+        "UNSA": 360.0,
+        "AUTRES": 23.0
+      },
+      "AGRI": {
+        "CGT": 111.0,
+        "CFDT": 124.0,
+        "CGT-FO": 64.0,
+        "CFTC": 86.0,
+        "CFE-CGC": 84.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "31": {
+    "total_inscrits": 227647.0,
+    "total_votants": 138195.0,
+    "total_sve": 135190.96000000002,
+    "voix": {
+      "CSE": {
+        "CGT": 26532.0,
+        "CFDT": 27900.0,
+        "CGT-FO": 26934.0,
+        "CFTC": 11746.0,
+        "CFE-CGC": 23178.0,
+        "SOLIDAIRES": 7205.0,
+        "UNSA": 3941.0,
+        "AUTRES": 3081.0
+      },
+      "TPE": {
+        "CGT": 1255.0,
+        "CFDT": 600.0,
+        "CGT-FO": 488.0,
+        "CFTC": 316.0,
+        "CFE-CGC": 198.0,
+        "SOLIDAIRES": 342.0,
+        "UNSA": 709.0,
+        "AUTRES": 42.0
+      },
+      "AGRI": {
+        "CGT": 74.0,
+        "CFDT": 103.0,
+        "CGT-FO": 68.0,
+        "CFTC": 58.0,
+        "CFE-CGC": 63.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "32": {
+    "total_inscrits": 11004.0,
+    "total_votants": 5532.0,
+    "total_sve": 5759.98,
+    "voix": {
+      "CSE": {
+        "CGT": 1726.0,
+        "CFDT": 1853.0,
+        "CGT-FO": 466.0,
+        "CFTC": 171.0,
+        "CFE-CGC": 249.0,
+        "SOLIDAIRES": 96.0,
+        "UNSA": 53.0,
+        "AUTRES": 71.0
+      },
+      "TPE": {
+        "CGT": 222.0,
+        "CFDT": 78.0,
+        "CGT-FO": 88.0,
+        "CFTC": 50.0,
+        "CFE-CGC": 18.0,
+        "SOLIDAIRES": 50.0,
+        "UNSA": 97.0,
+        "AUTRES": 11.0
+      },
+      "AGRI": {
+        "CGT": 76.0,
+        "CFDT": 121.0,
+        "CGT-FO": 55.0,
+        "CFTC": 122.0,
+        "CFE-CGC": 50.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "33": {
+    "total_inscrits": 215864.0,
+    "total_votants": 113912.0,
+    "total_sve": 111950.0,
+    "voix": {
+      "CSE": {
+        "CGT": 23992.0,
+        "CFDT": 28159.0,
+        "CGT-FO": 16981.0,
+        "CFTC": 7392.0,
+        "CFE-CGC": 14749.0,
+        "SOLIDAIRES": 4499.0,
+        "UNSA": 6149.0,
+        "AUTRES": 3485.0
+      },
+      "TPE": {
+        "CGT": 1360.0,
+        "CFDT": 804.0,
+        "CGT-FO": 529.0,
+        "CFTC": 387.0,
+        "CFE-CGC": 235.0,
+        "SOLIDAIRES": 288.0,
+        "UNSA": 902.0,
+        "AUTRES": 67.0
+      },
+      "AGRI": {
+        "CGT": 416.0,
+        "CFDT": 519.0,
+        "CGT-FO": 198.0,
+        "CFTC": 263.0,
+        "CFE-CGC": 258.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "34": {
+    "total_inscrits": 94908.0,
+    "total_votants": 56701.0,
+    "total_sve": 56692.96,
+    "voix": {
+      "CSE": {
+        "CGT": 15339.0,
+        "CFDT": 12415.0,
+        "CGT-FO": 10418.0,
+        "CFTC": 3746.0,
+        "CFE-CGC": 5383.0,
+        "SOLIDAIRES": 1253.0,
+        "UNSA": 2790.0,
+        "AUTRES": 1440.0
+      },
+      "TPE": {
+        "CGT": 1044.0,
+        "CFDT": 484.0,
+        "CGT-FO": 444.0,
+        "CFTC": 276.0,
+        "CFE-CGC": 134.0,
+        "SOLIDAIRES": 213.0,
+        "UNSA": 561.0,
+        "AUTRES": 35.0
+      },
+      "AGRI": {
+        "CGT": 148.0,
+        "CFDT": 127.0,
+        "CGT-FO": 61.0,
+        "CFTC": 91.0,
+        "CFE-CGC": 93.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "35": {
+    "total_inscrits": 161320.0,
+    "total_votants": 90023.0,
+    "total_sve": 87975.99,
+    "voix": {
+      "CSE": {
+        "CGT": 15972.0,
+        "CFDT": 31030.0,
+        "CGT-FO": 9620.0,
+        "CFTC": 9135.0,
+        "CFE-CGC": 9396.0,
+        "SOLIDAIRES": 3642.0,
+        "UNSA": 3153.0,
+        "AUTRES": 1844.0
+      },
+      "TPE": {
+        "CGT": 944.0,
+        "CFDT": 704.0,
+        "CGT-FO": 403.0,
+        "CFTC": 312.0,
+        "CFE-CGC": 128.0,
+        "SOLIDAIRES": 312.0,
+        "UNSA": 572.0,
+        "AUTRES": 33.0
+      },
+      "AGRI": {
+        "CGT": 108.0,
+        "CFDT": 142.0,
+        "CGT-FO": 0.0,
+        "CFTC": 91.0,
+        "CFE-CGC": 34.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 94.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "36": {
+    "total_inscrits": 15931.0,
+    "total_votants": 10041.0,
+    "total_sve": 9806.0,
+    "voix": {
+      "CSE": {
+        "CGT": 2420.0,
+        "CFDT": 2312.0,
+        "CGT-FO": 2200.0,
+        "CFTC": 672.0,
+        "CFE-CGC": 832.0,
+        "SOLIDAIRES": 279.0,
+        "UNSA": 150.0,
+        "AUTRES": 64.0
+      },
+      "TPE": {
+        "CGT": 223.0,
+        "CFDT": 107.0,
+        "CGT-FO": 127.0,
+        "CFTC": 40.0,
+        "CFE-CGC": 13.0,
+        "SOLIDAIRES": 25.0,
+        "UNSA": 89.0,
+        "AUTRES": 9.0
+      },
+      "AGRI": {
+        "CGT": 30.0,
+        "CFDT": 39.0,
+        "CGT-FO": 21.0,
+        "CFTC": 21.0,
+        "CFE-CGC": 15.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 69.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "37": {
+    "total_inscrits": 63881.0,
+    "total_votants": 35888.0,
+    "total_sve": 35532.99,
+    "voix": {
+      "CSE": {
+        "CGT": 9734.0,
+        "CFDT": 8356.0,
+        "CGT-FO": 4773.0,
+        "CFTC": 2202.0,
+        "CFE-CGC": 2872.0,
+        "SOLIDAIRES": 2073.0,
+        "UNSA": 2768.0,
+        "AUTRES": 354.0
+      },
+      "TPE": {
+        "CGT": 597.0,
+        "CFDT": 305.0,
+        "CGT-FO": 293.0,
+        "CFTC": 153.0,
+        "CFE-CGC": 55.0,
+        "SOLIDAIRES": 146.0,
+        "UNSA": 272.0,
+        "AUTRES": 32.0
+      },
+      "AGRI": {
+        "CGT": 105.0,
+        "CFDT": 136.0,
+        "CGT-FO": 0.0,
+        "CFTC": 133.0,
+        "CFE-CGC": 0.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "38": {
+    "total_inscrits": 128551.0,
+    "total_votants": 76513.0,
+    "total_sve": 76230.0,
+    "voix": {
+      "CSE": {
+        "CGT": 18510.0,
+        "CFDT": 19073.0,
+        "CGT-FO": 11412.0,
+        "CFTC": 6268.0,
+        "CFE-CGC": 10100.0,
+        "SOLIDAIRES": 1675.0,
+        "UNSA": 2565.0,
+        "AUTRES": 2543.0
+      },
+      "TPE": {
+        "CGT": 1134.0,
+        "CFDT": 594.0,
+        "CGT-FO": 372.0,
+        "CFTC": 300.0,
+        "CFE-CGC": 174.0,
+        "SOLIDAIRES": 301.0,
+        "UNSA": 554.0,
+        "AUTRES": 48.0
+      },
+      "AGRI": {
+        "CGT": 113.0,
+        "CFDT": 104.0,
+        "CGT-FO": 0.0,
+        "CFTC": 90.0,
+        "CFE-CGC": 40.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "39": {
+    "total_inscrits": 17538.0,
+    "total_votants": 9597.0,
+    "total_sve": 9606.0,
+    "voix": {
+      "CSE": {
+        "CGT": 2300.0,
+        "CFDT": 3251.0,
+        "CGT-FO": 1081.0,
+        "CFTC": 492.0,
+        "CFE-CGC": 591.0,
+        "SOLIDAIRES": 148.0,
+        "UNSA": 405.0,
+        "AUTRES": 353.0
+      },
+      "TPE": {
+        "CGT": 234.0,
+        "CFDT": 128.0,
+        "CGT-FO": 91.0,
+        "CFTC": 63.0,
+        "CFE-CGC": 34.0,
+        "SOLIDAIRES": 44.0,
+        "UNSA": 113.0,
+        "AUTRES": 14.0
+      },
+      "AGRI": {
+        "CGT": 35.0,
+        "CFDT": 64.0,
+        "CGT-FO": 21.0,
+        "CFTC": 35.0,
+        "CFE-CGC": 31.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "40": {
+    "total_inscrits": 27978.0,
+    "total_votants": 15402.0,
+    "total_sve": 15567.0,
+    "voix": {
+      "CSE": {
+        "CGT": 3791.0,
+        "CFDT": 4249.0,
+        "CGT-FO": 2598.0,
+        "CFTC": 330.0,
+        "CFE-CGC": 1584.0,
+        "SOLIDAIRES": 158.0,
+        "UNSA": 592.0,
+        "AUTRES": 497.0
+      },
+      "TPE": {
+        "CGT": 364.0,
+        "CFDT": 247.0,
+        "CGT-FO": 217.0,
+        "CFTC": 99.0,
+        "CFE-CGC": 25.0,
+        "SOLIDAIRES": 74.0,
+        "UNSA": 228.0,
+        "AUTRES": 14.0
+      },
+      "AGRI": {
+        "CGT": 112.0,
+        "CFDT": 94.0,
+        "CGT-FO": 73.0,
+        "CFTC": 69.0,
+        "CFE-CGC": 48.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "41": {
+    "total_inscrits": 30221.0,
+    "total_votants": 16964.0,
+    "total_sve": 16756.0,
+    "voix": {
+      "CSE": {
+        "CGT": 3627.0,
+        "CFDT": 5103.0,
+        "CGT-FO": 2603.0,
+        "CFTC": 1285.0,
+        "CFE-CGC": 1530.0,
+        "SOLIDAIRES": 103.0,
+        "UNSA": 1043.0,
+        "AUTRES": 84.0
+      },
+      "TPE": {
+        "CGT": 318.0,
+        "CFDT": 155.0,
+        "CGT-FO": 136.0,
+        "CFTC": 85.0,
+        "CFE-CGC": 27.0,
+        "SOLIDAIRES": 43.0,
+        "UNSA": 163.0,
+        "AUTRES": 11.0
+      },
+      "AGRI": {
+        "CGT": 61.0,
+        "CFDT": 77.0,
+        "CGT-FO": 40.0,
+        "CFTC": 71.0,
+        "CFE-CGC": 19.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 97.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "42": {
+    "total_inscrits": 59390.0,
+    "total_votants": 36246.0,
+    "total_sve": 35602.0,
+    "voix": {
+      "CSE": {
+        "CGT": 9180.0,
+        "CFDT": 10946.0,
+        "CGT-FO": 3533.0,
+        "CFTC": 1732.0,
+        "CFE-CGC": 3361.0,
+        "SOLIDAIRES": 995.0,
+        "UNSA": 2851.0,
+        "AUTRES": 689.0
+      },
+      "TPE": {
+        "CGT": 641.0,
+        "CFDT": 374.0,
+        "CGT-FO": 248.0,
+        "CFTC": 173.0,
+        "CFE-CGC": 92.0,
+        "SOLIDAIRES": 96.0,
+        "UNSA": 299.0,
+        "AUTRES": 19.0
+      },
+      "AGRI": {
+        "CGT": 46.0,
+        "CFDT": 70.0,
+        "CGT-FO": 27.0,
+        "CFTC": 52.0,
+        "CFE-CGC": 0.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 47.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "43": {
+    "total_inscrits": 13987.0,
+    "total_votants": 8207.0,
+    "total_sve": 8255.0,
+    "voix": {
+      "CSE": {
+        "CGT": 3534.0,
+        "CFDT": 1295.0,
+        "CGT-FO": 1652.0,
+        "CFTC": 48.0,
+        "CFE-CGC": 452.0,
+        "SOLIDAIRES": 0,
+        "UNSA": 34.0,
+        "AUTRES": 169.0
+      },
+      "TPE": {
+        "CGT": 349.0,
+        "CFDT": 105.0,
+        "CGT-FO": 163.0,
+        "CFTC": 60.0,
+        "CFE-CGC": 13.0,
+        "SOLIDAIRES": 38.0,
+        "UNSA": 109.0,
+        "AUTRES": 6.0
+      },
+      "AGRI": {
+        "CGT": 32.0,
+        "CFDT": 41.0,
+        "CGT-FO": 0.0,
+        "CFTC": 50.0,
+        "CFE-CGC": 29.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 27.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "44": {
+    "total_inscrits": 217073.0,
+    "total_votants": 116574.0,
+    "total_sve": 115345.0,
+    "voix": {
+      "CSE": {
+        "CGT": 23879.0,
+        "CFDT": 38235.0,
+        "CGT-FO": 15580.0,
+        "CFTC": 6890.0,
+        "CFE-CGC": 14550.0,
+        "SOLIDAIRES": 4125.0,
+        "UNSA": 3580.0,
+        "AUTRES": 2366.0
+      },
+      "TPE": {
+        "CGT": 1575.0,
+        "CFDT": 982.0,
+        "CGT-FO": 534.0,
+        "CFTC": 421.0,
+        "CFE-CGC": 174.0,
+        "SOLIDAIRES": 369.0,
+        "UNSA": 791.0,
+        "AUTRES": 45.0
+      },
+      "AGRI": {
+        "CGT": 165.0,
+        "CFDT": 218.0,
+        "CGT-FO": 104.0,
+        "CFTC": 164.0,
+        "CFE-CGC": 57.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 137.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "45": {
+    "total_inscrits": 96068.0,
+    "total_votants": 50104.0,
+    "total_sve": 48798.979999999996,
+    "voix": {
+      "CSE": {
+        "CGT": 9465.0,
+        "CFDT": 13888.0,
+        "CGT-FO": 7342.0,
+        "CFTC": 2674.0,
+        "CFE-CGC": 5804.0,
+        "SOLIDAIRES": 2713.0,
+        "UNSA": 3712.0,
+        "AUTRES": 1035.0
+      },
+      "TPE": {
+        "CGT": 473.0,
+        "CFDT": 320.0,
+        "CGT-FO": 219.0,
+        "CFTC": 168.0,
+        "CFE-CGC": 91.0,
+        "SOLIDAIRES": 139.0,
+        "UNSA": 300.0,
+        "AUTRES": 25.0
+      },
+      "AGRI": {
+        "CGT": 36.0,
+        "CFDT": 66.0,
+        "CGT-FO": 0.0,
+        "CFTC": 60.0,
+        "CFE-CGC": 29.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 76.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "46": {
+    "total_inscrits": 13340.0,
+    "total_votants": 7478.0,
+    "total_sve": 7529.0,
+    "voix": {
+      "CSE": {
+        "CGT": 2400.0,
+        "CFDT": 2157.0,
+        "CGT-FO": 1307.0,
+        "CFTC": 35.0,
+        "CFE-CGC": 675.0,
+        "SOLIDAIRES": 53.0,
+        "UNSA": 90.0,
+        "AUTRES": 48.0
+      },
+      "TPE": {
+        "CGT": 203.0,
+        "CFDT": 78.0,
+        "CGT-FO": 89.0,
+        "CFTC": 40.0,
+        "CFE-CGC": 14.0,
+        "SOLIDAIRES": 38.0,
+        "UNSA": 89.0,
+        "AUTRES": 9.0
+      },
+      "AGRI": {
+        "CGT": 40.0,
+        "CFDT": 66.0,
+        "CGT-FO": 0.0,
+        "CFTC": 44.0,
+        "CFE-CGC": 24.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "47": {
+    "total_inscrits": 27265.0,
+    "total_votants": 14069.0,
+    "total_sve": 13870.0,
+    "voix": {
+      "CSE": {
+        "CGT": 2754.0,
+        "CFDT": 3742.0,
+        "CGT-FO": 2945.0,
+        "CFTC": 876.0,
+        "CFE-CGC": 669.0,
+        "SOLIDAIRES": 422.0,
+        "UNSA": 412.0,
+        "AUTRES": 418.0
+      },
+      "TPE": {
+        "CGT": 286.0,
+        "CFDT": 184.0,
+        "CGT-FO": 134.0,
+        "CFTC": 120.0,
+        "CFE-CGC": 23.0,
+        "SOLIDAIRES": 50.0,
+        "UNSA": 141.0,
+        "AUTRES": 16.0
+      },
+      "AGRI": {
+        "CGT": 82.0,
+        "CFDT": 104.0,
+        "CGT-FO": 66.0,
+        "CFTC": 92.0,
+        "CFE-CGC": 293.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "48": {
+    "total_inscrits": 5817.0,
+    "total_votants": 3988.0,
+    "total_sve": 3995.0,
+    "voix": {
+      "CSE": {
+        "CGT": 1054.0,
+        "CFDT": 1329.0,
+        "CGT-FO": 854.0,
+        "CFTC": 129.0,
+        "CFE-CGC": 72.0,
+        "SOLIDAIRES": 105.0,
+        "UNSA": 28.0,
+        "AUTRES": 21.0
+      },
+      "TPE": {
+        "CGT": 83.0,
+        "CFDT": 57.0,
+        "CGT-FO": 77.0,
+        "CFTC": 18.0,
+        "CFE-CGC": 5.0,
+        "SOLIDAIRES": 20.0,
+        "UNSA": 39.0,
+        "AUTRES": 2.0
+      },
+      "AGRI": {
+        "CGT": 20.0,
+        "CFDT": 54.0,
+        "CGT-FO": 0.0,
+        "CFTC": 14.0,
+        "CFE-CGC": 0.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "49": {
+    "total_inscrits": 88226.0,
+    "total_votants": 46410.0,
+    "total_sve": 45679.979999999996,
+    "voix": {
+      "CSE": {
+        "CGT": 7207.0,
+        "CFDT": 17175.0,
+        "CGT-FO": 5936.0,
+        "CFTC": 5244.0,
+        "CFE-CGC": 2835.0,
+        "SOLIDAIRES": 1392.0,
+        "UNSA": 1407.0,
+        "AUTRES": 623.0
+      },
+      "TPE": {
+        "CGT": 652.0,
+        "CFDT": 575.0,
+        "CGT-FO": 376.0,
+        "CFTC": 271.0,
+        "CFE-CGC": 96.0,
+        "SOLIDAIRES": 192.0,
+        "UNSA": 365.0,
+        "AUTRES": 37.0
+      },
+      "AGRI": {
+        "CGT": 196.0,
+        "CFDT": 367.0,
+        "CGT-FO": 119.0,
+        "CFTC": 150.0,
+        "CFE-CGC": 73.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 170.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "50": {
+    "total_inscrits": 43982.0,
+    "total_votants": 23428.0,
+    "total_sve": 23308.0,
+    "voix": {
+      "CSE": {
+        "CGT": 5114.0,
+        "CFDT": 7644.0,
+        "CGT-FO": 3593.0,
+        "CFTC": 1201.0,
+        "CFE-CGC": 2252.0,
+        "SOLIDAIRES": 974.0,
+        "UNSA": 732.0,
+        "AUTRES": 207.0
+      },
+      "TPE": {
+        "CGT": 321.0,
+        "CFDT": 231.0,
+        "CGT-FO": 208.0,
+        "CFTC": 99.0,
+        "CFE-CGC": 21.0,
+        "SOLIDAIRES": 63.0,
+        "UNSA": 242.0,
+        "AUTRES": 18.0
+      },
+      "AGRI": {
+        "CGT": 61.0,
+        "CFDT": 92.0,
+        "CGT-FO": 46.0,
+        "CFTC": 70.0,
+        "CFE-CGC": 31.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "51": {
+    "total_inscrits": 74643.0,
+    "total_votants": 36054.0,
+    "total_sve": 34996.0,
+    "voix": {
+      "CSE": {
+        "CGT": 8613.0,
+        "CFDT": 9059.0,
+        "CGT-FO": 5985.0,
+        "CFTC": 2329.0,
+        "CFE-CGC": 4167.0,
+        "SOLIDAIRES": 652.0,
+        "UNSA": 1308.0,
+        "AUTRES": 304.0
+      },
+      "TPE": {
+        "CGT": 459.0,
+        "CFDT": 260.0,
+        "CGT-FO": 215.0,
+        "CFTC": 159.0,
+        "CFE-CGC": 70.0,
+        "SOLIDAIRES": 49.0,
+        "UNSA": 268.0,
+        "AUTRES": 19.0
+      },
+      "AGRI": {
+        "CGT": 250.0,
+        "CFDT": 213.0,
+        "CGT-FO": 75.0,
+        "CFTC": 231.0,
+        "CFE-CGC": 194.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "52": {
+    "total_inscrits": 13659.0,
+    "total_votants": 8376.0,
+    "total_sve": 8220.0,
+    "voix": {
+      "CSE": {
+        "CGT": 1868.0,
+        "CFDT": 2452.0,
+        "CGT-FO": 1547.0,
+        "CFTC": 483.0,
+        "CFE-CGC": 847.0,
+        "SOLIDAIRES": 160.0,
+        "UNSA": 15.0,
+        "AUTRES": 144.0
+      },
+      "TPE": {
+        "CGT": 125.0,
+        "CFDT": 88.0,
+        "CGT-FO": 117.0,
+        "CFTC": 46.0,
+        "CFE-CGC": 12.0,
+        "SOLIDAIRES": 13.0,
+        "UNSA": 87.0,
+        "AUTRES": 5.0
+      },
+      "AGRI": {
+        "CGT": 18.0,
+        "CFDT": 68.0,
+        "CGT-FO": 25.0,
+        "CFTC": 25.0,
+        "CFE-CGC": 14.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "53": {
+    "total_inscrits": 33364.0,
+    "total_votants": 18096.0,
+    "total_sve": 17587.0,
+    "voix": {
+      "CSE": {
+        "CGT": 2786.0,
+        "CFDT": 5154.0,
+        "CGT-FO": 2733.0,
+        "CFTC": 3361.0,
+        "CFE-CGC": 1445.0,
+        "SOLIDAIRES": 306.0,
+        "UNSA": 313.0,
+        "AUTRES": 209.0
+      },
+      "TPE": {
+        "CGT": 235.0,
+        "CFDT": 197.0,
+        "CGT-FO": 143.0,
+        "CFTC": 98.0,
+        "CFE-CGC": 28.0,
+        "SOLIDAIRES": 91.0,
+        "UNSA": 145.0,
+        "AUTRES": 9.0
+      },
+      "AGRI": {
+        "CGT": 32.0,
+        "CFDT": 77.0,
+        "CGT-FO": 24.0,
+        "CFTC": 47.0,
+        "CFE-CGC": 11.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 72.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "54": {
+    "total_inscrits": 72006.0,
+    "total_votants": 40326.0,
+    "total_sve": 39526.0,
+    "voix": {
+      "CSE": {
+        "CGT": 9247.0,
+        "CFDT": 11522.0,
+        "CGT-FO": 5911.0,
+        "CFTC": 4161.0,
+        "CFE-CGC": 3402.0,
+        "SOLIDAIRES": 1802.0,
+        "UNSA": 1000.0,
+        "AUTRES": 466.0
+      },
+      "TPE": {
+        "CGT": 464.0,
+        "CFDT": 276.0,
+        "CGT-FO": 281.0,
+        "CFTC": 165.0,
+        "CFE-CGC": 68.0,
+        "SOLIDAIRES": 85.0,
+        "UNSA": 260.0,
+        "AUTRES": 18.0
+      },
+      "AGRI": {
+        "CGT": 39.0,
+        "CFDT": 92.0,
+        "CGT-FO": 0.0,
+        "CFTC": 56.0,
+        "CFE-CGC": 56.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "55": {
+    "total_inscrits": 12712.0,
+    "total_votants": 7441.0,
+    "total_sve": 7388.02,
+    "voix": {
+      "CSE": {
+        "CGT": 1613.0,
+        "CFDT": 2311.0,
+        "CGT-FO": 1491.0,
+        "CFTC": 443.0,
+        "CFE-CGC": 393.0,
+        "SOLIDAIRES": 142.0,
+        "UNSA": 317.0,
+        "AUTRES": 38.0
+      },
+      "TPE": {
+        "CGT": 105.0,
+        "CFDT": 95.0,
+        "CGT-FO": 73.0,
+        "CFTC": 34.0,
+        "CFE-CGC": 17.0,
+        "SOLIDAIRES": 18.0,
+        "UNSA": 63.0,
+        "AUTRES": 2.0
+      },
+      "AGRI": {
+        "CGT": 23.0,
+        "CFDT": 52.0,
+        "CGT-FO": 20.0,
+        "CFTC": 63.0,
+        "CFE-CGC": 32.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "56": {
+    "total_inscrits": 58866.0,
+    "total_votants": 31930.0,
+    "total_sve": 31793.010000000002,
+    "voix": {
+      "CSE": {
+        "CGT": 7038.0,
+        "CFDT": 13493.0,
+        "CGT-FO": 3038.0,
+        "CFTC": 2075.0,
+        "CFE-CGC": 1470.0,
+        "SOLIDAIRES": 555.0,
+        "UNSA": 751.0,
+        "AUTRES": 429.0
+      },
+      "TPE": {
+        "CGT": 615.0,
+        "CFDT": 513.0,
+        "CGT-FO": 334.0,
+        "CFTC": 219.0,
+        "CFE-CGC": 38.0,
+        "SOLIDAIRES": 146.0,
+        "UNSA": 367.0,
+        "AUTRES": 25.0
+      },
+      "AGRI": {
+        "CGT": 63.0,
+        "CFDT": 115.0,
+        "CGT-FO": 29.0,
+        "CFTC": 62.0,
+        "CFE-CGC": 49.0,
+        "SOLIDAIRES": 78.0,
+        "UNSA": 39.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "57": {
+    "total_inscrits": 101674.0,
+    "total_votants": 58603.0,
+    "total_sve": 57721.97,
+    "voix": {
+      "CSE": {
+        "CGT": 11215.0,
+        "CFDT": 15155.0,
+        "CGT-FO": 8810.0,
+        "CFTC": 8518.0,
+        "CFE-CGC": 5556.0,
+        "SOLIDAIRES": 1820.0,
+        "UNSA": 2910.0,
+        "AUTRES": 673.0
+      },
+      "TPE": {
+        "CGT": 634.0,
+        "CFDT": 425.0,
+        "CGT-FO": 445.0,
+        "CFTC": 361.0,
+        "CFE-CGC": 86.0,
+        "SOLIDAIRES": 68.0,
+        "UNSA": 402.0,
+        "AUTRES": 24.0
+      },
+      "AGRI": {
+        "CGT": 52.0,
+        "CFDT": 74.0,
+        "CGT-FO": 0.0,
+        "CFTC": 44.0,
+        "CFE-CGC": 40.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 199.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "58": {
+    "total_inscrits": 11017.0,
+    "total_votants": 6549.0,
+    "total_sve": 6609.0,
+    "voix": {
+      "CSE": {
+        "CGT": 2077.0,
+        "CFDT": 2126.0,
+        "CGT-FO": 685.0,
+        "CFTC": 284.0,
+        "CFE-CGC": 341.0,
+        "SOLIDAIRES": 134.0,
+        "UNSA": 123.0,
+        "AUTRES": 103.0
+      },
+      "TPE": {
+        "CGT": 211.0,
+        "CFDT": 104.0,
+        "CGT-FO": 77.0,
+        "CFTC": 35.0,
+        "CFE-CGC": 19.0,
+        "SOLIDAIRES": 36.0,
+        "UNSA": 74.0,
+        "AUTRES": 7.0
+      },
+      "AGRI": {
+        "CGT": 38.0,
+        "CFDT": 43.0,
+        "CGT-FO": 0.0,
+        "CFTC": 46.0,
+        "CFE-CGC": 21.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "59": {
+    "total_inscrits": 414748.0,
+    "total_votants": 232009.0,
+    "total_sve": 224906.81,
+    "voix": {
+      "CSE": {
+        "CGT": 48430.0,
+        "CFDT": 51956.0,
+        "CGT-FO": 32303.0,
+        "CFTC": 30735.0,
+        "CFE-CGC": 27145.0,
+        "SOLIDAIRES": 12430.0,
+        "UNSA": 9597.0,
+        "AUTRES": 4993.0
+      },
+      "TPE": {
+        "CGT": 1953.0,
+        "CFDT": 945.0,
+        "CGT-FO": 867.0,
+        "CFTC": 583.0,
+        "CFE-CGC": 317.0,
+        "SOLIDAIRES": 294.0,
+        "UNSA": 987.0,
+        "AUTRES": 50.0
+      },
+      "AGRI": {
+        "CGT": 179.0,
+        "CFDT": 204.0,
+        "CGT-FO": 99.0,
+        "CFTC": 300.0,
+        "CFE-CGC": 100.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "60": {
+    "total_inscrits": 76963.0,
+    "total_votants": 46151.0,
+    "total_sve": 45019.979999999996,
+    "voix": {
+      "CSE": {
+        "CGT": 10397.0,
+        "CFDT": 13273.0,
+        "CGT-FO": 6471.0,
+        "CFTC": 3886.0,
+        "CFE-CGC": 4332.0,
+        "SOLIDAIRES": 915.0,
+        "UNSA": 2673.0,
+        "AUTRES": 882.0
+      },
+      "TPE": {
+        "CGT": 454.0,
+        "CFDT": 231.0,
+        "CGT-FO": 221.0,
+        "CFTC": 220.0,
+        "CFE-CGC": 65.0,
+        "SOLIDAIRES": 50.0,
+        "UNSA": 271.0,
+        "AUTRES": 21.0
+      },
+      "AGRI": {
+        "CGT": 78.0,
+        "CFDT": 84.0,
+        "CGT-FO": 57.0,
+        "CFTC": 148.0,
+        "CFE-CGC": 47.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "61": {
+    "total_inscrits": 23529.0,
+    "total_votants": 13244.0,
+    "total_sve": 12752.0,
+    "voix": {
+      "CSE": {
+        "CGT": 2944.0,
+        "CFDT": 4208.0,
+        "CGT-FO": 1686.0,
+        "CFTC": 1423.0,
+        "CFE-CGC": 747.0,
+        "SOLIDAIRES": 470.0,
+        "UNSA": 185.0,
+        "AUTRES": 46.0
+      },
+      "TPE": {
+        "CGT": 201.0,
+        "CFDT": 129.0,
+        "CGT-FO": 125.0,
+        "CFTC": 77.0,
+        "CFE-CGC": 24.0,
+        "SOLIDAIRES": 28.0,
+        "UNSA": 124.0,
+        "AUTRES": 6.0
+      },
+      "AGRI": {
+        "CGT": 46.0,
+        "CFDT": 92.0,
+        "CGT-FO": 0.0,
+        "CFTC": 95.0,
+        "CFE-CGC": 41.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "62": {
+    "total_inscrits": 128859.0,
+    "total_votants": 81146.0,
+    "total_sve": 78704.99,
+    "voix": {
+      "CSE": {
+        "CGT": 19327.0,
+        "CFDT": 19774.0,
+        "CGT-FO": 13919.0,
+        "CFTC": 9119.0,
+        "CFE-CGC": 4394.0,
+        "SOLIDAIRES": 3008.0,
+        "UNSA": 4141.0,
+        "AUTRES": 906.0
+      },
+      "TPE": {
+        "CGT": 918.0,
+        "CFDT": 498.0,
+        "CGT-FO": 613.0,
+        "CFTC": 306.0,
+        "CFE-CGC": 84.0,
+        "SOLIDAIRES": 107.0,
+        "UNSA": 594.0,
+        "AUTRES": 34.0
+      },
+      "AGRI": {
+        "CGT": 117.0,
+        "CFDT": 150.0,
+        "CGT-FO": 74.0,
+        "CFTC": 184.0,
+        "CFE-CGC": 45.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 142.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "63": {
+    "total_inscrits": 71324.0,
+    "total_votants": 42340.0,
+    "total_sve": 42042.990000000005,
+    "voix": {
+      "CSE": {
+        "CGT": 11346.0,
+        "CFDT": 10658.0,
+        "CGT-FO": 5328.0,
+        "CFTC": 1983.0,
+        "CFE-CGC": 5805.0,
+        "SOLIDAIRES": 1962.0,
+        "UNSA": 1772.0,
+        "AUTRES": 394.0
+      },
+      "TPE": {
+        "CGT": 835.0,
+        "CFDT": 348.0,
+        "CGT-FO": 338.0,
+        "CFTC": 177.0,
+        "CFE-CGC": 76.0,
+        "SOLIDAIRES": 148.0,
+        "UNSA": 367.0,
+        "AUTRES": 23.0
+      },
+      "AGRI": {
+        "CGT": 69.0,
+        "CFDT": 115.0,
+        "CGT-FO": 45.0,
+        "CFTC": 100.0,
+        "CFE-CGC": 0.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "64": {
+    "total_inscrits": 53403.0,
+    "total_votants": 33017.0,
+    "total_sve": 33613.0,
+    "voix": {
+      "CSE": {
+        "CGT": 8078.0,
+        "CFDT": 9755.0,
+        "CGT-FO": 5529.0,
+        "CFTC": 944.0,
+        "CFE-CGC": 3099.0,
+        "SOLIDAIRES": 302.0,
+        "UNSA": 1104.0,
+        "AUTRES": 1548.0
+      },
+      "TPE": {
+        "CGT": 769.0,
+        "CFDT": 453.0,
+        "CGT-FO": 324.0,
+        "CFTC": 130.0,
+        "CFE-CGC": 74.0,
+        "SOLIDAIRES": 129.0,
+        "UNSA": 414.0,
+        "AUTRES": 30.0
+      },
+      "AGRI": {
+        "CGT": 68.0,
+        "CFDT": 62.0,
+        "CGT-FO": 51.0,
+        "CFTC": 77.0,
+        "CFE-CGC": 32.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 106.0
+      }
+    }
+  },
+  "65": {
+    "total_inscrits": 15973.0,
+    "total_votants": 10043.0,
+    "total_sve": 10035.0,
+    "voix": {
+      "CSE": {
+        "CGT": 2572.0,
+        "CFDT": 2750.0,
+        "CGT-FO": 1322.0,
+        "CFTC": 630.0,
+        "CFE-CGC": 1180.0,
+        "SOLIDAIRES": 509.0,
+        "UNSA": 6.0,
+        "AUTRES": 158.0
+      },
+      "TPE": {
+        "CGT": 267.0,
+        "CFDT": 124.0,
+        "CGT-FO": 92.0,
+        "CFTC": 59.0,
+        "CFE-CGC": 12.0,
+        "SOLIDAIRES": 31.0,
+        "UNSA": 120.0,
+        "AUTRES": 6.0
+      },
+      "AGRI": {
+        "CGT": 32.0,
+        "CFDT": 46.0,
+        "CGT-FO": 19.0,
+        "CFTC": 44.0,
+        "CFE-CGC": 0.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "66": {
+    "total_inscrits": 31149.0,
+    "total_votants": 17184.0,
+    "total_sve": 17304.0,
+    "voix": {
+      "CSE": {
+        "CGT": 3437.0,
+        "CFDT": 4143.0,
+        "CGT-FO": 3811.0,
+        "CFTC": 1258.0,
+        "CFE-CGC": 1646.0,
+        "SOLIDAIRES": 425.0,
+        "UNSA": 511.0,
+        "AUTRES": 376.0
+      },
+      "TPE": {
+        "CGT": 404.0,
+        "CFDT": 135.0,
+        "CGT-FO": 215.0,
+        "CFTC": 106.0,
+        "CFE-CGC": 46.0,
+        "SOLIDAIRES": 54.0,
+        "UNSA": 230.0,
+        "AUTRES": 21.0
+      },
+      "AGRI": {
+        "CGT": 102.0,
+        "CFDT": 123.0,
+        "CGT-FO": 58.0,
+        "CFTC": 72.0,
+        "CFE-CGC": 50.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "67": {
+    "total_inscrits": 193162.0,
+    "total_votants": 108527.0,
+    "total_sve": 106986.0,
+    "voix": {
+      "CSE": {
+        "CGT": 15211.0,
+        "CFDT": 29268.0,
+        "CGT-FO": 12738.0,
+        "CFTC": 22113.0,
+        "CFE-CGC": 11130.0,
+        "SOLIDAIRES": 2187.0,
+        "UNSA": 6052.0,
+        "AUTRES": 3413.0
+      },
+      "TPE": {
+        "CGT": 869.0,
+        "CFDT": 663.0,
+        "CGT-FO": 484.0,
+        "CFTC": 702.0,
+        "CFE-CGC": 171.0,
+        "SOLIDAIRES": 146.0,
+        "UNSA": 672.0,
+        "AUTRES": 59.0
+      },
+      "AGRI": {
+        "CGT": 95.0,
+        "CFDT": 277.0,
+        "CGT-FO": 78.0,
+        "CFTC": 286.0,
+        "CFE-CGC": 89.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "68": {
+    "total_inscrits": 72268.0,
+    "total_votants": 45504.0,
+    "total_sve": 45327.0,
+    "voix": {
+      "CSE": {
+        "CGT": 7296.0,
+        "CFDT": 11381.0,
+        "CGT-FO": 5860.0,
+        "CFTC": 10387.0,
+        "CFE-CGC": 5163.0,
+        "SOLIDAIRES": 197.0,
+        "UNSA": 1738.0,
+        "AUTRES": 433.0
+      },
+      "TPE": {
+        "CGT": 523.0,
+        "CFDT": 395.0,
+        "CGT-FO": 305.0,
+        "CFTC": 390.0,
+        "CFE-CGC": 74.0,
+        "SOLIDAIRES": 87.0,
+        "UNSA": 350.0,
+        "AUTRES": 26.0
+      },
+      "AGRI": {
+        "CGT": 96.0,
+        "CFDT": 161.0,
+        "CGT-FO": 0.0,
+        "CFTC": 217.0,
+        "CFE-CGC": 94.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "69": {
+    "total_inscrits": 382645.0,
+    "total_votants": 221623.0,
+    "total_sve": 216827.96000000002,
+    "voix": {
+      "CSE": {
+        "CGT": 46063.0,
+        "CFDT": 58266.0,
+        "CGT-FO": 27159.0,
+        "CFTC": 17294.0,
+        "CFE-CGC": 31479.0,
+        "SOLIDAIRES": 9619.0,
+        "UNSA": 13558.0,
+        "AUTRES": 6460.0
+      },
+      "TPE": {
+        "CGT": 1858.0,
+        "CFDT": 999.0,
+        "CGT-FO": 491.0,
+        "CFTC": 642.0,
+        "CFE-CGC": 503.0,
+        "SOLIDAIRES": 512.0,
+        "UNSA": 998.0,
+        "AUTRES": 94.0
+      },
+      "AGRI": {
+        "CGT": 92.0,
+        "CFDT": 180.0,
+        "CGT-FO": 34.0,
+        "CFTC": 48.0,
+        "CFE-CGC": 36.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 93.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "70": {
+    "total_inscrits": 16322.0,
+    "total_votants": 9705.0,
+    "total_sve": 9557.0,
+    "voix": {
+      "CSE": {
+        "CGT": 2252.0,
+        "CFDT": 2728.0,
+        "CGT-FO": 2080.0,
+        "CFTC": 870.0,
+        "CFE-CGC": 521.0,
+        "SOLIDAIRES": 0,
+        "UNSA": 29.0,
+        "AUTRES": 178.0
+      },
+      "TPE": {
+        "CGT": 169.0,
+        "CFDT": 97.0,
+        "CGT-FO": 120.0,
+        "CFTC": 65.0,
+        "CFE-CGC": 25.0,
+        "SOLIDAIRES": 31.0,
+        "UNSA": 92.0,
+        "AUTRES": 9.0
+      },
+      "AGRI": {
+        "CGT": 31.0,
+        "CFDT": 47.0,
+        "CGT-FO": 32.0,
+        "CFTC": 49.0,
+        "CFE-CGC": 20.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "71": {
+    "total_inscrits": 43364.0,
+    "total_votants": 25705.0,
+    "total_sve": 25583.0,
+    "voix": {
+      "CSE": {
+        "CGT": 7406.0,
+        "CFDT": 6116.0,
+        "CGT-FO": 4142.0,
+        "CFTC": 975.0,
+        "CFE-CGC": 2512.0,
+        "SOLIDAIRES": 592.0,
+        "UNSA": 1478.0,
+        "AUTRES": 482.0
+      },
+      "TPE": {
+        "CGT": 501.0,
+        "CFDT": 265.0,
+        "CGT-FO": 182.0,
+        "CFTC": 102.0,
+        "CFE-CGC": 52.0,
+        "SOLIDAIRES": 65.0,
+        "UNSA": 237.0,
+        "AUTRES": 13.0
+      },
+      "AGRI": {
+        "CGT": 74.0,
+        "CFDT": 87.0,
+        "CGT-FO": 28.0,
+        "CFTC": 60.0,
+        "CFE-CGC": 35.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 64.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "72": {
+    "total_inscrits": 64748.0,
+    "total_votants": 34710.0,
+    "total_sve": 33612.0,
+    "voix": {
+      "CSE": {
+        "CGT": 7867.0,
+        "CFDT": 12794.0,
+        "CGT-FO": 3644.0,
+        "CFTC": 1862.0,
+        "CFE-CGC": 3679.0,
+        "SOLIDAIRES": 680.0,
+        "UNSA": 964.0,
+        "AUTRES": 364.0
+      },
+      "TPE": {
+        "CGT": 446.0,
+        "CFDT": 239.0,
+        "CGT-FO": 211.0,
+        "CFTC": 122.0,
+        "CFE-CGC": 46.0,
+        "SOLIDAIRES": 69.0,
+        "UNSA": 246.0,
+        "AUTRES": 14.0
+      },
+      "AGRI": {
+        "CGT": 48.0,
+        "CFDT": 52.0,
+        "CGT-FO": 25.0,
+        "CFTC": 42.0,
+        "CFE-CGC": 27.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 34.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "73": {
+    "total_inscrits": 43346.0,
+    "total_votants": 23614.0,
+    "total_sve": 23699.0,
+    "voix": {
+      "CSE": {
+        "CGT": 7079.0,
+        "CFDT": 4288.0,
+        "CGT-FO": 5349.0,
+        "CFTC": 1559.0,
+        "CFE-CGC": 1870.0,
+        "SOLIDAIRES": 560.0,
+        "UNSA": 515.0,
+        "AUTRES": 369.0
+      },
+      "TPE": {
+        "CGT": 442.0,
+        "CFDT": 271.0,
+        "CGT-FO": 285.0,
+        "CFTC": 131.0,
+        "CFE-CGC": 68.0,
+        "SOLIDAIRES": 112.0,
+        "UNSA": 256.0,
+        "AUTRES": 24.0
+      },
+      "AGRI": {
+        "CGT": 75.0,
+        "CFDT": 98.0,
+        "CGT-FO": 57.0,
+        "CFTC": 92.0,
+        "CFE-CGC": 25.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 69.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "74": {
+    "total_inscrits": 69026.0,
+    "total_votants": 43506.0,
+    "total_sve": 42948.0,
+    "voix": {
+      "CSE": {
+        "CGT": 5313.0,
+        "CFDT": 11647.0,
+        "CGT-FO": 5881.0,
+        "CFTC": 2282.0,
+        "CFE-CGC": 5518.0,
+        "SOLIDAIRES": 1774.0,
+        "UNSA": 1675.0,
+        "AUTRES": 6702.0
+      },
+      "TPE": {
+        "CGT": 467.0,
+        "CFDT": 384.0,
+        "CGT-FO": 250.0,
+        "CFTC": 210.0,
+        "CFE-CGC": 106.0,
+        "SOLIDAIRES": 115.0,
+        "UNSA": 390.0,
+        "AUTRES": 40.0
+      },
+      "AGRI": {
+        "CGT": 0,
+        "CFDT": 0,
+        "CGT-FO": 0,
+        "CFTC": 0,
+        "CFE-CGC": 0,
+        "SOLIDAIRES": 0,
+        "UNSA": 0,
+        "AUTRES": 0
+      }
+    }
+  },
+  "75": {
+    "total_inscrits": 1002211.0,
+    "total_votants": 514168.0,
+    "total_sve": 508590.69,
+    "voix": {
+      "CSE": {
+        "CGT": 91473.0,
+        "CFDT": 130856.0,
+        "CGT-FO": 55449.0,
+        "CFTC": 43513.0,
+        "CFE-CGC": 76307.0,
+        "SOLIDAIRES": 29168.0,
+        "UNSA": 52613.0,
+        "AUTRES": 11285.0
+      },
+      "TPE": {
+        "CGT": 6156.0,
+        "CFDT": 2561.0,
+        "CGT-FO": 1021.0,
+        "CFTC": 1542.0,
+        "CFE-CGC": 1518.0,
+        "SOLIDAIRES": 1341.0,
+        "UNSA": 1760.0,
+        "AUTRES": 180.0
+      },
+      "AGRI": {
+        "CGT": 208.0,
+        "CFDT": 292.0,
+        "CGT-FO": 106.0,
+        "CFTC": 298.0,
+        "CFE-CGC": 198.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "76": {
+    "total_inscrits": 148809.0,
+    "total_votants": 94272.0,
+    "total_sve": 92340.98,
+    "voix": {
+      "CSE": {
+        "CGT": 30590.0,
+        "CFDT": 19363.0,
+        "CGT-FO": 12033.0,
+        "CFTC": 6628.0,
+        "CFE-CGC": 11343.0,
+        "SOLIDAIRES": 3894.0,
+        "UNSA": 2620.0,
+        "AUTRES": 1755.0
+      },
+      "TPE": {
+        "CGT": 1198.0,
+        "CFDT": 510.0,
+        "CGT-FO": 444.0,
+        "CFTC": 261.0,
+        "CFE-CGC": 119.0,
+        "SOLIDAIRES": 152.0,
+        "UNSA": 539.0,
+        "AUTRES": 33.0
+      },
+      "AGRI": {
+        "CGT": 91.0,
+        "CFDT": 136.0,
+        "CGT-FO": 65.0,
+        "CFTC": 127.0,
+        "CFE-CGC": 94.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "77": {
+    "total_inscrits": 139586.0,
+    "total_votants": 86354.0,
+    "total_sve": 84317.97,
+    "voix": {
+      "CSE": {
+        "CGT": 17588.0,
+        "CFDT": 19498.0,
+        "CGT-FO": 13950.0,
+        "CFTC": 10830.0,
+        "CFE-CGC": 8205.0,
+        "SOLIDAIRES": 3549.0,
+        "UNSA": 5427.0,
+        "AUTRES": 2423.0
+      },
+      "TPE": {
+        "CGT": 778.0,
+        "CFDT": 375.0,
+        "CGT-FO": 283.0,
+        "CFTC": 287.0,
+        "CFE-CGC": 126.0,
+        "SOLIDAIRES": 126.0,
+        "UNSA": 530.0,
+        "AUTRES": 36.0
+      },
+      "AGRI": {
+        "CGT": 0,
+        "CFDT": 0,
+        "CGT-FO": 0,
+        "CFTC": 0,
+        "CFE-CGC": 0,
+        "SOLIDAIRES": 0,
+        "UNSA": 0,
+        "AUTRES": 0
+      }
+    }
+  },
+  "78": {
+    "total_inscrits": 210628.0,
+    "total_votants": 127038.0,
+    "total_sve": 125061.0,
+    "voix": {
+      "CSE": {
+        "CGT": 19700.0,
+        "CFDT": 28638.0,
+        "CGT-FO": 22146.0,
+        "CFTC": 16302.0,
+        "CFE-CGC": 22825.0,
+        "SOLIDAIRES": 3037.0,
+        "UNSA": 5409.0,
+        "AUTRES": 3586.0
+      },
+      "TPE": {
+        "CGT": 905.0,
+        "CFDT": 464.0,
+        "CGT-FO": 330.0,
+        "CFTC": 369.0,
+        "CFE-CGC": 232.0,
+        "SOLIDAIRES": 162.0,
+        "UNSA": 610.0,
+        "AUTRES": 59.0
+      },
+      "AGRI": {
+        "CGT": 0,
+        "CFDT": 0,
+        "CGT-FO": 0,
+        "CFTC": 0,
+        "CFE-CGC": 0,
+        "SOLIDAIRES": 0,
+        "UNSA": 0,
+        "AUTRES": 0
+      }
+    }
+  },
+  "79": {
+    "total_inscrits": 63270.0,
+    "total_votants": 37017.0,
+    "total_sve": 36352.99,
+    "voix": {
+      "CSE": {
+        "CGT": 6880.0,
+        "CFDT": 13326.0,
+        "CGT-FO": 4736.0,
+        "CFTC": 2738.0,
+        "CFE-CGC": 3598.0,
+        "SOLIDAIRES": 329.0,
+        "UNSA": 1746.0,
+        "AUTRES": 1557.0
+      },
+      "TPE": {
+        "CGT": 302.0,
+        "CFDT": 214.0,
+        "CGT-FO": 170.0,
+        "CFTC": 76.0,
+        "CFE-CGC": 24.0,
+        "SOLIDAIRES": 69.0,
+        "UNSA": 182.0,
+        "AUTRES": 11.0
+      },
+      "AGRI": {
+        "CGT": 72.0,
+        "CFDT": 145.0,
+        "CGT-FO": 0.0,
+        "CFTC": 75.0,
+        "CFE-CGC": 22.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "80": {
+    "total_inscrits": 61144.0,
+    "total_votants": 37270.0,
+    "total_sve": 36320.0,
+    "voix": {
+      "CSE": {
+        "CGT": 9727.0,
+        "CFDT": 10105.0,
+        "CGT-FO": 5657.0,
+        "CFTC": 3256.0,
+        "CFE-CGC": 2935.0,
+        "SOLIDAIRES": 1039.0,
+        "UNSA": 1248.0,
+        "AUTRES": 260.0
+      },
+      "TPE": {
+        "CGT": 537.0,
+        "CFDT": 235.0,
+        "CGT-FO": 246.0,
+        "CFTC": 145.0,
+        "CFE-CGC": 31.0,
+        "SOLIDAIRES": 40.0,
+        "UNSA": 220.0,
+        "AUTRES": 13.0
+      },
+      "AGRI": {
+        "CGT": 97.0,
+        "CFDT": 0.0,
+        "CGT-FO": 90.0,
+        "CFTC": 215.0,
+        "CFE-CGC": 91.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "81": {
+    "total_inscrits": 24405.0,
+    "total_votants": 13589.0,
+    "total_sve": 14165.0,
+    "voix": {
+      "CSE": {
+        "CGT": 3790.0,
+        "CFDT": 3548.0,
+        "CGT-FO": 1806.0,
+        "CFTC": 627.0,
+        "CFE-CGC": 851.0,
+        "SOLIDAIRES": 903.0,
+        "UNSA": 492.0,
+        "AUTRES": 484.0
+      },
+      "TPE": {
+        "CGT": 452.0,
+        "CFDT": 222.0,
+        "CGT-FO": 217.0,
+        "CFTC": 82.0,
+        "CFE-CGC": 29.0,
+        "SOLIDAIRES": 107.0,
+        "UNSA": 234.0,
+        "AUTRES": 20.0
+      },
+      "AGRI": {
+        "CGT": 45.0,
+        "CFDT": 59.0,
+        "CGT-FO": 38.0,
+        "CFTC": 40.0,
+        "CFE-CGC": 37.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "82": {
+    "total_inscrits": 18663.0,
+    "total_votants": 10209.0,
+    "total_sve": 10021.0,
+    "voix": {
+      "CSE": {
+        "CGT": 2742.0,
+        "CFDT": 1915.0,
+        "CGT-FO": 2299.0,
+        "CFTC": 1118.0,
+        "CFE-CGC": 460.0,
+        "SOLIDAIRES": 105.0,
+        "UNSA": 163.0,
+        "AUTRES": 215.0
+      },
+      "TPE": {
+        "CGT": 246.0,
+        "CFDT": 101.0,
+        "CGT-FO": 133.0,
+        "CFTC": 62.0,
+        "CFE-CGC": 14.0,
+        "SOLIDAIRES": 42.0,
+        "UNSA": 138.0,
+        "AUTRES": 5.0
+      },
+      "AGRI": {
+        "CGT": 42.0,
+        "CFDT": 50.0,
+        "CGT-FO": 46.0,
+        "CFTC": 74.0,
+        "CFE-CGC": 0.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "83": {
+    "total_inscrits": 57932.0,
+    "total_votants": 31188.0,
+    "total_sve": 31934.97,
+    "voix": {
+      "CSE": {
+        "CGT": 5834.0,
+        "CFDT": 6623.0,
+        "CGT-FO": 6454.0,
+        "CFTC": 2883.0,
+        "CFE-CGC": 2477.0,
+        "SOLIDAIRES": 712.0,
+        "UNSA": 2724.0,
+        "AUTRES": 1277.0
+      },
+      "TPE": {
+        "CGT": 652.0,
+        "CFDT": 365.0,
+        "CGT-FO": 358.0,
+        "CFTC": 233.0,
+        "CFE-CGC": 93.0,
+        "SOLIDAIRES": 85.0,
+        "UNSA": 469.0,
+        "AUTRES": 46.0
+      },
+      "AGRI": {
+        "CGT": 95.0,
+        "CFDT": 97.0,
+        "CGT-FO": 60.0,
+        "CFTC": 39.0,
+        "CFE-CGC": 59.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 113.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "84": {
+    "total_inscrits": 42130.0,
+    "total_votants": 22153.0,
+    "total_sve": 22371.0,
+    "voix": {
+      "CSE": {
+        "CGT": 4991.0,
+        "CFDT": 5825.0,
+        "CGT-FO": 3133.0,
+        "CFTC": 1945.0,
+        "CFE-CGC": 2360.0,
+        "SOLIDAIRES": 370.0,
+        "UNSA": 798.0,
+        "AUTRES": 676.0
+      },
+      "TPE": {
+        "CGT": 477.0,
+        "CFDT": 273.0,
+        "CGT-FO": 295.0,
+        "CFTC": 135.0,
+        "CFE-CGC": 71.0,
+        "SOLIDAIRES": 103.0,
+        "UNSA": 293.0,
+        "AUTRES": 30.0
+      },
+      "AGRI": {
+        "CGT": 99.0,
+        "CFDT": 123.0,
+        "CGT-FO": 78.0,
+        "CFTC": 116.0,
+        "CFE-CGC": 83.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "85": {
+    "total_inscrits": 60573.0,
+    "total_votants": 32442.0,
+    "total_sve": 31735.0,
+    "voix": {
+      "CSE": {
+        "CGT": 4039.0,
+        "CFDT": 15119.0,
+        "CGT-FO": 3350.0,
+        "CFTC": 3324.0,
+        "CFE-CGC": 1545.0,
+        "SOLIDAIRES": 623.0,
+        "UNSA": 715.0,
+        "AUTRES": 348.0
+      },
+      "TPE": {
+        "CGT": 432.0,
+        "CFDT": 416.0,
+        "CGT-FO": 276.0,
+        "CFTC": 221.0,
+        "CFE-CGC": 51.0,
+        "SOLIDAIRES": 90.0,
+        "UNSA": 384.0,
+        "AUTRES": 25.0
+      },
+      "AGRI": {
+        "CGT": 80.0,
+        "CFDT": 178.0,
+        "CGT-FO": 69.0,
+        "CFTC": 169.0,
+        "CFE-CGC": 35.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "86": {
+    "total_inscrits": 34732.0,
+    "total_votants": 21095.0,
+    "total_sve": 20964.0,
+    "voix": {
+      "CSE": {
+        "CGT": 6381.0,
+        "CFDT": 5179.0,
+        "CGT-FO": 2554.0,
+        "CFTC": 1490.0,
+        "CFE-CGC": 1724.0,
+        "SOLIDAIRES": 1368.0,
+        "UNSA": 498.0,
+        "AUTRES": 200.0
+      },
+      "TPE": {
+        "CGT": 445.0,
+        "CFDT": 210.0,
+        "CGT-FO": 169.0,
+        "CFTC": 91.0,
+        "CFE-CGC": 31.0,
+        "SOLIDAIRES": 83.0,
+        "UNSA": 217.0,
+        "AUTRES": 10.0
+      },
+      "AGRI": {
+        "CGT": 66.0,
+        "CFDT": 66.0,
+        "CGT-FO": 0.0,
+        "CFTC": 60.0,
+        "CFE-CGC": 20.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "87": {
+    "total_inscrits": 32705.0,
+    "total_votants": 19890.0,
+    "total_sve": 19617.0,
+    "voix": {
+      "CSE": {
+        "CGT": 6443.0,
+        "CFDT": 4688.0,
+        "CGT-FO": 3122.0,
+        "CFTC": 341.0,
+        "CFE-CGC": 2113.0,
+        "SOLIDAIRES": 446.0,
+        "UNSA": 507.0,
+        "AUTRES": 534.0
+      },
+      "TPE": {
+        "CGT": 417.0,
+        "CFDT": 180.0,
+        "CGT-FO": 237.0,
+        "CFTC": 63.0,
+        "CFE-CGC": 36.0,
+        "SOLIDAIRES": 61.0,
+        "UNSA": 173.0,
+        "AUTRES": 10.0
+      },
+      "AGRI": {
+        "CGT": 72.0,
+        "CFDT": 0.0,
+        "CGT-FO": 0.0,
+        "CFTC": 46.0,
+        "CFE-CGC": 42.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "88": {
+    "total_inscrits": 28917.0,
+    "total_votants": 17276.0,
+    "total_sve": 16912.0,
+    "voix": {
+      "CSE": {
+        "CGT": 3284.0,
+        "CFDT": 5438.0,
+        "CGT-FO": 3254.0,
+        "CFTC": 1324.0,
+        "CFE-CGC": 1004.0,
+        "SOLIDAIRES": 161.0,
+        "UNSA": 880.0,
+        "AUTRES": 129.0
+      },
+      "TPE": {
+        "CGT": 305.0,
+        "CFDT": 237.0,
+        "CGT-FO": 146.0,
+        "CFTC": 122.0,
+        "CFE-CGC": 42.0,
+        "SOLIDAIRES": 29.0,
+        "UNSA": 169.0,
+        "AUTRES": 19.0
+      },
+      "AGRI": {
+        "CGT": 63.0,
+        "CFDT": 74.0,
+        "CGT-FO": 35.0,
+        "CFTC": 76.0,
+        "CFE-CGC": 24.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "89": {
+    "total_inscrits": 21995.0,
+    "total_votants": 12556.0,
+    "total_sve": 12416.0,
+    "voix": {
+      "CSE": {
+        "CGT": 2853.0,
+        "CFDT": 3580.0,
+        "CGT-FO": 2160.0,
+        "CFTC": 990.0,
+        "CFE-CGC": 621.0,
+        "SOLIDAIRES": 361.0,
+        "UNSA": 472.0,
+        "AUTRES": 226.0
+      },
+      "TPE": {
+        "CGT": 200.0,
+        "CFDT": 155.0,
+        "CGT-FO": 121.0,
+        "CFTC": 83.0,
+        "CFE-CGC": 26.0,
+        "SOLIDAIRES": 43.0,
+        "UNSA": 152.0,
+        "AUTRES": 6.0
+      },
+      "AGRI": {
+        "CGT": 65.0,
+        "CFDT": 63.0,
+        "CGT-FO": 36.0,
+        "CFTC": 69.0,
+        "CFE-CGC": 40.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "90": {
+    "total_inscrits": 10366.0,
+    "total_votants": 6610.0,
+    "total_sve": 6476.0,
+    "voix": {
+      "CSE": {
+        "CGT": 1546.0,
+        "CFDT": 1720.0,
+        "CGT-FO": 653.0,
+        "CFTC": 422.0,
+        "CFE-CGC": 1404.0,
+        "SOLIDAIRES": 251.0,
+        "UNSA": 0,
+        "AUTRES": 44.0
+      },
+      "TPE": {
+        "CGT": 94.0,
+        "CFDT": 62.0,
+        "CGT-FO": 47.0,
+        "CFTC": 68.0,
+        "CFE-CGC": 12.0,
+        "SOLIDAIRES": 16.0,
+        "UNSA": 49.0,
+        "AUTRES": 7.0
+      },
+      "AGRI": {
+        "CGT": 5.0,
+        "CFDT": 13.0,
+        "CGT-FO": 0.0,
+        "CFTC": 18.0,
+        "CFE-CGC": 6.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "91": {
+    "total_inscrits": 147123.0,
+    "total_votants": 90396.0,
+    "total_sve": 88133.97,
+    "voix": {
+      "CSE": {
+        "CGT": 19972.0,
+        "CFDT": 19806.0,
+        "CGT-FO": 12503.0,
+        "CFTC": 8638.0,
+        "CFE-CGC": 12847.0,
+        "SOLIDAIRES": 2384.0,
+        "UNSA": 6747.0,
+        "AUTRES": 2607.0
+      },
+      "TPE": {
+        "CGT": 721.0,
+        "CFDT": 375.0,
+        "CGT-FO": 254.0,
+        "CFTC": 213.0,
+        "CFE-CGC": 122.0,
+        "SOLIDAIRES": 117.0,
+        "UNSA": 612.0,
+        "AUTRES": 42.0
+      },
+      "AGRI": {
+        "CGT": 0,
+        "CFDT": 0,
+        "CGT-FO": 0,
+        "CFTC": 0,
+        "CFE-CGC": 0,
+        "SOLIDAIRES": 0,
+        "UNSA": 0,
+        "AUTRES": 0
+      }
+    }
+  },
+  "92": {
+    "total_inscrits": 974022.0,
+    "total_votants": 491568.0,
+    "total_sve": 478162.68999999994,
+    "voix": {
+      "CSE": {
+        "CGT": 68352.0,
+        "CFDT": 119389.0,
+        "CGT-FO": 54252.0,
+        "CFTC": 57676.0,
+        "CFE-CGC": 107069.0,
+        "SOLIDAIRES": 9517.0,
+        "UNSA": 41573.0,
+        "AUTRES": 14890.0
+      },
+      "TPE": {
+        "CGT": 1757.0,
+        "CFDT": 802.0,
+        "CGT-FO": 427.0,
+        "CFTC": 596.0,
+        "CFE-CGC": 497.0,
+        "SOLIDAIRES": 295.0,
+        "UNSA": 666.0,
+        "AUTRES": 59.0
+      },
+      "AGRI": {
+        "CGT": 0,
+        "CFDT": 0,
+        "CGT-FO": 0,
+        "CFTC": 0,
+        "CFE-CGC": 0,
+        "SOLIDAIRES": 0,
+        "UNSA": 0,
+        "AUTRES": 0
+      }
+    }
+  },
+  "93": {
+    "total_inscrits": 321413.0,
+    "total_votants": 198762.0,
+    "total_sve": 194264.0,
+    "voix": {
+      "CSE": {
+        "CGT": 39864.0,
+        "CFDT": 43439.0,
+        "CGT-FO": 26377.0,
+        "CFTC": 11851.0,
+        "CFE-CGC": 27093.0,
+        "SOLIDAIRES": 9669.0,
+        "UNSA": 19813.0,
+        "AUTRES": 13171.0
+      },
+      "TPE": {
+        "CGT": 1397.0,
+        "CFDT": 299.0,
+        "CGT-FO": 247.0,
+        "CFTC": 216.0,
+        "CFE-CGC": 103.0,
+        "SOLIDAIRES": 224.0,
+        "UNSA": 336.0,
+        "AUTRES": 20.0
+      },
+      "AGRI": {
+        "CGT": 0,
+        "CFDT": 0,
+        "CGT-FO": 0,
+        "CFTC": 0,
+        "CFE-CGC": 0,
+        "SOLIDAIRES": 0,
+        "UNSA": 0,
+        "AUTRES": 0
+      }
+    }
+  },
+  "94": {
+    "total_inscrits": 181589.0,
+    "total_votants": 105403.0,
+    "total_sve": 102982.95000000001,
+    "voix": {
+      "CSE": {
+        "CGT": 21046.0,
+        "CFDT": 26343.0,
+        "CGT-FO": 13339.0,
+        "CFTC": 11288.0,
+        "CFE-CGC": 14032.0,
+        "SOLIDAIRES": 4572.0,
+        "UNSA": 6810.0,
+        "AUTRES": 2667.0
+      },
+      "TPE": {
+        "CGT": 1015.0,
+        "CFDT": 387.0,
+        "CGT-FO": 214.0,
+        "CFTC": 265.0,
+        "CFE-CGC": 174.0,
+        "SOLIDAIRES": 173.0,
+        "UNSA": 437.0,
+        "AUTRES": 37.0
+      },
+      "AGRI": {
+        "CGT": 0,
+        "CFDT": 0,
+        "CGT-FO": 0,
+        "CFTC": 0,
+        "CFE-CGC": 0,
+        "SOLIDAIRES": 0,
+        "UNSA": 0,
+        "AUTRES": 0
+      }
+    }
+  },
+  "95": {
+    "total_inscrits": 124822.0,
+    "total_votants": 79479.0,
+    "total_sve": 77702.96,
+    "voix": {
+      "CSE": {
+        "CGT": 16180.0,
+        "CFDT": 18075.0,
+        "CGT-FO": 13108.0,
+        "CFTC": 6765.0,
+        "CFE-CGC": 9654.0,
+        "SOLIDAIRES": 2664.0,
+        "UNSA": 5377.0,
+        "AUTRES": 3802.0
+      },
+      "TPE": {
+        "CGT": 632.0,
+        "CFDT": 259.0,
+        "CGT-FO": 213.0,
+        "CFTC": 186.0,
+        "CFE-CGC": 94.0,
+        "SOLIDAIRES": 96.0,
+        "UNSA": 331.0,
+        "AUTRES": 34.0
+      },
+      "AGRI": {
+        "CGT": 0,
+        "CFDT": 0,
+        "CGT-FO": 0,
+        "CFTC": 0,
+        "CFE-CGC": 0,
+        "SOLIDAIRES": 0,
+        "UNSA": 0,
+        "AUTRES": 0
+      }
+    }
+  },
+  "971": {
+    "total_inscrits": 25390.0,
+    "total_votants": 18487.0,
+    "total_sve": 17982.0,
+    "voix": {
+      "CSE": {
+        "CGT": 352.0,
+        "CFDT": 1488.0,
+        "CGT-FO": 1839.0,
+        "CFTC": 665.0,
+        "CFE-CGC": 561.0,
+        "SOLIDAIRES": 978.0,
+        "UNSA": 984.0,
+        "AUTRES": 9876.0
+      },
+      "TPE": {
+        "CGT": 0,
+        "CFDT": 64.0,
+        "CGT-FO": 67.0,
+        "CFTC": 30.0,
+        "CFE-CGC": 16.0,
+        "SOLIDAIRES": 30.0,
+        "UNSA": 182.0,
+        "AUTRES": 2.0
+      },
+      "AGRI": {
+        "CGT": 0.0,
+        "CFDT": 0.0,
+        "CGT-FO": 0.0,
+        "CFTC": 21.0,
+        "CFE-CGC": 0.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 204.0
+      }
+    }
+  },
+  "972": {
+    "total_inscrits": 29470.0,
+    "total_votants": 17292.0,
+    "total_sve": 16720.0,
+    "voix": {
+      "CSE": {
+        "CGT": 4275.0,
+        "CFDT": 1510.0,
+        "CGT-FO": 1388.0,
+        "CFTC": 467.0,
+        "CFE-CGC": 684.0,
+        "SOLIDAIRES": 560.0,
+        "UNSA": 165.0,
+        "AUTRES": 6462.0
+      },
+      "TPE": {
+        "CGT": 222.0,
+        "CFDT": 46.0,
+        "CGT-FO": 94.0,
+        "CFTC": 26.0,
+        "CFE-CGC": 19.0,
+        "SOLIDAIRES": 23.0,
+        "UNSA": 109.0,
+        "AUTRES": 2.0
+      },
+      "AGRI": {
+        "CGT": 224.0,
+        "CFDT": 0.0,
+        "CGT-FO": 34.0,
+        "CFTC": 10.0,
+        "CFE-CGC": 0.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 117.0
+      }
+    }
+  },
+  "973": {
+    "total_inscrits": 8457.0,
+    "total_votants": 5863.0,
+    "total_sve": 5722.0,
+    "voix": {
+      "CSE": {
+        "CGT": 2279.0,
+        "CFDT": 585.0,
+        "CGT-FO": 744.0,
+        "CFTC": 715.0,
+        "CFE-CGC": 498.0,
+        "SOLIDAIRES": 259.0,
+        "UNSA": 51.0,
+        "AUTRES": 310.0
+      },
+      "TPE": {
+        "CGT": 54.0,
+        "CFDT": 14.0,
+        "CGT-FO": 23.0,
+        "CFTC": 27.0,
+        "CFE-CGC": 6.0,
+        "SOLIDAIRES": 26.0,
+        "UNSA": 48.0,
+        "AUTRES": 3.0
+      },
+      "AGRI": {
+        "CGT": 18.0,
+        "CFDT": 39.0,
+        "CGT-FO": 0.0,
+        "CFTC": 7.0,
+        "CFE-CGC": 12.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "974": {
+    "total_inscrits": 72391.0,
+    "total_votants": 46251.0,
+    "total_sve": 45860.979999999996,
+    "voix": {
+      "CSE": {
+        "CGT": 9372.0,
+        "CFDT": 12382.0,
+        "CGT-FO": 7004.0,
+        "CFTC": 4231.0,
+        "CFE-CGC": 2032.0,
+        "SOLIDAIRES": 1486.0,
+        "UNSA": 1904.0,
+        "AUTRES": 3714.0
+      },
+      "TPE": {
+        "CGT": 848.0,
+        "CFDT": 426.0,
+        "CGT-FO": 531.0,
+        "CFTC": 164.0,
+        "CFE-CGC": 41.0,
+        "SOLIDAIRES": 94.0,
+        "UNSA": 444.0,
+        "AUTRES": 9.0
+      },
+      "AGRI": {
+        "CGT": 196.0,
+        "CFDT": 302.0,
+        "CGT-FO": 178.0,
+        "CFTC": 89.0,
+        "CFE-CGC": 99.0,
+        "SOLIDAIRES": 0.0,
+        "UNSA": 0.0,
+        "AUTRES": 0.0
+      }
+    }
+  },
+  "975": {
+    "total_inscrits": 288.0,
+    "total_votants": 205.0,
+    "total_sve": 278.0,
+    "voix": {
+      "CSE": {
+        "CGT": 20.0,
+        "CFDT": 69.0,
+        "CGT-FO": 54.0,
+        "CFTC": 36.0,
+        "CFE-CGC": 7,
+        "SOLIDAIRES": 8.0,
+        "UNSA": 4.0,
+        "AUTRES": 0
+      },
+      "TPE": {
+        "CGT": 2.0,
+        "CFDT": 67.0,
+        "CGT-FO": 8.0,
+        "CFTC": 1.0,
+        "CFE-CGC": 0,
+        "SOLIDAIRES": 1.0,
+        "UNSA": 1.0,
+        "AUTRES": 0
+      },
+      "AGRI": {
+        "CGT": 0,
+        "CFDT": 0,
+        "CGT-FO": 0,
+        "CFTC": 0,
+        "CFE-CGC": 0,
+        "SOLIDAIRES": 0,
+        "UNSA": 0,
+        "AUTRES": 0
+      }
+    }
+  },
+  "976": {
+    "total_inscrits": 6576.0,
+    "total_votants": 4924.0,
+    "total_sve": 4701.0,
+    "voix": {
+      "CSE": {
+        "CGT": 1475.0,
+        "CFDT": 1041.0,
+        "CGT-FO": 1292.0,
+        "CFTC": 14.0,
+        "CFE-CGC": 148,
+        "SOLIDAIRES": 76.0,
+        "UNSA": 63.0,
+        "AUTRES": 495.0
+      },
+      "TPE": {
+        "CGT": 52.0,
+        "CFDT": 15.0,
+        "CGT-FO": 7.0,
+        "CFTC": 7.0,
+        "CFE-CGC": 0,
+        "SOLIDAIRES": 5.0,
+        "UNSA": 8.0,
+        "AUTRES": 3.0
+      },
+      "AGRI": {
+        "CGT": 0,
+        "CFDT": 0,
+        "CGT-FO": 0,
+        "CFTC": 0,
+        "CFE-CGC": 0,
+        "SOLIDAIRES": 0,
+        "UNSA": 0,
+        "AUTRES": 0
+      }
+    }
+  },
+  "977": {
+    "total_inscrits": 19.0,
+    "total_votants": 17.0,
+    "total_sve": 31.0,
+    "voix": {
+      "CSE": {
+        "CGT": 0,
+        "CFDT": 0,
+        "CGT-FO": 0,
+        "CFTC": 0,
+        "CFE-CGC": 0,
+        "SOLIDAIRES": 0,
+        "UNSA": 0,
+        "AUTRES": 17
+      },
+      "TPE": {
+        "CGT": 0,
+        "CFDT": 0,
+        "CGT-FO": 3.0,
+        "CFTC": 2.0,
+        "CFE-CGC": 3.0,
+        "SOLIDAIRES": 1.0,
+        "UNSA": 0,
+        "AUTRES": 0
+      },
+      "AGRI": {
+        "CGT": 0,
+        "CFDT": 0,
+        "CGT-FO": 0,
+        "CFTC": 0,
+        "CFE-CGC": 0,
+        "SOLIDAIRES": 0,
+        "UNSA": 0,
+        "AUTRES": 0
+      }
+    }
+  },
+  "978": {
+    "total_inscrits": 480.0,
+    "total_votants": 365.0,
+    "total_sve": 410.0,
+    "voix": {
+      "CSE": {
+        "CGT": 0,
+        "CFDT": 120.0,
+        "CGT-FO": 92.0,
+        "CFTC": 0,
+        "CFE-CGC": 0,
+        "SOLIDAIRES": 24.0,
+        "UNSA": 0,
+        "AUTRES": 106
+      },
+      "TPE": {
+        "CGT": 0,
+        "CFDT": 18.0,
+        "CGT-FO": 2.0,
+        "CFTC": 7.0,
+        "CFE-CGC": 2.0,
+        "SOLIDAIRES": 5.0,
+        "UNSA": 11.0,
+        "AUTRES": 0
+      },
+      "AGRI": {
+        "CGT": 0,
+        "CFDT": 0,
+        "CGT-FO": 0,
+        "CFTC": 0,
+        "CFE-CGC": 0,
+        "SOLIDAIRES": 0,
+        "UNSA": 0,
+        "AUTRES": 0
+      }
+    }
+  },
+  "NAT": {
+    "total_inscrits": 7076.0,
+    "total_votants": 213.0,
+    "total_sve": 209734.0,
+    "voix": {
+      "CSE": {
+        "CGT": 57970,
+        "CFDT": 31159,
+        "CGT-FO": 24517,
+        "CFTC": 17381,
+        "CFE-CGC": 8601,
+        "SOLIDAIRES": 11210,
+        "UNSA": 30156,
+        "AUTRES": 28740
+      },
+      "TPE": {
+        "CGT": 0,
+        "CFDT": 0,
+        "CGT-FO": 0,
+        "CFTC": 0,
+        "CFE-CGC": 0,
+        "SOLIDAIRES": 0,
+        "UNSA": 0,
+        "AUTRES": 0
+      },
+      "AGRI": {
+        "CGT": 0,
+        "CFDT": 0,
+        "CGT-FO": 0,
+        "CFTC": 0,
+        "CFE-CGC": 0,
+        "SOLIDAIRES": 0,
+        "UNSA": 0,
+        "AUTRES": 0
+      }
+    }
+  }
+}

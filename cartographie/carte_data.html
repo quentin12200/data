@@ -469,8 +469,9 @@
                                                 <thead class="table-light">
                                                     <tr>
                                                         <th>Organisation</th>
-                                                        <th>Voix totales</th>
-                                                        <th>dont TPE</th>
+                                                        <th>Voix CSE</th>
+                                                        <th>Voix TPE</th>
+                                                        <th>Voix AGRI</th>
                                                         <th>%</th>
                                                     </tr>
                                                 </thead>
@@ -479,48 +480,56 @@
                                                         <td>CGT</td>
                                                         <td>${Math.round(dept.voix.CGT).toLocaleString()}</td>
                                                         <td>${Math.round(dept.voix_tpe.CGT).toLocaleString()}</td>
+                                                        <td>${Math.round(dept.voix_agri.CGT).toLocaleString()}</td>
                                                         <td>${dept.voix.CGT.toFixed(2)}%</td>
                                                     </tr>
                                                     <tr class="table-info">
                                                         <td>CFDT</td>
                                                         <td>${Math.round(dept.voix.CFDT).toLocaleString()}</td>
                                                         <td>${Math.round(dept.voix_tpe.CFDT).toLocaleString()}</td>
+                                                        <td>${Math.round(dept.voix_agri.CFDT).toLocaleString()}</td>
                                                         <td>${dept.voix.CFDT.toFixed(2)}%</td>
                                                     </tr>
                                                     <tr class="table-warning">
                                                         <td>CGT-FO</td>
                                                         <td>${Math.round(dept.voix["CGT-FO"]).toLocaleString()}</td>
                                                         <td>${Math.round(dept.voix_tpe["CGT-FO"]).toLocaleString()}</td>
+                                                        <td>${Math.round(dept.voix_agri["CGT-FO"]).toLocaleString()}</td>
                                                         <td>${dept.voix["CGT-FO"].toFixed(2)}%</td>
                                                     </tr>
                                                     <tr>
                                                         <td>CFTC</td>
                                                         <td>${Math.round(dept.voix.CFTC).toLocaleString()}</td>
                                                         <td>${Math.round(dept.voix_tpe.CFTC).toLocaleString()}</td>
+                                                        <td>${Math.round(dept.voix_agri.CFTC).toLocaleString()}</td>
                                                         <td>${dept.voix.CFTC.toFixed(2)}%</td>
                                                     </tr>
                                                     <tr>
                                                         <td>CFE-CGC</td>
                                                         <td>${Math.round(dept.voix["CFE-CGC"]).toLocaleString()}</td>
                                                         <td>${Math.round(dept.voix_tpe["CFE-CGC"]).toLocaleString()}</td>
+                                                        <td>${Math.round(dept.voix_agri["CFE-CGC"]).toLocaleString()}</td>
                                                         <td>${dept.voix["CFE-CGC"].toFixed(2)}%</td>
                                                     </tr>
                                                     <tr>
                                                         <td>SOLIDAIRES</td>
                                                         <td>${Math.round(dept.voix.SOLIDAIRES).toLocaleString()}</td>
                                                         <td>${Math.round(dept.voix_tpe.SOLIDAIRES).toLocaleString()}</td>
+                                                        <td>${Math.round(dept.voix_agri.SOLIDAIRES).toLocaleString()}</td>
                                                         <td>${dept.voix.SOLIDAIRES.toFixed(2)}%</td>
                                                     </tr>
                                                     <tr>
                                                         <td>UNSA</td>
                                                         <td>${Math.round(dept.voix.UNSA).toLocaleString()}</td>
                                                         <td>${Math.round(dept.voix_tpe.UNSA).toLocaleString()}</td>
+                                                        <td>${Math.round(dept.voix_agri.UNSA).toLocaleString()}</td>
                                                         <td>${dept.voix.UNSA.toFixed(2)}%</td>
                                                     </tr>
                                                     <tr>
                                                         <td>AUTRES</td>
                                                         <td>${Math.round(dept.voix.AUTRES).toLocaleString()}</td>
                                                         <td>${Math.round(dept.voix_tpe.AUTRES).toLocaleString()}</td>
+                                                        <td>${Math.round(dept.voix_agri.AUTRES).toLocaleString()}</td>
                                                         <td>${dept.voix.AUTRES.toFixed(2)}%</td>
                                                     </tr>
                                                 </tbody>
