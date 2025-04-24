@@ -1,9 +1,18 @@
 {
   "version": 2,
   "builds": [
-    { "src": "**/*.html", "use": "@vercel/static" }
+    { "src": "**/*.html", "use": "@vercel/static" },
+    { "src": "**/*.json", "use": "@vercel/static" },
+    { "src": "**/*.png", "use": "@vercel/static" },
+    { "src": "**/*.jpg", "use": "@vercel/static" },
+    { "src": "**/*.css", "use": "@vercel/static" },
+    { "src": "**/*.js", "use": "@vercel/static" }
   ],
   "routes": [
+    { "src": "/", "dest": "/data/index.html" },
+    { "src": "/data/static/(.*)", "dest": "/data/$1" },
+    { "src": "/data/json_data_ordonnees/(.*)", "dest": "/data/json_data_ordonnees/$1" },
+    { "src": "/data/assets/(.*)", "dest": "/data/cartographie/assets/$1" },
     { "src": "/(.*)", "dest": "/$1" }
   ]
 }
