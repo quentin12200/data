@@ -33,14 +33,14 @@ function loadNationalStats() {
                     </div>
                     <div class="col-md-4">
                         <div class="stat-card">
-                            <div class="stat-value text-info">${voix_nationales.CFDT.toLocaleString('fr-FR', {maximumFractionDigits: 2})}</div>
+                            <div class="stat-value text-info">${Math.round(voix_nationales.CFDT).toLocaleString()}</div>
                             <div class="stat-label">CFDT</div>
                             <div class="small text-muted">${((voix_nationales.CFDT / total_sve) * 100).toFixed(2)}%</div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="stat-card">
-                            <div class="stat-value text-warning">${voix_nationales['CGT-FO'].toLocaleString('fr-FR', {maximumFractionDigits: 2})}</div>
+                            <div class="stat-value text-warning">${Math.round(voix_nationales['CGT-FO']).toLocaleString()}</div>
                             <div class="stat-label">CGT-FO</div>
                             <div class="small text-muted">${((voix_nationales['CGT-FO'] / total_sve) * 100).toFixed(2)}%</div>
                         </div>
@@ -55,7 +55,7 @@ function loadNationalStats() {
                     </div>
                     <div class="col-md-6">
                         <div class="stat-card">
-                            <div class="stat-value">${total_sve.toLocaleString('fr-FR', {maximumFractionDigits: 2})}</div>
+                            <div class="stat-value">${Math.round(total_sve).toLocaleString()}</div>
                             <div class="stat-label">SVE</div>
                         </div>
                     </div>
