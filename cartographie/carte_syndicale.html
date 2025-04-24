@@ -134,7 +134,8 @@
                 </div>
                 <div class="col-md-10">
                     <h4 class="mb-2">Analyse des données issues de la mesure de représentativité du 8 avril 2025 pour le cycle 4</h4>
-                    <p class="mb-0"><strong>Objectif :</strong> Cette carte interactive permet de visualiser les résultats des élections syndicales par département. Cliquez sur un département pour voir les détails des PV et analyser la présence syndicale.</p>
+                    <div class="section-title">Mesure de la représentativité</div>
+                    <p>Cette carte interactive présente les résultats des élections professionnelles 2025 pour la mesure de la représentativité syndicale. Elle inclut les résultats des élections CSE, ainsi que les voix TPE et agricoles. Vous pouvez consulter les données détaillées pour chaque type d'élection (CSE, TPE, AGRI) par département.</p>
                     <p class="mb-0"><strong>Note :</strong> Dans les départements, les voix agricoles sont comptées mais pas les voix TPE.</p>
                 </div>
             </div>
@@ -212,124 +213,76 @@
         let selectedCollege = 'all';
         let selectedDepartement = null;
         let statsNationales = {
-            total_scrutins: 0,
-            total_inscrits: 0,
-            total_votants: 0,
-            total_sve: 0,
+            inscrits: 0,
+            votants: 0,
+            sve: 0,
             voix: {
-                'CGT': 0,
-                'CFDT': 0,
+                CGT: 0,
+                CFDT: 0,
                 'CGT-FO': 0,
-                'CFTC': 0,
+                CFTC: 0,
                 'CFE-CGC': 0,
-                'SOLIDAIRES': 0,
-                'UNSA': 0,
-                'AUTRES': 0
+                SOLIDAIRES: 0,
+                UNSA: 0,
+                AUTRES: 0
+            },
+            CSE: {
+                inscrits: 0,
+                votants: 0,
+                sve: 0
+            },
+            TPE: {
+                inscrits: 0,
+                votants: 0,
+                sve: 0
+            },
+            AGRI: {
+                inscrits: 0,
+                votants: 0,
+                sve: 0
             }
         };
         let resultatsParDepartement = {};
         let detailsDepartements = {};
         // Palette de couleurs par syndicat
-const colorPalettes = {
-    'CGT': d3.interpolateReds,
-    'CFDT': d3.interpolateBlues,
-    'CGT-FO': d3.interpolateGreens,
-    'CFTC': d3.interpolatePurples,
-    'CFE-CGC': d3.interpolateOranges,
-    'SOLIDAIRES': d3.interpolatePink,
-    'UNSA': d3.interpolateYlGnBu,
-    'AUTRES': d3.interpolateGreys,
-    'all': d3.interpolatePuRd
-};
-let colorScale = d3.scaleSequential(colorPalettes['all']);
+        const colorPalettes = {
+            'CGT': d3.interpolateReds,
+            'CFDT': d3.interpolateBlues,
+            'CGT-FO': d3.interpolateGreens,
+            'CFTC': d3.interpolatePurples,
+            'CFE-CGC': d3.interpolateOranges,
+            'SOLIDAIRES': d3.interpolatePink,
+            'UNSA': d3.interpolateYlGnBu,
+            'AUTRES': d3.interpolateGreys,
+            'all': d3.interpolatePuRd
+        };
+        let colorScale = d3.scaleSequential(colorPalettes['all']);
 
         // Charger les données
         function loadData() {
             Promise.all([
-                fetch('../json_data_ordonnees/stats_regions.json'),
-                fetch('../json_data_ordonnees/resultats_departements.json'),
-                fetch('assets/france-departements.json')
-            ])
-            .then(responses => {
-                // Vérifier si toutes les réponses sont OK
-                for (let response of responses) {
-                    if (!response.ok) {
-                        throw new Error(`Erreur HTTP: ${response.status} - ${response.statusText}`);
-                    }
-                }
-                return Promise.all(responses.map(response => response.json()));
-            })
-            .then(([statsNat, resultatsDeptsData, geoData]) => {
-                // Stocker les données
-                resultatsParDepartement = resultatsDeptsData;
+                d3.json('../json_data_ordonnees/resultats_departements_complets.json'),
+                d3.json('france-departements.json')
+            ]).then(function(data) {
+                resultatsParDepartement = data[0];
+                const franceData = data[1];
                 
-                // Calculer les statistiques nationales à partir des données des départements
-                statsNationales = {
-                    total_scrutins: 0,
-                    total_inscrits: 0,
-                    total_votants: 0,
-                    total_sve: 0,
-                    voix: {
-                        'CGT': 0,
-                        'CFDT': 0,
-                        'CGT-FO': 0,
-                        'CFTC': 0,
-                        'CFE-CGC': 0,
-                        'SOLIDAIRES': 0,
-                        'UNSA': 0,
-                        'AUTRES': 0
-                    },
-                    pourcentages: {}
-                };
-                
-                // Agréger les données de tous les départements
-                for (const deptCode in resultatsParDepartement) {
-                    const dept = resultatsParDepartement[deptCode];
-                    statsNationales.total_scrutins += dept.total_scrutins || 0;
-                    statsNationales.total_inscrits += dept.total_inscrits || 0;
-                    statsNationales.total_votants += dept.total_votants || 0;
-                    statsNationales.total_sve += dept.total_sve || 0;
-                    
-                    // Agréger les voix par syndicat
-                    for (const syndicat in statsNationales.voix) {
-                        if (dept.voix && dept.voix[syndicat]) {
-                            statsNationales.voix[syndicat] += dept.voix[syndicat];
-                        }
-                    }
-                }
-                
-                // Calculer les pourcentages
-                for (const syndicat in statsNationales.voix) {
-                    statsNationales.pourcentages[syndicat] = statsNationales.total_sve > 0 ? 
-                        (statsNationales.voix[syndicat] / statsNationales.total_sve * 100).toFixed(2) : 0;
-                }
-                
-                console.log('Statistiques nationales calculées:', statsNationales);
-                
-                // Initialiser la carte avec les données géographiques
-                initMap(geoData);
-                
-                // Mettre à jour les statistiques nationales
+                // Initialiser les statistiques nationales
                 updateNationalStats();
                 
-                // Mettre à jour le top 5 des départements
-                updateTopDepartements();
+                // Créer la carte
+                createMap();
                 
                 // Mettre à jour la coloration de la carte
                 updateMapColoring();
                 
-                // Initialiser la légende des couleurs
-                updateColorLegend();
-            })
-            .catch(error => {
-                console.error('Erreur lors du chargement des données:', error);
-                document.getElementById('map-container').innerHTML = 
-                    `<div class="alert alert-danger">Erreur lors du chargement des données: ${error.message}</div>`;
+                // Mettre à jour le top des départements
+                updateTopDepartements();
             });
         }
 
         // Initialiser la carte
-        function initMap(geoData) {
+        function createMap() {
             const width = document.getElementById('map-container').clientWidth;
             const height = 600;
             
@@ -349,7 +302,7 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
             
             // Ajouter les départements
             departements = svg.selectAll('.departement')
-                .data(geoData.features)
+                .data(franceData.features)
                 .enter()
                 .append('path')
                 .attr('class', 'departement')
@@ -657,67 +610,65 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
 
         // Mettre à jour la coloration de la carte
         function updateMapColoring() {
-            // Déterminer les valeurs pour l'échelle de couleurs
+            // Déterminer l'échelle de couleurs en fonction du syndicat sélectionné
+            let colorScale;
             let values = [];
-            for (const deptCode in resultatsParDepartement) {
-                const dept = resultatsParDepartement[deptCode];
-                if (selectedSyndicat === 'all') {
-                    values.push(dept.total_inscrits || 0);
-                } else {
-                    values.push(dept.pourcentages[selectedSyndicat]);
-                }
-            }
             
-            // Créer une échelle de couleurs plus adaptée
             if (selectedSyndicat === 'all') {
-                // Pour le nombre d'inscrits, utiliser une échelle par paliers avec des couleurs distinctes
-                const customColors = [
-                    "#f7f4f9",
-                    "#e7e1ef",
-                    "#d4b9da",
-                    "#c994c7",
-                    "#df65b0",
-                    "#e7298a",
-                    "#ce1256",
-                    "#91003f"
-                ];
-                
-                // Définir des seuils de valeurs pour les paliers
-                const thresholds = [
-                    0,
-                    1000,
-                    5000,
-                    10000,
-                    20000,
-                    50000,
-                    100000,
-                    d3.max(values)
-                ];
-                
-                // Créer une échelle de couleurs par seuils
-                colorScale = d3.scaleThreshold()
-                    .domain(thresholds.slice(1, -1)) // Exclure le premier (0) et le dernier (max)
-                    .range(customColors);
-            } else {
-                // Pour les pourcentages, utiliser une échelle quantile avec des paliers plus distincts
-                colorScale = d3.scaleQuantile()
-                    .domain(values)
-                    .range(d3.quantize(colorPalettes[selectedSyndicat], 7));
+                // Pour 'all', on colore en fonction du nombre total d'inscrits (CSE + TPE + AGRI)
+                for (const dept in resultatsParDepartement) {
+                    const deptData = resultatsParDepartement[dept];
+                    const totalInscrits = (deptData.CSE?.inscrits || 0) + (deptData.TPE?.inscrits || 0) + (deptData.AGRI?.inscrits || 0);
+                    values.push(totalInscrits);
+                }
+                colorScale = d3.scaleSequential(d3.interpolateViridis)
+                    .domain([0, d3.max(values)]);
+            } else {  
+                // Pour un syndicat spécifique, on colore en fonction du pourcentage de voix (tous types d'élections confondus)
+                for (const dept in resultatsParDepartement) {
+                    const deptData = resultatsParDepartement[dept];
+                    let totalVoix = 0;
+                    let totalSve = 0;
+                    
+                    // Additionner les voix et SVE de tous les types d'élections
+                    for (const type of ['CSE', 'TPE', 'AGRI']) {
+                        if (deptData[type]) {
+                            totalVoix += deptData[type].voix[selectedSyndicat] || 0;
+                            totalSve += deptData[type].sve || 0;
+                        }
+                    }
+                    
+                    const pourcentage = totalSve > 0 ? (totalVoix / totalSve) * 100 : 0;
+                    values.push(pourcentage);
+                }
+                colorScale = d3.scaleSequential(colorPalettes[selectedSyndicat])
+                    .domain([0, d3.max(values)]);
             }
             
-            // Appliquer les couleurs aux départements
+            // Appliquer la coloration à la carte
             d3.selectAll('.departement')
-                .transition().duration(500)
-                .style('fill', function(d) {
-                    const deptCode = d.properties.code;
-                    const dept = resultatsParDepartement[deptCode];
-                    if (!dept) {
-                        return '#f5f5f5';
-                    }
+                .attr('fill', function(d) {
+                    const dept = d.properties.code;
+                    if (!resultatsParDepartement[dept]) return '#ccc';
+                    
                     if (selectedSyndicat === 'all') {
-                        return colorScale(dept.total_inscrits || 0);
+                        const deptData = resultatsParDepartement[dept];
+                        const totalInscrits = (deptData.CSE?.inscrits || 0) + (deptData.TPE?.inscrits || 0) + (deptData.AGRI?.inscrits || 0);
+                        return colorScale(totalInscrits);
                     } else {
-                        return colorScale(dept.pourcentages[selectedSyndicat]);
+                        let totalVoix = 0;
+                        let totalSve = 0;
+                        
+                        // Additionner les voix et SVE de tous les types d'élections
+                        for (const type of ['CSE', 'TPE', 'AGRI']) {
+                            if (resultatsParDepartement[dept][type]) {
+                                totalVoix += resultatsParDepartement[dept][type].voix[selectedSyndicat] || 0;
+                                totalSve += resultatsParDepartement[dept][type].sve || 0;
+                            }
+                        }
+                        
+                        const pourcentage = totalSve > 0 ? (totalVoix / totalSve) * 100 : 0;
+                        return colorScale(pourcentage);
                     }
                 });
                 
@@ -730,103 +681,75 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
                     mapTitle.innerHTML = `Pourcentage de représentativité ${selectedSyndicat} par département`;
                 }
             }
-            
-            // Mettre à jour la légende
-            updateLegend(values);
-        }
-        
-        // Fonction pour mettre à jour la légende
-        function updateLegend(values) {
-            const legendContainer = document.getElementById('color-legend');
-            legendContainer.innerHTML = '';
-            
-            // Créer la légende en fonction du type de données
-            if (selectedSyndicat === 'all') {
-                // Légende pour le nombre d'inscrits avec des seuils prédéfinis
-                const thresholds = [
-                    0,
-                    1000,
-                    5000,
-                    10000,
-                    20000,
-                    50000,
-                    100000,
-                    d3.max(values)
-                ];
-                
-                const customColors = [
-                    "#f7f4f9",
-                    "#e7e1ef",
-                    "#d4b9da",
-                    "#c994c7",
-                    "#df65b0",
-                    "#e7298a",
-                    "#ce1256",
-                    "#91003f"
-                ];
-                
-                const formattedThresholds = thresholds.map(d => Math.round(d).toLocaleString());
-                
-                const legendHTML = `
-                    <div class="d-flex justify-content-between">
-                        <div class="legend-item">
-                            <div class="legend-color" style="background-color: #f5f5f5;"></div>
-                            <span>Pas de données</span>
-                        </div>
-                    </div>
-                    <div class="d-flex flex-wrap mt-2">
-                        ${customColors.map((color, i) => {
-                            // Ne pas afficher le dernier seuil qui est le max
-                            if (i < customColors.length - 1) {
-                                return `<div class="legend-item mb-1">
-                                    <div class="legend-color" style="background-color: ${color};"></div>
-                                    <span>${formattedThresholds[i]} - ${formattedThresholds[i+1]}</span>
-                                </div>`;
-                            } else {
-                                return `<div class="legend-item mb-1">
-                                    <div class="legend-color" style="background-color: ${color};"></div>
-                                    <span>> ${formattedThresholds[i-1]}</span>
-                                </div>`;
-                            }
-                        }).join('')}
-                    </div>
-                `;
-                
-                legendContainer.innerHTML = legendHTML;
-            } else {
-                // Légende pour les pourcentages
-                const thresholds = colorScale.quantiles();
-                const formattedThresholds = [0, ...thresholds].map(d => d.toFixed(1) + '%');
-                
-                const legendHTML = `
-                    <div class="d-flex justify-content-between">
-                        <div class="legend-item">
-                            <div class="legend-color" style="background-color: #f5f5f5;"></div>
-                            <span>Pas de données</span>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-between mt-2">
-                        <div>Moins représentatif</div>
-                        <div class="d-flex">
-                            ${colorScale.range().map((color, i) => {
-                                return `<div class="legend-item">
-                                    <div class="legend-color" style="background-color: ${color};"></div>
-                                    <span>${i < formattedThresholds.length - 1 ? formattedThresholds[i] + ' - ' + formattedThresholds[i+1] : '> ' + formattedThresholds[i]}</span>
-                                </div>`;
-                            }).join('')}
-                        </div>
-                        <div>Plus représentatif</div>
-                    </div>
-                `;
-                
-                legendContainer.innerHTML = legendHTML;
-            }
         }
 
         // Mettre à jour les statistiques nationales
         function updateNationalStats() {
-            const container = document.getElementById('national-stats');
+            // Initialiser les statistiques nationales
+            statsNationales = {
+                inscrits: 0,
+                votants: 0,
+                sve: 0,
+                voix: {
+                    CGT: 0,
+                    CFDT: 0,
+                    'CGT-FO': 0,
+                    CFTC: 0,
+                    'CFE-CGC': 0,
+                    SOLIDAIRES: 0,
+                    UNSA: 0,
+                    AUTRES: 0
+                },
+                CSE: {
+                    inscrits: 0,
+                    votants: 0,
+                    sve: 0
+                },
+                TPE: {
+                    inscrits: 0,
+                    votants: 0,
+                    sve: 0
+                },
+                AGRI: {
+                    inscrits: 0,
+                    votants: 0,
+                    sve: 0
+                }
+            };
             
+            // Calculer les statistiques nationales à partir des données des départements
+            for (const dept in resultatsParDepartement) {
+                const deptData = resultatsParDepartement[dept];
+                
+                // Ajouter les données CSE, TPE et AGRI
+                for (const type of ['CSE', 'TPE', 'AGRI']) {
+                    if (deptData[type]) {
+                        statsNationales[type].inscrits += deptData[type].inscrits || 0;
+                        statsNationales[type].votants += deptData[type].votants || 0;
+                        statsNationales[type].sve += deptData[type].sve || 0;
+                        
+                        // Ajouter au total général
+                        statsNationales.inscrits += deptData[type].inscrits || 0;
+                        statsNationales.votants += deptData[type].votants || 0;
+                        statsNationales.sve += deptData[type].sve || 0;
+                        
+                        // Ajouter les voix par syndicat
+                        for (const syndicat in deptData[type].voix) {
+                            statsNationales.voix[syndicat] += deptData[type].voix[syndicat] || 0;
+                        }
+                    }
+                }
+            }
+            
+            // Calculer les pourcentages pour chaque syndicat
+            const syndicats = ["CGT", "CFDT", "CGT-FO", "CFTC", "CFE-CGC", "SOLIDAIRES", "UNSA", "AUTRES"];
+            const pourcentages = {};
+            syndicats.forEach(s => {
+                pourcentages[s] = statsNationales.sve > 0 ? (statsNationales.voix[s] / statsNationales.sve * 100).toFixed(2) : 0;
+            });
+            
+            // Afficher les statistiques nationales
+            const container = document.getElementById('national-stats');
             let html = '<h5 class="mb-3 text-center">Statistiques Nationales</h5>';
             
             if (selectedSyndicat === 'all') {
@@ -836,16 +759,16 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
                         <div class="col-6">
                             <div class="card bg-light">
                                 <div class="card-body text-center p-2">
-                                    <div class="stats-value display-6">${statsNationales.total_scrutins ? statsNationales.total_scrutins.toLocaleString() : '0'}</div>
-                                    <div class="stats-label">Scrutins</div>
+                                    <div class="stats-value display-6">${statsNationales.inscrits.toLocaleString()}</div>
+                                    <div class="stats-label">Inscrits</div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="card bg-light">
                                 <div class="card-body text-center p-2">
-                                    <div class="stats-value display-6">${statsNationales.total_inscrits ? statsNationales.total_inscrits.toLocaleString() : '0'}</div>
-                                    <div class="stats-label">Inscrits</div>
+                                    <div class="stats-value display-6">${statsNationales.votants.toLocaleString()}</div>
+                                    <div class="stats-label">Votants</div>
                                 </div>
                             </div>
                         </div>
@@ -854,86 +777,38 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
                         <div class="col-6">
                             <div class="card bg-light">
                                 <div class="card-body text-center p-2">
-                                    <div class="stats-value display-6">${statsNationales.total_votants ? statsNationales.total_votants.toLocaleString() : '0'}</div>
-                                    <div class="stats-label">Votants</div>
+                                    <div class="stats-value display-6">${statsNationales.sve.toLocaleString()}</div>
+                                    <div class="stats-label">SVE</div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="card bg-light">
                                 <div class="card-body text-center p-2">
-                                    <div class="stats-value display-6">${statsNationales.total_sve ? statsNationales.total_sve.toLocaleString() : '0'}</div>
-                                    <div class="stats-label">SVE</div>
+                                    <div class="stats-value display-6">${((statsNationales.votants / statsNationales.inscrits) * 100).toFixed(2)}%</div>
+                                    <div class="stats-label">Participation</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 `;
             } else {
-                const voix = statsNationales.voix[selectedSyndicat];
-                const pourcentage = (voix / statsNationales.total_sve) * 100;
-                
-                // Compter le nombre de scrutins où le syndicat est présent et le nombre total de scrutins
-                let scrutinsPresents = 0;
-                let totalScrutins = 0;
-                for (const deptCode in resultatsParDepartement) {
-                    const dept = resultatsParDepartement[deptCode];
-                    if (dept.total_scrutins) {
-                        totalScrutins += dept.total_scrutins;
-                    }
-                    if (dept.scrutins_par_syndicat && dept.scrutins_par_syndicat[selectedSyndicat]) {
-                        scrutinsPresents += dept.scrutins_par_syndicat[selectedSyndicat];
-                    }
-                }
-                
-                // Calculer le pourcentage de présence par rapport au nombre total de PV
-                const pourcentagePresence = totalScrutins > 0 ? (scrutinsPresents / totalScrutins) * 100 : 0;
-                
-                // Déterminer la couleur de fond selon le syndicat sélectionné
-                let bgColor = 'primary';
-                if (selectedSyndicat === 'CGT') bgColor = 'danger';
-                else if (selectedSyndicat === 'CFDT') bgColor = 'info';
-                else if (selectedSyndicat === 'CGT-FO') bgColor = 'warning';
-                else if (selectedSyndicat === 'SOLIDAIRES') bgColor = 'success';
-                
+                // Affichage amélioré des statistiques pour un syndicat spécifique
                 html += `
                     <div class="row mb-3">
-                        <div class="col-12 mb-2">
-                            <div class="alert alert-${bgColor} text-center">
-                                <h5 class="mb-0">${selectedSyndicat}</h5>
-                            </div>
-                        </div>
                         <div class="col-6">
                             <div class="card bg-light">
                                 <div class="card-body text-center p-2">
-                                    <div class="stats-value display-6">${voix ? voix.toLocaleString() : '0'}</div>
-                                    <div class="stats-label">Voix totales</div>
+                                    <div class="stats-value display-6">${statsNationales.voix[selectedSyndicat].toLocaleString()}</div>
+                                    <div class="stats-label">Voix ${selectedSyndicat}</div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="card bg-light">
                                 <div class="card-body text-center p-2">
-                                    <div class="stats-value display-6 text-${bgColor}">${pourcentage.toFixed(2)}%</div>
-                                    <div class="stats-label">Représentativité</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="card bg-light">
-                                <div class="card-body text-center p-2">
-                                    <div class="stats-value display-6">${scrutinsPresents ? scrutinsPresents.toLocaleString() : '0'}</div>
-                                    <div class="stats-label">Scrutins présents</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="card bg-light">
-                                <div class="card-body text-center p-2">
-                                    <div class="stats-value display-6 text-${bgColor}">${pourcentagePresence.toFixed(2)}%</div>
-                                    <div class="stats-label">Taux de présence</div>
+                                    <div class="stats-value display-6 text-${selectedSyndicat === 'CGT' ? 'danger' : selectedSyndicat === 'CFDT' ? 'info' : selectedSyndicat === 'CGT-FO' ? 'warning' : selectedSyndicat === 'SOLIDAIRES' ? 'success' : 'primary'}">${pourcentages[selectedSyndicat]}%</div>
+                                    <div class="stats-label">Représentativité ${selectedSyndicat}</div>
                                 </div>
                             </div>
                         </div>
@@ -942,7 +817,6 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
             }
             
             container.innerHTML = html;
-            
         }
 
         // Mettre à jour le top 5 des départements
@@ -952,13 +826,13 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
             // Créer un tableau avec les départements
             let depts = [];
             
-            for (const deptCode in resultatsParDepartement) {
-                const dept = resultatsParDepartement[deptCode];
+            for (const dept in resultatsParDepartement) {
+                const deptData = resultatsParDepartement[dept];
                 
                 depts.push({
-                    code: deptCode,
-                    nom: dept.nom,
-                    value: selectedSyndicat === 'all' ? dept.total_scrutins : dept.pourcentages[selectedSyndicat]
+                    code: dept,
+                    nom: deptData.nom,
+                    value: selectedSyndicat === 'all' ? deptData.total_inscrits : deptData.pourcentages[selectedSyndicat]
                 });
             }
             
@@ -988,54 +862,6 @@ let colorScale = d3.scaleSequential(colorPalettes['all']);
             html += '</div>';
             
             container.innerHTML = html;
-            
-        }
-
-        // Mettre à jour la légende des couleurs
-        function updateColorLegend() {
-            const container = document.getElementById('color-legend');
-            
-            // Déterminer les valeurs min et max pour l'échelle de couleurs
-            let values = [];
-            for (const deptCode in resultatsParDepartement) {
-                const dept = resultatsParDepartement[deptCode];
-                if (selectedSyndicat === 'all') {
-                    values.push(dept.total_inscrits || 0);
-                } else {
-                    values.push(dept.pourcentages[selectedSyndicat]);
-                }
-            }
-            const minValue = d3.min(values);
-            const maxValue = d3.max(values);
-            
-            // Générer 5 niveaux pour la légende
-            const levels = 5;
-            const legendValues = [];
-            
-            for (let i = 0; i < levels; i++) {
-                const value = minValue + (i / (levels - 1)) * (maxValue - minValue);
-                legendValues.push(value);
-            }
-            
-            // Générer le HTML
-            let html = `<h6 class="mb-2">${selectedSyndicat === 'all' ? 'Nombre d\'inscrits' : 'Pourcentage ' + selectedSyndicat}</h6>`;
-            
-            for (const value of legendValues) {
-                const color = colorScale(value);
-                const label = selectedSyndicat === 'all' 
-                    ? Math.round(value) 
-                    : value.toFixed(1) + '%';
-                
-                html += `
-                    <div class="legend-item">
-                        <div class="legend-color" style="background-color: ${color};"></div>
-                        <div>${label}</div>
-                    </div>
-                `;
-            }
-            
-            container.innerHTML = html;
-            
         }
 
         // Gestionnaire d'événements pour les sélecteurs
