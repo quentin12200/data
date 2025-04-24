@@ -3,12 +3,8 @@ function loadNationalStats() {
     fetch('../json_data_ordonnees/resultats_departements_avec_tpe.json')
         .then(response => response.json())
         .then(data => {
-            // Calculer les statistiques nationales
-            let total_scrutins = 0;
-            let total_inscrits = 0;
-            let total_votants = 0;
-            let total_sve = 0;
-            let voix_nationales = {
+            // Statistiques nationales (valeurs fixes)
+            const voix_nationales = {
                 'CGT': 1086341.70,
                 'CFDT': 1300107.25,
                 'CGT-FO': 729054.71,
@@ -18,36 +14,9 @@ function loadNationalStats() {
                 'UNSA': 0,
                 'AUTRES': 0
             };
+            const total_sve = 4890549.56;
 
-            Object.values(data).forEach(dept => {
-                if (!dept || !dept.voix) return;
-
-                // Ajouter les voix CSE
-                Object.entries(dept.voix.CSE || {}).forEach(([syndicat, voix]) => {
-                    voix_nationales[syndicat] = (voix_nationales[syndicat] || 0) + (Number(voix) || 0);
-                });
-
-                // Ajouter les voix AGRI
-                Object.entries(dept.voix.AGRI || {}).forEach(([syndicat, voix]) => {
-                    voix_nationales[syndicat] = (voix_nationales[syndicat] || 0) + (Number(voix) || 0);
-                });
-
-                // Ajouter les voix TPE
-                Object.entries(dept.voix.TPE || {}).forEach(([syndicat, voix]) => {
-                    voix_nationales[syndicat] = (voix_nationales[syndicat] || 0) + (Number(voix) || 0);
-                });
-
-                // Ajouter les totaux du département
-                total_scrutins += Number(dept.total_scrutins) || 0;
-                total_inscrits += (Number(dept.inscrits?.CSE) || 0) + (Number(dept.inscrits?.TPE) || 0) + (Number(dept.inscrits?.AGRI) || 0);
-                total_votants += Number(dept.total_votants) || 0;
-                total_sve += Number(dept.total_sve) || 0;
-            });
-
-            console.log('Statistiques nationales calculées:', {
-                total_scrutins,
-                total_inscrits,
-                total_votants,
+            console.log('Statistiques nationales:', {
                 total_sve,
                 voix: voix_nationales
             });
@@ -59,18 +28,21 @@ function loadNationalStats() {
                         <div class="stat-card">
                             <div class="stat-value text-danger">${voix_nationales.CGT.toLocaleString('fr-FR', {maximumFractionDigits: 2})}</div>
                             <div class="stat-label">Voix CGT</div>
+                            <div class="small text-muted">22.21%</div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="stat-card">
                             <div class="stat-value text-info">${voix_nationales.CFDT.toLocaleString('fr-FR', {maximumFractionDigits: 2})}</div>
                             <div class="stat-label">CFDT</div>
+                            <div class="small text-muted">${((voix_nationales.CFDT / total_sve) * 100).toFixed(2)}%</div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="stat-card">
                             <div class="stat-value text-warning">${voix_nationales['CGT-FO'].toLocaleString('fr-FR', {maximumFractionDigits: 2})}</div>
                             <div class="stat-label">CGT-FO</div>
+                            <div class="small text-muted">${((voix_nationales['CGT-FO'] / total_sve) * 100).toFixed(2)}%</div>
                         </div>
                     </div>
                 </div>
@@ -83,7 +55,7 @@ function loadNationalStats() {
                     </div>
                     <div class="col-md-6">
                         <div class="stat-card">
-                            <div class="stat-value">4 890 549,56</div>
+                            <div class="stat-value">${total_sve.toLocaleString('fr-FR', {maximumFractionDigits: 2})}</div>
                             <div class="stat-label">SVE</div>
                         </div>
                     </div>
@@ -111,7 +83,7 @@ function loadNationalStats() {
                             const totalVoixCSE = Object.values(dept.voix.CSE).reduce((a, b) => a + (Number(b) || 0), 0);
                             const totalVoixTPE = Object.values(dept.voix.TPE).reduce((a, b) => a + (Number(b) || 0), 0);
                             const totalVoixAGRI = Object.values(dept.voix.AGRI).reduce((a, b) => a + (Number(b) || 0), 0);
-                            
+
                             const totalVoixSyndicat = voixCSE + voixTPE + voixAGRI;
                             const totalVoixGlobal = totalVoixCSE + totalVoixTPE + totalVoixAGRI;
 
@@ -149,8 +121,7 @@ function loadNationalStats() {
                     return;
                 }
 
-                const totalInscritsCSE = Number(dept.inscrits.CSE) || 0;
-                const totalInscritsTPE = Number(dept.inscrits.TPE) || 0;
+                const totalInscritsCSE = Number(dept.inscrits.CSE) || 0; // Inclut déjà les TPE
                 const totalInscritsAGRI = Number(dept.inscrits.AGRI) || 0;
                 
                 const totalVoixCSE = Object.values(dept.voix.CSE).reduce((a, b) => a + (Number(b) || 0), 0);
@@ -190,7 +161,7 @@ function loadNationalStats() {
 
                     <div class="mb-4">
                         <h6 class="text-success">TPE</h6>
-                        <p>Inscrits : ${Math.round(totalInscritsTPE).toLocaleString()}</p>
+                        <p>Inscrits : ${Math.round(Number(dept.inscrits?.TPE || 0)).toLocaleString()}</p>
                         <div class="table-responsive">
                             <table class="table table-sm">
                                 <thead>
@@ -242,7 +213,7 @@ function loadNationalStats() {
 
                     <div>
                         <h6 class="text-secondary">Total</h6>
-                        <p>Total Inscrits : ${Math.round(totalInscritsCSE + totalInscritsTPE + totalInscritsAGRI).toLocaleString()}</p>
+                        <p>Total Inscrits : ${Math.round(totalInscritsCSE + totalInscritsAGRI).toLocaleString()}</p>
                     </div>
                 `;
             });
