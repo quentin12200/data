@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartographie des Résultats Syndicaux - CGT</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            max-width: 800px;
+            padding: 30px;
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .card-header {
+            background-color: #e63946;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .card-body {
+            padding: 30px;
+        }
+        .btn-cgt {
+            background-color: #e63946;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .btn-cgt:hover {
+            background-color: #c1121f;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
+        }
+        .cgt-logo {
+            max-height: 80px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <img src="cartographie/logo-cgt.png" alt="Logo CGT" class="img-fluid cgt-logo">
+                <h1 class="mb-0">Cartographie des Résultats Syndicaux</h1>
+                <p class="mb-0">Élections Professionnelles 2025</p>
+            </div>
+            <div class="card-body text-center">
+                <h4 class="mb-4">Bienvenue sur l'outil de visualisation des résultats des élections syndicales</h4>
+                <p class="mb-4">Cet outil vous permet d'explorer les résultats des élections professionnelles par département et par région, avec un focus particulier sur la CGT.</p>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="cartographie/carte_data.html" class="btn btn-cgt btn-lg w-100">
+                            <i class="fas fa-table me-2"></i>Vue par département
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="cartographie/carte_syndicale.html" class="btn btn-cgt btn-lg w-100">
+                            <i class="fas fa-map-marked-alt me-2"></i>Carte interactive
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="mt-4">
+                    <p class="text-muted small">Données issues des élections professionnelles 2025</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
