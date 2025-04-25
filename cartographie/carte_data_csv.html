@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartographie CGT - Élections Professionnelles 2025</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/animated-background.css">
+    <script src="js/animated-background.js"></script>
+    <style>
+        body {
+            padding: 20px;
+        }
+        .dept-card {
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            border-radius: 8px;
+            overflow: hidden;
+            border: none;
+        }
+        .dept-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .dept-card .card-header {
+            background-color: #e63946;
+            color: white;
+            font-weight: bold;
+        }
+        .cgt-dominant .card-header {
+            background-color: #e63946;
+        }
+        .cfdt-dominant .card-header {
+            background-color: #457b9d;
+        }
+        .cgt-fo-dominant .card-header {
+            background-color: #f4a261;
+        }
+        .cftc-dominant .card-header {
+            background-color: #2a9d8f;
+        }
+        .cfe-cgc-dominant .card-header {
+            background-color: #6c757d;
+        }
+        .stats-box {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        .filter-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-top: 20px;
+        }
+        .cgt-logo {
+            max-height: 60px;
+        }
+        .header-banner {
+            background-color: #e63946;
+            color: white;
+            padding: 15px 0;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .stats-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .stats-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            font-size: 1.5rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <!-- Les formes seront ajoutées par le script -->
+    <div class="container">
+        <div class="header-banner">
+            <div class="row align-items-center">
+                <div class="col-md-2 text-center">
+                    <img src="logo-cgt.png" alt="Logo CGT" class="img-fluid cgt-logo">
+                </div>
+                <div class="col-md-8">
+                    <h1 class="text-center mb-0">Cartographie des Résultats Syndicaux</h1>
+                    <p class="text-center mb-0"><i class="fas fa-chart-pie me-2"></i>Analyse des données issues de la mesure de représentativité du 8 avril 2025 pour le cycle 4</p>
+                    <p class="text-center mb-0"><small><strong>Note :</strong> Les données incluent les voix CSE, TPE et AGRI pour chaque département.</small></p>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="carte_syndicale.html" class="btn btn-light"><i class="fas fa-map-marked-alt me-2"></i>Carte interactive</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="alert alert-danger">
+            <div class="row align-items-center">
+                <div class="col-md-1 text-center">
+                    <i class="fas fa-info-circle fa-2x"></i>
+                </div>
+                <div class="section-title">Mesure de la représentativité</div>
+                <p>Cette carte interactive présente les résultats des élections professionnelles 2025 pour la mesure de la représentativité syndicale. Elle inclut les résultats des élections CSE, ainsi que les voix TPE et agricoles. Vous pouvez consulter les données détaillées pour chaque type d'élection (CSE, TPE, AGRI) par département.</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="stats-box">
+                    <h5 class="text-center mb-3"><i class="fas fa-chart-bar me-2"></i>Statistiques nationales</h5>
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <div class="card bg-danger text-white">
+                                <div class="card-body p-2">
+                                    <div class="row align-items-center">
+                                        <div class="col-4 text-center">
+                                            <i class="fas fa-star fa-2x"></i>
+                                        </div>
+                                        <div class="col-8">
+                                            <div class="fs-3 fw-bold" id="total-cgt-voix">Chargement...</div>
+                                            <div>Voix CGT</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card h-100">
+                                <div class="card-body p-2 text-center">
+                                    <div class="fs-4 fw-bold text-info" id="total-cfdt-voix">Chargement...</div>
+                                    <div>CFDT</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card h-100">
+                                <div class="card-body p-2 text-center">
+                                    <div class="fs-4 fw-bold text-warning" id="total-cgt-fo-voix">Chargement...</div>
+                                    <div>CGT-FO</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stats-box">
+                    <h5 class="text-center mb-3"><i class="fas fa-poll me-2"></i>Données globales</h5>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card h-100">
+                                <div class="card-body p-2 text-center">
+                                    <div class="fs-4 fw-bold text-success" id="total-inscrits">Chargement...</div>
+                                    <div><i class="fas fa-file-alt me-1"></i>Inscrits</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="card h-100">
+                                <div class="card-body p-2 text-center">
+                                    <div class="fs-4 fw-bold text-primary" id="total-sve">Chargement...</div>
+                                    <div><i class="fas fa-vote-yea me-1"></i>SVE</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <div class="card bg-light">
+                                <div class="card-body p-2">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <div class="fs-5 fw-bold text-danger" id="pourcentage-cgt-national">Chargement...</div>
+                                            <div>CGT national</div>
+                                        </div>
+                                        <div>
+                                            <div class="progress" style="width: 100px; height: 10px;">
+                                                <div class="progress-bar bg-danger" id="progress-cgt-national" role="progressbar" style="width: 0%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <h5><i class="fas fa-map-marker-alt me-2"></i>Sélectionner un département</h5>
+                    <select id="select-departement" class="form-select mb-3">
+                        <option value="tous">Tous les départements</option>
+                    </select>
+                    
+                    <h5><i class="fas fa-filter me-2"></i>Filtres</h5>
+                    <div class="btn-group w-100 mb-3">
+                        <button id="btn-tous" class="btn btn-outline-secondary active">Tous</button>
+                        <button id="btn-cgt-sup30" class="btn btn-outline-secondary">CGT > 30%</button>
+                        <button id="btn-cgt-sup25" class="btn btn-outline-secondary">CGT > 25%</button>
+                        <button id="btn-cgt-sup20" class="btn btn-outline-secondary">CGT > 20%</button>
+                    </div>
+                    
+                    <h5><i class="fas fa-sort me-2"></i>Trier par</h5>
+                    <div class="btn-group w-100">
+                        <button id="btn-tri-dept" class="btn btn-outline-secondary active">Département</button>
+                        <button id="btn-tri-cgt" class="btn btn-outline-secondary">% CGT</button>
+                        <button id="btn-tri-cfdt" class="btn btn-outline-secondary">% CFDT</button>
+                        <button id="btn-tri-inscrits" class="btn btn-outline-secondary">Inscrits</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-8">
+                <div id="dept-list" class="row">
+                    <div class="loading">
+                        <i class="fas fa-spinner fa-spin me-2"></i> Chargement des données...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Variables globales
+            let data = {};
+            let departements = {};
+            let filtreActif = 'tous';
+            let triActif = 'dept';
+            
+            // Fonction pour formater les nombres avec des séparateurs de milliers
+            function formatNumber(number) {
+                return number.toLocaleString('fr-FR');
+            }
+            
+            // Fonction pour calculer le total des voix d'un syndicat pour un département
+            function getTotalVoixSyndicat(dept, syndicat) {
+                return parseInt(dept[`TOTAL_${syndicat}`] || 0);
+            }
+            
+            // Fonction pour obtenir le pourcentage d'un syndicat pour un département
+            function getPourcentageSyndicat(dept, syndicat) {
+                return parseFloat(dept[`pourcentage_${syndicat}`] || 0);
+            }
+            
+            // Fonction pour charger les données depuis le fichier CSV
+            function loadData() {
+                // Afficher un message de chargement
+                const deptListContainer = document.getElementById('dept-list');
+                if (deptListContainer) {
+                    deptListContainer.innerHTML = `
+                        <div class="col-12">
+                            <div class="alert alert-info">
+                                <p class="mb-0"><i class="fas fa-spinner fa-spin me-2"></i>Chargement des données en cours...</p>
+                            </div>
+                        </div>
+                    `;
+                }
+                
+                // Utiliser une approche avec fetch pour charger le CSV
+                fetch('resultats_departements_par_type.csv')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`Erreur HTTP: ${response.status}`);
+                        }
+                        return response.text();
+                    })
+                    .then(csvText => {
+                        // Parser le CSV manuellement
+                        const lines = csvText.split('\n');
+                        const headers = lines[0].split(',');
+                        
+                        // Créer un objet pour stocker les données par département
+                        const depts = {};
+                        
+                        // Parser chaque ligne du CSV
+                        for (let i = 1; i < lines.length; i++) {
+                            if (!lines[i].trim()) continue; // Ignorer les lignes vides
+                            
+                            const values = lines[i].split(',');
+                            const dept = {};
+                            
+                            // Associer chaque valeur à son en-tête
+                            for (let j = 0; j < headers.length; j++) {
+                                dept[headers[j]] = values[j];
+                            }
+                            
+                            // Stocker le département dans l'objet
+                            if (dept.code) {
+                                depts[dept.code] = dept;
+                            }
+                        }
+                        
+                        console.log("Données CSV chargées avec succès");
+                        data = depts;
+                        departements = depts;
+                        
+                        // Remplir le menu déroulant des départements
+                        remplirMenuDepartements(departements);
+                        
+                        // Afficher les départements
+                        afficherDepartements(departements);
+                        
+                        // Calculer et afficher les statistiques nationales
+                        calculerStatistiquesNationales(departements);
+                    })
+                    .catch(error => {
+                        console.error('Erreur lors du chargement des données:', error);
+                        if (deptListContainer) {
+                            deptListContainer.innerHTML = `
+                                <div class="col-12">
+                                    <div class="alert alert-danger">
+                                        <p class="mb-0">Erreur lors du chargement des données: ${error.message}</p>
+                                        <p>Vérifiez que le fichier CSV existe bien à l'emplacement: 'resultats_departements_par_type.csv'</p>
+                                    </div>
+                                </div>
+                            `;
+                        }
+                    });
+            }
+            
+            // Fonction pour calculer les statistiques nationales
+            function calculerStatistiquesNationales(depts) {
+                let totalInscrits = 0;
+                let totalVotants = 0;
+                let totalSve = 0;
+                let totalVoixCGT = 0;
+                let totalVoixCFDT = 0;
+                let totalVoixCGTFO = 0;
+                
+                // Parcourir tous les départements
+                for (const code in depts) {
+                    const dept = depts[code];
+                    
+                    // Ajouter les totaux
+                    totalInscrits += parseInt(dept.TOTAL_inscrits || 0);
+                    totalVotants += parseInt(dept.TOTAL_votants || 0);
+                    totalSve += parseInt(dept.TOTAL_sve || 0);
+                    
+                    // Ajouter les voix par syndicat
+                    totalVoixCGT += parseInt(dept.TOTAL_CGT || 0);
+                    totalVoixCFDT += parseInt(dept.TOTAL_CFDT || 0);
+                    totalVoixCGTFO += parseInt(dept['TOTAL_CGT-FO'] || 0);
+                }
+                
+                // Calculer le pourcentage CGT national
+                const pourcentageCGT = totalSve > 0 ? (totalVoixCGT / totalSve) * 100 : 0;
+                
+                // Mettre à jour les éléments HTML
+                document.getElementById('total-inscrits').textContent = formatNumber(totalInscrits);
+                document.getElementById('total-sve').textContent = formatNumber(totalSve);
+                document.getElementById('total-cgt-voix').textContent = formatNumber(totalVoixCGT);
+                document.getElementById('total-cfdt-voix').textContent = formatNumber(totalVoixCFDT);
+                document.getElementById('total-cgt-fo-voix').textContent = formatNumber(totalVoixCGTFO);
+                document.getElementById('pourcentage-cgt-national').textContent = pourcentageCGT.toFixed(2) + '%';
+                document.getElementById('progress-cgt-national').style.width = Math.min(pourcentageCGT, 100) + '%';
+            }
+            
+            // Fonction pour remplir le menu déroulant des départements
+            function remplirMenuDepartements(depts) {
+                const selectDept = document.getElementById('select-departement');
+                if (!selectDept) return;
+                
+                // Vider le menu déroulant
+                selectDept.innerHTML = '<option value="tous">Tous les départements</option>';
+                
+                // Créer un tableau pour trier les départements par code
+                const deptsArray = [];
+                for (const code in depts) {
+                    deptsArray.push({
+                        code: code,
+                        nom: depts[code].nom || `Département ${code}`
+                    });
+                }
+                
+                // Trier les départements par code
+                deptsArray.sort((a, b) => {
+                    // Gérer les cas spéciaux comme 2A, 2B, etc.
+                    if (a.code === b.code) return 0;
+                    if (a.code.startsWith('97') && !b.code.startsWith('97')) return 1;
+                    if (!a.code.startsWith('97') && b.code.startsWith('97')) return -1;
+                    if (a.code === '2A') return b.code === '2B' ? -1 : a.code.localeCompare(b.code);
+                    if (a.code === '2B') return a.code.localeCompare(b.code);
+                    return a.code.localeCompare(b.code);
+                });
+                
+                // Ajouter les options au menu déroulant
+                deptsArray.forEach(dept => {
+                    const option = document.createElement('option');
+                    option.value = dept.code;
+                    option.textContent = `${dept.code} - ${dept.nom}`;
+                    selectDept.appendChild(option);
+                });
+                
+                // Ajouter l'événement de changement
+                selectDept.addEventListener('change', function() {
+                    afficherDepartements(departements);
+                });
+            }
+            
+            // Fonction pour afficher les départements
+            function afficherDepartements(depts) {
+                // Convertir l'objet en tableau pour pouvoir le filtrer
+                let deptsArray = [];
+                
+                for (const code in depts) {
+                    deptsArray.push({
+                        ...depts[code],
+                        code: code
+                    });
+                }
+                
+                // Filtrer selon le département sélectionné
+                let deptsFiltered = deptsArray;
+                const selectDept = document.getElementById('select-departement');
+                const departementSelectionne = selectDept ? selectDept.value : '';
+                
+                if (departementSelectionne && departementSelectionne !== 'tous') {
+                    deptsFiltered = deptsArray.filter(d => d.code === departementSelectionne);
+                } else {
+                    // Filtres par pourcentage CGT
+                    if (filtreActif === 'cgt-sup30') {
+                        deptsFiltered = deptsArray.filter(d => getPourcentageSyndicat(d, 'CGT') > 30);
+                    } else if (filtreActif === 'cgt-sup25') {
+                        deptsFiltered = deptsArray.filter(d => getPourcentageSyndicat(d, 'CGT') > 25);
+                    } else if (filtreActif === 'cgt-sup20') {
+                        deptsFiltered = deptsArray.filter(d => getPourcentageSyndicat(d, 'CGT') > 20);
+                    }
+                }
+                
+                // Trier les départements
+                if (triActif === 'dept') {
+                    deptsFiltered.sort((a, b) => a.code.localeCompare(b.code));
+                } else if (triActif === 'cgt') {
+                    deptsFiltered.sort((a, b) => getPourcentageSyndicat(b, 'CGT') - getPourcentageSyndicat(a, 'CGT'));
+                } else if (triActif === 'cfdt') {
+                    deptsFiltered.sort((a, b) => getPourcentageSyndicat(b, 'CFDT') - getPourcentageSyndicat(a, 'CFDT'));
+                } else if (triActif === 'inscrits') {
+                    deptsFiltered.sort((a, b) => parseInt(b.TOTAL_inscrits || 0) - parseInt(a.TOTAL_inscrits || 0));
+                }
+                
+                // Récupérer le conteneur pour la liste des départements
+                const deptListContainer = document.getElementById('dept-list');
+                if (!deptListContainer) return;
+                
+                // Générer le HTML
+                let html = '';
+                deptsFiltered.forEach(dept => {
+                    // Déterminer la classe CSS pour la carte
+                    let syndicatClass = '';
+                    
+                    // Déterminer le syndicat dominant en fonction des voix totales
+                    const syndicats = ['CGT', 'CFDT', 'CGT-FO', 'CFTC', 'CFE-CGC', 'SOLIDAIRES', 'UNSA', 'AUTRES'];
+                    let maxVoix = 0;
+                    let syndicatDominant = '';
+                    
+                    syndicats.forEach(syndicat => {
+                        const voix = getTotalVoixSyndicat(dept, syndicat);
+                        if (voix > maxVoix) {
+                            maxVoix = voix;
+                            syndicatDominant = syndicat;
+                        }
+                    });
+                    
+                    // Appliquer la classe CSS en fonction du syndicat dominant
+                    if (syndicatDominant === 'CGT') {
+                        syndicatClass = 'cgt-dominant';
+                    } else if (syndicatDominant === 'CFDT') {
+                        syndicatClass = 'cfdt-dominant';
+                    } else if (syndicatDominant === 'CGT-FO') {
+                        syndicatClass = 'cgt-fo-dominant';
+                    } else if (syndicatDominant === 'CFTC') {
+                        syndicatClass = 'cftc-dominant';
+                    } else if (syndicatDominant === 'CFE-CGC') {
+                        syndicatClass = 'cfe-cgc-dominant';
+                    }
+                    
+                    html += `
+                        <div class="col-md-6 mb-3">
+                            <div class="dept-card card ${syndicatClass}">
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span><i class="fas fa-map-marker-alt me-1"></i>${dept.code} - ${dept.nom}</span>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row mb-3">
+                                        <div class="col-12">
+                                            <div class="card bg-light">
+                                                <div class="card-body p-2">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div>
+                                                            <div class="stats-value text-danger">${getPourcentageSyndicat(dept, 'CGT').toFixed(2)}%</div>
+                                                            <div class="stats-label">CGT</div>
+                                                        </div>
+                                                        <div style="width: 100px;">
+                                                            <div class="progress">
+                                                                <div class="progress-bar bg-danger" role="progressbar" style="width: ${Math.min(getPourcentageSyndicat(dept, 'CGT'), 100)}%" aria-valuenow="${getPourcentageSyndicat(dept, 'CGT')}" aria-valuemin="0" aria-valuemax="100"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="stats-item">
+                                                <div class="stats-value">${syndicatDominant}</div>
+                                                <div class="stats-label">Syndicat dominant</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="stats-item text-end">
+                                                <div class="stats-value">${formatNumber(getTotalVoixSyndicat(dept, 'CGT'))}</div>
+                                                <div class="stats-label">Voix CGT</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mt-3">
+                                        <h6 class="mb-2">Inscrits par type de scrutin</h6>
+                                        <div class="table-responsive">
+                                            <table class="table table-sm table-bordered">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th>Type</th>
+                                                        <th>Inscrits</th>
+                                                        <th>Votants</th>
+                                                        <th>SVE</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><strong>CSE</strong></td>
+                                                        <td>${formatNumber(parseInt(dept.CSE_inscrits || 0))}</td>
+                                                        <td>${formatNumber(parseInt(dept.CSE_votants || 0))}</td>
+                                                        <td>${formatNumber(parseInt(dept.CSE_sve || 0))}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>TPE</strong></td>
+                                                        <td>${formatNumber(parseInt(dept.TPE_inscrits || 0))}</td>
+                                                        <td>${formatNumber(parseInt(dept.TPE_votants || 0))}</td>
+                                                        <td>${formatNumber(parseInt(dept.TPE_sve || 0))}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>AGRI</strong></td>
+                                                        <td>${formatNumber(parseInt(dept.AGRI_inscrits || 0))}</td>
+                                                        <td>${formatNumber(parseInt(dept.AGRI_votants || 0))}</td>
+                                                        <td>${formatNumber(parseInt(dept.AGRI_sve || 0))}</td>
+                                                    </tr>
+                                                    <tr class="table-secondary">
+                                                        <td><strong>TOTAL</strong></td>
+                                                        <td><strong>${formatNumber(parseInt(dept.TOTAL_inscrits || 0))}</strong></td>
+                                                        <td><strong>${formatNumber(parseInt(dept.TOTAL_votants || 0))}</strong></td>
+                                                        <td><strong>${formatNumber(parseInt(dept.TOTAL_sve || 0))}</strong></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        
+                                        <h6 class="mb-2 mt-3">Scores par organisation</h6>
+                                        <div class="table-responsive">
+                                            <table class="table table-sm table-bordered">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th>Organisation</th>
+                                                        <th>Total Voix</th>
+                                                        <th>%</th>
+                                                        <th>CSE</th>
+                                                        <th>TPE</th>
+                                                        <th>AGRI</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class="table-danger">
+                                                        <td>CGT</td>
+                                                        <td>${formatNumber(getTotalVoixSyndicat(dept, 'CGT'))}</td>
+                                                        <td>${getPourcentageSyndicat(dept, 'CGT').toFixed(2)}%</td>
+                                                        <td>${formatNumber(parseInt(dept.CSE_CGT || 0))}</td>
+                                                        <td>${formatNumber(parseInt(dept.TPE_CGT || 0))}</td>
+                                                        <td>${formatNumber(parseInt(dept.AGRI_CGT || 0))}</td>
+                                                    </tr>
+                                                    <tr class="table-info">
+                                                        <td>CFDT</td>
+                                                        <td>${formatNumber(getTotalVoixSyndicat(dept, 'CFDT'))}</td>
+                                                        <td>${getPourcentageSyndicat(dept, 'CFDT').toFixed(2)}%</td>
+                                                        <td>${formatNumber(parseInt(dept.CSE_CFDT || 0))}</td>
+                                                        <td>${formatNumber(parseInt(dept.TPE_CFDT || 0))}</td>
+                                                        <td>${formatNumber(parseInt(dept.AGRI_CFDT || 0))}</td>
+                                                    </tr>
+                                                    <tr class="table-warning">
+                                                        <td>CGT-FO</td>
+                                                        <td>${formatNumber(getTotalVoixSyndicat(dept, 'CGT-FO'))}</td>
+                                                        <td>${getPourcentageSyndicat(dept, 'CGT-FO').toFixed(2)}%</td>
+                                                        <td>${formatNumber(parseInt(dept['CSE_CGT-FO'] || 0))}</td>
+                                                        <td>${formatNumber(parseInt(dept['TPE_CGT-FO'] || 0))}</td>
+                                                        <td>${formatNumber(parseInt(dept['AGRI_CGT-FO'] || 0))}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>CFTC</td>
+                                                        <td>${formatNumber(getTotalVoixSyndicat(dept, 'CFTC'))}</td>
+                                                        <td>${getPourcentageSyndicat(dept, 'CFTC').toFixed(2)}%</td>
+                                                        <td>${formatNumber(parseInt(dept.CSE_CFTC || 0))}</td>
+                                                        <td>${formatNumber(parseInt(dept.TPE_CFTC || 0))}</td>
+                                                        <td>${formatNumber(parseInt(dept.AGRI_CFTC || 0))}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>CFE-CGC</td>
+                                                        <td>${formatNumber(getTotalVoixSyndicat(dept, 'CFE-CGC'))}</td>
+                                                        <td>${getPourcentageSyndicat(dept, 'CFE-CGC').toFixed(2)}%</td>
+                                                        <td>${formatNumber(parseInt(dept['CSE_CFE-CGC'] || 0))}</td>
+                                                        <td>${formatNumber(parseInt(dept['TPE_CFE-CGC'] || 0))}</td>
+                                                        <td>${formatNumber(parseInt(dept['AGRI_CFE-CGC'] || 0))}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>SOLIDAIRES</td>
+                                                        <td>${formatNumber(getTotalVoixSyndicat(dept, 'SOLIDAIRES'))}</td>
+                                                        <td>${getPourcentageSyndicat(dept, 'SOLIDAIRES').toFixed(2)}%</td>
+                                                        <td>${formatNumber(parseInt(dept.CSE_SOLIDAIRES || 0))}</td>
+                                                        <td>${formatNumber(parseInt(dept.TPE_SOLIDAIRES || 0))}</td>
+                                                        <td>${formatNumber(parseInt(dept.AGRI_SOLIDAIRES || 0))}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>UNSA</td>
+                                                        <td>${formatNumber(getTotalVoixSyndicat(dept, 'UNSA'))}</td>
+                                                        <td>${getPourcentageSyndicat(dept, 'UNSA').toFixed(2)}%</td>
+                                                        <td>${formatNumber(parseInt(dept.CSE_UNSA || 0))}</td>
+                                                        <td>${formatNumber(parseInt(dept.TPE_UNSA || 0))}</td>
+                                                        <td>${formatNumber(parseInt(dept.AGRI_UNSA || 0))}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>AUTRES</td>
+                                                        <td>${formatNumber(getTotalVoixSyndicat(dept, 'AUTRES'))}</td>
+                                                        <td>${getPourcentageSyndicat(dept, 'AUTRES').toFixed(2)}%</td>
+                                                        <td>${formatNumber(parseInt(dept.CSE_AUTRES || 0))}</td>
+                                                        <td>${formatNumber(parseInt(dept.TPE_AUTRES || 0))}</td>
+                                                        <td>${formatNumber(parseInt(dept.AGRI_AUTRES || 0))}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                deptListContainer.innerHTML = html || `
+                    <div class="col-12">
+                        <div class="alert alert-info">
+                            <p class="mb-0">Aucun département ne correspond aux critères sélectionnés.</p>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Fonction pour mettre à jour le bouton actif
+            function updateActiveFilterButton(button) {
+                document.querySelectorAll('.btn-group .btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                button.classList.add('active');
+            }
+            
+            // Ajouter les gestionnaires d'événements pour les boutons de filtre
+            document.getElementById('btn-tous').addEventListener('click', function() {
+                document.getElementById('select-departement').value = 'tous';
+                filtreActif = 'tous';
+                updateActiveFilterButton(this);
+                afficherDepartements(departements);
+            });
+            
+            document.getElementById('btn-cgt-sup30').addEventListener('click', function() {
+                document.getElementById('select-departement').value = 'tous';
+                filtreActif = 'cgt-sup30';
+                updateActiveFilterButton(this);
+                afficherDepartements(departements);
+            });
+            
+            document.getElementById('btn-cgt-sup25').addEventListener('click', function() {
+                document.getElementById('select-departement').value = 'tous';
+                filtreActif = 'cgt-sup25';
+                updateActiveFilterButton(this);
+                afficherDepartements(departements);
+            });
+            
+            document.getElementById('btn-cgt-sup20').addEventListener('click', function() {
+                document.getElementById('select-departement').value = 'tous';
+                filtreActif = 'cgt-sup20';
+                updateActiveFilterButton(this);
+                afficherDepartements(departements);
+            });
+            
+            // Ajouter les gestionnaires d'événements pour les boutons de tri
+            document.getElementById('btn-tri-dept').addEventListener('click', function() {
+                triActif = 'dept';
+                updateActiveFilterButton(this);
+                afficherDepartements(departements);
+            });
+            
+            document.getElementById('btn-tri-cgt').addEventListener('click', function() {
+                triActif = 'cgt';
+                updateActiveFilterButton(this);
+                afficherDepartements(departements);
+            });
+            
+            document.getElementById('btn-tri-cfdt').addEventListener('click', function() {
+                triActif = 'cfdt';
+                updateActiveFilterButton(this);
+                afficherDepartements(departements);
+            });
+            
+            document.getElementById('btn-tri-inscrits').addEventListener('click', function() {
+                triActif = 'inscrits';
+                updateActiveFilterButton(this);
+                afficherDepartements(departements);
+            });
+            
+            // Charger les données au chargement de la page
+            loadData();
+        });
+    </script>
+</body>
+</html>
